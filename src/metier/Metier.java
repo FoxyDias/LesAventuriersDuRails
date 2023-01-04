@@ -28,6 +28,7 @@ public class Metier {
 
 
     private int nbJoueurMax, nbJoueurMinDoubleArete , nbWagonDebutPartie ,nbWagonFinPartie , nbPointsPlusLongChemin ;
+    private String[][] pointsTaille;
 
     public Metier( Controleur ctrl )
     {
@@ -44,18 +45,17 @@ public class Metier {
         this.hsmImageWagon = new HashMap<String, String>();
     }
 
-    public void lireXml()
+    public void lireXml(String pathXml)
     {
         org.jdom2.Document document;
         Element racine;
-
 
         SAXBuilder sxb = new SAXBuilder();
         try {
             // On crée un nouveau document JDOM avec en argument le
             //fichier XML
             // Le parsing est terminé
-            document = sxb.build(new File( "donnee/xml/carteTest.xml" ));
+            document = sxb.build(pathXml);
         } catch (Exception e)
         {
 
@@ -78,13 +78,12 @@ public class Metier {
         // Iterator i = listVilles.iterator();
         List<Element> lstNoeud = racine.getChildren ( "mappe" ).get(0).getChildren("noeud");
         List<Element> lstArete = racine.getChildren ( "mappe" ).get(0).getChildren("arete");
-        //List<Element> lstObjectif = racine.getChildren ( "mappe" ).get(0).getChildren("carteObjectif");
+        List<Element> lstObjectif = racine.getChildren ( "mappe" ).get(0).getChildren("carteObjectif");
         List<Element> lstWagon = racine.getChildren ( "mappe" ).get(0).getChildren("carteWagon");
         List<Element> lstInformation = racine.getChildren ( "mappe" ).get(0).getChildren("details");
+        List<Element> lstCouleurJoueur = racine.getChildren ( "mappe" ).get(0).getChildren("CouleurJoueurList");
+        List<Element> lstPoints = racine.getChildren ( "mappe" ).get(0).getChildren("points").get(0).getChildren("pointTaille");
 
-
-
-        System.out.println("Test2");
         for(Element courant : lstNoeud) {
 
             String nomVille = courant.getAttributeValue("nom");
@@ -110,6 +109,8 @@ public class Metier {
 
         }
 
+
+
         for(Element a : lstArete)
         {
             String nomVille1 = a.getChild("noeudArr").getText ();
@@ -123,20 +124,6 @@ public class Metier {
             this.creeArete(n1, n2, couleur,nbW);
         }
 
-        /*
-        for(Element o : lstObjectif)
-        {
-            String nomVille1 = o.getChild("noeudArr").getText ();
-            String nomVille2 = o.getChild("noeudDep").getText ();
-            int points = Integer.parseInt(o.getChild("points").getText());
-
-           // System.out.println("Objectif : " + nomVille1 + " " + nomVille2 + " " + points);
-
-
-            this.creeCarteObjectif(this.getNoeud(nomVille1), this.getNoeud(nomVille2), points);
-        }
-        */
-
         for(Element d : lstInformation)
         {
             this.nbJoueurMinDoubleArete = Integer.parseInt(d.getChild("nbJoueurMinDoubleArete").getText());
@@ -144,9 +131,36 @@ public class Metier {
             this.nbWagonDebutPartie = Integer.parseInt(d.getChild("nbWagonDebutPartie").getText());
             this.nbWagonFinPartie = Integer.parseInt(d.getChild("nbWagonFinPartie").getText());
             this.nbPointsPlusLongChemin = Integer.parseInt(d.getChild("nbPointsPlusLongChemin").getText());
-            System.out.println("Image : "+ d.getChild("image").getText());
-            //this.ctrl.imageToPanelGraphique(d.getChild("image").getText());
         }
+
+        for(Element o : lstObjectif)
+        {
+            Noeud n1 = this.lstNoeud.get(Integer.parseInt(o.getChild("noeudDep").getText()));
+            Noeud n2 = this.lstNoeud.get(Integer.parseInt(o.getChild("noeudArr").getText()));
+            int points = Integer.parseInt(o.getChild("points").getText());
+
+            this.creeCarteObjectif(n1, n2, points);
+
+        }
+
+
+        int n =0;
+        for(Element p  : lstPoints)
+        {
+            int taille = Integer.parseInt(p.getChild("taille").getText());
+            int point = Integer.parseInt(p.getChild("points").getText());
+
+            this.pointsTaille[n][0] = ""+ taille;
+            this.pointsTaille[n][1] = ""+ point;
+            n++;
+        }
+
+        for(Element c : lstCouleurJoueur)
+        {
+            String couleur = c.getChild("couleurJoueur").getText();
+            this.lstCouleurJoueur.add(couleur);
+        }
+
     }
 
     public void creeNoeud(String nom, int x, int y, int nomX , int nomY)
