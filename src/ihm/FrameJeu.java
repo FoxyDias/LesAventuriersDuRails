@@ -1,65 +1,70 @@
+/**
+ * @author Decharrois Adrien
+ * @version 1.0
+ * @date 2023-01-03
+ */
+
 package ihm;
 
-import ihm.jeu.PanelPreparationJeu;
-import ihm.mappes.PanelListeMappes;
 import main.Controleur;
+import ihm.accueil.PanelDispoBtn;
+import ihm.jeu.PanelPreparationJeu;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.*;
 
-public class FrameJeu extends JFrame implements ActionListener {
-
+public class FrameJeu extends JFrame
+{
     Controleur ctrl;
 
-    private JButton btnLancer;
-    private JButton btnLstMap;
-    private JButton btnQuitter;
-    private PanelListeMappes panelListeMappes;
-    private PanelPreparationJeu panelPreparationJeu;
+	protected static Font POLICE_DEFAULT = new Font("Broadway", Font.BOLD, 50);
+	private Dimension tailleEcran = Toolkit.getDefaultToolkit().getScreenSize();
+
+	private int longueur, hauteur;
+
+	private PanelDispoBtn panelDispoBtn;
+
 
     public FrameJeu(Controleur ctrl)
     {
-        this.ctrl = ctrl;
+		/**
+		 * Création des composants
+		 */
+		this.ctrl = ctrl;
+		this.setTitle("Les aventuriers du rail");
 
-        this.setLayout( new GridLayout(3,1));
+		this.panelDispoBtn = new PanelDispoBtn(this.ctrl);
 
-        this.btnLancer  = new JButton("Lancer");
-        this.btnLstMap  = new JButton("Mappes");
-        this.btnQuitter = new JButton("Quitter");
+		this.longueur = this.tailleEcran.width - (int) (this.tailleEcran.width * 0.01);
+		this.hauteur = this.tailleEcran.height - (int) (this.tailleEcran.height * 0.06);
 
-        this.btnLancer.addActionListener(this);
-        this.btnLstMap.addActionListener(this);
-        this.btnQuitter.addActionListener(this);
+		this.setSize(longueur, hauteur);
+		this.setLayout(new BorderLayout());
+		this.setLocation(0,0);
 
-        this.add( this.btnLancer );
-        this.add( this.btnLstMap );
-        this.add( this.btnQuitter );
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setVisible(true);
-    }
+		/**
+		 * Positionnement des composants
+		 */
+		this.add(this.panelDispoBtn, BorderLayout.WEST);
+		this.setVisible(true);
+	}
 
+	/**
+	 * Permet de changer de panel selon le nom
+	 * @param nom
+	 * @return nothing
+	 */
+	public void changerPanel(String nom)
+	{
+		switch(nom)
+		{
+			case "jouer":
+				break;
 
-    @Override
-    public void actionPerformed(ActionEvent e)
-    {
-
-        if( e.getSource() == this.btnLancer )
-        {
-            this.panelPreparationJeu = new PanelPreparationJeu(ctrl);
-            this.add( this.panelListeMappes );
-        }
-        else if( e.getSource() == this.btnLstMap )
-        {
-            this.panelListeMappes = new PanelListeMappes(ctrl);
-            this.add( this.panelListeMappes );
-        }
-        else if( e.getSource() == this.btnQuitter )
-        {
-            this.dispose();
-        }
-
-    }
+			case "importerXML":
+				break;
+		}
+	}
 }
