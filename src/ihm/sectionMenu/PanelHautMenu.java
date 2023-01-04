@@ -3,10 +3,17 @@ package ihm.sectionMenu;
 import main.Controleur;
 
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -61,6 +68,23 @@ public class PanelHautMenu extends JPanel implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == this.btnImport)
-			System.out.println("Import");
+		{
+			FileNameExtensionFilter filtre = new FileNameExtensionFilter("Format XML", "xml");
+			JFileChooser jFileChooser = new JFileChooser(new File("donnee/xml"));
+
+			jFileChooser.setAcceptAllFileFilterUsed(false);
+			jFileChooser.setFileFilter(filtre);
+
+			int res = jFileChooser.showOpenDialog(null);
+			if(res == JFileChooser.APPROVE_OPTION)
+			{
+				File file = jFileChooser.getSelectedFile();
+				try {
+					Files.copy(file.toPath(), Paths.get("donnee/xml/"+file.getName()));
+					} catch (IOException e1) {e1.printStackTrace();}
+
+				//this.ctrl.lireXml("donnee/xml/"+file.getName());	
+			}
+		}
 	}
 }
