@@ -7,9 +7,8 @@
 package ihm;
 
 import main.Controleur;
-import ihm.accueil.PanelDispoBtn;
+import ihm.accueil.PanelInit;
 import ihm.accueil.PanelXmlInfo;
-import ihm.jeu.PanelPreparationJeu;
 
 import java.awt.*;
 import javax.swing.*;
@@ -23,10 +22,10 @@ public class FrameJeu extends JFrame
 
 	private int longueur, hauteur;
 
-	private PanelDispoBtn panelDispoBtn;
+	private PanelInit panelInit;
 
 
-    public FrameJeu(Controleur ctrl)
+    public FrameJeu(Controleur ctrl, String nom)
     {
 		/**
 		 * Création des composants
@@ -34,7 +33,7 @@ public class FrameJeu extends JFrame
 		this.ctrl = ctrl;
 		this.setTitle("Les aventuriers du rail");
 
-		this.panelDispoBtn = new PanelDispoBtn(this.ctrl);
+		this.panelInit = new PanelInit(this.ctrl);
 
 		this.longueur = this.tailleEcran.width - (int) (this.tailleEcran.width * 0.01);
 		this.hauteur = this.tailleEcran.height - (int) (this.tailleEcran.height * 0.06);
@@ -48,13 +47,12 @@ public class FrameJeu extends JFrame
 		/**
 		 * Positionnement des composants
 		 */
-		this.add(this.panelDispoBtn, BorderLayout.WEST);
+		this.add(this.panelInit);
 		this.setVisible(true);
 	}
 
 	/**
-	 * 
-	 * 
+	 * @param panelXmlInfo
 	 */
 	public void panelSelectionner(PanelXmlInfo panelXmlInfo)
 	{
@@ -75,6 +73,13 @@ public class FrameJeu extends JFrame
 				break;
 
 			case "importerXML":
+				this.panelInit = new PanelInit(this.ctrl);
+				this.add(this.panelInit);
+				break;
+
+			case "init":
+				this.panelInit = new PanelInit(this.ctrl);
+				this.add(this.panelInit);
 				break;
 		}
 	}

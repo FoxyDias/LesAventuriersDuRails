@@ -19,7 +19,7 @@ public class Controleur {
     public Controleur()
     {
         this.metier = new Metier( this );
-        this.ihm = new FrameJeu( this );
+        this.ihm = new FrameJeu(this, "init");
     }
 
     public ArrayList<Noeud> getLstNoeud()
@@ -51,6 +51,11 @@ public class Controleur {
 
 	public void panelSelectionner(PanelXmlInfo panelXmlInfo) { this.ihm.panelSelectionner(panelXmlInfo);}
 
+	public void changerPanel(String nom)
+	{
+		this.ihm.dispose();
+		this.ihm = new FrameJeu(this, nom);
+	}
 
     /**
      * Le main du projet

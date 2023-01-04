@@ -42,13 +42,32 @@ public class PanelListeMappes extends JPanel
 		 
         this.ctrl = ctrl;
 		this.setLayout(new BorderLayout(0,10));
+		this.setBackground(Color.WHITE);
 		this.initRepertoireImporte();
 
-		this.setBackground(Color.WHITE);
-    }
+		PanelXmlInfo[] tabPanelAffichageImporte = new PanelXmlInfo[this.repertoireImporte.length];
+		JPanel panelAffichageImporte = new JPanel(new GridLayout(tabPanelAffichageImporte.length-1,1));
+
+		for(int i = 0; i < tabPanelAffichageImporte.length; i++)
+		{
+			if(!this.repertoireImporte[i].equals("xml"))
+			{
+				tabPanelAffichageImporte[i] = new PanelXmlInfo(this.ctrl, this.repertoireImporte[i]);
+				panelAffichageImporte.add(tabPanelAffichageImporte[i]);
+			}
+		}
+
+		this.scrollPane = new JScrollPane(panelAffichageImporte, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		this.scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+
+		this.add(new JLabel("Liste des fichiers XML importées", JLabel.CENTER), BorderLayout.NORTH);
+		this.add(this.scrollPane, BorderLayout.CENTER);
+	}
 
 	/**
-	 * 
+	 * Permet de stocker le panelSelectionner, si un panelSelectionner est déjà présent, l'ancien panel se déselectionne et prend l'instance
+	 * du nouveau panel en le sélectionnant
+	 * @param panelXmlInfo
 	 */
 	public void panelSelectionner(PanelXmlInfo panelXmlInfo)
 	{
@@ -58,7 +77,34 @@ public class PanelListeMappes extends JPanel
 		}
 		else
 		{
-			this.panelXmlInfo.changerBordure(BorderFactory.createLineBorder());
+			this.panelXmlInfo.changerBordure(BorderFactory.createEmptyBorder());
+			this.panelXmlInfo.inverserEtat();
+			this.panelXmlInfo = panelXmlInfo;
+		}
+		this.panelXmlInfo.changerBordure(BorderFactory.createLineBorder(Color.RED, 2));
+		this.panelXmlInfo.inverserEtat();
+	}
+
+	/**
+	 * Mise à jour du panel important les XML
+	 */
+
+	public void majPanelImporte()
+	{
+		this.initRepertoireImporte();
+
+		PanelXmlInfo[] tabPanelAffichageImporte = new PanelXmlInfo[this.repertoireImporte.length];
+		JPanel panelAffichageImporte = new JPanel(new GridLayout(tabPanelAffichageImporte.length-1,1));
+
+		for(int i = 0; i < tabPanelAffichageImporte.length; i++)
+		{
+			if(!this.repertoireImporte[i].equals("xml"))
+			{
+				tabPanelAffichageImporte[i] = new PanelXmlInfo(this.ctrl, this.repertoireImporte[i]);
+				panelAffichageImporte.add(tabPanelAffichageImporte[i]);
+			}
+			this.add(panelAffichageImporte);
+			this.ctrl.changerPanel("init");
 		}
 	}
 }

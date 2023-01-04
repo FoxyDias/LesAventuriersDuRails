@@ -51,9 +51,20 @@ public class PanelXmlInfo extends JPanel implements ActionListener
 
 	public void actionPerformed(ActionEvent e )
 	{
-		/*if(e.getSource() == this.btnXML)
-			this.ctrl.panelSelectionner(this); */
+		if(e.getSource() == this.btnXML)
+		{
+			this.ctrl.panelSelectionner(this);
+		}
 	}
 
+	/**
+	 * Permet de mettre une bordure à l'objet
+	 * @param bordure
+	 */
 	public void changerBordure(Border bordure)	{ this.btnXML.setBorder(bordure);}
+
+	/**
+	 * Inverser l'état du bouton
+	 */
+	public void inverserEtat()	{ this.btnXML.setEnabled(!this.btnXML.isEnabled());}
 }
