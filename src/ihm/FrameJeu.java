@@ -7,8 +7,7 @@
 package ihm;
 
 import main.Controleur;
-import ihm.accueil.PanelInit;
-import ihm.accueil.PanelXmlInfo;
+import ihm.sectionMenu.PanelMenu;
 
 import java.awt.*;
 import javax.swing.*;
@@ -17,13 +16,10 @@ public class FrameJeu extends JFrame
 {
     Controleur ctrl;
 
-	protected static Font POLICE_DEFAULT = new Font("Broadway", Font.BOLD, 50);
 	private Dimension tailleEcran = Toolkit.getDefaultToolkit().getScreenSize();
-
 	private int longueur, hauteur;
 
-	private PanelInit panelInit;
-
+	private PanelMenu panelMenu;
 
     public FrameJeu(Controleur ctrl, String nom)
     {
@@ -31,56 +27,23 @@ public class FrameJeu extends JFrame
 		 * Création des composants
 		 */
 		this.ctrl = ctrl;
-		this.setTitle("Les aventuriers du rail");
-
-		this.panelInit = new PanelInit(this.ctrl);
 
 		this.longueur = this.tailleEcran.width - (int) (this.tailleEcran.width * 0.01);
 		this.hauteur = this.tailleEcran.height - (int) (this.tailleEcran.height * 0.06);
+		this.panelMenu = new PanelMenu(this.ctrl);
+
 
 		this.setSize(longueur, hauteur);
-		this.setLayout(new BorderLayout());
 		this.setLocation(0,0);
+		this.setUndecorated(true);
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		/**
 		 * Positionnement des composants
 		 */
-		this.add(this.panelInit);
+
+		this.add(this.panelMenu);
 		this.setVisible(true);
-	}
-
-	/**
-	 * @param panelXmlInfo
-	 */
-	public void panelSelectionner(PanelXmlInfo panelXmlInfo)
-	{
-		this.panelInit.panelSelectionner(panelXmlInfo);
-	}
-
-
-	/**
-	 * Permet de changer de panel selon le nom
-	 * @param nom
-	 * @return nothing
-	 */
-	public void changerPanel(String nom)
-	{
-		switch(nom)
-		{
-			case "jouer":
-				break;
-
-			case "importerXML":
-				this.panelInit = new PanelInit(this.ctrl);
-				this.add(this.panelInit);
-				break;
-
-			case "init":
-				this.panelInit = new PanelInit(this.ctrl);
-				this.add(this.panelInit);
-				break;
-		}
 	}
 }

@@ -1,7 +1,6 @@
 package main;
 
 import ihm.FrameJeu;
-import ihm.accueil.PanelXmlInfo;
 
 import metier.Arete;
 import metier.CarteObjectif;
@@ -48,14 +47,6 @@ public class Controleur {
     {
         return this.metier.getListCarteObjectif();
     }
-
-	public void panelSelectionner(PanelXmlInfo panelXmlInfo) { this.ihm.panelSelectionner(panelXmlInfo);}
-
-	public void changerPanel(String nom)
-	{
-		this.ihm.dispose();
-		this.ihm = new FrameJeu(this, nom);
-	}
 
     /**
      * Le main du projet
