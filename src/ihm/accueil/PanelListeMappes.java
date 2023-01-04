@@ -21,6 +21,7 @@ public class PanelListeMappes extends JPanel
     private Controleur ctrl;
 	private JScrollPane scrollPane;
 	private String[] repertoireImporte;
+	private PanelXmlInfo panelXmlInfo;
 
 	/**
 	 * Initialise le répertoire importerXML
@@ -45,4 +46,19 @@ public class PanelListeMappes extends JPanel
 
 		this.setBackground(Color.WHITE);
     }
+
+	/**
+	 * 
+	 */
+	public void panelSelectionner(PanelXmlInfo panelXmlInfo)
+	{
+		if(this.panelXmlInfo == null )
+		{
+			this.panelXmlInfo = panelXmlInfo;
+		}
+		else
+		{
+			this.panelXmlInfo.changerBordure(BorderFactory.createLineBorder());
+		}
+	}
 }

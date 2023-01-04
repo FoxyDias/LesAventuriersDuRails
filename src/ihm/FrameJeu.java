@@ -8,6 +8,7 @@ package ihm;
 
 import main.Controleur;
 import ihm.accueil.PanelDispoBtn;
+import ihm.accueil.PanelXmlInfo;
 import ihm.jeu.PanelPreparationJeu;
 
 import java.awt.*;
@@ -50,6 +51,16 @@ public class FrameJeu extends JFrame
 		this.add(this.panelDispoBtn, BorderLayout.WEST);
 		this.setVisible(true);
 	}
+
+	/**
+	 * 
+	 * 
+	 */
+	public void panelSelectionner(PanelXmlInfo panelXmlInfo)
+	{
+		this.panelInit.panelSelectionner(panelXmlInfo);
+	}
+
 
 	/**
 	 * Permet de changer de panel selon le nom

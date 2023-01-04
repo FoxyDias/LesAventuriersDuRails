@@ -8,6 +8,8 @@ package ihm.accueil;
 
 import main.Controleur;
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -49,7 +51,9 @@ public class PanelXmlInfo extends JPanel implements ActionListener
 
 	public void actionPerformed(ActionEvent e )
 	{
-		if(e.getSource() == this.btnXML)
-			//this.ctrl.panelSelectionner(this);
+		/*if(e.getSource() == this.btnXML)
+			this.ctrl.panelSelectionner(this); */
 	}
+
+	public void changerBordure(Border bordure)	{ this.btnXML.setBorder(bordure);}
 }
