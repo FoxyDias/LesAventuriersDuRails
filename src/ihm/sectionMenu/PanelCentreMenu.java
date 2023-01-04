@@ -3,10 +3,14 @@ package ihm.sectionMenu;
 import main.Controleur;
 import javax.swing.*;
 import java.awt.event.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
-
+import java.awt.datatransfer.StringSelection;
+import java.awt.Toolkit;
+import javax.swing.border.Border;
 
 public class PanelCentreMenu extends JPanel implements ActionListener
 {
@@ -19,15 +23,15 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 	private JTextField txtNbJoueursMiniCreer;
 	private JTextField txtNbJoueursMaxiCreer;
-	private JTextField txtMotDePasseCreer;
 	private JTextField txtPortMachineCreer;
 	private JTextField txtPortMachineRejoindre; 
 	private JTextField txtIPMachineRejoindre;
-	private JTextField txtMotDePasseRejoindre;
 	private JTextField txtNbJoueursLocal;
 
+	private JPasswordField txtMotDePasseCreer;
+	private JPasswordField txtMotDePasseRejoindre;
+
 	private JDialog dialogCreerPartie;
-	private JDialog dialogRejoindrePartie;
 
 	public PanelCentreMenu(Controleur ctrl)
 	{
@@ -38,20 +42,16 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		JLabel lblPartieSolo		= new JLabel("Jouer en local");
 		JLabel lblNbJoueursLocal	= new JLabel("Nombre de joueurs : ");
 
-		JLabel lblIPMachine 			= new JLabel("IP de la machine à rejoindre : ");
-		JLabel lblPortMachineRejoindre	= new JLabel("Port de la machine : ");
-		JLabel lblMotDePasseRejoindre 	= new JLabel("Mot de passe de la partie : ");
+		JPanel panelCreerPartieSolo		= new JPanel(new BorderLayout());
+		JPanel panelTitreCreerPartieSolo= new JPanel();
+		JPanel panelGrillePartieSolo 	= new JPanel(new GridLayout(3,3,20,20));	
+		JPanel panelCreerPartieMult 	= new JPanel(new BorderLayout());
+		JPanel panelTitreCreerPartieMult= new JPanel();
+		JPanel panelGrillePartieMult	= new JPanel(new GridLayout(3,3,20,20));
 
-		JPanel panelCreerPartieSolo			= new JPanel(new BorderLayout());
-		JPanel panelTitreCreerPartieSolo	= new JPanel();
-		JPanel panelGrillePartieSolo 		= new JPanel(new GridLayout(3,3,20,20));	
+		JPanel panelRelierPartieMult	= new JPanel(new GridLayout(1,2,40,0));
 
-
-		JPanel panelCreerPartieMult 		= new JPanel(new BorderLayout());
-		JPanel panelTitreCreerPartieMult	= new JPanel();
-		JPanel panelGrillePartieMult		= new JPanel(new GridLayout(3,3,20,20));
-
-		JPanel panelRelierPartieMult		= new JPanel(new GridLayout(1,2,40,0));
+		Border border = BorderFactory.createLineBorder(Color.black, 1);
 
 		panelCreerPartieSolo.setBorder(BorderFactory.createLineBorder(Color.black));
 		panelCreerPartieMult.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -66,12 +66,13 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 		this.txtNbJoueursMiniCreer		= new JTextField();
 		this.txtNbJoueursMaxiCreer		= new JTextField();
-		this.txtMotDePasseCreer			= new JTextField();
 		this.txtPortMachineCreer		= new JTextField();
 		this.txtPortMachineRejoindre	= new JTextField();
 		this.txtIPMachineRejoindre		= new JTextField();
-		this.txtMotDePasseRejoindre		= new JTextField();
 		this.txtNbJoueursLocal			= new JTextField();
+
+		this.txtMotDePasseCreer			= new JPasswordField();
+		this.txtMotDePasseRejoindre		= new JPasswordField();
 
 		panelTitreCreerPartieSolo.setBorder(BorderFactory.createLineBorder(Color.black));
 		panelTitreCreerPartieMult.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -82,6 +83,22 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		this.btnCopierIP			.setBackground(Color.WHITE);
 		this.btnLancerPartiePopUp	.setBackground(Color.WHITE);
 		this.btnRejoindreMultiPopUp	.setBackground(Color.WHITE);
+
+		this.txtNbJoueursMiniCreer	.setHorizontalAlignment(JTextField.CENTER);
+		this.txtNbJoueursMaxiCreer	.setHorizontalAlignment(JTextField.CENTER);
+		this.txtPortMachineCreer	.setHorizontalAlignment(JTextField.CENTER);
+		this.txtPortMachineRejoindre.setHorizontalAlignment(JTextField.CENTER);
+		this.txtIPMachineRejoindre	.setHorizontalAlignment(JTextField.CENTER);
+
+		this.txtIPMachineRejoindre	.setBorder(border);
+		this.txtMotDePasseCreer		.setBorder(border);
+		this.txtMotDePasseRejoindre	.setBorder(border);
+		this.txtNbJoueursLocal		.setBorder(border);
+		this.txtNbJoueursMiniCreer	.setBorder(border);
+		this.txtNbJoueursMaxiCreer	.setBorder(border);
+		this.txtPortMachineCreer	.setBorder(border);
+		this.txtPortMachineRejoindre.setBorder(border);
+
 
 		/**
 		 * Positionnement des composants
@@ -141,13 +158,64 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		this.btnCopierIP.addActionListener(this);
 		this.btnLancerPartiePopUp.addActionListener(this);
 		this.btnRejoindreMultiPopUp.addActionListener(this);
+
+		/* A vraiment optimiser */
+		this.txtNbJoueursMiniCreer.addKeyListener(new KeyAdapter()
+		{
+			public void keyTyped(KeyEvent e)
+			{
+				char c = e.getKeyChar();
+				if(!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE)))
+					e.consume();
+			}
+		});
+
+		this.txtNbJoueursMaxiCreer.addKeyListener(new KeyAdapter()
+		{
+			public void keyTyped(KeyEvent e)
+			{
+				char c = e.getKeyChar();
+				if(!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE)))
+					e.consume();
+			}
+		});
+
+		this.txtPortMachineCreer.addKeyListener(new KeyAdapter()
+		{
+			public void keyTyped(KeyEvent e)
+			{
+				char c = e.getKeyChar();
+				if(!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE)))
+					e.consume();
+			}
+		});
+
+		this.txtPortMachineRejoindre.addKeyListener(new KeyAdapter()
+		{
+			public void keyTyped(KeyEvent e)
+			{
+				char c = e.getKeyChar();
+				if(!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE)))
+					e.consume();
+			}
+		});
+
+		this.txtNbJoueursLocal.addKeyListener(new KeyAdapter()
+		{
+			public void keyTyped(KeyEvent e)
+			{
+				char c = e.getKeyChar();
+				if(!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE)))
+					e.consume();
+			}
+		});
 	}
 
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == this.btnCreerPartieMulti)
 		{
-			JPanel panelPopUp = new JPanel(new GridLayout(4,4,10,10));
+			JPanel panelPopUp = new JPanel(new GridLayout(4,4,0,10));
 			JPanel panelBtnPopUp = new JPanel();
 
 			this.dialogCreerPartie = new JDialog();
@@ -185,7 +253,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnRejoindrePartie)
 		{
-			JPanel panelPopUp = new JPanel(new GridLayout(3,4,10,10));
+			JPanel panelPopUp = new JPanel(new GridLayout(3,4,0,5));
 			JPanel panelBtnPopUp = new JPanel();
 
 			this.dialogCreerPartie = new JDialog();
@@ -217,7 +285,18 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnCreerPartieSolo)
 		{
+			/* Amener vers le panel du jeu */
+		}
 
+		if(e.getSource() == this.btnCopierIP)
+		{
+			/* Copier l'adresse IP de la machine */
+			try {
+				InetAddress ip = InetAddress.getLocalHost();
+				String ipString = ip.getHostAddress();
+				StringSelection ss = new StringSelection(ipString);
+				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
+			} catch (UnknownHostException e1) {e1.printStackTrace();}
 		}
 	}
 }
