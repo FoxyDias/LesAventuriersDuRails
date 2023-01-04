@@ -14,8 +14,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 	private JButton btnCreerPartieSolo;
 	private JButton btnRejoindrePartie;
 	private JButton btnCopierIP;
-	private JButton btnQuitter;
-	private JButton btnCreerPartiePopUp;
+	private JButton btnLancerPartiePopUp;
 	private JButton btnRejoindreMultiPopUp;
 
 	private JTextField txtNbJoueursMiniCreer;
@@ -35,29 +34,24 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		/**
 		 * Création des boutons
 		 */
-		JLabel lblPartieMulti		= new JLabel("Partie multijoueur");
-		JLabel lblPartieSolo		= new JLabel("Partie locale");
+		JLabel lblPartieMulti		= new JLabel("Jouer en multijoueur");
+		JLabel lblPartieSolo		= new JLabel("Jouer en local");
 		JLabel lblNbJoueursLocal	= new JLabel("Nombre de joueurs : ");
-
-		JLabel lblNbJoueursMini 		= new JLabel("Nombre de joueurs minimum : ");
-		JLabel lblNbJoueursMaxi 		= new JLabel("Nombre de joueurs maximum : ");
-		JLabel lblMotDePasse 			= new JLabel("Mot de passe pour la partie : ");
-		JLabel lblPortMachine 			= new JLabel("Port de la machine : ");
 
 		JLabel lblIPMachine 			= new JLabel("IP de la machine à rejoindre : ");
 		JLabel lblPortMachineRejoindre	= new JLabel("Port de la machine : ");
 		JLabel lblMotDePasseRejoindre 	= new JLabel("Mot de passe de la partie : ");
 
-		JPanel panelCreerPartieSolo			= new JPanel(new BorderLayout(0,20));
+		JPanel panelCreerPartieSolo			= new JPanel(new BorderLayout());
 		JPanel panelTitreCreerPartieSolo	= new JPanel();
-		JPanel panelGrillePartieSolo 		= new JPanel(new GridLayout(3,3));
+		JPanel panelGrillePartieSolo 		= new JPanel(new GridLayout(3,3,20,20));	
 
 
-		JPanel panelCreerPartieMult 		= new JPanel(new BorderLayout(0,20));
+		JPanel panelCreerPartieMult 		= new JPanel(new BorderLayout());
 		JPanel panelTitreCreerPartieMult	= new JPanel();
-		JPanel panelGrillePartieMult		= new JPanel(new GridLayout(3,3));
+		JPanel panelGrillePartieMult		= new JPanel(new GridLayout(3,3,20,20));
 
-		JPanel panelRelierPartieMult		= new JPanel(new BorderLayout(1,2));
+		JPanel panelRelierPartieMult		= new JPanel(new GridLayout(1,2,40,0));
 
 		panelCreerPartieSolo.setBorder(BorderFactory.createLineBorder(Color.black));
 		panelCreerPartieMult.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -66,9 +60,8 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		this.btnCreerPartieMulti	= new JButton("Créer une partie");
 		this.btnCreerPartieSolo		= new JButton("Créer une partie");
 		this.btnRejoindrePartie		= new JButton("Rejoindre une partie");
-		this.btnCopierIP			= new JButton("Copier mon IP");
-		this.btnQuitter				= new JButton("Quitter");
-		this.btnCreerPartiePopUp	= new JButton("Créer");
+		this.btnCopierIP			= new JButton("Copier mon adresse IP");
+		this.btnLancerPartiePopUp	= new JButton("Lancer la partie");
 		this.btnRejoindreMultiPopUp	= new JButton("Rejoindre");
 
 		this.txtNbJoueursMiniCreer		= new JTextField();
@@ -80,47 +73,63 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		this.txtMotDePasseRejoindre		= new JTextField();
 		this.txtNbJoueursLocal			= new JTextField();
 
+		panelTitreCreerPartieSolo.setBorder(BorderFactory.createLineBorder(Color.black));
+		panelTitreCreerPartieMult.setBorder(BorderFactory.createLineBorder(Color.black));
+
+		this.btnCreerPartieMulti	.setBackground(Color.WHITE);
+		this.btnCreerPartieSolo		.setBackground(Color.WHITE);
+		this.btnRejoindrePartie		.setBackground(Color.WHITE);
+		this.btnCopierIP			.setBackground(Color.WHITE);
+		this.btnLancerPartiePopUp	.setBackground(Color.WHITE);
+		this.btnRejoindreMultiPopUp	.setBackground(Color.WHITE);
 
 		/**
 		 * Positionnement des composants
 		 */
 
+
+		panelTitreCreerPartieMult.add(lblPartieMulti);
+		
+		for(int i = 1; i <= 3; i++)
+			panelGrillePartieMult.add(new JLabel());
+
+		panelGrillePartieMult.add(this.btnCreerPartieMulti);
+		panelGrillePartieMult.add(new JLabel());
+		panelGrillePartieMult.add(this.btnRejoindrePartie);
+
+		for(int i = 1; i <= 3; i++)
+			panelGrillePartieMult.add(new JLabel());
+
+		panelCreerPartieMult.add(panelTitreCreerPartieMult, BorderLayout.NORTH);
+		panelCreerPartieMult.add(new JPanel(), BorderLayout.EAST);
+		panelCreerPartieMult.add(new JPanel(), BorderLayout.WEST);
+		panelCreerPartieMult.add(panelGrillePartieMult, BorderLayout.CENTER);
+
 		panelTitreCreerPartieSolo.add(lblPartieSolo);
+
+
+		for(int i = 1; i <= 3; i++)
+			panelGrillePartieSolo.add(new JLabel());
 
 		panelGrillePartieSolo.add(lblNbJoueursLocal);
 		panelGrillePartieSolo.add(new JLabel());
 		panelGrillePartieSolo.add(this.txtNbJoueursLocal);
 
 		panelGrillePartieSolo.add(new JLabel());
-		panelGrillePartieSolo.add(new JLabel());
-		panelGrillePartieSolo.add(new JLabel());
-
-		panelGrillePartieSolo.add(new JLabel());
 		panelGrillePartieSolo.add(this.btnCreerPartieSolo);
 		panelGrillePartieSolo.add(new JLabel());
 
 		panelCreerPartieSolo.add(panelTitreCreerPartieSolo, BorderLayout.NORTH);
+		panelCreerPartieSolo.add(new JPanel(), BorderLayout.EAST);
+		panelCreerPartieSolo.add(new JPanel(), BorderLayout.WEST);
 		panelCreerPartieSolo.add(panelGrillePartieSolo, BorderLayout.CENTER);
-
-		panelTitreCreerPartieMult.add(lblPartieMulti);
+		panelCreerPartieSolo.add(new JPanel(), BorderLayout.SOUTH);
 		
-		panelTitreCreerPartieMult.add(new JLabel());
-		panelTitreCreerPartieMult.add(new JLabel());
-		panelTitreCreerPartieMult.add(new JLabel());
 
-		panelGrillePartieMult.add(this.btnCreerPartieMulti);
-		panelGrillePartieMult.add(new JLabel());
-		panelGrillePartieMult.add(this.btnRejoindrePartie);
-
-		panelTitreCreerPartieMult.add(new JLabel());
-		panelTitreCreerPartieMult.add(new JLabel());
-		panelTitreCreerPartieMult.add(new JLabel());
-
-		panelRelierPartieMult.add(panelCreerPartieSolo);
 		panelRelierPartieMult.add(panelCreerPartieMult);
+		panelRelierPartieMult.add(panelCreerPartieSolo);
 
 		this.add(panelRelierPartieMult);
-
 
 		/**
 		 * Activation des composants
@@ -130,13 +139,85 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		this.btnCreerPartieSolo.addActionListener(this);
 		this.btnRejoindrePartie.addActionListener(this);
 		this.btnCopierIP.addActionListener(this);
-		this.btnQuitter.addActionListener(this);
-		this.btnCreerPartiePopUp.addActionListener(this);
+		this.btnLancerPartiePopUp.addActionListener(this);
 		this.btnRejoindreMultiPopUp.addActionListener(this);
 	}
 
 	public void actionPerformed(ActionEvent e)
 	{
+		if(e.getSource() == this.btnCreerPartieMulti)
+		{
+			JPanel panelPopUp = new JPanel(new GridLayout(4,4,10,10));
+			JPanel panelBtnPopUp = new JPanel();
 
+			this.dialogCreerPartie = new JDialog();
+			this.dialogCreerPartie.setTitle("Créer une partie");
+			this.dialogCreerPartie.setLayout(new BorderLayout());
+			this.dialogCreerPartie.setBounds(165, 400, 535, 200);
+
+			panelPopUp.add(new JLabel());
+			panelPopUp.add(new JLabel("Nb joueurs mini :"));
+			panelPopUp.add(this.txtNbJoueursMiniCreer);
+			panelPopUp.add(new JLabel());
+			/* -- */
+			panelPopUp.add(new JLabel());
+			panelPopUp.add(new JLabel("Nb joueurs maxi :"));
+			panelPopUp.add(this.txtNbJoueursMaxiCreer);
+			panelPopUp.add(new JLabel());
+			/* -- */
+			panelPopUp.add(new JLabel());
+			panelPopUp.add(new JLabel("Password partie :"));
+			panelPopUp.add(this.txtMotDePasseCreer);
+			panelPopUp.add(new JLabel());
+			/* -- */
+			panelPopUp.add(new JLabel());
+			panelPopUp.add(new JLabel("Port machine :"));
+			panelPopUp.add(this.txtPortMachineCreer);
+			panelPopUp.add(new JLabel());
+			/* -- */
+			panelBtnPopUp.add(this.btnCopierIP);
+			panelBtnPopUp.add(this.btnLancerPartiePopUp);
+
+			this.dialogCreerPartie.add(panelPopUp, BorderLayout.CENTER);
+			this.dialogCreerPartie.add(panelBtnPopUp, BorderLayout.SOUTH);
+			this.dialogCreerPartie.setVisible(true);
+		}
+
+		if(e.getSource() == this.btnRejoindrePartie)
+		{
+			JPanel panelPopUp = new JPanel(new GridLayout(3,4,10,10));
+			JPanel panelBtnPopUp = new JPanel();
+
+			this.dialogCreerPartie = new JDialog();
+			this.dialogCreerPartie.setTitle("Rejoindre une partie");
+			this.dialogCreerPartie.setLayout(new BorderLayout());
+			this.dialogCreerPartie.setBounds(165, 400, 535, 200);
+
+			panelPopUp.add(new JLabel());
+			panelPopUp.add(new JLabel("Adresse IP hôte :"));
+			panelPopUp.add(this.txtIPMachineRejoindre);
+			panelPopUp.add(new JLabel());
+			/* -- */
+			panelPopUp.add(new JLabel());
+			panelPopUp.add(new JLabel("Port machine hôte :"));
+			panelPopUp.add(this.txtPortMachineRejoindre);
+			panelPopUp.add(new JLabel());
+			/* -- */
+			panelPopUp.add(new JLabel());
+			panelPopUp.add(new JLabel("Password hôte :"));
+			panelPopUp.add(this.txtMotDePasseRejoindre);
+			panelPopUp.add(new JLabel());
+			/* -- */
+			panelBtnPopUp.add(this.btnRejoindreMultiPopUp);
+
+			this.dialogCreerPartie.add(panelPopUp, BorderLayout.CENTER);
+			this.dialogCreerPartie.add(panelBtnPopUp, BorderLayout.SOUTH);
+			this.dialogCreerPartie.setVisible(true);
+		}
+
+		if(e.getSource() == this.btnCreerPartieSolo)
+		{
+
+		}
 	}
 }

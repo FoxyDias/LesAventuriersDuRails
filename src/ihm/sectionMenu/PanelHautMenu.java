@@ -8,9 +8,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FlowLayout;
 
 public class PanelHautMenu extends JPanel implements ActionListener
 {
@@ -28,12 +28,11 @@ public class PanelHautMenu extends JPanel implements ActionListener
 		this.setLayout(new BorderLayout());
 		
 		JLabel lblTitre 			= new JLabel("Les aventuriers du rail");
-		lblTitre.setFont(new Font("Broadway", Font.BOLD, 50));
-		JLabel lblInformationMappe  = new JLabel("A remplir");
+		JLabel lblInformationMappe  = new JLabel("Aucune mappe n'est chargée. [Résumé des informations de la mappe]");
 
-		JPanel panelTitre 		= new JPanel();
-		JPanel panelImport 		= new JPanel(new GridLayout(1,3,5,5));
-		JPanel panelInformation = new JPanel(); 
+		JPanel panelTitre 		= new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 40));
+		JPanel panelImport 		= new JPanel();
+		JPanel panelInformation = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 40)); 
 
 		this.btnImport = new JButton("Importer un fichier XML");
 
@@ -41,13 +40,8 @@ public class PanelHautMenu extends JPanel implements ActionListener
 		 * Positionnement des composants
 		 */
 
-		panelTitre.add(lblTitre, JLabel.CENTER);
-	
-
-		panelImport.add(new JLabel());
+		panelTitre.add(lblTitre);
 		panelImport.add(this.btnImport);
-		panelImport.add(new JLabel());
-
 		panelInformation.add(lblInformationMappe);
 
 		this.add(panelTitre, BorderLayout.NORTH);
@@ -59,7 +53,9 @@ public class PanelHautMenu extends JPanel implements ActionListener
 		 */
 
 		this.btnImport.addActionListener(this);
+
 		this.btnImport.setBackground(Color.WHITE);
+		lblTitre.setFont(new Font("Broadway", Font.BOLD, 50));
 	}
 	
 	public void actionPerformed(ActionEvent e)
