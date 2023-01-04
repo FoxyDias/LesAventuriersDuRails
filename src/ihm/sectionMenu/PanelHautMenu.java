@@ -24,6 +24,8 @@ public class PanelHautMenu extends JPanel implements ActionListener
 	private Controleur ctrl;
 
 	private JButton btnImport;
+	private JPanel panelInformation;
+	private JLabel lblInformationMappe;
 
 	public PanelHautMenu(Controleur ctrl)
 	{
@@ -35,13 +37,13 @@ public class PanelHautMenu extends JPanel implements ActionListener
 		this.setLayout(new BorderLayout());
 		
 		JLabel lblTitre 			= new JLabel("Les aventuriers du rail");
-		JLabel lblInformationMappe  = new JLabel("Aucune mappe n'est chargée. [Résumé des informations de la mappe]");
 
 		JPanel panelTitre 		= new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 40));
 		JPanel panelImport 		= new JPanel();
-		JPanel panelInformation = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 40)); 
-
+		
+		this.panelInformation = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 40)); 
 		this.btnImport = new JButton("Importer un fichier XML");
+		this.lblInformationMappe  = new JLabel("Aucune mappe n'est chargée. [Résumé des informations de la mappe]");
 
 		/**
 		 * Positionnement des composants
@@ -67,20 +69,26 @@ public class PanelHautMenu extends JPanel implements ActionListener
 	
 	public void actionPerformed(ActionEvent e)
 	{
+		/* tant qu'aucun fichier n'est importé, on ne peut rien faire */
+
+
 		if(e.getSource() == this.btnImport)
 		{
+			this.ctrl.getPanelCentreMenu().setBackground(Color.WHITE);
 			FileNameExtensionFilter filtre = new FileNameExtensionFilter("Format XML", "xml");
 			JFileChooser jFileChooser = new JFileChooser(new File("donnee/xml"));
-
+			
 			jFileChooser.setAcceptAllFileFilterUsed(false);
 			jFileChooser.setFileFilter(filtre);
 
 			int res = jFileChooser.showOpenDialog(null);
+
 			if(res == JFileChooser.APPROVE_OPTION)
 			{
-				File file = jFileChooser.getSelectedFile();
 				try {
+					File file = jFileChooser.getSelectedFile();
 					Files.copy(file.toPath(), Paths.get("donnee/xml/"+file.getName()));
+					this.lblInformationMappe.setText("Mappe chargée : "+file.getName());
 					} catch (IOException e1) {e1.printStackTrace();}
 
 				//this.ctrl.lireXml("donnee/xml/"+file.getName());	

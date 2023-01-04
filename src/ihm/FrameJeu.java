@@ -7,6 +7,7 @@
 package ihm;
 
 import main.Controleur;
+import ihm.sectionMenu.PanelCentreMenu;
 import ihm.sectionMenu.PanelMenu;
 
 import java.awt.*;
@@ -46,4 +47,6 @@ public class FrameJeu extends JFrame
 		this.add(this.panelMenu);
 		this.setVisible(true);
 	}
+
+	public PanelCentreMenu getPanelCentreMenu() { return this.panelMenu.getPanelCentreMenu(); }
 }

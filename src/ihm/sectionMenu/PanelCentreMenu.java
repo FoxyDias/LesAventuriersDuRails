@@ -299,4 +299,6 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			} catch (UnknownHostException e1) {e1.printStackTrace();}
 		}
 	}
+
+	public PanelCentreMenu getPanelCentreMenu() { return this;} 
 }

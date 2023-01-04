@@ -33,4 +33,6 @@ public class PanelMenu extends JPanel
 		this.add(this.panelCentreMenu, BorderLayout.CENTER);
 		this.add(this.panelBasMenu, BorderLayout.SOUTH);
 	}
+
+	public PanelCentreMenu getPanelCentreMenu() { return this.panelCentreMenu; }
 }

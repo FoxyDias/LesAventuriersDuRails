@@ -1,7 +1,7 @@
 package main;
 
 import ihm.FrameJeu;
-
+import ihm.sectionMenu.PanelCentreMenu;
 import metier.Arete;
 import metier.CarteObjectif;
 import metier.Metier;
@@ -47,6 +47,8 @@ public class Controleur {
     {
         return this.metier.getListCarteObjectif();
     }
+
+	public PanelCentreMenu getPanelCentreMenu() { return this.ihm.getPanelCentreMenu(); }
 
     /**
      * Le main du projet
