@@ -1,7 +1,11 @@
 {
 	"java.project.referencedLibraries": [
 		"lib/**/*.jar",
+		"c:\\Users\\Decharrois\\Downloads\\jdom-2.0.6.jar",
+		"/home/etudiant/be211629/Téléchargements/jdom-2.0.6.jar",
+		"/home/etudiant/be211629/SAE3.01GenerateurAventuriers/lib/flatlaf-2.6.jar"
 		"c:\\Users\\Decharrois\\Downloads\\jdom-2.0.6.jar"
 		"c:\\Users\\Decharrois\\Downloads\\flatlaf-2.6(1).jar"
+
 	]
 }

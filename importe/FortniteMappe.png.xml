@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<infos>
+	<mappe>
+		<noeud nom="Anarchy Acres">
+			<coordonees x="346" y="178"/>
+			<coordoneesNom x="346" y="178"/>
+		</noeud>
+		<noeud nom="Pleasant Park">
+			<coordonees x="181" y="236"/>
+			<coordoneesNom x="179" y="237"/>
+		</noeud>
+		<noeud nom="Greasy Grove">
+			<coordonees x="144" y="522"/>
+			<coordoneesNom x="141" y="524"/>
+		</noeud>
+		<noeud nom="Flush Factory">
+			<coordonees x="232" y="728"/>
+			<coordoneesNom x="236" y="726"/>
+		</noeud>
+		<noeud nom="Fatal Fields">
+			<coordonees x="399" y="638"/>
+			<coordoneesNom x="398" y="636"/>
+		</noeud>
+		<noeud nom="Moisty Mire">
+			<coordonees x="563" y="666"/>
+			<coordoneesNom x="562" y="662"/>
+		</noeud>
+		<noeud nom="Salty Springs">
+			<coordonees x="380" y="515"/>
+			<coordoneesNom x="378" y="516"/>
+		</noeud>
+		<noeud nom="Retail Row">
+			<coordonees x="500" y="448"/>
+			<coordoneesNom x="499" y="450"/>
+		</noeud>
+		<noeud nom="Lonely Lodge">
+			<coordonees x="607" y="355"/>
+			<coordoneesNom x="607" y="354"/>
+		</noeud>
+		<noeud nom="Dusty Depot">
+			<coordonees x="392" y="390"/>
+			<coordoneesNom x="396" y="392"/>
+		</noeud>
+		<noeud nom="Loot Lake">
+			<coordonees x="288" y="310"/>
+			<coordoneesNom x="287" y="310"/>
+		</noeud>
+		<noeud nom="Tomato Town">
+			<coordonees x="445" y="262"/>
+			<coordoneesNom x="444" y="263"/>
+		</noeud>
+		<noeud nom="Wailing Woods">
+			<coordonees x="556" y="246"/>
+			<coordoneesNom x="556" y="248"/>
+		</noeud>
+		<arete>
+			<noeudArr>0</noeudArr>
+			<noeudDep>1</noeudDep>
+			<couleur>[r=242,g=242,b=242]</couleur>
+			<wagons>3</wagons>
+		</arete>
+		<arete>
+			<noeudArr>0</noeudArr>
+			<noeudDep>10</noeudDep>
+			<couleur>[r=255,g=51,b=51]</couleur>
+			<wagons>3</wagons>
+		</arete>
+		<arete>
+			<noeudArr>0</noeudArr>
+			<noeudDep>11</noeudDep>
+			<couleur>[r=255,g=51,b=51]</couleur>
+			<wagons>2</wagons>
+		</arete>
+		<arete>
+			<noeudArr>1</noeudArr>
+			<noeudDep>10</noeudDep>
+			<couleur>[r=51,g=255,b=255]</couleur>
+			<wagons>2</wagons>
+		</arete>
+		<arete>
+			<noeudArr>1</noeudArr>
+			<noeudDep>2</noeudDep>
+			<couleur>[r=255,g=255,b=102]</couleur>
+			<wagons>5</wagons>
+		</arete>
+		<arete>
+			<noeudArr>11</noeudArr>
+			<noeudDep>12</noeudDep>
+			<couleur>[r=51,g=255,b=0]</couleur>
+			<wagons>1</wagons>
+		</arete>
+		<arete>
+			<noeudArr>11</noeudArr>
+			<noeudDep>9</noeudDep>
+			<couleur>[r=0,g=0,b=204]</couleur>
+			<wagons>3</wagons>
+		</arete>
+		<arete>
+			<noeudArr>12</noeudArr>
+			<noeudDep>8</noeudDep>
+			<couleur>Neutre</couleur>
+			<wagons>2</wagons>
+		</arete>
+		<arete>
+			<noeudArr>9</noeudArr>
+			<noeudDep>7</noeudDep>
+			<couleur>Neutre</couleur>
+			<wagons>2</wagons>
+		</arete>
+		<arete>
+			<noeudArr>9</noeudArr>
+			<noeudDep>7</noeudDep>
+			<couleur>[r=255,g=51,b=51]</couleur>
+			<wagons>2</wagons>
+		</arete>
+		<arete>
+			<noeudArr>8</noeudArr>
+			<noeudDep>7</noeudDep>
+			<couleur>[r=102,g=255,b=102]</couleur>
+			<wagons>2</wagons>
+		</arete>
+		<arete>
+			<noeudArr>9</noeudArr>
+			<noeudDep>6</noeudDep>
+			<couleur>[r=0,g=0,b=255]</couleur>
+			<wagons>1</wagons>
+		</arete>
+		<arete>
+			<noeudArr>6</noeudArr>
+			<noeudDep>7</noeudDep>
+			<couleur>[r=255,g=255,b=102]</couleur>
+			<wagons>1</wagons>
+		</arete>
+		<arete>
+			<noeudArr>6</noeudArr>
+			<noeudDep>4</noeudDep>
+			<couleur>[r=153,g=255,b=255]</couleur>
+			<wagons>1</wagons>
+		</arete>
+		<arete>
+			<noeudArr>9</noeudArr>
+			<noeudDep>10</noeudDep>
+			<couleur>Neutre</couleur>
+			<wagons>3</wagons>
+		</arete>
+		<arete>
+			<noeudArr>8</noeudArr>
+			<noeudDep>5</noeudDep>
+			<couleur>Neutre</couleur>
+			<wagons>6</wagons>
+		</arete>
+		<arete>
+			<noeudArr>5</noeudArr>
+			<noeudDep>8</noeudDep>
+			<couleur>[r=153,g=0,b=153]</couleur>
+			<wagons>6</wagons>
+		</arete>
+		<arete>
+			<noeudArr>5</noeudArr>
+			<noeudDep>4</noeudDep>
+			<couleur>[r=102,g=255,b=102]</couleur>
+			<wagons>3</wagons>
+		</arete>
+		<arete>
+			<noeudArr>4</noeudArr>
+			<noeudDep>3</noeudDep>
+			<couleur>[r=255,g=153,b=0]</couleur>
+			<wagons>4</wagons>
+		</arete>
+		<arete>
+			<noeudArr>2</noeudArr>
+			<noeudDep>6</noeudDep>
+			<couleur>[r=255,g=255,b=0]</couleur>
+			<wagons>4</wagons>
+		</arete>
+		<arete>
+			<noeudArr>3</noeudArr>
+			<noeudDep>2</noeudDep>
+			<couleur>Neutre</couleur>
+			<wagons>3</wagons>
+		</arete>
+		<arete>
+			<noeudArr>6</noeudArr>
+			<noeudDep>2</noeudDep>
+			<couleur>Neutre</couleur>
+			<wagons>4</wagons>
+		</arete>
+		<carteWagon>
+			<couleur>[r=51,g=255,b=0]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=51,g=255,b=255]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=255,g=255,b=102]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=242,g=242,b=242]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=255,g=51,b=51]</couleur>
+			<nombre>3</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=153,g=0,b=153]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=255,g=255,b=0]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=102,g=255,b=102]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>Joker</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=0,g=0,b=255]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=0,g=0,b=204]</couleur>
+			<nombre>12</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=255,g=153,b=0]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=153,g=255,b=255]</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteObjectif>
+			<noeudArr>6</noeudArr>
+			<noeudDep>0</noeudDep>
+			<points>7</points>
+		</carteObjectif>
+		<carteObjectif>
+			<noeudArr>5</noeudArr>
+			<noeudDep>1</noeudDep>
+			<points>21</points>
+		</carteObjectif>
+	<details>
+		<nbJoueurMinDoubleArete>4</nbJoueurMinDoubleArete>
+		<nbJoueurMax>4</nbJoueurMax>
+		<nbWagonDebutPartie>45</nbWagonDebutPartie>
+		<nbWagonFinPartie>2</nbWagonFinPartie>
+		<nbPointsPlusLongChemin>10</nbPointsPlusLongChemin>
+		<txtNomMoyenDeTransport>Wagon</txtNomMoyenDeTransport>
+		<txtRoute>Rails</txtRoute>
+		<versoCarteWagon>imageCarte/mer.jpg</versoCarteWagon>
+		<versoCarteObjectif>null</versoCarteObjectif>
+		<image>importe/FortniteMappe.png</image>
+	</details>
+	<CouleurJoueurList>
+		<couleurJoueur>[r=204,g=0,b=204]</couleurJoueur>
+		<couleurJoueur>[r=255,g=204,b=102]</couleurJoueur>
+		<couleurJoueur>[r=102,g=255,b=255]</couleurJoueur>
+		<couleurJoueur>[r=255,g=0,b=0]</couleurJoueur>
+	</CouleurJoueurList>
+	<points>
+		<pointTaille>
+			<taille>1</taille>
+			<points>1</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>2</taille>
+			<points>2</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>3</taille>
+			<points>4</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>4</taille>
+			<points>7</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>5</taille>
+			<points>10</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>6</taille>
+			<points>15</points>
+		</pointTaille>
+	</points>
+	</mappe>
+</infos>
