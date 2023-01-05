@@ -59,8 +59,8 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 		Border border = BorderFactory.createLineBorder(Color.black, 1);
 
-		panelCreerPartieSolo.setBorder(BorderFactory.createLineBorder(Color.black));
-		panelCreerPartieMult.setBorder(BorderFactory.createLineBorder(Color.black));
+		panelCreerPartieSolo.setBorder(border);
+		panelCreerPartieMult.setBorder(border);
 
 
 		this.btnCreerPartieMulti	= new JButton("Créer une partie");
@@ -267,6 +267,9 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			/* -- */
 			panelBtnPopUp.add(this.btnRejoindreMultiPopUp);
 
+			//Empecher une autre saisie que cette syntaxe 172.192.1.23
+
+		
 			this.dialogCreerPartie.add(panelPopUp, BorderLayout.CENTER);
 			this.dialogCreerPartie.add(panelBtnPopUp, BorderLayout.SOUTH);
 			this.dialogCreerPartie.setVisible(true);
@@ -275,7 +278,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		if(e.getSource() == this.btnCreerPartieSolo)
 		{
 			
-			if(this.txtNbJoueursLocal.getText().equals("") || this.txtNbJoueursLocal.getText().equals("1") || this.txtNbJoueursLocal.getText().equals("" + this.ctrl.getNbJoueurMax()))
+			if(this.txtNbJoueursLocal.getText().equals("") || this.txtNbJoueursLocal.getText().equals("0") || this.txtNbJoueursLocal.getText().equals("" + this.ctrl.getNbJoueurMax()))
 			{
 				JOptionPane.showMessageDialog(null, "Veuillez remplir le nombre de joueurs", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
@@ -292,7 +295,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			String port = this.txtPortMachineCreer.getText();  
 			String motDePasse = this.txtMotDePasseCreer.getText();
 
-			if( this.txtNbJoueursMiniCreer.getText().equals("1") || this.txtNbJoueursMiniCreer.getText().equals("" +  this.ctrl.getNbJoueurMax()) || port.equals("") || motDePasse.equals(""))
+			if( this.txtNbJoueursMiniCreer.getText().equals("0") || this.txtNbJoueursMiniCreer.getText().equals("" +  this.ctrl.getNbJoueurMax()) || port.equals("") || motDePasse.equals(""))
 			{
 				JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
 				return;

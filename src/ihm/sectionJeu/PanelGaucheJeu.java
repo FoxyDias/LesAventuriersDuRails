@@ -90,5 +90,13 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		{
 			JOptionPane.showMessageDialog(null, "Voulez-vous vraiment arrêter la partie ?", "Fin de partie", JOptionPane.INFORMATION_MESSAGE);
 		}
+
+		if(e.getSource() == this.btnFinDuTour)
+		{
+		}
+
+		if(e.getSource() == this.btnPiocheCarteObjectif)
+		{
+		}
 	}
 }
