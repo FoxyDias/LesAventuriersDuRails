@@ -16,6 +16,8 @@ public class Metier {
 
     private Controleur ctrl;
 
+    private String nomImage;
+
     private ArrayList<Noeud> lstNoeud;
     private ArrayList<Arete> lstArete;
     private ArrayList<CarteObjectif> lstCarteObjectif;
@@ -70,7 +72,7 @@ public class Metier {
 
                     /*                          Choix Piocher                             */
                     if (action.equals("piocher")) {
-                        tourQuitter = !(tourPiocher(joueurActuel));
+                        //tourQuitter = !(tourPiocher(joueurActuel));
                     }
 
                     /*-------------------------------------------------------------------*/
@@ -224,7 +226,7 @@ public class Metier {
             this.hsmImageWagon.put(c, w.getChild("recto").getText());
 
 
-            this.creeCarteWagon(new Color(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2])));
+            //this.creeCarteWagon(new Color(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2])));
 
         }
 
@@ -248,6 +250,7 @@ public class Metier {
             this.nbWagonDebutPartie = Integer.parseInt(d.getChild("nbWagonDebutPartie").getText());
             this.nbWagonFinPartie = Integer.parseInt(d.getChild("nbWagonFinPartie").getText());
             this.nbPointsPlusLongChemin = Integer.parseInt(d.getChild("nbPointsPlusLongChemin").getText());
+            this.nomImage = d.getChild("image").getText();
         }
 
         for(Element o : lstObjectif)
@@ -406,6 +409,10 @@ public class Metier {
     public ArrayList<Arete> getLstArete()
     {
         return this.lstArete;
+    }
+
+    public String getNomImage() {
+        return nomImage;
     }
 
     public void setNbJoueur(int n) { this.nbJoueurPartie = n; }

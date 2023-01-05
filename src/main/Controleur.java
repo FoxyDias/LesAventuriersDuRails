@@ -24,6 +24,10 @@ public class Controleur {
         this.metier.lancerPartie();
     }
 
+    public String getNomImage() {
+        return this.metier.getNomImage();
+    }
+
     public ArrayList<Joueur> getLstJoueur() { return this.metier.getLstJoueur(); }
 
     public int getNbJoueurPartie() {
