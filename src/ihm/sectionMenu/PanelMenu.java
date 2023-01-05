@@ -19,7 +19,7 @@ public class PanelMenu extends JPanel
 		 */
 
 		this.ctrl = ctrl;
-		this.setLayout(new BorderLayout(0,110));
+		this.setLayout(new BorderLayout(0,90));
 
 		this.panelHautMenu		= new PanelHautMenu(this.ctrl);
 		this.panelCentreMenu	= new PanelCentreMenu(this.ctrl);

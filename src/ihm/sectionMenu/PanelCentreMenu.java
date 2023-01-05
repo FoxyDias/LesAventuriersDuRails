@@ -59,8 +59,8 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 		Border border = BorderFactory.createLineBorder(Color.black, 1);
 
-		panelCreerPartieSolo.setBorder(BorderFactory.createLineBorder(Color.black));
-		panelCreerPartieMult.setBorder(BorderFactory.createLineBorder(Color.black));
+		panelCreerPartieSolo.setBorder(border);
+		panelCreerPartieMult.setBorder(border);
 
 
 		this.btnCreerPartieMulti	= new JButton("Créer une partie");
@@ -267,6 +267,9 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			/* -- */
 			panelBtnPopUp.add(this.btnRejoindreMultiPopUp);
 
+			//Empecher une autre saisie que cette syntaxe 172.192.1.23
+
+		
 			this.dialogCreerPartie.add(panelPopUp, BorderLayout.CENTER);
 			this.dialogCreerPartie.add(panelBtnPopUp, BorderLayout.SOUTH);
 			this.dialogCreerPartie.setVisible(true);
@@ -274,35 +277,54 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnCreerPartieSolo)
 		{
-			/* Utiliser la methode changerPanel */
-			PanelJeu panelJeu = new PanelJeu(this.ctrl);
-			this.ctrl.changerPanel();
+			
+			if(this.txtNbJoueursLocal.getText().equals("") || this.txtNbJoueursLocal.getText().equals("0") || this.txtNbJoueursLocal.getText().equals("" + this.ctrl.getNbJoueurMax()))
+			{
+				JOptionPane.showMessageDialog(null, "Veuillez remplir le nombre de joueurs", "Erreur", JOptionPane.ERROR_MESSAGE);
+			}
+			else
+			{
+				PanelJeu panelJeu = new PanelJeu(this.ctrl);
+				this.ctrl.changerPanel();
+			}
+			
 		}
 
 		if(e.getSource() == this.btnLancerPartiePopUp)
 		{
-			/* Lancer la partie */
-			/*
-			int nbJoueurs = Integer.parseInt(this.txtNbJoueursMiniCreer.getText());
-			int port = Integer.parseInt(this.txtPortMachineCreer.getText());
-			String motDePasse = this.txtMotDePasseCreer.getText();*/
+			String port = this.txtPortMachineCreer.getText();  
+			String motDePasse = this.txtMotDePasseCreer.getText();
 
-			/* Utiliser la methode changerPanel */
-			PanelJeu panelJeu = new PanelJeu(this.ctrl);
-			this.ctrl.changerPanel();
+			if( this.txtNbJoueursMiniCreer.getText().equals("0") || this.txtNbJoueursMiniCreer.getText().equals("" +  this.ctrl.getNbJoueurMax()) || port.equals("") || motDePasse.equals(""))
+			{
+				JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			else
+			{
+				PanelJeu panelJeu = new PanelJeu(this.ctrl);
+				this.ctrl.changerPanel();
+				this.dialogCreerPartie.dispose();
+			}
 		}
 
 		if(e.getSource() == this.btnRejoindreMultiPopUp)
 		{
-			/* Rejoindre la partie */
-			/*
 			String ip = this.txtIPMachineRejoindre.getText();
-			int port = Integer.parseInt(this.txtPortMachineRejoindre.getText());
-			String motDePasse = this.txtMotDePasseRejoindre.getText();*/
+			String port = this.txtPortMachineRejoindre.getText();
+			String motDePasse = this.txtMotDePasseRejoindre.getText();
 
-			/* Utiliser la methode changerPanel */
-			PanelJeu panelJeu = new PanelJeu(this.ctrl);
-			this.ctrl.changerPanel();
+			if(ip.equals("") || motDePasse.equals("") || port.equals(""))
+			{
+				JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			else
+			{	
+				PanelJeu panelJeu = new PanelJeu(this.ctrl);
+				this.ctrl.changerPanel();
+				this.dialogCreerPartie.dispose();
+			}
 		}
 
 		if(e.getSource() == this.btnCopierIP)
