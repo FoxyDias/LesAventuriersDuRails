@@ -21,9 +21,9 @@ public class Controleur {
         this.ihm = new FrameJeu(this, "init");
     }
 
-    public void lancerPartie()
+    public void lancerPartie(String nom)
     {
-        this.ihm.changerPanel();
+        this.ihm.changerPanel(nom);
         this.metier.lancerPartie();
     }
 
@@ -109,9 +109,9 @@ public class Controleur {
 
 	public void lireXml(String fichier) { this.metier.lireXml(fichier); }
 
-	public void changerPanel()
+	public void changerPanel(String nom)
 	{
-		this.ihm.changerPanel();
+		this.ihm.changerPanel(nom);
 	}
 
     /**

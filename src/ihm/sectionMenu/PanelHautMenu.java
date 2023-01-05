@@ -3,9 +3,10 @@ package ihm.sectionMenu;
 import main.Controleur;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JLabel;
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -22,19 +23,6 @@ import java.awt.Font;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
-import java.awt.*;
-import java.awt.event.*;
-
-
-import java.util.ArrayList;
-
-
-import java.awt.event.MouseEvent;
-import javax.swing.filechooser.FileSystemView;
-
-
-import metier.Arete;
-import metier.Noeud;
 
 public class PanelHautMenu extends JPanel implements ActionListener
 {
@@ -70,7 +58,7 @@ public class PanelHautMenu extends JPanel implements ActionListener
 		JPanel panelTitre 	= new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 40));
 		JPanel panelImport 	= new JPanel();
 		
-		this.panelInformation = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 40)); 
+		this.panelInformation = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 40));
 		this.btnImport = new JButton("Importer un fichier XML");
 		this.lblInformationMappe  = new JLabel("Aucune mappe n'est chargée. Importez en une pour commencer à jouer.");
 
@@ -130,44 +118,45 @@ public class PanelHautMenu extends JPanel implements ActionListener
 					if(file.exists())
 					{
 						JLabel lblVide = new JLabel("", JLabel.CENTER);
+						JPanel panelImage = new JPanel(new FlowLayout(FlowLayout.RIGHT, 0, 40));
+
 						this.ctrl.lireXml("donnee/xml/"+file.getName());
-						this.panelInformation.setLayout(new GridLayout(10, 2,0,5));
-
-							// A finir je le ferai. Adrien
-
+						this.panelInformation.setLayout(new GridLayout(10,2,0,5));
 						
+			
+						this.lblInformationMappe.setText(lblVide.getText());
+						this.panelInformation.add(new JLabel());
+						this.panelInformation.add(new JLabel("Nombre de joueurs maximum  : " 						, JLabel.RIGHT));
+						this.panelInformation.add(new JLabel("" + this.ctrl.getNbJoueurMax()						, JLabel.LEFT));
+						this.panelInformation.add(new JLabel("Nombre de couleur / joueur : "      					, JLabel.RIGHT));	
+						this.panelInformation.add(new JLabel("" + this.ctrl.getLstCouleurJoueur().size()			, JLabel.LEFT));
+						this.panelInformation.add(new JLabel("Nombre de noeud dans la mappe : "						, JLabel.RIGHT));
+						this.panelInformation.add(new JLabel("" + this.ctrl.getLstNoeud().size()					, JLabel.LEFT));
+						this.panelInformation.add(new JLabel("Nombre d'arête dans la mappe : " 				 		, JLabel.RIGHT));
+						this.panelInformation.add(new JLabel("" + this.ctrl.getLstArete().size()					, JLabel.LEFT));
+						this.panelInformation.add(new JLabel("Nombre de joueurs minimum pour arête double  : "		, JLabel.RIGHT));
+						this.panelInformation.add(new JLabel("" + this.ctrl.getNbJoueurMinDoubleArete()				, JLabel.LEFT));
+						this.panelInformation.add(new JLabel("Nombre de points pour le plus long chemin : "			, JLabel.RIGHT));
+						this.panelInformation.add(new JLabel("" + this.ctrl.getNbPointsPlusLongChemin()				, JLabel.LEFT));
+						this.panelInformation.add(new JLabel("Nombre de carte(s) objectif  : " 						, JLabel.RIGHT));
+						this.panelInformation.add(new JLabel("" + this.ctrl.getLstCarteObjectif().size()			, JLabel.LEFT));
+						this.panelInformation.add(new JLabel("Nombre de wagons restants pour arrêter la partie : "	, JLabel.RIGHT)); 	
+						this.panelInformation.add(new JLabel("" + this.ctrl.getNbWagonDebutPartie()					, JLabel.LEFT));
+						this.panelInformation.add(new JLabel("Nombre de wagons / joueurs : " 						, JLabel.RIGHT));
+						this.panelInformation.add(new JLabel("" + this.ctrl.getNbWagonFinPartie()					, JLabel.LEFT));
 
-            this.lblInformationMappe.setText(lblVide.getText());
-            this.panelInformation.add(new JLabel());
-            this.panelInformation.add(new JLabel("Nombre de joueurs maximum  : " 			, JLabel.RIGHT));
-            this.panelInformation.add(new JLabel("" + this.ctrl.getNbJoueurMax()			, JLabel.CENTER));
-            this.panelInformation.add(new JLabel("Nombre de couleur / joueur : "      		, JLabel.RIGHT ));	
-            this.panelInformation.add(new JLabel("" + this.ctrl.getLstCouleurJoueur().size(), JLabel.CENTER));
-            this.panelInformation.add(new JLabel("Nombre de noeud dans la mappe : "			, JLabel.CENTER));
-            this.panelInformation.add(new JLabel("" + this.ctrl.getLstNoeud().size()		, JLabel.LEFT));
-            this.panelInformation.add(new JLabel("Nombre d'arête dans la mappe : "  		, JLabel.CENTER));
-            this.panelInformation.add(new JLabel("" + this.ctrl.getLstArete().size()		, JLabel.LEFT));
-            this.panelInformation.add(new JLabel("Nombre de joueurs minimum pour arête double  : ", JLabel.CENTER));
-            this.panelInformation.add(new JLabel("" + this.ctrl.getNbJoueurMinDoubleArete()	, JLabel.LEFT));
-            this.panelInformation.add(new JLabel("Nombre de points pour le plus long chemin : ",JLabel.CENTER));
-            this.panelInformation.add(new JLabel("" + this.ctrl.getNbPointsPlusLongChemin()	, JLabel.LEFT));
-            this.panelInformation.add(new JLabel("Nombre de carte(s) objectif  : " 			, JLabel.CENTER));
-            this.panelInformation.add(new JLabel("" + this.ctrl.getLstCarteObjectif().size(), JLabel.LEFT));
-            this.panelInformation.add(new JLabel("Nombre de wagons restants pour arrêter la partie : ", JLabel.CENTER)); 	
-            this.panelInformation.add(new JLabel("" + this.ctrl.getNbWagonDebutPartie()		, JLabel.LEFT));
-            this.panelInformation.add(new JLabel("Nombre de wagons / joueurs : " 			, JLabel.CENTER));
-            this.panelInformation.add(new JLabel("" + this.ctrl.getNbWagonFinPartie()		, JLabel.LEFT));
-				
+						// Récuperer l'image
+						panelImage.add(new JLabel(new ImageIcon(this.ctrl.getNomImage())));
 
 						String nomImage = this.ctrl.getNomImage();
 						this.FileImagenew =new File(nomImage);
 						this.validFichier = this.FileImagenew.exists();
 						if(!this.validFichier)
 						{
-							try{
-								
+							try
+							{	
 								this.jdImporteImageManquante = new JDialog();
-								this.btnImportImage = new JButton("Importé le fichier manquant");
+								this.btnImportImage = new JButton("Importer l'image manquante");
 								this.btnImportImage.addActionListener(this);
 								this.jdImporteImageManquante.setTitle("Erreur");
 								this.jdImporteImageManquante.setSize(300, 100);
@@ -179,25 +168,12 @@ public class PanelHautMenu extends JPanel implements ActionListener
 								this.jdImporteImageManquante.add(new JLabel("L'image " + nomImage +  " n'existe pas, veuillez la placer dans le dossier image"), BorderLayout.CENTER);
 								//FileNameExtensionFilter filtreImage = new FileNameExtensionFilter("Format XML", "png")
 								this.jdImporteImageManquante.setVisible(true);
-			
-							
-
-
 							}
-
-
 							catch(Exception e1){e1.printStackTrace();}
 						}
-
-
 						this.FileImagenew =new File(this.ctrl.getNomImage());
-						
 						this.ctrl.getPanelCentreMenu().setEnabled(true);
 					}
-
-						
-
-						
 				} catch (IOException e1) {e1.printStackTrace();}
 			}
 		}
@@ -210,33 +186,20 @@ public class PanelHautMenu extends JPanel implements ActionListener
 			
 			if(res2 == JFileChooser.APPROVE_OPTION)
 			{
-				System.out.print("Sheeeesh2");
 				File fileRemplacement = jFileChooserRemplacement.getSelectedFile();									
 				try {
 					Files.copy(fileRemplacement.toPath(), Paths.get("importe/"	+ fileRemplacement.getName()));
 				} catch (IOException e2) { e2.printStackTrace();}																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										
 				this.cheminFichier = fileRemplacement.getName();
-
-				System.out.println("cheminFichier : " + "import/"+this.cheminFichier);
-				
-				System.out.println("nomImage : " + this.ctrl.getNomImage());
 				this.validFichier = this.ctrl.getNomImage().equals("importe/"+cheminFichier);
-				System.out.println("validFichier : " + this.validFichier);
 				this.FileImagenew =new File(cheminFichier);
 
 				if(this.validFichier)
 					this.jdImporteImageManquante.dispose();
 				//import/FortniteMappe.png
 				//importe/FortniteMappe.png
-				//this.jdImporteImageManquante.dispose();
-
-					
+				//this.jdImporteImageManquante.dispose();		
 			}
-
-		}
-
-		
-
-		
+		}		
 	}
 }

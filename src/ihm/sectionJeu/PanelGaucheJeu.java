@@ -10,7 +10,6 @@ import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import java.awt.Color;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -88,7 +87,10 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnArreterPartie)
 		{
-			JOptionPane.showMessageDialog(null, "Voulez-vous vraiment arrêter la partie ?", "Fin de partie", JOptionPane.INFORMATION_MESSAGE);
+			if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêter la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+			{
+				this.ctrl.changerPanel("Menu");
+			}
 		}
 
 		if(e.getSource() == this.btnFinDuTour)

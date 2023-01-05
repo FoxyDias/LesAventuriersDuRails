@@ -285,7 +285,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			else
 			{
 				PanelJeu panelJeu = new PanelJeu(this.ctrl);
-				this.ctrl.changerPanel();
+				this.ctrl.changerPanel("Jeu");
 			}
 			
 		}
@@ -303,7 +303,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			else
 			{
 				PanelJeu panelJeu = new PanelJeu(this.ctrl);
-				this.ctrl.changerPanel();
+				this.ctrl.changerPanel("Jeu");
 				this.dialogCreerPartie.dispose();
 			}
 		}
@@ -322,7 +322,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			else
 			{	
 				PanelJeu panelJeu = new PanelJeu(this.ctrl);
-				this.ctrl.changerPanel();
+				this.ctrl.changerPanel("Jeu");
 				this.dialogCreerPartie.dispose();
 			}
 		}

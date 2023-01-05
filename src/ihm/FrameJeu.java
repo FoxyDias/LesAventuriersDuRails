@@ -54,11 +54,22 @@ public class FrameJeu extends JFrame
 
 	public void setEnabled(boolean b) { this.panelMenu.getPanelCentreMenu().setEnabled(b); }
 
-	public void changerPanel()
+	public void changerPanel(String nom)
 	{
-		this.panelJeu = new PanelJeu(this.ctrl);
-		setContentPane(panelJeu);
-		revalidate();
-		repaint();
+		switch (nom)
+		{
+			case "Menu":
+				this.panelMenu = new PanelMenu(this.ctrl);
+				setContentPane(panelMenu);
+				revalidate();
+				repaint();
+				break;
+			case "Jeu":
+				this.panelJeu = new PanelJeu(this.ctrl);
+				setContentPane(panelJeu);
+				revalidate();
+				repaint();
+				break;
+		}
 	}
 }
