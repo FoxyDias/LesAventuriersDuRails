@@ -1,8 +1,11 @@
 package metier;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Joueur {
+
+    private Color couleur;
 
     private int nbPoints;
     private int nbWagons;
@@ -12,8 +15,10 @@ public class Joueur {
 
     private int routeLaPlusLong;
 
-    public Joueur(int w)
+    public Joueur(int w, Color c)
     {
+        this.couleur = c;
+
         this.nbWagons       = w;
 
         this.mainWagon      = new ArrayList<CarteWagon>();
@@ -35,7 +40,7 @@ public class Joueur {
      * Enlever un nombre de point pour le joueur, cette fonction sera utilisé en fin de partie
      * @param nbPoint
      */
-    public void EnleverPoint(int nbPoint)   {this.nbPoints -= nbPoint;}
+    public void enleverPoint(int nbPoint)   {this.nbPoints -= nbPoint;}
 
 
     public int getNbWagons() {return this.nbWagons;}

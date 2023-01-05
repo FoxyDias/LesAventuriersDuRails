@@ -4,6 +4,7 @@ import ihm.FrameJeu;
 import ihm.sectionMenu.PanelCentreMenu;
 import metier.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -22,7 +23,7 @@ public class Controleur {
 
     public void lancerPartie()
     {
-        //this.ihm.lancerPartie();
+        this.ihm.changerPanel();
         this.metier.lancerPartie();
     }
 
@@ -56,21 +57,13 @@ public class Controleur {
         return this.metier.getNbPointsPlusLongChemin();
     }
 
-    public ArrayList<String> getLstCouleurJoueur() {
+    public ArrayList<Color> getLstCouleurJoueur() {
         return this.metier.getLstCouleurJoueur();
     }
 
     public ArrayList<CarteObjectif> getListCarteObjectif()
     {
         return this.metier.getListCarteObjectif();
-    }
-
-    public HashMap<String, Integer> getHsmCouleurWagon() {
-        return this.metier.getHsmCouleurWagon();
-    }
-
-    public HashMap<String, String> getHsmImageWagon() {
-        return this.metier.getHsmImageWagon();
     }
 
     public String getVersoCarteWagon(){
