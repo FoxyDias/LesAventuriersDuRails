@@ -6,7 +6,6 @@ import metier.*;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import com.formdev.flatlaf.FlatLightLaf;
 

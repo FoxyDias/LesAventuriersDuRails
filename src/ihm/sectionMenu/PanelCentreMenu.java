@@ -11,8 +11,7 @@ import java.awt.BorderLayout;
 import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
 import javax.swing.border.Border;
-
-import ihm.sectionJeu.PanelJeu;
+import java.awt.Font;
 
 public class PanelCentreMenu extends JPanel implements ActionListener
 {
@@ -45,7 +44,9 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		this.ctrl = ctrl;
 		
 		JLabel lblPartieMulti		= new JLabel("Jouer en multijoueur");
+		lblPartieMulti.setFont(new Font("", Font.BOLD, 13));
 		JLabel lblPartieSolo		= new JLabel("Jouer en local");
+		lblPartieSolo.setFont(new Font("", Font.BOLD, 13));
 		JLabel lblNbJoueursLocal	= new JLabel("Nombre de joueurs : ");
 
 		JPanel panelCreerPartieSolo		= new JPanel(new BorderLayout());
@@ -284,7 +285,6 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			}
 			else
 			{
-				PanelJeu panelJeu = new PanelJeu(this.ctrl);
 				this.ctrl.changerPanel("Jeu");
 			}
 			
@@ -302,7 +302,6 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			}
 			else
 			{
-				PanelJeu panelJeu = new PanelJeu(this.ctrl);
 				this.ctrl.changerPanel("Jeu");
 				this.dialogCreerPartie.dispose();
 			}
@@ -320,8 +319,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 				return;
 			}
 			else
-			{	
-				PanelJeu panelJeu = new PanelJeu(this.ctrl);
+			{
 				this.ctrl.changerPanel("Jeu");
 				this.dialogCreerPartie.dispose();
 			}
