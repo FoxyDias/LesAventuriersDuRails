@@ -12,7 +12,6 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
 import javax.swing.border.Border;
 
-import ihm.FrameJeu;
 import ihm.sectionJeu.PanelJeu;
 
 public class PanelCentreMenu extends JPanel implements ActionListener
@@ -27,7 +26,6 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 	private JButton btnRejoindreMultiPopUp;
 
 	private JTextField txtNbJoueursMiniCreer;
-	private JTextField txtNbJoueursMaxiCreer;
 	private JTextField txtPortMachineCreer;
 	private JTextField txtPortMachineRejoindre; 
 	private JTextField txtIPMachineRejoindre;
@@ -73,7 +71,6 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		this.btnRejoindreMultiPopUp	= new JButton("Rejoindre");
 
 		this.txtNbJoueursMiniCreer		= new JTextField();
-		this.txtNbJoueursMaxiCreer		= new JTextField();
 		this.txtPortMachineCreer		= new JTextField();
 		this.txtPortMachineRejoindre	= new JTextField();
 		this.txtIPMachineRejoindre		= new JTextField();
@@ -93,7 +90,6 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		this.btnRejoindreMultiPopUp	.setBackground(Color.WHITE);
 
 		this.txtNbJoueursMiniCreer	.setHorizontalAlignment(JTextField.CENTER);
-		this.txtNbJoueursMaxiCreer	.setHorizontalAlignment(JTextField.CENTER);
 		this.txtPortMachineCreer	.setHorizontalAlignment(JTextField.CENTER);
 		this.txtPortMachineRejoindre.setHorizontalAlignment(JTextField.CENTER);
 		this.txtIPMachineRejoindre	.setHorizontalAlignment(JTextField.CENTER);
@@ -103,7 +99,6 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		this.txtMotDePasseRejoindre	.setBorder(border);
 		this.txtNbJoueursLocal		.setBorder(border);
 		this.txtNbJoueursMiniCreer	.setBorder(border);
-		this.txtNbJoueursMaxiCreer	.setBorder(border);
 		this.txtPortMachineCreer	.setBorder(border);
 		this.txtPortMachineRejoindre.setBorder(border);
 
@@ -178,16 +173,6 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			}
 		});
 
-		this.txtNbJoueursMaxiCreer.addKeyListener(new KeyAdapter()
-		{
-			public void keyTyped(KeyEvent e)
-			{
-				char c = e.getKeyChar();
-				if(!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE)))
-					e.consume();
-			}
-		});
-
 		this.txtPortMachineCreer.addKeyListener(new KeyAdapter()
 		{
 			public void keyTyped(KeyEvent e)
@@ -223,22 +208,18 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 	{
 		if(e.getSource() == this.btnCreerPartieMulti)
 		{
-			JPanel panelPopUp = new JPanel(new GridLayout(4,4,0,10));
+			JPanel panelPopUp = new JPanel(new GridLayout(3,4,0,10));
 			JPanel panelBtnPopUp = new JPanel();
 
 			this.dialogCreerPartie = new JDialog();
 			this.dialogCreerPartie.setTitle("Créer une partie");
 			this.dialogCreerPartie.setLayout(new BorderLayout());
-			this.dialogCreerPartie.setBounds(165, 400, 535, 200);
+			this.dialogCreerPartie.setBounds(165, 500, 535, 200);
 
-			panelPopUp.add(new JLabel());
-			panelPopUp.add(new JLabel("Nb joueurs mini :"));
-			panelPopUp.add(this.txtNbJoueursMiniCreer);
-			panelPopUp.add(new JLabel());
 			/* -- */
 			panelPopUp.add(new JLabel());
-			panelPopUp.add(new JLabel("Nb joueurs maxi :"));
-			panelPopUp.add(this.txtNbJoueursMaxiCreer);
+			panelPopUp.add(new JLabel("Nb joueurs partie :"));
+			panelPopUp.add(this.txtNbJoueursMiniCreer);
 			panelPopUp.add(new JLabel());
 			/* -- */
 			panelPopUp.add(new JLabel());
@@ -293,6 +274,32 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnCreerPartieSolo)
 		{
+			/* Utiliser la methode changerPanel */
+			PanelJeu panelJeu = new PanelJeu(this.ctrl);
+			this.ctrl.changerPanel();
+		}
+
+		if(e.getSource() == this.btnLancerPartiePopUp)
+		{
+			/* Lancer la partie */
+			/*
+			int nbJoueurs = Integer.parseInt(this.txtNbJoueursMiniCreer.getText());
+			int port = Integer.parseInt(this.txtPortMachineCreer.getText());
+			String motDePasse = this.txtMotDePasseCreer.getText();*/
+
+			/* Utiliser la methode changerPanel */
+			PanelJeu panelJeu = new PanelJeu(this.ctrl);
+			this.ctrl.changerPanel();
+		}
+
+		if(e.getSource() == this.btnRejoindreMultiPopUp)
+		{
+			/* Rejoindre la partie */
+			/*
+			String ip = this.txtIPMachineRejoindre.getText();
+			int port = Integer.parseInt(this.txtPortMachineRejoindre.getText());
+			String motDePasse = this.txtMotDePasseRejoindre.getText();*/
+
 			/* Utiliser la methode changerPanel */
 			PanelJeu panelJeu = new PanelJeu(this.ctrl);
 			this.ctrl.changerPanel();

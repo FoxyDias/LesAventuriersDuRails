@@ -37,14 +37,14 @@ public class PanelHautMenu extends JPanel implements ActionListener
 		this.ctrl = ctrl; 
 		this.setLayout(new BorderLayout());
 		
-		JLabel lblTitre 			= new JLabel("Les aventuriers du rail");
+		JLabel lblTitre 	= new JLabel("Les aventuriers du rail");
 
-		JPanel panelTitre 		= new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 40));
-		JPanel panelImport 		= new JPanel();
+		JPanel panelTitre 	= new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 40));
+		JPanel panelImport 	= new JPanel();
 		
 		this.panelInformation = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 40)); 
 		this.btnImport = new JButton("Importer un fichier XML");
-		this.lblInformationMappe  = new JLabel("Aucune mappe n'est chargée. [Résumé des informations de la mappe]");
+		this.lblInformationMappe  = new JLabel("Aucune mappe n'est chargée. Importez en une pour commencer à jouer.");
 
 		/**
 		 * Positionnement des composants
@@ -64,7 +64,7 @@ public class PanelHautMenu extends JPanel implements ActionListener
 
 		this.btnImport.addActionListener(this);
 		this.btnImport.setBackground(Color.WHITE);
-		lblTitre.setFont(new Font("Broadway", Font.BOLD, 50));
+		lblTitre.setFont(new Font("Serif", Font.ROMAN_BASELINE, 50));
 
 		new Thread() 
 		{

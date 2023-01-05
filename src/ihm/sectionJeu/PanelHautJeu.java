@@ -16,6 +16,7 @@ public class PanelHautJeu extends JPanel
 	private Controleur ctrl;
 
 	private JLabel lblTour;
+	private JLabel lblProfil;
 
 	public PanelHautJeu(Controleur ctrl)
 	{
@@ -25,8 +26,8 @@ public class PanelHautJeu extends JPanel
 		this.ctrl = ctrl; 
 		this.setLayout(new BorderLayout());
 
-		JPanel panelTourJoueur = new JPanel(new GridLayout(this.ctrl.getNbJoueurMax(),1, 0,5));
-		JPanel panelProfilJoueur = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+		JPanel panelTourJoueur = new JPanel(new GridLayout(this.ctrl.getNbJoueurMax(),1, 15,15));
+		JPanel panelProfilJoueur = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 50));
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		this.lblTour = new JLabel("C'est au tour de ");
 
@@ -37,14 +38,16 @@ public class PanelHautJeu extends JPanel
 		for(int i = 0; i < this.ctrl.getNbJoueurMax(); i++)
 		{
 			panelTourJoueur.add(new JLabel("Joueur " + (i + 1)));
+			lblProfil = new JLabel("Joueur " + (i + 1));
+			lblProfil.setBorder(border);
+			panelProfilJoueur.add(lblProfil);
 		}
 
 		panelTourJoueur.setBorder(border);
 		panelProfilJoueur.setBorder(border);
 
-
 		this.add(panelTourJoueur, BorderLayout.EAST);
-		this.add(panelProfilJoueur, BorderLayout.WEST);
+		this.add(panelProfilJoueur);
 
 		/**
 		 * Activation des composants
