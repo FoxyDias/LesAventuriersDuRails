@@ -114,19 +114,27 @@ public class Metier {
 
         for(int nbPioche=0; nbPioche<2; nbPioche++)
         {
+            //le cas ou ya un joker dès le début
+            for(CarteWagon cw : this.lstPiocheWagon)
+            {
+                if(cw.getCouleur().equals("Joker"))
+                {
+                    droitMulti = false;
+                }
+            }
 
             //Choix du jeton
             System.out.println("Choisissez ce que vous voulez piocher parmis : ");
             this.afficherPioche();
             choixWagons = sc.nextLine().toLowerCase();
-            if(!droitMulti && choixWagons.equals("multi"))
+            if(!droitMulti && choixWagons.equals("joker"))
             {
                 System.out.println("Vous n'avez pas le droit de prendre un jeton Multi");
                 choixWagons = sc.nextLine().toLowerCase();
             }
             while (!choixWagons(joueurActuel, choixWagons) && !(choixWagons.equals("quitter")))
             {
-                if(!droitMulti && choixWagons.equals("multi"))
+                if(!droitMulti && choixWagons.equals("joker"))
                 {
                     System.out.println("Vous n'avez pas le droit de prendre un jeton Multi");
                 }
@@ -140,7 +148,7 @@ public class Metier {
 
             for(CarteWagon cw : this.lstPiocheWagon)
             {
-                if(cw.equals("Joker"))
+                if(cw.getCouleur().equals("Joker"))
                 {
                     droitMulti = false;
                 }
@@ -187,6 +195,8 @@ public class Metier {
 
     private void piocherRdm()
     {
+        //remettre la fause quand this.lstCarteWagon.size() == 0;
+
         int num = (int) (Math.random() * this.lstCarteWagon.size());
         this.lstPiocheWagon.add(this.lstCarteWagon.get(num));
         this.lstCarteWagon.remove(num);
