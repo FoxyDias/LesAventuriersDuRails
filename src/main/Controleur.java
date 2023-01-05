@@ -7,6 +7,8 @@ import metier.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.formdev.flatlaf.FlatLightLaf;
+
 public class Controleur {
 
     private Metier metier;
@@ -124,6 +126,8 @@ public class Controleur {
      * @param args
      */
     public static void main(String[] args) {
+
+		FlatLightLaf.setup();
         new Controleur();
     }
 }
