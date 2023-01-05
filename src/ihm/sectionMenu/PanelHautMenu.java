@@ -101,13 +101,19 @@ public class PanelHautMenu extends JPanel implements ActionListener
 					{
 						JLabel lblVide = new JLabel("", JLabel.CENTER);
 						this.ctrl.lireXml("donnee/xml/"+file.getName());
-						this.panelInformation.setLayout(new GridLayout(6, 1));
+						this.panelInformation.setLayout(new GridLayout(10, 0,0,5));
+
 						this.lblInformationMappe.setText(lblVide.getText());
-						this.panelInformation.add(new JLabel("Nombre de couleur joueur : "      + this.ctrl.getLstCouleurJoueur().size(), JLabel.CENTER));
-						this.panelInformation.add(new JLabel("Nombre d'arête dans la mappe : "  + this.ctrl.getLstArete().size(), JLabel.CENTER));
-						this.panelInformation.add(new JLabel("Nombre de noeud dans la mappe : " + this.ctrl.getLstNoeud().size(), JLabel.CENTER));
-						this.panelInformation.add(new JLabel("Nombre de carte objectif : " 		+ this.ctrl.getLstCarteObjectif().size(), JLabel.CENTER));
-						this.panelInformation.add(new JLabel("Nombre de couleur wagon :" 		+ this.ctrl.getLstCouleurWagon().size(), JLabel.CENTER));
+						this.panelInformation.add(new JLabel("Nombre de joueurs maximum  : " 						+ this.ctrl.getNbJoueurMax()			, JLabel.CENTER));
+						this.panelInformation.add(new JLabel("Nombre de couleur / joueur : "      					+ this.ctrl.getLstCouleurJoueur().size(), JLabel.CENTER));
+						this.panelInformation.add(new JLabel("Nombre de noeud dans la mappe : "						+ this.ctrl.getLstNoeud().size()		, JLabel.CENTER));
+						this.panelInformation.add(new JLabel("Nombre d'arête dans la mappe : "  					+ this.ctrl.getLstArete().size()		, JLabel.CENTER));
+						this.panelInformation.add(new JLabel("Nombre de joueurs minimum pour arête double  : " 		+ this.ctrl.getNbJoueurMinDoubleArete()	, JLabel.CENTER));
+						this.panelInformation.add(new JLabel("Nombre de points pour le plus long chemin : " 		+ this.ctrl.getNbPointsPlusLongChemin()	, JLabel.CENTER));
+						this.panelInformation.add(new JLabel("Nombre de carte(s) objectif  : " 						+ this.ctrl.getLstCarteObjectif().size(), JLabel.CENTER));
+						this.panelInformation.add(new JLabel("Nombre de wagons restants pour arrêter la partie : " 	+ this.ctrl.getNbWagonFinPartie()		, JLabel.CENTER));
+						this.panelInformation.add(new JLabel("Nombre de wagons / joueurs : " 						+ this.ctrl.getNbWagonDebutPartie()		, JLabel.CENTER));
+
 						this.ctrl.getPanelCentreMenu().setEnabled(true);
 					}
 					} catch (IOException e1) {e1.printStackTrace();}
