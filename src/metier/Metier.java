@@ -26,9 +26,11 @@ public class Metier {
     private String versoCarteObjectif;
     private String versoCarteWagon;
 
+    private ArrayList<Joueur> tabJoueur;
 
-    private int nbJoueurMax, nbJoueurMinDoubleArete , nbWagonDebutPartie ,nbWagonFinPartie , nbPointsPlusLongChemin ;
-    private String[][] pointsTaille;
+
+    private int nbJoueurMax, nbJoueurPartie, nbJoueurMinDoubleArete , nbWagonDebutPartie ,nbWagonFinPartie , nbPointsPlusLongChemin ;
+    private int[] pointsTaille;
 
     public Metier( Controleur ctrl )
     {
@@ -44,7 +46,24 @@ public class Metier {
         this.hsmCouleurWagon = new HashMap<String, Integer>();
         this.hsmImageWagon = new HashMap<String, String>();
 
-		this.pointsTaille = new String[4][2];
+        this.tabJoueur = new ArrayList<Joueur>();
+    }
+
+    public void lancerPartie()
+    {
+        boolean dernierTour = false;
+        int nbTour = 0;
+        
+        while(!dernierTour)
+        {
+            for(Joueur j : tabJoueur)
+            {
+                System.out.println("Choix : ");
+                System.out.println("Piocher des Cartes");
+                System.out.println("Prendre Possesion d'une route");
+                System.out.println("Piocher des cartes Objectifs");
+            }
+        }
     }
 
     public void lireXml(String pathXml)
@@ -143,16 +162,28 @@ public class Metier {
 
         }
 
-
         int n =0;
+        int maxTaille = 0;
+        int taille = 0;
+        int point = 0;
+
         for(Element p  : lstPoints)
         {
-            int taille = Integer.parseInt(p.getChild("taille").getText());
-            int point = Integer.parseInt(p.getChild("points").getText());
+            taille = Integer.parseInt(p.getChild("taille").getText());
+            if(maxTaille<taille)
+                maxTaille = taille;
+        }
 
-            this.pointsTaille[n][0] = ""+ taille;
-            this.pointsTaille[n][1] = ""+ point;
-            n++;
+        this.pointsTaille = new int[maxTaille];
+
+        for(Element p  : lstPoints)
+        {
+            taille = Integer.parseInt(p.getChild("taille").getText());
+            point = Integer.parseInt(p.getChild("points").getText());
+
+            this.pointsTaille[taille] = point;
+            this.pointsTaille[taille] = point;
+
         }
 
         for(Element c : lstCouleurJoueur)

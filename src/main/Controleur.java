@@ -21,6 +21,12 @@ public class Controleur {
         this.ihm = new FrameJeu(this, "init");
     }
 
+    public void lancerPartie()
+    {
+        //this.ihm.lancerPartie();
+        this.metier.lancerPartie();
+    }
+
     public ArrayList<Noeud> getLstNoeud()
     {
         return this.metier.getLstNoeud();
