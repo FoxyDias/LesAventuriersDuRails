@@ -148,41 +148,38 @@ public class PanelHautMenu extends JPanel implements ActionListener
 
 						String nomImage = this.ctrl.getNomImage();
 						this.FileImagenew =new File(nomImage);
-
-						while(!FileImagenew.exists())
+						this.validFichier = this.FileImagenew.exists();
+						if(!this.validFichier)
 						{
-							System.out.println("Sheeeeeesh1");
 							try{
-								if(!this.validFichier)
-								{
-									this.jdImporteImageManquante = new JDialog();
-									this.btnImportImage = new JButton("Importé le fichier manquant");
-									this.btnImportImage.addActionListener(this);
-									this.jdImporteImageManquante.setTitle("Erreur");
-									this.jdImporteImageManquante.setSize(300, 100);
-									this.jdImporteImageManquante.setLocationRelativeTo(null);
-									this.jdImporteImageManquante.setModal(true);
-									this.jdImporteImageManquante.setResizable(false);
-									this.jdImporteImageManquante.setLayout(new BorderLayout());
-									this.jdImporteImageManquante.add(btnImportImage, BorderLayout.SOUTH);
-									this.jdImporteImageManquante.add(new JLabel("L'image " + nomImage +  " n'existe pas, veuillez la placer dans le dossier image"), BorderLayout.CENTER);
-									//FileNameExtensionFilter filtreImage = new FileNameExtensionFilter("Format XML", "png")
-									this.jdImporteImageManquante.setVisible(true);
-									this.validFichier = true;
-									
-								}
-								else
-								{
-									this.jdImporteImageManquante.dispose();
-									this.FileImagenew =new File(this.ctrl.getNomImage());
-								}
 								
+								this.jdImporteImageManquante = new JDialog();
+								this.btnImportImage = new JButton("Importé le fichier manquant");
+								this.btnImportImage.addActionListener(this);
+								this.jdImporteImageManquante.setTitle("Erreur");
+								this.jdImporteImageManquante.setSize(300, 100);
+								this.jdImporteImageManquante.setLocationRelativeTo(null);
+								this.jdImporteImageManquante.setModal(true);
+								this.jdImporteImageManquante.setResizable(false);
+								this.jdImporteImageManquante.setLayout(new BorderLayout());
+								this.jdImporteImageManquante.add(btnImportImage, BorderLayout.SOUTH);
+								this.jdImporteImageManquante.add(new JLabel("L'image " + nomImage +  " n'existe pas, veuillez la placer dans le dossier image"), BorderLayout.CENTER);
+								//FileNameExtensionFilter filtreImage = new FileNameExtensionFilter("Format XML", "png")
+								this.jdImporteImageManquante.setVisible(true);
+			
+							
+
 
 							}
 
 
 							catch(Exception e1){e1.printStackTrace();}
 						}
+
+
+						this.FileImagenew =new File(this.ctrl.getNomImage());
+						
+						this.ctrl.getPanelCentreMenu().setEnabled(true);
 					}
 
 						
@@ -205,11 +202,19 @@ public class PanelHautMenu extends JPanel implements ActionListener
 				try {
 					Files.copy(fileRemplacement.toPath(), Paths.get("importe/"	+ fileRemplacement.getName()));
 				} catch (IOException e2) { e2.printStackTrace();}																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										
-				this.cheminFichier = this.ctrl.getNomImage();
+				this.cheminFichier = fileRemplacement.getName();
 
-				this.validFichier = this.ctrl.getNomImage() == cheminFichier;
-				this.jdImporteImageManquante.dispose();
+				System.out.println("cheminFichier : " + "import/"+this.cheminFichier);
+				
+				System.out.println("nomImage : " + this.ctrl.getNomImage());
+				this.validFichier = this.ctrl.getNomImage().equals("importe/"+cheminFichier);
+				System.out.println("validFichier : " + this.validFichier);
 				this.FileImagenew =new File(cheminFichier);
+
+				if(this.validFichier)
+					this.jdImporteImageManquante.dispose();
+				//import/FortniteMappe.png
+				//importe/FortniteMappe.png
 				//this.jdImporteImageManquante.dispose();
 			}
 
