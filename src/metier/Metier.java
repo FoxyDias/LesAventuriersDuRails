@@ -7,6 +7,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import org.jdom2.*;
 import org.jdom2.input.*;
@@ -14,6 +15,8 @@ import org.jdom2.input.*;
 public class Metier {
 
     private Controleur ctrl;
+
+    private String nomImage;
 
     private ArrayList<Noeud> lstNoeud;
     private ArrayList<Arete> lstArete;
@@ -27,6 +30,7 @@ public class Metier {
     private String versoCarteWagon;
 
     private ArrayList<Joueur> lstJoueur;
+    private ArrayList<CarteWagon> tabPiocheWagon;
 
 
     private int nbJoueurMax, nbJoueurPartie, nbJoueurMinDoubleArete , nbWagonDebutPartie ,nbWagonFinPartie , nbPointsPlusLongChemin ;
@@ -53,17 +57,113 @@ public class Metier {
     {
         boolean dernierTour = false;
         int nbTour = 0;
+        String action;
         
         while(!dernierTour)
         {
-            for(Joueur j : lstJoueur)
+            for(Joueur joueurActuel : lstJoueur)
             {
-                System.out.println("Choix : ");
-                System.out.println("Piocher des Cartes");
-                System.out.println("Prendre Possesion d'une route");
-                System.out.println("Piocher des cartes Objectifs");
+                boolean tourQuitter = true;
+                while (tourQuitter)
+                {
+                    System.out.println("Quelle action choisissez-vous parmit : Piocher | Possession | Carte  ");
+                    Scanner sc = new Scanner(System.in);
+                    action = sc.nextLine().toLowerCase();
+
+                    /*                          Choix Piocher                             */
+                    if (action.equals("piocher")) {
+                        //tourQuitter = !(tourPiocher(joueurActuel));
+                    }
+
+                    /*-------------------------------------------------------------------*/
+
+                    /*                          Choix Possession                         */
+                    else if (action.equals("possession")) {
+                        tourQuitter = !(tourPossession(joueurActuel));
+                    }
+                    /*-------------------------------------------------------------------*/
+
+                    /*                             Choix Carte                           */
+                    else if (action.equals("carte")) {
+                        tourQuitter = !(tourCarte(joueurActuel));
+                    }
+                    /*-------------------------------------------------------------------*/
+                }
             }
         }
+    }
+
+    /*private boolean tourPiocher(Joueur joueurActuel)
+    {
+        String choixJetons;
+        Scanner sc = new Scanner(System.in);
+        boolean droitMulti = true;
+
+        for(int nbPioche=0; nbPioche<2; nbPioche++)
+        {
+            //le cas ou y'a un jeton multi dès le début
+            if(tabPioche[8] != 0 )
+            {
+                nbPioche++;
+            }
+
+            //Choix du jeton
+            System.out.println("Choisissez ce que vous voulez piocher parmis : ");
+            this.afficherPioche();
+            choixJetons = sc.nextLine().toLowerCase();
+            if(!droitMulti && choixJetons.equals("multi"))
+            {
+                System.out.println("Vous n'avez pas le droit de prendre un jeton Multi");
+                choixJetons = sc.nextLine().toLowerCase();
+            }
+            while (!choixJetons(joueurActuel, choixJetons) && !(choixJetons.equals("quitter")))
+            {
+                if(!droitMulti && choixJetons.equals("multi"))
+                {
+                    System.out.println("Vous n'avez pas le droit de prendre un jeton Multi");
+                }
+                else
+                    System.out.println("Erreur de choix");
+
+                choixJetons = sc.nextLine();
+            }
+            if(choixJetons.equals("quitter"))
+                return false;
+
+            if(tabPioche[8] != 0)
+            {
+                droitMulti = false;
+            }
+        }
+        return true;
+    }*/
+
+    private boolean tourPossession(Joueur joueurActuel)
+    {
+        System.out.println("Quelle territoire voulez-vous ? ");
+        return true;
+    }
+
+    private boolean tourCarte(Joueur joueurActuel)
+    {
+        return true;
+    }
+
+    private boolean choixJetons(Joueur joueur, String choix){
+            /*if (choix == null) return false;
+
+            for(int cpt = 0; cpt < tabPioche.length; cpt++)
+            {
+            if (choix.equals(afficheRessource(cpt).toLowerCase())){
+            tabPioche[cpt]--;
+            joueur.ajouterJeton(cpt);
+            this.piocherRdm();
+            return true;
+            }
+
+            }
+            return false;*/
+        return false;
     }
 
     public void lireXml(String pathXml)
@@ -150,6 +250,7 @@ public class Metier {
             this.nbWagonDebutPartie = Integer.parseInt(d.getChild("nbWagonDebutPartie").getText());
             this.nbWagonFinPartie = Integer.parseInt(d.getChild("nbWagonFinPartie").getText());
             this.nbPointsPlusLongChemin = Integer.parseInt(d.getChild("nbPointsPlusLongChemin").getText());
+            this.nomImage = d.getChild("image").getText();
         }
 
         for(Element o : lstObjectif)
@@ -308,6 +409,10 @@ public class Metier {
     public ArrayList<Arete> getLstArete()
     {
         return this.lstArete;
+    }
+
+    public String getNomImage() {
+        return nomImage;
     }
 
     public void setNbJoueur(int n) { this.nbJoueurPartie = n; }
