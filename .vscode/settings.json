@@ -1,7 +1,6 @@
 {
 	"java.project.referencedLibraries": [
 		"lib/**/*.jar",
-		"c:\\Users\\Decharrois\\Downloads\\jdom-2.0.6.jar",
-		"c:\\Users\\Decharrois\\Downloads\\flatlaf-2.6(1).jar"
+		"c:\\Users\\Decharrois\\Downloads\\jdom-2.0.6.jar"
 	]
 }
