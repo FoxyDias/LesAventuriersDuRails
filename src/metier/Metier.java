@@ -202,7 +202,7 @@ public class Metier {
         List<Element> lstObjectif = racine.getChildren ( "mappe" ).get(0).getChildren("carteObjectif");
         List<Element> lstWagon = racine.getChildren ( "mappe" ).get(0).getChildren("carteWagon");
         List<Element> lstInformation = racine.getChildren ( "mappe" ).get(0).getChildren("details");
-        List<Element> lstCouleurJoueur = racine.getChildren ( "mappe" ).get(0).getChildren("CouleurJoueurList");
+       
         List<Element> lstPoints = racine.getChildren ( "mappe" ).get(0).getChildren("points").get(0).getChildren("pointTaille");
 
         for(Element courant : lstNoeud) {
@@ -287,13 +287,18 @@ public class Metier {
 
         }
 
-        for(Element c : lstCouleurJoueur)
+        Element lstCouleurJoueur = racine.getChildren ( "mappe" ).get(0).getChild("CouleurJoueurList");
+
+        for(Element c : lstCouleurJoueur.getChildren("couleurJoueur"))
         {
-            String couleur = c.getChild("couleurJoueur").getText();
-            this.lstCouleurJoueur.add(couleur);
+            String texte = c.getText();
+            System.out.println(texte);
+
+            this.lstCouleurJoueur.add(texte);
+
         }
 
-    }
+    }//getChildren("CouleurJoueur");
 
     public void creeNoeud(String nom, int x, int y, int nomX , int nomY)
     {
