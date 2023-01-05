@@ -113,7 +113,7 @@ public class PanelHautMenu extends JPanel implements ActionListener
 						this.panelInformation.add(new JLabel("Nombre de carte(s) objectif  : " 						+ this.ctrl.getLstCarteObjectif().size(), JLabel.CENTER));
 						this.panelInformation.add(new JLabel("Nombre de wagons restants pour arrêter la partie : " 	+ this.ctrl.getNbWagonFinPartie()		, JLabel.CENTER));
 						this.panelInformation.add(new JLabel("Nombre de wagons / joueurs : " 						+ this.ctrl.getNbWagonDebutPartie()		, JLabel.CENTER));
-
+				
 						this.ctrl.getPanelCentreMenu().setEnabled(true);
 					}
 					} catch (IOException e1) {e1.printStackTrace();}

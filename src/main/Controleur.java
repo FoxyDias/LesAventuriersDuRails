@@ -114,6 +114,11 @@ public class Controleur {
 
 	public void lireXml(String fichier) { this.metier.lireXml(fichier); }
 
+	public void changerPanel()
+	{
+		this.ihm.changerPanel();
+	}
+
     /**
      * Le main du projet
      * @param args

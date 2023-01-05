@@ -9,6 +9,7 @@ package ihm;
 import main.Controleur;
 import ihm.sectionMenu.PanelCentreMenu;
 import ihm.sectionMenu.PanelMenu;
+import ihm.sectionJeu.PanelJeu;
 
 import java.awt.*;
 import javax.swing.*;
@@ -21,6 +22,7 @@ public class FrameJeu extends JFrame
 	private int longueur, hauteur;
 
 	private PanelMenu panelMenu;
+	private PanelJeu panelJeu;
 
     public FrameJeu(Controleur ctrl, String nom)
     {
@@ -36,7 +38,7 @@ public class FrameJeu extends JFrame
 
 		this.setSize(longueur, hauteur);
 		this.setLocation(0,0);
-		this.setUndecorated(true);
+		this.setTitle("Les aventuriers du rail");
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -51,4 +53,12 @@ public class FrameJeu extends JFrame
 	public PanelCentreMenu getPanelCentreMenu() { return this.panelMenu.getPanelCentreMenu(); }
 
 	public void setEnabled(boolean b) { this.panelMenu.getPanelCentreMenu().setEnabled(b); }
+
+	public void changerPanel()
+	{
+		this.panelJeu = new PanelJeu(this.ctrl);
+		setContentPane(panelJeu);
+		revalidate();
+		repaint();
+	}
 }

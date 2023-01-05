@@ -12,8 +12,13 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
 import javax.swing.border.Border;
 
+import ihm.FrameJeu;
+import ihm.sectionJeu.PanelJeu;
+
 public class PanelCentreMenu extends JPanel implements ActionListener
 {
+	private Controleur ctrl;
+
 	private JButton btnCreerPartieMulti;
 	private JButton btnCreerPartieSolo;
 	private JButton btnRejoindrePartie;
@@ -38,6 +43,9 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		/**
 		 * Création des boutons
 		 */
+
+		this.ctrl = ctrl;
+		
 		JLabel lblPartieMulti		= new JLabel("Jouer en multijoueur");
 		JLabel lblPartieSolo		= new JLabel("Jouer en local");
 		JLabel lblNbJoueursLocal	= new JLabel("Nombre de joueurs : ");
@@ -285,7 +293,9 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnCreerPartieSolo)
 		{
-			/* Amener vers le panel du jeu */
+			/* Utiliser la methode changerPanel */
+			PanelJeu panelJeu = new PanelJeu(this.ctrl);
+			this.ctrl.changerPanel();
 		}
 
 		if(e.getSource() == this.btnCopierIP)
