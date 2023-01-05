@@ -43,6 +43,8 @@ public class Metier {
         this.lstCouleurJoueur = new ArrayList<String>();
         this.hsmCouleurWagon = new HashMap<String, Integer>();
         this.hsmImageWagon = new HashMap<String, String>();
+
+		this.pointsTaille = new String[4][2];
     }
 
     public void lireXml(String pathXml)
@@ -108,8 +110,6 @@ public class Metier {
             //this.creeCarteWagon(new Color(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2])));
 
         }
-
-
 
         for(Element a : lstArete)
         {

@@ -48,7 +48,16 @@ public class Controleur {
         return this.metier.getListCarteObjectif();
     }
 
-	public PanelCentreMenu getPanelCentreMenu() { return this.ihm.getPanelCentreMenu(); }
+	public PanelCentreMenu getPanelCentreMenu() { 
+		
+		if (this.ihm == null) return null;
+		
+		return this.ihm.getPanelCentreMenu(); 
+	}
+
+	public void setEnabled(boolean b) { this.ihm.setEnabled(b); }
+
+	public void lireXml(String fichier) { this.metier.lireXml(fichier); }
 
     /**
      * Le main du projet

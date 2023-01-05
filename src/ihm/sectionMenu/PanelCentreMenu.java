@@ -301,4 +301,13 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 	}
 
 	public PanelCentreMenu getPanelCentreMenu() { return this;} 
+
+	@Override
+	public void setEnabled(boolean b) 
+	{
+		this.btnCreerPartieMulti.setEnabled(b);
+		this.btnRejoindrePartie.setEnabled(b);
+		this.btnCreerPartieSolo.setEnabled(b);
+		this.txtNbJoueursLocal.setEnabled(b);
+	}
 }

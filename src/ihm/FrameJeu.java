@@ -49,4 +49,6 @@ public class FrameJeu extends JFrame
 	}
 
 	public PanelCentreMenu getPanelCentreMenu() { return this.panelMenu.getPanelCentreMenu(); }
+
+	public void setEnabled(boolean b) { this.panelMenu.getPanelCentreMenu().setEnabled(b); }
 }

@@ -62,19 +62,26 @@ public class PanelHautMenu extends JPanel implements ActionListener
 		 */
 
 		this.btnImport.addActionListener(this);
-
 		this.btnImport.setBackground(Color.WHITE);
 		lblTitre.setFont(new Font("Broadway", Font.BOLD, 50));
+
+		new Thread() 
+		{
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(400);
+					PanelHautMenu.this.ctrl.getPanelCentreMenu().setEnabled(false);
+
+				} catch (Exception e) {}
+			}
+		}.start();
 	}
 	
 	public void actionPerformed(ActionEvent e)
 	{
-		/* tant qu'aucun fichier n'est importé, on ne peut rien faire */
-
-
 		if(e.getSource() == this.btnImport)
 		{
-			this.ctrl.getPanelCentreMenu().setBackground(Color.WHITE);
 			FileNameExtensionFilter filtre = new FileNameExtensionFilter("Format XML", "xml");
 			JFileChooser jFileChooser = new JFileChooser(new File("donnee/xml"));
 			
@@ -87,11 +94,15 @@ public class PanelHautMenu extends JPanel implements ActionListener
 			{
 				try {
 					File file = jFileChooser.getSelectedFile();
-					Files.copy(file.toPath(), Paths.get("donnee/xml/"+file.getName()));
-					this.lblInformationMappe.setText("Mappe chargée : "+file.getName());
+					Files.copy(file.toPath(), Paths.get("donnee/xml/"	+ file.getName()));
+					
+					if(file.exists())
+					{
+						this.ctrl.lireXml("donnee/xml/"+file.getName());	
+						this.lblInformationMappe.setText("Mappe chargée : "	+ file.getName());
+						this.ctrl.getPanelCentreMenu().setEnabled(true);
+					}
 					} catch (IOException e1) {e1.printStackTrace();}
-
-				//this.ctrl.lireXml("donnee/xml/"+file.getName());	
 			}
 		}
 	}
