@@ -26,7 +26,7 @@ public class Metier {
     private String versoCarteObjectif;
     private String versoCarteWagon;
 
-    private ArrayList<Joueur> tabJoueur;
+    private ArrayList<Joueur> lstJoueur;
 
 
     private int nbJoueurMax, nbJoueurPartie, nbJoueurMinDoubleArete , nbWagonDebutPartie ,nbWagonFinPartie , nbPointsPlusLongChemin ;
@@ -46,7 +46,7 @@ public class Metier {
         this.hsmCouleurWagon = new HashMap<String, Integer>();
         this.hsmImageWagon = new HashMap<String, String>();
 
-        this.tabJoueur = new ArrayList<Joueur>();
+        this.lstJoueur = new ArrayList<Joueur>();
     }
 
     public void lancerPartie()
@@ -56,7 +56,7 @@ public class Metier {
         
         while(!dernierTour)
         {
-            for(Joueur j : tabJoueur)
+            for(Joueur j : lstJoueur)
             {
                 System.out.println("Choix : ");
                 System.out.println("Piocher des Cartes");
@@ -237,6 +237,12 @@ public class Metier {
         this.lstCarteWagon.add( cw );
     }
 
+    public ArrayList<Joueur> getLstJoueur() { return this.lstJoueur; }
+
+    public int getNbJoueurPartie() {
+        return nbJoueurPartie;
+    }
+
     public int getNbJoueurMax() {
         return nbJoueurMax;
     }
@@ -278,6 +284,22 @@ public class Metier {
         return this.versoCarteWagon;
     }
 
+    public String getVersoCarteObjectif() {
+        return versoCarteObjectif;
+    }
+
+    public ArrayList<CarteWagon> getLstCarteWagon() {
+        return lstCarteWagon;
+    }
+
+    public int[] getPointsTaille() {
+        return pointsTaille;
+    }
+
+    public ArrayList<CarteObjectif> getLstCarteObjectif() {
+        return lstCarteObjectif;
+    }
+
     public ArrayList<Noeud> getLstNoeud()
     {
         return this.lstNoeud;
@@ -287,6 +309,8 @@ public class Metier {
     {
         return this.lstArete;
     }
+
+    public void setNbJoueur(int n) { this.nbJoueurPartie = n; }
 
 
 }
