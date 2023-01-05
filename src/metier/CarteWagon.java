@@ -24,6 +24,10 @@ public class CarteWagon {
         this.recto = recto;
     }
 
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
     public String getCouleur() {
         return this.couleur;
     }
@@ -32,4 +36,7 @@ public class CarteWagon {
         return recto;
     }
 
+    public Color getColor() {
+        return color;
+    }
 }
