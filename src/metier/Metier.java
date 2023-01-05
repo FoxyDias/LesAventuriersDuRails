@@ -174,7 +174,7 @@ public class Metier {
                 maxTaille = taille;
         }
 
-        this.pointsTaille = new int[maxTaille];
+        this.pointsTaille = new int[maxTaille+1];
 
         for(Element p  : lstPoints)
         {
