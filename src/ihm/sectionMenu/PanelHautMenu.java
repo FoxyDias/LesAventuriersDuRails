@@ -18,6 +18,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 public class PanelHautMenu extends JPanel implements ActionListener
 {
@@ -98,8 +99,15 @@ public class PanelHautMenu extends JPanel implements ActionListener
 					
 					if(file.exists())
 					{
-						this.ctrl.lireXml("donnee/xml/"+file.getName());	
-						this.lblInformationMappe.setText("Mappe chargée : "	+ file.getName());
+						JLabel lblVide = new JLabel("", JLabel.CENTER);
+						this.ctrl.lireXml("donnee/xml/"+file.getName());
+						this.panelInformation.setLayout(new GridLayout(6, 1));
+						this.lblInformationMappe.setText(lblVide.getText());
+						this.panelInformation.add(new JLabel("Nombre de couleur joueur : "      + this.ctrl.getLstCouleurJoueur().size(), JLabel.CENTER));
+						this.panelInformation.add(new JLabel("Nombre d'arête dans la mappe : "  + this.ctrl.getLstArete().size(), JLabel.CENTER));
+						this.panelInformation.add(new JLabel("Nombre de noeud dans la mappe : " + this.ctrl.getLstNoeud().size(), JLabel.CENTER));
+						this.panelInformation.add(new JLabel("Nombre de carte objectif : " 		+ this.ctrl.getLstCarteObjectif().size(), JLabel.CENTER));
+						this.panelInformation.add(new JLabel("Nombre de couleur wagon :" 		+ this.ctrl.getLstCouleurWagon().size(), JLabel.CENTER));
 						this.ctrl.getPanelCentreMenu().setEnabled(true);
 					}
 					} catch (IOException e1) {e1.printStackTrace();}
