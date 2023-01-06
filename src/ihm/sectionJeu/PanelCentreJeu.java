@@ -145,7 +145,6 @@ public class PanelCentreJeu extends JPanel
 		double multiX = (xMax/width);
 		double multiY = (yMax/height);
 
-		
 
 		/*
 		double multiX = 1;

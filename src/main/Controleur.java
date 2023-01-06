@@ -30,12 +30,6 @@ public class Controleur {
         return this.metier.getNomImage();
     }
 
-    public ArrayList<Joueur> getLstJoueur() { return this.metier.getLstJoueur(); }
-
-    public int getNbJoueurPartie() {
-        return this.metier.getNbJoueurPartie();
-    }
-
     public int getNbJoueurMax() {
         return this.metier.getNbJoueurMax();
     }
@@ -65,15 +59,7 @@ public class Controleur {
         return this.metier.getListCarteObjectif();
     }
 
-    public double getWidthPanel()
-    {
-        return this.metier.getWidthPanel();
-    }
 
-    public double getHeightPanel()
-    {
-        return this.metier.getHeightPanel();
-    }
 
     public String getVersoCarteWagon(){
         return this.metier.getVersoCarteWagon();
@@ -112,14 +98,24 @@ public class Controleur {
 		return this.ihm.getPanelCentreMenu(); 
 	}
 
-    private Joueur getEstJoueurCourant()
+    public Joueur getEstJoueurCourant()
     {
         return this.metier.getEstJoueurCourant();
     }
 
-    private void avancerJoueur()
+    public void avancerJoueur()
     {
         this.metier.avancerJoueur();
+    }
+
+    public double getWidthPanel()
+    {
+        return this.metier.getWidthPanel();
+    }
+
+    public double getHeightPanel()
+    {
+        return this.metier.getHeightPanel();
     }
 
     
@@ -131,7 +127,7 @@ public class Controleur {
 
 	public void setEnabled(boolean b) { this.ihm.setEnabled(b); }
 
-    public void setNbJoueur(int n) { this.metier.setNbJoueur(n); }
+    public void setNbJoueur(int n) { this.metier.setNbJoueurPartie(n); }
 
 	public void lireXml(String fichier) { this.metier.lireXml(fichier); }
 
