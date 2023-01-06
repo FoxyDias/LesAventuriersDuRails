@@ -112,6 +112,13 @@ public class Controleur {
 		return this.ihm.getPanelCentreMenu(); 
 	}
 
+    
+
+    public void setNbJoueurPartie(int n ){this.metier.setNbJoueurPartie(n);}
+
+    public int getNbJoueurPartie() { return this.metier.getNbJoueurPartie(); }
+
+
 	public void setEnabled(boolean b) { this.ihm.setEnabled(b); }
 
     public void setNbJoueur(int n) { this.metier.setNbJoueur(n); }
