@@ -66,7 +66,7 @@ public class Metier {
 
         this.intJoueurActuel = 0;
 
-        this.hsmJoueurNoeud = new HashMap<Joueur,ArrayList<Noeud>>()
+        this.hsmJoueurNoeud = new HashMap<Joueur,ArrayList<Noeud>>();
     }
 
 
@@ -317,7 +317,7 @@ public class Metier {
         for(Element w : lstWagon)
         {
             String c = w.getChild("couleur").getText(); // la couleur en toString
-            String verso = w.getChild("recto").getText(); //le recto
+            String verso ="donnee/" + w.getChild("recto").getText(); //le recto
             String rgb;
 
             if(!(c.equals("Joker")))
@@ -354,6 +354,7 @@ public class Metier {
             this.heightPanel            = Double.parseDouble(d.getChild("heightPanel").getText());
             this.nomImage               = d.getChild("image").getText();
             this.versoCarteWagon        = d.getChild("versoCarteWagon").getText();
+            this.versoCarteObjectif     = d.getChild("versoCarteObjectif").getText();
         }
 
         for(Element o : lstObjectif)
@@ -455,7 +456,7 @@ public class Metier {
         this.lstCarteObjectif.add( co );
     }
 
-    public void creerCarteWagon( String c, String s )
+    public void  creerCarteWagon( String c, String s )
     {
         CarteWagon cw = new CarteWagon( c );
         if(!(s == null))
