@@ -190,7 +190,7 @@ public class Metier {
         System.out.println("Quelle territoire voulez-vous ? ");
         for(Arete a : lstArete){
             if(joueurActuel.placerWagon(intJoueurActuel) != a.getEstOccupe()){
-                System.out.println("Ouais c bon frr");
+                System.out.println("Ouais c ajté :)");
                 return true;
             }
             
@@ -234,7 +234,7 @@ public class Metier {
     public void lireXml(String pathXml)
     {
         Document document;
-        Element racine;
+        Element  racine;
 
         SAXBuilder sxb = new SAXBuilder();
         try {

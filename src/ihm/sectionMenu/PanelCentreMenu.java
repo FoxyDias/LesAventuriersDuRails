@@ -281,17 +281,15 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			{
 				JOptionPane.showMessageDialog(null, "Veuillez remplir le nombre de joueurs", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
-			else
-			{
-				this.ctrl.setNbJoueurPartie(Integer.parseInt(this.txtNbJoueursLocal.getText()));
-				this.ctrl.changerPanel("Jeu");
-			}
 
 			int nbJoueurs = Integer.parseInt(this.txtNbJoueursLocal.getText());
 			if(nbJoueurs < 1 || nbJoueurs > this.ctrl.getNbJoueurMax())
 			{
 				JOptionPane.showMessageDialog(null, "Veuillez remplir le nombre de joueurs", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}	
+			
+			this.ctrl.setNbJoueurPartie(Integer.parseInt(this.txtNbJoueursLocal.getText()));
+			this.ctrl.changerPanel("Jeu");
 		}
 
 		if(e.getSource() == this.btnLancerPartiePopUp)
