@@ -26,6 +26,8 @@ public class Metier {
     private ArrayList<CarteWagon> lstCarteWagon;
     private ArrayList<CarteWagon> lstPiocheWagon;
     private ArrayList<CarteWagon> lstDefausseWagon;
+    
+
 
     private String versoCarteObjectif;
     private String versoCarteWagon;
@@ -36,8 +38,6 @@ public class Metier {
 
     private double witdhPanel;
     private double heightPanel;
-
-
 
     private int nbJoueurMax, nbJoueurPartie, nbJoueurMinDoubleArete , nbWagonDebutPartie ,nbWagonFinPartie , nbPointsPlusLongChemin ;
     private int[] pointsTaille;
@@ -62,6 +62,7 @@ public class Metier {
 
         this.intJoueurActuel = 0;
     }
+
 
     public void lancerPartie()
     {
@@ -105,13 +106,19 @@ public class Metier {
         }
     }
 
+    /*
+     * Joueur actuellement entrain de jouer
+     */
     public Joueur getEstJoueurCourant()
     {
         return this.lstJoueur.get(this.intJoueurActuel);
     }
 
+    /*
+     * Gère le tour des joueurs à chaque fin de tours
+     */
     public void avancerJoueur()
-    {
+    {  
         this.intJoueurActuel = (this.intJoueurActuel + 1) % this.ctrl.getNbJoueurPartie();
         System.out.println(this.intJoueurActuel);
     }
@@ -127,22 +134,18 @@ public class Metier {
 
     private boolean tourPiocher(Joueur joueurActuel)
     {
-        String choixWagons;
+        String  choixWagons;
         Scanner sc = new Scanner(System.in);
         boolean droitMulti = true;
 
         for(int nbPioche=0; nbPioche<2; nbPioche++)
         {
-            //le cas ou ya un joker dès le début
+            /* En cas de joker dès les 3 premières cartes */
             for(CarteWagon cw : this.lstPiocheWagon)
-            {
                 if(cw.getCouleur().equals("Joker"))
-                {
-                    droitMulti = false;
-                }
-            }
+                    droitMulti = false; 
 
-            //Choix du jeton
+            /* Choix entre les cartes */
             System.out.println("Choisissez ce que vous voulez piocher parmis : ");
             this.afficherPioche();
             choixWagons = sc.nextLine().toLowerCase();
@@ -151,12 +154,10 @@ public class Metier {
                 System.out.println("Vous n'avez pas le droit de prendre un jeton Multi");
                 choixWagons = sc.nextLine().toLowerCase();
             }
-            while (!choixWagons(joueurActuel, choixWagons) && !(choixWagons.equals("quitter")))
+            while(!choixWagons(joueurActuel, choixWagons) && !(choixWagons.equals("quitter")))
             {
                 if(!droitMulti && choixWagons.equals("joker"))
-                {
                     System.out.println("Vous n'avez pas le droit de prendre un jeton Multi");
-                }
                 else
                     System.out.println("Erreur de choix");
 
@@ -188,7 +189,17 @@ public class Metier {
     private boolean tourPossession(Joueur joueurActuel)
     {
         System.out.println("Quelle territoire voulez-vous ? ");
-        return true;
+        for(Arete a : lstArete){
+            if(joueurActuel.placerWagon(intJoueurActuel) != a.getEstOccupe()){
+                System.out.println("Ouais c ajté :)");
+                return true;
+            }
+            
+            if(joueurActuel.placerWagon(intJoueurActuel) == a.getEstOccupe()){
+                System.out.println("Arête déjà occupée");
+            }
+        }
+        return false;
     }
 
     private boolean tourCarte(Joueur joueurActuel)
@@ -224,7 +235,7 @@ public class Metier {
     public void lireXml(String pathXml)
     {
         Document document;
-        Element racine;
+        Element  racine;
 
         SAXBuilder sxb = new SAXBuilder();
         try {
@@ -268,7 +279,7 @@ public class Metier {
 
             //System.out.println("Noeud : " + nomVille + " x : " + x + " y : " + y + " nomX : "+ nomX + " nomY : "+ nomY);
 
-            this.creeNoeud(nomVille, x, y, nomX, nomY);
+            this.creerNoeud(nomVille, x, y, nomX, nomY);
         }
 
         for(Element w : lstWagon)
@@ -277,18 +288,13 @@ public class Metier {
             String verso = w.getChild("recto").getText(); //le recto
             String rgb;
 
-            if(!(c.equals("Joker"))) {
+            if(!(c.equals("Joker")))
                  rgb = stringToRGB(c);
-            }
             else
                 rgb = c;
 
             for(int i =0; i<Integer.parseInt(w.getChild("nombre").getText()); i++ )
-            {
-                this.creeCarteWagon(rgb, verso);
-            }
-
-
+                this.creerCarteWagon(rgb, verso);
 
         }
         
@@ -302,20 +308,20 @@ public class Metier {
             //System.out.println("Arete : " + nomVille1 + " " + nomVille2 + " " + couleur + " " + nbW + " " + estDouble);
             Noeud n1 = this.lstNoeud.get(Integer.parseInt(nomVille1));
             Noeud n2 = this.lstNoeud.get(Integer.parseInt(nomVille2));
-            this.creeArete(n1, n2, couleur,nbW);
+            this.creerArete(n1, n2, couleur,nbW);
         }
 
         for(Element d : lstInformation)
         {
             this.nbJoueurMinDoubleArete = Integer.parseInt(d.getChild("nbJoueurMinDoubleArete").getText());
-            this.nbJoueurMax = Integer.parseInt(d.getChild("nbJoueurMax").getText());
-            this.nbWagonDebutPartie = Integer.parseInt(d.getChild("nbWagonDebutPartie").getText());
-            this.nbWagonFinPartie = Integer.parseInt(d.getChild("nbWagonFinPartie").getText());
+            this.nbJoueurMax            = Integer.parseInt(d.getChild("nbJoueurMax").getText());
+            this.nbWagonDebutPartie     = Integer.parseInt(d.getChild("nbWagonDebutPartie").getText());
+            this.nbWagonFinPartie       = Integer.parseInt(d.getChild("nbWagonFinPartie").getText());
             this.nbPointsPlusLongChemin = Integer.parseInt(d.getChild("nbPointsPlusLongChemin").getText());
-            this.witdhPanel = Double.parseDouble(d.getChild("witdhPanel").getText());
-            this.heightPanel = Double.parseDouble(d.getChild("heightPanel").getText());
-            this.nomImage = d.getChild("image").getText();
-            this.versoCarteWagon = d.getChild("versoCarteWagon").getText();
+            this.witdhPanel             = Double.parseDouble(d.getChild("witdhPanel").getText());
+            this.heightPanel            = Double.parseDouble(d.getChild("heightPanel").getText());
+            this.nomImage               = d.getChild("image").getText();
+            this.versoCarteWagon        = d.getChild("versoCarteWagon").getText();
         }
 
         for(Element o : lstObjectif)
@@ -324,15 +330,12 @@ public class Metier {
             Noeud n2 = this.lstNoeud.get(Integer.parseInt(o.getChild("noeudArr").getText()));
             int points = Integer.parseInt(o.getChild("points").getText());
 
-            this.creeCarteObjectif(n1, n2, points);
-
+            this.creerCarteObjectif(n1, n2, points);
         }
 
-
-        int n =0;
         int maxTaille = 0;
-        int taille = 0;
-        int point = 0;
+        int taille    = 0;
+        int point     = 0;
 
         for(Element p  : lstPoints)
         {
@@ -346,63 +349,36 @@ public class Metier {
         for(Element p  : lstPoints)
         {
             taille = Integer.parseInt(p.getChild("taille").getText());
-            point = Integer.parseInt(p.getChild("points").getText());
+            point  = Integer.parseInt(p.getChild("points").getText());
 
             this.pointsTaille[taille] = point;
             this.pointsTaille[taille] = point;
-
         }
 
         Element lstCouleurJoueur = racine.getChildren ( "mappe" ).get(0).getChild("CouleurJoueurList");
 
         for(Element c : lstCouleurJoueur.getChildren("couleurJoueur"))
         {
-            String texte = c.getText();
+            String coulSTR = c.getText();
+            Color  coulRGB;
 
-            //convertion
-            texte = stringToRGB(texte);
-            Color coul = RGBtoColor(texte);
+            /* Conversion des couleurs en RGB / Sring */
+            coulSTR = stringToRGB(coulSTR);
+            coulRGB = RGBtoColor (coulSTR);
 
-            this.lstCouleurJoueur.add(coul);
-            this.lstJoueur.add(new Joueur(this.nbWagonDebutPartie, coul));
-
-
-
+            this.lstCouleurJoueur.add(coulRGB);
+            this.lstJoueur.add(new Joueur(this.nbWagonDebutPartie, coulRGB));
 
         }
 
-
-        Collections.shuffle(this.lstCarteObjectif);
-
     }
 
-    private Color RGBtoColor(String couleur) {
-
+    private Color RGBtoColor(String couleur) 
+    {
         return new Color(Integer.parseInt(couleur.split(",")[0]), Integer.parseInt(couleur.split(",")[1]) , Integer.parseInt(couleur.split(",")[2]));
     }
 
-    public double getWidthPanel()
-    {
-        return this.witdhPanel;
-    }
-
-    public double getHeightPanel()
-    {
-        return this.heightPanel;
-    }
-
-    public void setWidthPanel(double witdhPanel)
-    {
-        this.witdhPanel = witdhPanel;
-    }
-
-    public void setHeightPanel(double heightPanel)
-    {
-        this.heightPanel = heightPanel;
-    }
-
     private String stringToRGB(String c) {
-
         int r = Integer.parseInt(c.split(",")[0].substring(3));
         int g = Integer.parseInt(c.split(",")[1].substring(2));
         int b = Integer.parseInt(c.split(",")[2].substring(2).replace("]", ""));
@@ -410,20 +386,20 @@ public class Metier {
         return (r + "," + g +"," + b);
     }
 
-    public void creeNoeud(String nom, int x, int y, int nomX , int nomY)
+    public void creerNoeud(String nom, int x, int y, int nomX , int nomY)
     {
         Noeud n = new Noeud( nom, x, y, nomX, nomY);
         lstNoeud.add( n );
     }
 
-    public void creeNoeud(String nom, int x, int y )
+    public void creerNoeud(String nom, int x, int y )
     {
         Noeud n = new Noeud( nom, x, y, x-15, y+15 );
         lstNoeud.add( n );
     }
 
     //En partant sur la base que l'on utilise une liste déroulante pour la couleur ET pour les ville
-    public void creeArete(Noeud n1 , Noeud n2 , String c, int nbW )
+    public void creerArete(Noeud n1 , Noeud n2 , String c, int nbW )
     {
         Arete a = new Arete( n1, n2, c ,nbW);
         for (Arete b : lstArete)
@@ -441,13 +417,13 @@ public class Metier {
         this.lstArete.add( a );
     }
 
-    public void creeCarteObjectif( Noeud noeudDep, Noeud noeudArr, int nbW )
+    public void creerCarteObjectif( Noeud noeudDep, Noeud noeudArr, int nbW )
     {
         CarteObjectif co = new CarteObjectif( noeudDep, noeudArr, nbW );
         this.lstCarteObjectif.add( co );
     }
 
-    public void creeCarteWagon( String c, String s )
+    public void creerCarteWagon( String c, String s )
     {
         CarteWagon cw = new CarteWagon( c );
         if(!(s == null))
@@ -458,29 +434,32 @@ public class Metier {
 
     public ArrayList<Joueur> getLstJoueur() { return this.lstJoueur; }
 
-    public int getNbJoueurPartie() {
-        return nbJoueurPartie;
-    }
 
-    public int getNbJoueurMax() {
-        return nbJoueurMax;
-    }
+    /*-------------------------------------------------------------------------*/
+    /*                                Getters                                  */
+    /*-------------------------------------------------------------------------*/
+    public double getWidthPanel (){ return this.witdhPanel; }
+    public double getHeightPanel(){ return this.heightPanel;}
 
-    public int getNbJoueurMinDoubleArete() {
-        return nbJoueurMinDoubleArete;
-    }
+    public int getNbJoueurPartie        () { return nbJoueurPartie;        }
+    public int getNbJoueurMax           () { return nbJoueurMax;           }
+    public int getNbJoueurMinDoubleArete() { return nbJoueurMinDoubleArete;}
+    public int getNbWagonDebutPartie    () { return nbWagonDebutPartie;    }
+    public int getNbWagonFinPartie      () { return nbWagonFinPartie;      } 
+    public int getNbPointsPlusLongChemin() { return nbPointsPlusLongChemin;}
+    public int[] getPointsTaille() { return pointsTaille; }
+    /*-------------------------------------------------------------------------*/
 
-    public int getNbWagonDebutPartie() {
-        return nbWagonDebutPartie;
-    }
+    /*-------------------------------------------------------------------------*/
+    /*                                Setters                                  */
+    /*-------------------------------------------------------------------------*/
+    public void setWidthPanel (double witdhPanel) {this.witdhPanel = witdhPanel;  }
+    public void setHeightPanel(double heightPanel){this.heightPanel = heightPanel;}
+    public void setNbJoueurPartie(int n          ){ this.nbJoueurPartie = n; }
 
-    public int getNbWagonFinPartie() {
-        return nbWagonFinPartie;
-    }
+    /*-------------------------------------------------------------------------*/
 
-    public int getNbPointsPlusLongChemin() {
-        return nbPointsPlusLongChemin;
-    }
+    
 
     public ArrayList<Color> getLstCouleurJoueur() {
         return lstCouleurJoueur;
@@ -503,9 +482,7 @@ public class Metier {
         return lstCarteWagon;
     }
 
-    public int[] getPointsTaille() {
-        return pointsTaille;
-    }
+    
 
     public ArrayList<CarteObjectif> getLstCarteObjectif() {
         return lstCarteObjectif;
@@ -529,8 +506,5 @@ public class Metier {
     {
         return this.lstJoueur.get(i);
     }
-
-    public void setNbJoueurPartie(int n) { this.nbJoueurPartie = n; }
-
 
 }

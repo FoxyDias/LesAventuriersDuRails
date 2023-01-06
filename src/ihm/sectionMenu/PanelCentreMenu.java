@@ -277,14 +277,23 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnCreerPartieSolo)
 		{			
+			int nbJoueurs = Integer.parseInt(this.txtNbJoueursLocal.getText());
+			System.out.println(nbJoueurs);
+			
 			if(this.txtNbJoueursLocal.getText().equals(""))
 			{
 				JOptionPane.showMessageDialog(null, "Veuillez remplir le nombre de joueurs", "Erreur", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			
+			if(nbJoueurs < 1 || nbJoueurs > this.ctrl.getNbJoueurMax()){
+				JOptionPane.showMessageDialog(null, "Veuillez renseignez un nombre de joueurs entre 1 et le nombre de joueurs maximale de la mappe", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
 			else
 			{
 				this.ctrl.setNbJoueurPartie(Integer.parseInt(this.txtNbJoueursLocal.getText()));
 				this.ctrl.changerPanel("Jeu");
+
 				JPanel panelCarteObjectif = new JPanel(new GridLayout(2,3));
 
 				JDialog dialog = new JDialog();
@@ -311,12 +320,6 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 				dialog.add(new JLabel());
 				dialog.setVisible(true);
 			}
-
-			int nbJoueurs = Integer.parseInt(this.txtNbJoueursLocal.getText());
-			if(nbJoueurs < 1 || nbJoueurs > this.ctrl.getNbJoueurMax())
-			{
-				JOptionPane.showMessageDialog(null, "Veuillez remplir le nombre de joueurs", "Erreur", JOptionPane.ERROR_MESSAGE);
-			}	
 		}
 
 		if(e.getSource() == this.btnLancerPartiePopUp)
