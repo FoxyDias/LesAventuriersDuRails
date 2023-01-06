@@ -32,10 +32,6 @@ public class Controleur {
 
     public ArrayList<Joueur> getLstJoueur() { return this.metier.getLstJoueur(); }
 
-    public int getNbJoueurPartie() {
-        return this.metier.getNbJoueurPartie();
-    }
-
     public int getNbJoueurMax() {
         return this.metier.getNbJoueurMax();
     }
@@ -121,7 +117,7 @@ public class Controleur {
 
 	public void setEnabled(boolean b) { this.ihm.setEnabled(b); }
 
-    public void setNbJoueur(int n) { this.metier.setNbJoueur(n); }
+    public void setNbJoueur(int n) { this.metier.setNbJoueurPartie(n); }
 
 	public void lireXml(String fichier) { this.metier.lireXml(fichier); }
 

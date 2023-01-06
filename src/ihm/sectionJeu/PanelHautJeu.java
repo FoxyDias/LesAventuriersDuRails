@@ -9,8 +9,6 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
-import java.awt.FlowLayout;
-import javax.swing.border.Border;
 import javax.swing.BorderFactory;
 
 
@@ -30,14 +28,14 @@ public class PanelHautJeu extends JPanel
 		this.setLayout(new BorderLayout());
 		this.setPreferredSize(new Dimension(0,80));
 	
-		JPanel panelProfilJoueur 	= new JPanel(new GridLayout(1,this.ctrl.getNbJoueurMax(),10,0));
+		JPanel panelProfilJoueur 	= new JPanel(new GridLayout(1,this.ctrl.getNbJoueurPartie(),10,0));
 		this.alJoueur 				= new ArrayList<JLabel>();
 		this.alNbCarteWagon 		= new ArrayList<JLabel>();
 		this.alNbCarteObjectif 		= new ArrayList<JLabel>();
-
-		for(int i = 0; i < this.ctrl.getNbJoueurMax(); i++)
+ 
+		for(int i = 0; i < this.ctrl.getNbJoueurPartie(); i++)
 		{
-			JPanel panelInfosJoueur = new JPanel(new GridLayout(3,1));
+			JPanel panelInfosJoueur = new JPanel(new GridLayout(3,1,10,0));
 			this.alJoueur.add(new JLabel("Joueur " + (i+1), JLabel.CENTER));
 			this.alNbCarteWagon.add(new JLabel("Nombre de cartes wagons : " + this.ctrl.getJoueur(i).getNbCarteWagon(), JLabel.CENTER));
 			this.alNbCarteObjectif.add(new JLabel("Nombre de cartes objectifs : " + this.ctrl.getJoueur(i).getNbCarteObjectif(), JLabel.CENTER));
@@ -56,5 +54,28 @@ public class PanelHautJeu extends JPanel
 		/**
 		 * Activation des composants
 		 */
+	}
+
+	/**
+	 * Méthode permettant de changer la couleur du joueur courant
+	 */
+	public void changerCouleurPanel()
+	{
+		/*
+		for(int i = 0; i < this.ctrl.getNbJoueurMax(); i++)
+		{
+			if(this.ctrl.getJoueur(i).getEstJoueurCourant())
+			{
+				this.alJoueur.get(i).setForeground(Color.RED);
+				this.alNbCarteWagon.get(i).setForeground(Color.RED);
+				this.alNbCarteObjectif.get(i).setForeground(Color.RED);
+			}
+			else
+			{
+				this.alJoueur.get(i).setForeground(Color.BLACK);
+				this.alNbCarteWagon.get(i).setForeground(Color.BLACK);
+				this.alNbCarteObjectif.get(i).setForeground(Color.BLACK);
+			}
+		}*/
 	}
 }
