@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -31,11 +32,11 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		 * Création des composants
 		 */
 		this.ctrl = ctrl;
-		this.setLayout(new GridLayout(8,1,0,0));
+		this.setLayout(new GridLayout(5,1,0,0));
 		this.setPreferredSize(new Dimension(350, 0));
 
-		JLabel lblPiocheCarteWagon		= new JLabel("Pioche carte wagon");
-		JLabel lblPiocheCarteObjectif	= new JLabel("Pioche carte objectif");
+		JLabel lblPiocheCarteWagon		= new JLabel("Pioche carte wagon", JLabel.CENTER);
+		JLabel lblPiocheCarteObjectif	= new JLabel("Pioche carte objectif", JLabel.CENTER);
 
 		this.btnPiocheCarteWagon 		= new JButton("");
 		this.btnPiocheCarteObjectif 	= new JButton("");
@@ -59,12 +60,10 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		 * Positionnement des composants
 		 */
 
-		this.add(lblPiocheCarteWagon);
-		this.add(this.btnPiocheCarteWagon);
-		this.add(this.btnFinDuTour);
 		this.add(lblPiocheCarteObjectif);
 		this.add(this.btnPiocheCarteObjectif);
-		this.add(this.btnArreterPartie);
+		this.add(lblPiocheCarteWagon);
+		this.add(this.btnPiocheCarteWagon);
 		this.add(new PanelDispoParam(this.ctrl));
 		/**
 		 * Activation des composants
@@ -102,7 +101,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 	}
 
 	
-	public class PanelDispoParam extends JPanel
+	public class PanelDispoParam extends JPanel implements ActionListener
 	{
 		private Controleur ctrl;
 		private JButton btnVisualisation;
@@ -111,22 +110,58 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		public PanelDispoParam(Controleur ctrl)
 		{
+			/**
+			 * Création des composants
+			 */
 			this.ctrl = ctrl;
 
 			this.setLayout(new BorderLayout());
 			this.btnVisualisation = new JButton("Visualiser mes cartes");
-			this.btnFinPartie = new JButton("Finir la partie");
+			this.btnFinPartie = new JButton("Arrêter la partie");
 			this.btnFinTour = new JButton("Fin du tour");
 
+			JPanel panelVisualiser  = new JPanel(new FlowLayout(FlowLayout.CENTER,0, 60));
 			JPanel panelDispoBtnBas = new JPanel(new GridLayout(1,2));
+
+			/**
+			 * Positionnement des composants
+			 */
+			 
+			panelVisualiser.add(this.btnVisualisation);
 
 			panelDispoBtnBas.add(this.btnFinPartie);
 			panelDispoBtnBas.add(this.btnFinTour);
 
-			this.add(btnVisualisation,BorderLayout.CENTER);
+			this.add(panelVisualiser, BorderLayout.CENTER);
 			this.add(panelDispoBtnBas,BorderLayout.SOUTH);
 
+			/**
+			 * Activation des composants
+			 */
+			this.btnVisualisation.addActionListener(this);
+			this.btnFinPartie.addActionListener(this);
+			this.btnFinTour.addActionListener(this);
+		}
+
+		public void actionPerformed(ActionEvent e)
+		{
+			if(e.getSource() == this.btnVisualisation)
+			{
+				//Ouvrir la PopUp
+				this.ctrl.changerPanel("Visualisation");
+			}
+
+			if(e.getSource() == this.btnFinPartie)
+			{
+				if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêter la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+				{
+					this.ctrl.changerPanel("Menu");
+				}
+			}
+
+			if(e.getSource() == this.btnFinTour)
+			{
+			}
 		}
 	}
-	
 }
