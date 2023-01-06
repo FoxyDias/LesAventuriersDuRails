@@ -24,6 +24,8 @@ public class Metier {
     private ArrayList<CarteWagon> lstCarteWagon;
     private ArrayList<CarteWagon> lstPiocheWagon;
     private ArrayList<CarteWagon> lstDefausseWagon;
+    
+
 
     private String versoCarteObjectif;
     private String versoCarteWagon;
@@ -110,7 +112,7 @@ public class Metier {
 
     public void avancerJoueur()
     {
-        this.intJoueurActuel = (this.intJoueurActuel + 1) % this.ctrl.getNbJoueurPartie();
+        this.intJoueurActuel = (this.intJoueurActuel + 1) % this.lstJoueur.size();
         System.out.println(this.intJoueurActuel);
     }
 
@@ -186,7 +188,17 @@ public class Metier {
     private boolean tourPossession(Joueur joueurActuel)
     {
         System.out.println("Quelle territoire voulez-vous ? ");
-        return true;
+        for(Arete a : lstArete){
+            if(joueurActuel.placerWagon(intJoueurActuel) != a.getEstOccupe()){
+                System.out.println("Ouais c bon frr");
+                return true;
+            }
+            
+            if(joueurActuel.placerWagon(intJoueurActuel) == a.getEstOccupe()){
+                System.out.println("Arête déjà occupée");
+            }
+        }
+        return false;
     }
 
     private boolean tourCarte(Joueur joueurActuel)
