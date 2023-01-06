@@ -81,15 +81,6 @@ public class Joueur {
     public ArrayList<Arete> getLstArete() {
         return lstArete;
     }
-
-    public ArrayList<CarteObjectif> getMainObjectif() {
-        return mainObjectif;
-    }
-
-    public ArrayList<CarteWagon> getMainWagon() {
-        return mainWagon;
-    }
-
     public Color getCouleur() {
         return couleur;
     }

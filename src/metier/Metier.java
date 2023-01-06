@@ -102,7 +102,7 @@ public class Metier {
 
             /*                          Choix Possession                         */
             else if (action.equals("possession")) {
-                tourQuitter = !(tourPossession(joueurActuel));
+                tourQuitter = !(tourChoixArete(joueurActuel));
             }
             /*-------------------------------------------------------------------*/
 
@@ -203,20 +203,36 @@ public class Metier {
 
     }
 
-    private boolean tourPossession(Joueur joueurActuel)
+    private boolean tourChoixArete(Joueur joueurActuel)
     {
-        System.out.println("Quelle territoire voulez-vous ? ");
-        for(Arete a : lstArete){
-            if(joueurActuel.placerWagon(intJoueurActuel) != a.getEstOccupe()){
-                System.out.println("Ouais c ajté :)");
-                return true;
-            }
-            
-            if(joueurActuel.placerWagon(intJoueurActuel) == a.getEstOccupe()){
-                System.out.println("Arête déjà occupée");
-            }
+        System.out.println("Quelle arête voulez-vous ? ");
+        
+        afficherArete();
+
+        Scanner sc = new Scanner(System.in);
+        String choixArete = sc.nextLine().toLowerCase();
+
+        Arete a = this.lstArete.get(Integer.parseInt(choixArete));
+
+        if(joueurActuel.placerWagon(a.getWagon()) != a.getEstOccupe()){
+            System.out.println("Ouais c ajté :)");
+            return true;
         }
+        
+        if(joueurActuel.placerWagon(a.getWagon()) == a.getEstOccupe()){
+            System.out.println("Arête déjà occupée");
+            return true;
+        }
+
         return false;
+    }
+
+    public void afficherArete(){
+        int cpt = 0;
+        for(Arete a : lstArete){
+            System.out.println(cpt + " : " + a.getNoeudDep().getNom() + " --- " + a.getNoeudArr().getNom());
+            cpt++;
+        }
     }
 
     private boolean tourCarte(Joueur joueurActuel)
