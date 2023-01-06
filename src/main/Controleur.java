@@ -18,6 +18,7 @@ public class Controleur {
     {
         this.metier = new Metier( this );
         this.ihm = new FrameJeu(this, "init");
+
     }
 
     public void lancerPartie(String nom)
@@ -109,6 +110,11 @@ public class Controleur {
     public void avancerJoueur()
     {
         this.metier.avancerJoueur();
+        this.ihm.changerCouleurPanel();
+    }
+
+    public void changerCouleurPanel()
+    {
         this.ihm.changerCouleurPanel();
     }
 

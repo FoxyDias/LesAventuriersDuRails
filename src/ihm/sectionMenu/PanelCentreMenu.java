@@ -326,7 +326,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			{
 				this.ctrl.changerPanel("Jeu");
 				this.dialogCreerPartie.dispose();
-			}
+ 			}
 		}
 
 		if(e.getSource() == this.btnCopierIP)
