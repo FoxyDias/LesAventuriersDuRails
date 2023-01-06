@@ -5,8 +5,6 @@ import main.Controleur;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -128,10 +126,10 @@ public class Metier {
      */
     public void avancerJoueur()
     {  
-        if( this.intJoueurActuel >= this.nbJoueurPartie -1 )
+        if( this.intJoueurActuel >= this.nbJoueurPartie -1)
             this.intJoueurActuel = 0;
         else
-            this.intJoueurActuel = (this.intJoueurActuel + 1);
+            this.intJoueurActuel = (this.intJoueurActuel++);
 
         System.out.println(this.intJoueurActuel);
     }

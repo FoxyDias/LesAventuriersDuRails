@@ -79,19 +79,11 @@ public class Joueur {
     }
 
     public ArrayList<Arete> getLstArete() {
-        return lstArete;
-    }
-
-    public ArrayList<CarteObjectif> getMainObjectif() {
-        return mainObjectif;
-    }
-
-    public ArrayList<CarteWagon> getMainWagon() {
-        return mainWagon;
+        return this.lstArete;
     }
 
     public Color getCouleur() {
-        return couleur;
+        return this.couleur;
     }
 
     public void ajouterCarteWagon(CarteWagon cWagon){this.mainWagon.add(cWagon);}

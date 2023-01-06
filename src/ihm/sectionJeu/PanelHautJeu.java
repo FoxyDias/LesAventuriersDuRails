@@ -68,9 +68,9 @@ public class PanelHautJeu extends JPanel
 		{
 			if(this.ctrl.getJoueur(i).equals(this.ctrl.getEstJoueurCourant()))
 			{
-				this.alJoueur.get(i).setForeground(Color.RED);
-				this.alNbCarteWagon.get(i).setForeground(Color.RED);
-				this.alNbCarteObjectif.get(i).setForeground(Color.RED);
+				this.alJoueur.get(i).setForeground(this.ctrl.getEstJoueurCourant().getCouleur());
+				this.alNbCarteWagon.get(i).setForeground(this.ctrl.getEstJoueurCourant().getCouleur());
+				this.alNbCarteObjectif.get(i).setForeground(this.ctrl.getEstJoueurCourant().getCouleur());
 
 				this.alJoueur.get(i).setFont(new Font("", Font.BOLD, 14));
 				this.alNbCarteObjectif.get(i).setFont(new Font("", Font.BOLD, 14));
