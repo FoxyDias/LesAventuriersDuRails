@@ -4,6 +4,7 @@ import main.Controleur;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -22,12 +23,12 @@ public class Metier {
     private ArrayList<Arete> lstArete;
 
     private ArrayList<CarteObjectif> lstCarteObjectif;
+    private ArrayList<CarteObjectif> lstPiocheObjectifs;
 
     private ArrayList<CarteWagon> lstCarteWagon;
     private ArrayList<CarteWagon> lstPiocheWagon;
     private ArrayList<CarteWagon> lstDefausseWagon;
     
-
 
     private String versoCarteObjectif;
     private String versoCarteWagon;
@@ -44,6 +45,8 @@ public class Metier {
 
     private int intJoueurActuel;
 
+    private HashMap<Joueur, ArrayList<Noeud>> hsmJoueurNoeud;
+
     public Metier( Controleur ctrl )
     {
         this.ctrl = ctrl;
@@ -52,6 +55,7 @@ public class Metier {
         this.lstArete = new ArrayList<Arete>();
 
         this.lstCarteObjectif = new ArrayList<CarteObjectif>();
+        this.lstPiocheObjectifs = new ArrayList<CarteObjectif>(); 
 
         this.lstCarteWagon = new ArrayList<CarteWagon>();
         this.lstDefausseWagon = new ArrayList<CarteWagon>();
@@ -61,49 +65,54 @@ public class Metier {
         this.lstJoueur = new ArrayList<Joueur>();
 
         this.intJoueurActuel = 0;
+
+        this.hsmJoueurNoeud = new HashMap<Joueur,ArrayList<Noeud>>()
     }
 
 
     public void lancerPartie()
+    {   
+        initPioche();
+
+        this.ctrl.changerPanel("Jeu");
+
+        //tourChoixObjectif();
+        tourActuel();
+    }
+
+    public void tourActuel()
     {
-        boolean dernierTour = false;
-        int nbTour = 0;
         String action;
 
-        initPioche();
-        
-        while(!dernierTour)
+        Joueur joueurActuel = this.lstJoueur.get(this.intJoueurActuel);
+
+        boolean tourQuitter = true;
+        while (tourQuitter)
         {
-            for(Joueur joueurActuel : lstJoueur)
-            {
-                boolean tourQuitter = true;
-                while (tourQuitter)
-                {
-                    System.out.println("Quelle action choisissez-vous parmit : Piocher | Possession | Carte  ");
-                    Scanner sc = new Scanner(System.in);
-                    action = sc.nextLine().toLowerCase();
+            System.out.println("Quelle action choisissez-vous parmit : Piocher | Possession | Carte  ");
+            Scanner sc = new Scanner(System.in);
+            action = sc.nextLine().toLowerCase();
 
-                    /*                          Choix Piocher                             */
-                    if (action.equals("piocher")) {
-                        tourQuitter = !(tourPiocher(joueurActuel));
-                    }
-
-                    /*-------------------------------------------------------------------*/
-
-                    /*                          Choix Possession                         */
-                    else if (action.equals("possession")) {
-                        tourQuitter = !(tourPossession(joueurActuel));
-                    }
-                    /*-------------------------------------------------------------------*/
-
-                    /*                             Choix Carte                           */
-                    else if (action.equals("carte")) {
-                        tourQuitter = !(tourCarte(joueurActuel));
-                    }
-                    /*-------------------------------------------------------------------*/
-                }
+            /*                          Choix Piocher                             */
+            if (action.equals("piocher")) {
+                tourQuitter = !(tourPiocher(joueurActuel));
             }
+
+            /*-------------------------------------------------------------------*/
+
+            /*                          Choix Possession                         */
+            else if (action.equals("possession")) {
+                tourQuitter = !(tourPossession(joueurActuel));
+            }
+            /*-------------------------------------------------------------------*/
+
+            /*                             Choix Carte                           */
+            else if (action.equals("carte")) {
+                tourQuitter = !(tourCarte(joueurActuel));
+            }
+            /*-------------------------------------------------------------------*/
         }
+        
     }
 
     /*
@@ -119,7 +128,11 @@ public class Metier {
      */
     public void avancerJoueur()
     {  
-        this.intJoueurActuel = (this.intJoueurActuel + 1) % this.ctrl.getNbJoueurPartie();
+        if( this.intJoueurActuel >= this.nbJoueurPartie -1 )
+            this.intJoueurActuel = 0;
+        else
+            this.intJoueurActuel = (this.intJoueurActuel + 1);
+
         System.out.println(this.intJoueurActuel);
     }
 
@@ -127,7 +140,11 @@ public class Metier {
     {
         for(int i=0; i<5; i++)
         {
-            piocherRdm();
+            piocherWagonRandom();
+        }
+        for(int i=0; i<3; i++)
+        {
+            piocherObjectifRandom();
         }
 
     }
@@ -151,13 +168,13 @@ public class Metier {
             choixWagons = sc.nextLine().toLowerCase();
             if(!droitMulti && choixWagons.equals("joker"))
             {
-                System.out.println("Vous n'avez pas le droit de prendre un jeton Multi");
+                System.out.println("Vous n'avez pas le droit de prendre un Joker");
                 choixWagons = sc.nextLine().toLowerCase();
             }
             while(!choixWagons(joueurActuel, choixWagons) && !(choixWagons.equals("quitter")))
             {
                 if(!droitMulti && choixWagons.equals("joker"))
-                    System.out.println("Vous n'avez pas le droit de prendre un jeton Multi");
+                    System.out.println("Vous n'avez pas le droit de prendre un Joker");
                 else
                     System.out.println("Erreur de choix");
 
@@ -216,20 +233,35 @@ public class Metier {
                 joueur.ajouterCarteWagon(this.lstPiocheWagon.get(i));
                 this.lstDefausseWagon.add(this.lstPiocheWagon.get(i));
                 this.lstPiocheWagon.remove(i);
-                this.piocherRdm();
+                this.piocherWagonRandom();
                 return true;
             }
         }
         return false;
     }
 
-    private void piocherRdm()
+    private void piocherWagonRandom()
     {
-        //remettre la fause quand this.lstCarteWagon.size() == 0;
+        if(this.lstCarteWagon.size() == 0)
+        {
+            for(int i =0; i<this.lstCarteWagon.size(); i++)
+            {
+                this.lstCarteWagon.add(this.lstDefausseWagon.get(i));
+                this.lstDefausseWagon.remove(i);
+            }
+        }
 
         int num = (int) (Math.random() * this.lstCarteWagon.size());
         this.lstPiocheWagon.add(this.lstCarteWagon.get(num));
         this.lstCarteWagon.remove(num);
+    }
+
+    private void piocherObjectifRandom()
+    {
+
+        int num = (int) (Math.random() * this.lstCarteObjectif.size());
+        this.lstPiocheObjectifs.add(this.lstCarteObjectif.get(num));
+        this.lstCarteObjectif.remove(num);
     }
 
     public void lireXml(String pathXml)
@@ -246,7 +278,7 @@ public class Metier {
         } catch (Exception e)
         {
 
-            System.out.println("ça crash");
+            System.out.println("Erreur");
             return;
         }
 
