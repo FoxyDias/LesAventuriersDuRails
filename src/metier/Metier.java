@@ -3,14 +3,12 @@ package metier;
 import main.Controleur;
 
 import java.awt.*;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 import org.jdom2.*;
-import org.jdom2.input.*;
+import org.jdom2.input.*;   
 
 public class Metier {
 
