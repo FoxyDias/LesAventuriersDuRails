@@ -21,8 +21,7 @@ public class PanelHautJeu extends JPanel
 
 	private JLabel lblTour;
 	private JLabel lblProfil;
-	private JPanel panelDispoCarte;
-	private int carteDispoMarchée;
+	
 
 	public PanelHautJeu(Controleur ctrl)
 	{
@@ -37,8 +36,6 @@ public class PanelHautJeu extends JPanel
 		JPanel panelProfilJoueur = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 50));
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		this.lblTour = new JLabel("C'est au tour de ");
-		this.panelDispoCarte = new JPanel(new GridLayout(1,5));
-		this.carteDispoMarchée = 0;
 
 		/**
 		 * Positionnement des composants
@@ -59,7 +56,6 @@ public class PanelHautJeu extends JPanel
 		panelTourJoueur.setBorder(border);
 		panelProfilJoueur.setBorder(border);
 
-		this.add(panelDispoCarte, BorderLayout.EAST);
 		this.add(panelProfilJoueur);
 
 		/**
@@ -67,17 +63,5 @@ public class PanelHautJeu extends JPanel
 		 */
 	}
 
-	public void majCarteMarcher()
-	{
-		
-		while(this.carteDispoMarchée < 5 /*&& this.ctrl.get().size() > 0*/)
-		{
-			JPanel tmp = new JPanel();
-			CarteWagon carteWagon = this.ctrl.getLstCarteWagon().remove((int)(Math.random()*this.ctrl.getLstCarteWagon().size()));
-			System.out.println( "n°"+this.carteDispoMarchée + carteWagon);
-			tmp.setBackground(carteWagon.getColor());
-			this.panelDispoCarte.add(tmp);
-			this.carteDispoMarchée++;
-		}
-	}
+
 }
