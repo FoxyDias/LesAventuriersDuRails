@@ -112,6 +112,16 @@ public class Controleur {
 		return this.ihm.getPanelCentreMenu(); 
 	}
 
+    private Joueur getEstJoueurCourant()
+    {
+        return this.metier.getEstJoueurCourant();
+    }
+
+    private void avancerJoueur()
+    {
+        this.metier.avancerJoueur();
+    }
+
     
 
     public void setNbJoueurPartie(int n ){this.metier.setNbJoueurPartie(n);}

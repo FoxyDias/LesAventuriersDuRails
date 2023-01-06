@@ -103,7 +103,7 @@ public class Metier {
         }
     }
 
-    private Joueur getJoueurActuel()
+    private Joueur getEstJoueurCourant()
     {
         return this.lstJoueur.get(this.intJoueurActuel);
     }
