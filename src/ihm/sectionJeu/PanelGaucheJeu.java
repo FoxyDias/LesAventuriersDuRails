@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import java.awt.Color;
 import javax.swing.JButton;
+import java.awt.BorderLayout;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -35,8 +36,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		JLabel lblPiocheCarteWagon		= new JLabel("Pioche carte wagon");
 		JLabel lblPiocheCarteObjectif	= new JLabel("Pioche carte objectif");
-		JLabel lblNbCarteRestant 		= new JLabel("Nombre de carte restant : "); 
-		JLabel lblNbCarteRestant2		= new JLabel("Nombre de carte restant : "); 
 
 		this.btnPiocheCarteWagon 		= new JButton("");
 		this.btnPiocheCarteObjectif 	= new JButton("");
@@ -62,13 +61,11 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		this.add(lblPiocheCarteWagon);
 		this.add(this.btnPiocheCarteWagon);
-		this.add(lblNbCarteRestant);
 		this.add(this.btnFinDuTour);
 		this.add(lblPiocheCarteObjectif);
 		this.add(this.btnPiocheCarteObjectif);
-		this.add(lblNbCarteRestant2);
 		this.add(this.btnArreterPartie);
-
+		this.add(new PanelDispoParam(this.ctrl));
 		/**
 		 * Activation des composants
 		 */
@@ -103,4 +100,33 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		{
 		}
 	}
+
+	
+	public class PanelDispoParam extends JPanel
+	{
+		private Controleur ctrl;
+		private JButton btnVisualisation;
+		private JButton btnFinTour;
+		private JButton btnFinPartie;
+
+		public PanelDispoParam(Controleur ctrl)
+		{
+			this.ctrl = ctrl;
+
+			this.setLayout(new BorderLayout());
+			this.btnVisualisation = new JButton("Visualiser mes cartes");
+			this.btnFinPartie = new JButton("Finir la partie");
+			this.btnFinTour = new JButton("Fin du tour");
+
+			JPanel panelDispoBtnBas = new JPanel(new GridLayout(1,2));
+
+			panelDispoBtnBas.add(this.btnFinPartie);
+			panelDispoBtnBas.add(this.btnFinTour);
+
+			this.add(btnVisualisation,BorderLayout.CENTER);
+			this.add(panelDispoBtnBas,BorderLayout.SOUTH);
+
+		}
+	}
+	
 }
