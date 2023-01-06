@@ -65,6 +65,16 @@ public class Controleur {
         return this.metier.getListCarteObjectif();
     }
 
+    public double getWidthPanel()
+    {
+        return this.metier.getWidthPanel();
+    }
+
+    public double getHeightPanel()
+    {
+        return this.metier.getHeightPanel();
+    }
+
     public String getVersoCarteWagon(){
         return this.metier.getVersoCarteWagon();
     }

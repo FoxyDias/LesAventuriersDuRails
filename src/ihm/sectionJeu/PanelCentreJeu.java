@@ -2,6 +2,8 @@ package ihm.sectionJeu;
 
 import main.Controleur;
 import metier.*;
+import java.awt.*;
+import java.awt.event.*;
 
 import java.awt.Font;
 import javax.imageio.ImageIO;
@@ -58,6 +60,18 @@ public class PanelCentreJeu extends JPanel
 		g.setFont(new Font("default", Font.BOLD, 12));
 		ArrayList<Arete> areteDoubleDessine = new ArrayList<Arete>();
 
+		Dimension testTaille = this.getSize();
+
+		double xMax = testTaille.getWidth() -26;
+		double yMax = testTaille.getHeight() -26;
+
+		double width=this.ctrl.getWidthPanel(); 
+		double height=this.ctrl.getHeightPanel();
+
+	
+		
+		double multiX = (xMax/width);
+		double multiY = (yMax/height);
 		// draw les arete
 		for (Arete a : this.ctrl.getLstArete()) {
 			
@@ -72,11 +86,11 @@ public class PanelCentreJeu extends JPanel
 			if (to.getX() != 0 && to.getY() != 0) {
 				if (from.getX() != 0 && from.getY() != 0) {
 
-					int fromX = from.getX() + fromSize / 2;
-					int fromY = from.getY() + fromSize / 2;
+					double fromX =(from.getX() + fromSize / 2) *multiX;
+					double fromY =(from.getY() + fromSize / 2)*multiY;
 
-					int toX = to.getX() + toSize / 2;
-					int toY = to.getY() + toSize / 2;
+					double toX = (to.getX() + toSize / 2)*multiX;
+					double toY = (to.getY() + toSize / 2)*multiY;
 
 					if(a.getEstDouble() && !areteDoubleDessine.contains(a))
 					{
@@ -117,29 +131,54 @@ public class PanelCentreJeu extends JPanel
 	private void drawNoeud(Noeud noeud, Graphics g)
 	{
 		int size = 26;
+
+		Dimension testTaille = this.getSize();
+
+		double xMax = testTaille.getWidth() -26;
+		double yMax = testTaille.getHeight() -26;
+
+		double width=this.ctrl.getWidthPanel(); 
+		double height=this.ctrl.getHeightPanel();
+
+	
+		
+		double multiX = (xMax/width);
+		double multiY = (yMax/height);
+
+		
+
+		/*
+		double multiX = 1;
+		double multiY = 1;
+		*/
+
+		System.out.println("multiX : " + multiX + " multiY : " + multiY);
 		
 		// draw la Noeud
 		g.setColor(Color.BLACK);
-		g.fillOval(noeud.getX(), noeud.getY(), size, size);
-		g.drawOval(noeud.getX(), noeud.getY(), size, size);
+		g.fillOval((int) (noeud.getX()*multiX), (int) (noeud.getY()*multiY), size, size);
+		g.drawOval((int) (noeud.getX()*multiX), (int) (noeud.getY()*multiY), size, size);
 
 		g.setColor(Color.WHITE);
-		g.fillOval(noeud.getX()+size/4, noeud.getY()+size/4, size/2, size/2);
+		g.fillOval((int)(noeud.getX()*multiX)+size/4, (int)(noeud.getY()*multiY)+size/4, size/2, size/2);
 
 		// draw l'ID de la noeud
 		g.setColor(Color.BLACK);
 		String str = String.valueOf(noeud.getNom());
-		g.drawRect(noeud.getNomX() + size/2 - g.getFontMetrics().stringWidth(str)/2, noeud.getNomY() - size, g.getFontMetrics().stringWidth(str), 20);
+
+		g.drawRect((int)(noeud.getNomX()*multiX) + size/2 - g.getFontMetrics().stringWidth(str)/2, (int)(noeud.getNomY()*multiY) - size, g.getFontMetrics().stringWidth(str), 20);
 		g.setColor(Color.WHITE);
-		g.fillRect(noeud.getNomX() + size/2 - g.getFontMetrics().stringWidth(str)/2, noeud.getNomY() - size, g.getFontMetrics().stringWidth(str), 22);
+		g.fillRect((int)(noeud.getNomX()*multiX) + size/2 - g.getFontMetrics().stringWidth(str)/2, (int)(noeud.getNomY()*multiY) - size, g.getFontMetrics().stringWidth(str), 22);
+
+
 
 
 		g.setColor(Color.BLACK);
-		g.drawString(str, noeud.getNomX() + size/2 - g.getFontMetrics().stringWidth(str)/2, noeud.getNomY() -10);
+		g.drawString(str, (int) (noeud.getNomX()*multiX) + size/2 - g.getFontMetrics().stringWidth(str)/2, (int)(noeud.getNomY()*multiY) -10);
 
 	}
 
-	private void drawArete(int fromX, int fromY, int toX, int toY, int nbWagon, String c , Graphics g)
+	private void drawArete(double fromX, double fromY, double toX, double toY, int nbWagon, String c , Graphics g)
 	{
 	
 		// draw la valeur de l'arete
@@ -172,18 +211,18 @@ public class PanelCentreJeu extends JPanel
 
 			((Graphics2D) g).setStroke(new BasicStroke(15));
 			g.setColor(Color.BLACK);
-			g.drawLine(fromX + (toX-fromX)/nbWagon *n,
-						fromY + (toY-fromY)/nbWagon *n,
-					fromX + (toX-fromX)/nbWagon *(n+1),
-					fromY + (toY-fromY)/nbWagon *(n+1));
+			g.drawLine((int)(fromX + (toX-fromX)/nbWagon *n),
+			(int)(fromY + (toY-fromY)/nbWagon *n),
+			(int)(fromX + (toX-fromX)/nbWagon *(n+1)),
+			(int)(fromY + (toY-fromY)/nbWagon *(n+1)));
 				
 			//Dessine les contours du trait en noir 
 			((Graphics2D) g).setStroke(new BasicStroke(10));
 			g.setColor(new Color(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2])));
-			g.drawLine(fromX + (toX-fromX)/nbWagon *n,
-						fromY + (toY-fromY)/nbWagon *n,
-					fromX + (toX-fromX)/nbWagon *(n+1),
-					fromY + (toY-fromY)/nbWagon *(n+1));
+			g.drawLine((int)(fromX + (toX-fromX)/nbWagon *n),
+			(int)(fromY + (toY-fromY)/nbWagon *n),
+			(int)(fromX + (toX-fromX)/nbWagon *(n+1)),
+			(int)(fromY + (toY-fromY)/nbWagon *(n+1)));
 		}
 		//g.drawLine(fromX, fromY, toX, toY);
 		((Graphics2D) g).setStroke(new BasicStroke(1));

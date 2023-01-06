@@ -32,6 +32,10 @@ public class Metier {
     private ArrayList<Joueur> lstJoueur;
 
 
+    private double witdhPanel;
+    private double heightPanel;
+
+
 
     private int nbJoueurMax, nbJoueurPartie, nbJoueurMinDoubleArete , nbWagonDebutPartie ,nbWagonFinPartie , nbPointsPlusLongChemin ;
     private int[] pointsTaille;
@@ -289,6 +293,8 @@ public class Metier {
             this.nbWagonDebutPartie = Integer.parseInt(d.getChild("nbWagonDebutPartie").getText());
             this.nbWagonFinPartie = Integer.parseInt(d.getChild("nbWagonFinPartie").getText());
             this.nbPointsPlusLongChemin = Integer.parseInt(d.getChild("nbPointsPlusLongChemin").getText());
+            this.witdhPanel = Double.parseDouble(d.getChild("witdhPanel").getText());
+            this.heightPanel = Double.parseDouble(d.getChild("heightPanel").getText());
             this.nomImage = d.getChild("image").getText();
             this.versoCarteWagon = d.getChild("versoCarteWagon").getText();
         }
@@ -347,6 +353,26 @@ public class Metier {
     private Color RGBtoColor(String couleur) {
 
         return new Color(Integer.parseInt(couleur.split(",")[0]), Integer.parseInt(couleur.split(",")[1]) , Integer.parseInt(couleur.split(",")[2]));
+    }
+
+    public double getWidthPanel()
+    {
+        return this.witdhPanel;
+    }
+
+    public double getHeightPanel()
+    {
+        return this.heightPanel;
+    }
+
+    public void setWidthPanel(double witdhPanel)
+    {
+        this.witdhPanel = witdhPanel;
+    }
+
+    public void setHeightPanel(double heightPanel)
+    {
+        this.heightPanel = heightPanel;
     }
 
     private String stringToRGB(String c) {
