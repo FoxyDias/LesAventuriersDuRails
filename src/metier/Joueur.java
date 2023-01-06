@@ -79,7 +79,7 @@ public class Joueur {
     }
 
     public ArrayList<Arete> getLstArete() {
-        return this.lstArete;
+        return lstArete;
     }
 
     public Color getCouleur() {

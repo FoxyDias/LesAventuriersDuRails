@@ -85,8 +85,4 @@ public class Arete {
         return "Arete [noeudDep=" + noeudDep + ", noeudArr=" + noeudArr + ", couleur=" + couleur + ", nbWagon=" + nbWagon + ", estDouble=" + estDouble + ", estOccupe=" + estOccupe
                 + "]";
     }
-
-    
-
-
 }
