@@ -285,6 +285,31 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			{
 				this.ctrl.setNbJoueurPartie(Integer.parseInt(this.txtNbJoueursLocal.getText()));
 				this.ctrl.changerPanel("Jeu");
+				JPanel panelCarteObjectif = new JPanel(new GridLayout(2,3));
+
+				JDialog dialog = new JDialog();
+				dialog.setTitle("Choix des cartes objectifs");
+				dialog.setLayout(new GridLayout(2,3));
+				dialog.setBounds(165, 400, 535, 200);
+
+				JButton btnCarteObjectif1 = new JButton();
+				JButton btnCarteObjectif2 = new JButton();
+				JButton btnCarteObjectif3 = new JButton();
+				JButton btnValider = new JButton("Valider");
+
+				btnCarteObjectif1.setBackground(Color.WHITE);
+				btnCarteObjectif2.setBackground(Color.WHITE);
+				btnCarteObjectif3.setBackground(Color.WHITE);
+				btnValider.setBackground(Color.WHITE);
+			
+
+				dialog.add(btnCarteObjectif1);
+				dialog.add(btnCarteObjectif2);
+				dialog.add(btnCarteObjectif3);
+				dialog.add(new JLabel());
+				dialog.add(btnValider);
+				dialog.add(new JLabel());
+				dialog.setVisible(true);
 			}
 
 			int nbJoueurs = Integer.parseInt(this.txtNbJoueursLocal.getText());

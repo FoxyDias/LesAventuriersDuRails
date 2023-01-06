@@ -4,6 +4,8 @@ import main.Controleur;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -286,8 +288,10 @@ public class Metier {
                 this.creeCarteWagon(rgb, verso);
             }
 
-        }
 
+
+        }
+        
         for(Element a : lstArete)
         {
             String nomVille1 = a.getChild("noeudArr").getText ();
@@ -323,6 +327,7 @@ public class Metier {
             this.creeCarteObjectif(n1, n2, points);
 
         }
+
 
         int n =0;
         int maxTaille = 0;
@@ -361,7 +366,13 @@ public class Metier {
             this.lstCouleurJoueur.add(coul);
             this.lstJoueur.add(new Joueur(this.nbWagonDebutPartie, coul));
 
+
+
+
         }
+
+
+        Collections.shuffle(this.lstCarteObjectif);
 
     }
 

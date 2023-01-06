@@ -19,6 +19,4 @@ public class CarteObjectif {
     public Noeud getNoeudArr()  {return this.noeudArr;}
 
     public int getNbPoints()    {return this.nbPoints;}
-
-
 }

@@ -3,12 +3,10 @@ package ihm.sectionJeu;
 import main.Controleur;
 import metier.*;
 import java.awt.*;
-import java.awt.event.*;
-
 import java.awt.Font;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
+
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -17,10 +15,19 @@ import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.BasicStroke;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class PanelCentreJeu extends JPanel
+public class PanelCentreJeu extends JPanel implements ActionListener
 {
 	private Controleur ctrl;
+	private JDialog dialog;
+	private JButton btnCarteObjectif1;
+	private JButton btnCarteObjectif2;
+	private JButton btnCarteObjectif3;
+	private JButton btnValider;
 
 	public PanelCentreJeu(Controleur ctrl)
 	{
@@ -29,14 +36,6 @@ public class PanelCentreJeu extends JPanel
 		 */
 		this.ctrl = ctrl;
 		this.setLayout(new BorderLayout());
-
-		/**
-		 * Positionnement des composants
-		 */
-
-		/**
-		 * Activation des composants
-		 */
 	}
 
 
@@ -223,5 +222,11 @@ public class PanelCentreJeu extends JPanel
 		}
 		//g.drawLine(fromX, fromY, toX, toY);
 		((Graphics2D) g).setStroke(new BasicStroke(1));
+	}
+
+	public void actionPerformed(ActionEvent e) 
+	{
+		// TODO Auto-generated method stub
+		this.repaint();
 	}
 }

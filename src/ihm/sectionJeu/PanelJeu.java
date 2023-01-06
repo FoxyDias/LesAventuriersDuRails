@@ -2,7 +2,9 @@ package ihm.sectionJeu;
 
 import main.Controleur;
 import javax.swing.JPanel;
+
 import java.awt.BorderLayout;
+
 
 public class PanelJeu extends JPanel
 {
@@ -34,13 +36,12 @@ public class PanelJeu extends JPanel
 		this.add(this.panelCentre, BorderLayout.CENTER);
 		this.add(this.panelBasJeu, BorderLayout.SOUTH);
 
-		/**
-		 * Activation des composants
-		 */
-
 		this.setVisible(true);
 	}
 
+	/**
+	 * Méthode qui permet de changer la couleur du panel
+	 */
 	public void changerCouleurPanel()
 	{
 		this.panelHautJeu.changerCouleurPanel();

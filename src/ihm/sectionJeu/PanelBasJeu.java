@@ -23,6 +23,7 @@ public class PanelBasJeu extends JPanel
 		 * Création des composants
 		 */
 		this.setLayout(new GridLayout(1,5));
+		this.setPreferredSize(new java.awt.Dimension(0, 100));
 		
 
 		/**
