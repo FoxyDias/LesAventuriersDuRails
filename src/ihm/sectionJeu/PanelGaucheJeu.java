@@ -43,7 +43,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		this.btnPiocheCarteWagon 		= new JButton("");
 		this.btnPiocheCarteObjectif 	= new JButton("");
 		this.btnFinDuTour 				= new JButton("Fin du tour");
-		this.btnArreterPartie 			= new JButton("Arreter la partie");
+		this.btnArreterPartie 			= new JButton("Arrêter la partie");
 
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
@@ -82,15 +82,14 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 	{
 		if(e.getSource() == this.btnPiocheCarteWagon)
 		{
-
+			System.out.println("Pioche carte wagon");
 		}
 
 		if(e.getSource() == this.btnArreterPartie)
 		{
 			if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêter la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-			{
 				this.ctrl.changerPanel("Menu");
-			}
+			
 		}
 
 		if(e.getSource() == this.btnFinDuTour)
@@ -159,13 +158,13 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(null,"Vous avez aucun Carte");
+					JOptionPane.showMessageDialog(null,"Vous n'avez aucune carte");
 				}
 			}
 
 			if(e.getSource() == this.btnFinPartie)
 			{
-				if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêter la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+				if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêtez la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 				{
 					this.ctrl.changerPanel("Menu");
 				}

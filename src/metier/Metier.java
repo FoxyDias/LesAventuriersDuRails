@@ -167,6 +167,7 @@ public class Metier {
                 System.out.println("Vous n'avez pas le droit de prendre un Joker");
                 choixWagons = sc.nextLine().toLowerCase();
             }
+
             while(!choixWagons(joueurActuel, choixWagons) && !(choixWagons.equals("quitter")))
             {
                 if(!droitMulti && choixWagons.equals("joker"))
@@ -176,16 +177,13 @@ public class Metier {
 
                 choixWagons = sc.nextLine();
             }
+            
             if(choixWagons.equals("quitter"))
                 return false;
 
             for(CarteWagon cw : this.lstPiocheWagon)
-            {
                 if(cw.getCouleur().equals("Joker"))
-                {
                     droitMulti = false;
-                }
-            }
         }
         return true;
     }
