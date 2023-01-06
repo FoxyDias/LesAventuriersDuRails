@@ -13,6 +13,8 @@ public class Joueur {
     private ArrayList<CarteWagon> mainWagon;
     private ArrayList<CarteObjectif> mainObjectif;
 
+    private ArrayList<Arete> lstArete;
+    
     private int routeLaPlusLong;
 
     public Joueur(int w, Color c)
@@ -74,6 +76,22 @@ public class Joueur {
     public int getNbCarteObjectif()
     {
         return this.mainObjectif.size();
+    }
+
+    public ArrayList<Arete> getLstArete() {
+        return lstArete;
+    }
+
+    public ArrayList<CarteObjectif> getMainObjectif() {
+        return mainObjectif;
+    }
+
+    public ArrayList<CarteWagon> getMainWagon() {
+        return mainWagon;
+    }
+
+    public Color getCouleur() {
+        return couleur;
     }
 
     public void ajouterCarteWagon(CarteWagon cWagon){this.mainWagon.add(cWagon);}
