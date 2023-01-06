@@ -150,8 +150,6 @@ public class PanelCentreJeu extends JPanel
 		double multiX = 1;
 		double multiY = 1;
 		*/
-
-		System.out.println("multiX : " + multiX + " multiY : " + multiY);
 		
 		// draw la Noeud
 		g.setColor(Color.BLACK);

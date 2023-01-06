@@ -41,4 +41,9 @@ public class PanelJeu extends JPanel
 
 		this.setVisible(true);
 	}
+
+	public void changerCouleurPanel()
+	{
+		this.panelHautJeu.changerCouleurPanel();
+	}
 }

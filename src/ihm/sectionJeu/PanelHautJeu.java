@@ -61,10 +61,9 @@ public class PanelHautJeu extends JPanel
 	 */
 	public void changerCouleurPanel()
 	{
-		/*
-		for(int i = 0; i < this.ctrl.getNbJoueurMax(); i++)
+		for(int i = 0; i < this.ctrl.getNbJoueurPartie(); i++)
 		{
-			if(this.ctrl.getJoueur(i).getEstJoueurCourant())
+			if(this.ctrl.getJoueur(i).equals(this.ctrl.getEstJoueurCourant()))
 			{
 				this.alJoueur.get(i).setForeground(Color.RED);
 				this.alNbCarteWagon.get(i).setForeground(Color.RED);
@@ -76,6 +75,6 @@ public class PanelHautJeu extends JPanel
 				this.alNbCarteWagon.get(i).setForeground(Color.BLACK);
 				this.alNbCarteObjectif.get(i).setForeground(Color.BLACK);
 			}
-		}*/
+		}
 	}
 }

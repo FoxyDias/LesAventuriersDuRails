@@ -109,6 +109,7 @@ public class Controleur {
     public void avancerJoueur()
     {
         this.metier.avancerJoueur();
+        this.ihm.changerCouleurPanel();
     }
 
     public double getWidthPanel()

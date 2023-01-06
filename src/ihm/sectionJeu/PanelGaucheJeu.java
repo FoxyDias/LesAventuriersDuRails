@@ -93,6 +93,8 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnFinDuTour)
 		{
+			System.out.println("Fin du tour");
+			this.ctrl.avancerJoueur();
 		}
 
 		if(e.getSource() == this.btnPiocheCarteObjectif)
@@ -161,6 +163,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 			if(e.getSource() == this.btnFinTour)
 			{
+				this.ctrl.avancerJoueur();
 			}
 		}
 	}

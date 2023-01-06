@@ -72,4 +72,9 @@ public class FrameJeu extends JFrame
 				break;
 		}
 	}
+
+	public void changerCouleurPanel()
+	{
+		this.panelJeu.changerCouleurPanel();
+	}
 }
