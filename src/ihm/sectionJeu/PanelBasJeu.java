@@ -23,6 +23,7 @@ public class PanelBasJeu extends JPanel
 		 * Création des composants
 		 */
 		this.setLayout(new GridLayout(1,5));
+		this.setPreferredSize(new java.awt.Dimension(0, 100));
 		
 
 		/**
@@ -68,7 +69,7 @@ public class PanelBasJeu extends JPanel
 		{
 			if(e.getSource() == this.btnPrendCarte)
 			{
-				System.out.println(carteWagon.getCouleur());
+				PanelBasJeu.this.ctrl.getEstJoueurCourant().ajouterCarteWagon(this.carteWagon);
 				this.majMacher(PanelBasJeu.this.ctrl.getLstCarteWagon().remove(0));
 			}
 		}

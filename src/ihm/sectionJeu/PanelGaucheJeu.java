@@ -10,6 +10,8 @@ import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
@@ -149,8 +151,16 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		{
 			if(e.getSource() == this.btnVisualisation)
 			{
-				//Ouvrir la PopUp
-				this.ctrl.changerPanel("Visualisation");
+				if(this.ctrl.getEstJoueurCourant().getMainWagon().size() != 0)
+				{
+					JDialog jDialog = new JDialog();
+					jDialog.add(new PanelMainJoueur(ctrl));
+					jDialog.setVisible(true);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null,"Vous avez aucun Carte");
+				}
 			}
 
 			if(e.getSource() == this.btnFinPartie)

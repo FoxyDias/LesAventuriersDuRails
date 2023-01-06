@@ -35,6 +35,14 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 	private JDialog dialogCreerPartie;
 
+
+	/* --- JDIALOG --- */
+	private JButton btnValider;
+	private JButton btnCarteObjectif1;
+	private JButton btnCarteObjectif2;
+	private JButton btnCarteObjectif3;
+	private JDialog dialog;
+
 	public PanelCentreMenu(Controleur ctrl)
 	{
 		/**
@@ -44,10 +52,11 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		this.ctrl = ctrl;
 		
 		JLabel lblPartieMulti		= new JLabel("Jouer en multijoueur");
-		lblPartieMulti.setFont(new Font("", Font.BOLD, 13));
 		JLabel lblPartieSolo		= new JLabel("Jouer en local");
-		lblPartieSolo.setFont(new Font("", Font.BOLD, 13));
 		JLabel lblNbJoueursLocal	= new JLabel("Nombre de joueurs : ");
+
+		lblPartieSolo.setFont(new Font("", Font.BOLD, 13));
+		lblPartieMulti.setFont(new Font("", Font.BOLD, 13));
 
 		JPanel panelCreerPartieSolo		= new JPanel(new BorderLayout());
 		JPanel panelTitreCreerPartieSolo= new JPanel();
@@ -277,21 +286,53 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnCreerPartieSolo)
 		{			
+			int nbJoueurs = Integer.parseInt(this.txtNbJoueursLocal.getText());
+			System.out.println(nbJoueurs);
+			
 			if(this.txtNbJoueursLocal.getText().equals(""))
 			{
 				JOptionPane.showMessageDialog(null, "Veuillez remplir le nombre de joueurs", "Erreur", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			
+			if(nbJoueurs < 1 || nbJoueurs > this.ctrl.getNbJoueurMax()){
+				JOptionPane.showMessageDialog(null, "Veuillez renseignez un nombre de joueurs entre 1 et le nombre de joueurs maximale de la mappe", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
 			else
 			{
 				this.ctrl.setNbJoueurPartie(Integer.parseInt(this.txtNbJoueursLocal.getText()));
 				this.ctrl.changerPanel("Jeu");
-			}
+				
+				this.dialog = new JDialog();
+				this.dialog.setTitle("Choix des cartes objectifs");
+				this.dialog.setLayout(new GridLayout(2,3));
+				this.dialog.setBounds(500, 400, 1000, 400);
+				this.dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+				this.dialog.setResizable(false);
 
-			int nbJoueurs = Integer.parseInt(this.txtNbJoueursLocal.getText());
-			if(nbJoueurs < 1 || nbJoueurs > this.ctrl.getNbJoueurMax())
-			{
-				JOptionPane.showMessageDialog(null, "Veuillez remplir le nombre de joueurs", "Erreur", JOptionPane.ERROR_MESSAGE);
-			}	
+				this.btnCarteObjectif1 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
+				this.btnCarteObjectif2 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
+				this.btnCarteObjectif3 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
+				this.btnValider = new JButton("Valider");
+
+				this.btnCarteObjectif1.setBackground(Color.WHITE);
+				this.btnCarteObjectif2.setBackground(Color.WHITE);
+				this.btnCarteObjectif3.setBackground(Color.WHITE);
+				this.btnValider.setBackground(Color.WHITE);
+			
+				this.dialog.add(btnCarteObjectif1);
+				this.dialog.add(btnCarteObjectif2);
+				this.dialog.add(btnCarteObjectif3);
+				this.dialog.add(new JLabel());
+				this.dialog.add(btnValider);
+				this.dialog.add(new JLabel());
+				this.dialog.setVisible(true);
+
+				this.btnCarteObjectif1.addActionListener(this);
+				this.btnCarteObjectif2.addActionListener(this);
+				this.btnCarteObjectif3.addActionListener(this);
+				this.btnValider.addActionListener(this);
+			}
 		}
 
 		if(e.getSource() == this.btnLancerPartiePopUp)
@@ -338,6 +379,77 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 				StringSelection ss = new StringSelection(ipString);
 				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
 			} catch (UnknownHostException e1) {e1.printStackTrace();}
+		}
+
+
+		/* ------------------------------ */
+		/* 		 BOUTON JDIALOG 		  */
+		/* ------------------------------ */
+
+		if(e.getSource() == this.btnValider)
+		{
+			if(!(this.btnCarteObjectif1.isOpaque() && this.btnCarteObjectif2.isOpaque() ||  
+				 this.btnCarteObjectif1.isOpaque() && this.btnCarteObjectif3.isOpaque() || 
+				 this.btnCarteObjectif2.isOpaque() && this.btnCarteObjectif1.isOpaque() || 
+				 this.btnCarteObjectif2.isOpaque() && this.btnCarteObjectif3.isOpaque() ||
+				 this.btnCarteObjectif3.isOpaque() && this.btnCarteObjectif1.isOpaque() ||
+				 this.btnCarteObjectif3.isOpaque() && this.btnCarteObjectif2.isOpaque()))
+			{
+				JOptionPane.showMessageDialog(null, "Veuillez choisir 2 cartes objectifs", "Erreur", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			else
+			{
+				this.dialog.dispose();
+			}
+		}
+
+		if(e.getSource() == this.btnCarteObjectif1)
+		{
+			this.btnCarteObjectif1.setOpaque(true);
+			this.btnCarteObjectif1.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+
+			if(!this.btnCarteObjectif2.isEnabled())
+			{
+				this.btnCarteObjectif2.setEnabled(true);
+			}
+
+			if(!this.btnCarteObjectif3.isEnabled())
+			{
+				this.btnCarteObjectif3.setEnabled(true);
+			}
+		}
+
+		if(e.getSource() == this.btnCarteObjectif2)
+		{
+			this.btnCarteObjectif2.setOpaque(true);
+			this.btnCarteObjectif2.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+
+			if(!this.btnCarteObjectif3.isEnabled())
+			{
+				this.btnCarteObjectif3.setEnabled(true);
+			}
+
+			if(!this.btnCarteObjectif1.isEnabled())
+			{
+				this.btnCarteObjectif1.setEnabled(true);
+			}
+		}
+
+		if(e.getSource() == this.btnCarteObjectif3)
+		{
+			this.btnCarteObjectif3.setOpaque(true);
+			this.btnCarteObjectif3.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+
+			if(!this.btnCarteObjectif2.isEnabled())
+			{
+				this.btnCarteObjectif2.setEnabled(true);
+			}
+
+			if(!this.btnCarteObjectif1.isEnabled())
+			{
+				this.btnCarteObjectif1.setEnabled(true);
+			}
 		}
 	}
 

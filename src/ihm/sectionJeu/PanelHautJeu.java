@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import java.awt.*;
 
 
 public class PanelHautJeu extends JPanel
@@ -18,6 +19,8 @@ public class PanelHautJeu extends JPanel
 	private ArrayList<JLabel> alJoueur;
 	private ArrayList<JLabel> alNbCarteWagon;
 	private ArrayList<JLabel> alNbCarteObjectif;
+
+	private JPanel panelInfosJoueur;
 
 	public PanelHautJeu(Controleur ctrl)
 	{
@@ -35,7 +38,7 @@ public class PanelHautJeu extends JPanel
  
 		for(int i = 0; i < this.ctrl.getNbJoueurPartie(); i++)
 		{
-			JPanel panelInfosJoueur = new JPanel(new GridLayout(3,1,10,0));
+			this.panelInfosJoueur = new JPanel(new GridLayout(3,1,10,0));
 			this.alJoueur.add(new JLabel("Joueur " + (i+1), JLabel.CENTER));
 			this.alNbCarteWagon.add(new JLabel("Nombre de cartes wagons : " + this.ctrl.getJoueur(i).getNbCarteWagon(), JLabel.CENTER));
 			this.alNbCarteObjectif.add(new JLabel("Nombre de cartes objectifs : " + this.ctrl.getJoueur(i).getNbCarteObjectif(), JLabel.CENTER));
@@ -68,12 +71,20 @@ public class PanelHautJeu extends JPanel
 				this.alJoueur.get(i).setForeground(Color.RED);
 				this.alNbCarteWagon.get(i).setForeground(Color.RED);
 				this.alNbCarteObjectif.get(i).setForeground(Color.RED);
+
+				this.alJoueur.get(i).setFont(new Font("", Font.BOLD, 14));
+				this.alNbCarteObjectif.get(i).setFont(new Font("", Font.BOLD, 14));
+				this.alNbCarteWagon.get(i).setFont(new Font("", Font.BOLD, 14));
 			}
 			else
 			{
 				this.alJoueur.get(i).setForeground(Color.BLACK);
 				this.alNbCarteWagon.get(i).setForeground(Color.BLACK);
 				this.alNbCarteObjectif.get(i).setForeground(Color.BLACK);
+
+				this.alJoueur.get(i).setFont(new Font("", Font.BOLD, 12));
+				this.alNbCarteObjectif.get(i).setFont(new Font("", Font.BOLD, 12));
+				this.alNbCarteWagon.get(i).setFont(new Font("", Font.BOLD, 12));
 			}
 		}
 	}
