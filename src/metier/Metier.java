@@ -103,12 +103,12 @@ public class Metier {
         }
     }
 
-    private Joueur getJoueurActuel()
+    public Joueur getEstJoueurCourant()
     {
         return this.lstJoueur.get(this.intJoueurActuel);
     }
 
-    private void avancerJoueur()
+    public void avancerJoueur()
     {
         this.intJoueurActuel = (this.intJoueurActuel + 1) % this.lstJoueur.size();
     }

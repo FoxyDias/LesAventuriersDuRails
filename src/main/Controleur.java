@@ -32,6 +32,7 @@ public class Controleur {
 
     public ArrayList<Joueur> getLstJoueur() { return this.metier.getLstJoueur(); }
 
+
     public int getNbJoueurMax() {
         return this.metier.getNbJoueurMax();
     }
@@ -61,15 +62,7 @@ public class Controleur {
         return this.metier.getListCarteObjectif();
     }
 
-    public double getWidthPanel()
-    {
-        return this.metier.getWidthPanel();
-    }
 
-    public double getHeightPanel()
-    {
-        return this.metier.getHeightPanel();
-    }
 
     public String getVersoCarteWagon(){
         return this.metier.getVersoCarteWagon();
@@ -107,6 +100,26 @@ public class Controleur {
 		
 		return this.ihm.getPanelCentreMenu(); 
 	}
+
+    public Joueur getEstJoueurCourant()
+    {
+        return this.metier.getEstJoueurCourant();
+    }
+
+    public void avancerJoueur()
+    {
+        this.metier.avancerJoueur();
+    }
+
+    public double getWidthPanel()
+    {
+        return this.metier.getWidthPanel();
+    }
+
+    public double getHeightPanel()
+    {
+        return this.metier.getHeightPanel();
+    }
 
     
 
