@@ -72,8 +72,8 @@ public class PanelCentreJeu extends JPanel implements ActionListener
 		double multiX = (xMax/width);
 		double multiY = (yMax/height);
 		// draw les arete
-		for (Arete a : this.ctrl.getLstArete()) {
-			
+		for (Arete a : this.ctrl.getLstArete()) 
+		{	
 			int nb = a.getWagon();
 			int fromSize = 20;
 			int toSize = 20;
@@ -98,24 +98,18 @@ public class PanelCentreJeu extends JPanel implements ActionListener
 
 						if((fromX > toX && toY < fromY) || (fromX < toX && toY > fromY) )
 						{
-							//Haut gauche
-							//Bas droit
-							drawArete(fromX+5, fromY-5, toX+5, toY-5, nb, c, g);
-							drawArete(fromX-5, fromY+5, toX-5, toY+5, a.getAreteDouble().getWagon(), a.getAreteDouble().getCouleur(), g);
+							drawArete(fromX+5, fromY-5, toX+5, toY-5, nb, c, g);//Haut gauche
+							drawArete(fromX-5, fromY+5, toX-5, toY+5, a.getAreteDouble().getWagon(), a.getAreteDouble().getCouleur(), g);//Bas droit
 						}
 						else
 						{
-							//Haut droit 
-							//Bas gauche	
-							drawArete(fromX+5, fromY+5, toX+5, toY+5, nb, c, g);
-							drawArete(fromX-5, fromY-5, toX-5, toY-5, a.getAreteDouble().getWagon(), a.getAreteDouble().getCouleur(), g);
+							drawArete(fromX+5, fromY+5, toX+5, toY+5, nb, c, g);//Haut droit 
+							drawArete(fromX-5, fromY-5, toX-5, toY-5, a.getAreteDouble().getWagon(), a.getAreteDouble().getCouleur(), g);//Bas gauche
 						}
 					}
-					else
-					{
+					else 
 						if(!areteDoubleDessine.contains(a))
 							drawArete(fromX, fromY, toX, toY, nb, c, g);
-					}
 				}
 			}
 		}
@@ -124,7 +118,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener
 		for ( Noeud n : this.ctrl.getLstNoeud() )
 			if ( n.getX() != 0 && n.getY() != 0)
 				drawNoeud( n, g);
-		
 	}
 
 	private void drawNoeud(Noeud noeud, Graphics g)
@@ -139,8 +132,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener
 		double width=this.ctrl.getWidthPanel(); 
 		double height=this.ctrl.getHeightPanel();
 
-	
-		
 		double multiX = (xMax/width);
 		double multiY = (yMax/height);
 
@@ -204,7 +195,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener
 		//on vas dessiner les arêtes découpées en fonction du nombre de wagon 
 		for(int n= 0 ; n<=nbWagon-1; n++)
 		{
-
 			((Graphics2D) g).setStroke(new BasicStroke(15));
 			g.setColor(Color.BLACK);
 			g.drawLine((int)(fromX + (toX-fromX)/nbWagon *n),

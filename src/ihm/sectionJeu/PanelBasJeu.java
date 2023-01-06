@@ -71,7 +71,6 @@ public class PanelBasJeu extends JPanel
 		{
 			if(e.getSource() == this.btnPrendCarte)
 			{
-				System.out.println("JE FONCTIONNE connard");
 				PanelBasJeu.this.ctrl.getEstJoueurCourant().ajouterCarteWagon(this.carteWagon);
 				this.majMarcher(PanelBasJeu.this.ctrl.getLstCarteWagon().remove(0));
 			}
