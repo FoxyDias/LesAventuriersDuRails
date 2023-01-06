@@ -35,6 +35,14 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 	private JDialog dialogCreerPartie;
 
+
+	/* --- JDIALOG --- */
+	private JButton btnValider;
+	private JButton btnCarteObjectif1;
+	private JButton btnCarteObjectif2;
+	private JButton btnCarteObjectif3;
+	private JDialog dialog;
+
 	public PanelCentreMenu(Controleur ctrl)
 	{
 		/**
@@ -44,10 +52,11 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		this.ctrl = ctrl;
 		
 		JLabel lblPartieMulti		= new JLabel("Jouer en multijoueur");
-		lblPartieMulti.setFont(new Font("", Font.BOLD, 13));
 		JLabel lblPartieSolo		= new JLabel("Jouer en local");
-		lblPartieSolo.setFont(new Font("", Font.BOLD, 13));
 		JLabel lblNbJoueursLocal	= new JLabel("Nombre de joueurs : ");
+
+		lblPartieSolo.setFont(new Font("", Font.BOLD, 13));
+		lblPartieMulti.setFont(new Font("", Font.BOLD, 13));
 
 		JPanel panelCreerPartieSolo		= new JPanel(new BorderLayout());
 		JPanel panelTitreCreerPartieSolo= new JPanel();
@@ -293,32 +302,36 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			{
 				this.ctrl.setNbJoueurPartie(Integer.parseInt(this.txtNbJoueursLocal.getText()));
 				this.ctrl.changerPanel("Jeu");
+				
+				this.dialog = new JDialog();
+				this.dialog.setTitle("Choix des cartes objectifs");
+				this.dialog.setLayout(new GridLayout(2,3));
+				this.dialog.setBounds(500, 400, 1000, 400);
+				this.dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+				this.dialog.setResizable(false);
 
-				JPanel panelCarteObjectif = new JPanel(new GridLayout(2,3));
+				this.btnCarteObjectif1 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
+				this.btnCarteObjectif2 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
+				this.btnCarteObjectif3 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
+				this.btnValider = new JButton("Valider");
 
-				JDialog dialog = new JDialog();
-				dialog.setTitle("Choix des cartes objectifs");
-				dialog.setLayout(new GridLayout(2,3));
-				dialog.setBounds(165, 400, 535, 200);
-
-				JButton btnCarteObjectif1 = new JButton();
-				JButton btnCarteObjectif2 = new JButton();
-				JButton btnCarteObjectif3 = new JButton();
-				JButton btnValider = new JButton("Valider");
-
-				btnCarteObjectif1.setBackground(Color.WHITE);
-				btnCarteObjectif2.setBackground(Color.WHITE);
-				btnCarteObjectif3.setBackground(Color.WHITE);
-				btnValider.setBackground(Color.WHITE);
+				this.btnCarteObjectif1.setBackground(Color.WHITE);
+				this.btnCarteObjectif2.setBackground(Color.WHITE);
+				this.btnCarteObjectif3.setBackground(Color.WHITE);
+				this.btnValider.setBackground(Color.WHITE);
 			
+				this.dialog.add(btnCarteObjectif1);
+				this.dialog.add(btnCarteObjectif2);
+				this.dialog.add(btnCarteObjectif3);
+				this.dialog.add(new JLabel());
+				this.dialog.add(btnValider);
+				this.dialog.add(new JLabel());
+				this.dialog.setVisible(true);
 
-				dialog.add(btnCarteObjectif1);
-				dialog.add(btnCarteObjectif2);
-				dialog.add(btnCarteObjectif3);
-				dialog.add(new JLabel());
-				dialog.add(btnValider);
-				dialog.add(new JLabel());
-				dialog.setVisible(true);
+				this.btnCarteObjectif1.addActionListener(this);
+				this.btnCarteObjectif2.addActionListener(this);
+				this.btnCarteObjectif3.addActionListener(this);
+				this.btnValider.addActionListener(this);
 			}
 		}
 
@@ -366,6 +379,27 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 				StringSelection ss = new StringSelection(ipString);
 				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
 			} catch (UnknownHostException e1) {e1.printStackTrace();}
+		}
+
+
+		/* ------------------------------ */
+		/* 		 BOUTON JDIALOG 		  */
+		/* ------------------------------ */
+
+		if(e.getSource() == this.btnValider)
+		{
+			this.dialog.dispose();
+		}
+
+		if(e.getSource() == this.btnCarteObjectif1)
+		{
+			this.btnCarteObjectif1.setOpaque(true);
+			this.btnCarteObjectif1.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+		}
+		else 
+		{
+			this.btnCarteObjectif1.setOpaque(false);
+			this.btnCarteObjectif1.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
 		}
 	}
 

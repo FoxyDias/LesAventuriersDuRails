@@ -84,6 +84,7 @@ public class PanelHautJeu extends JPanel
 
 				this.alJoueur.get(i).setFont(new Font("", Font.BOLD, 12));
 				this.alNbCarteObjectif.get(i).setFont(new Font("", Font.BOLD, 12));
+				this.alNbCarteWagon.get(i).setFont(new Font("", Font.BOLD, 12));
 			}
 		}
 	}
