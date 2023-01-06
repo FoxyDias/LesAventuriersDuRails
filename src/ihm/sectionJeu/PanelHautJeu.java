@@ -15,6 +15,7 @@ import java.awt.Color;
 public class PanelHautJeu extends JPanel
 {
 	private Controleur ctrl;
+
 	private ArrayList<JLabel> alProfilJoueur;
 
 	public PanelHautJeu(Controleur ctrl)
@@ -27,6 +28,8 @@ public class PanelHautJeu extends JPanel
 		this.setPreferredSize(new Dimension(0,70));
 
 		JPanel panelProfilJoueur = new JPanel(new GridLayout(1, this.ctrl.getNbJoueurMax()));
+		
+		this.alProfilJoueur = new ArrayList<JLabel>();
 
 
 		this.alProfilJoueur = new ArrayList<JLabel>();
@@ -44,7 +47,7 @@ public class PanelHautJeu extends JPanel
 		 * Positionnement des composants
 		 */
 
-		this.add(panelProfilJoueur, BorderLayout.CENTER);
+		this.add(panelProfilJoueur);
 
 		/**
 		 * Activation des composants

@@ -473,6 +473,11 @@ public class Metier {
         return nomImage;
     }
 
+    public Joueur getJoueur(int i)
+    {
+        return this.lstJoueur.get(i);
+    }
+
     public void setNbJoueur(int n) { this.nbJoueurPartie = n; }
 
 
