@@ -111,6 +111,7 @@ public class Metier {
     public void avancerJoueur()
     {
         this.intJoueurActuel = (this.intJoueurActuel + 1) % this.lstJoueur.size();
+        System.out.println(this.intJoueurActuel);
     }
 
     private void initPioche()
