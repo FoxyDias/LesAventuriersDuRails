@@ -40,6 +40,8 @@ public class Metier {
     private int nbJoueurMax, nbJoueurPartie, nbJoueurMinDoubleArete , nbWagonDebutPartie ,nbWagonFinPartie , nbPointsPlusLongChemin ;
     private int[] pointsTaille;
 
+    private int intJoueurActuel;
+
     public Metier( Controleur ctrl )
     {
         this.ctrl = ctrl;
@@ -55,6 +57,8 @@ public class Metier {
 
         this.lstCouleurJoueur = new ArrayList<Color>();
         this.lstJoueur = new ArrayList<Joueur>();
+
+        this.intJoueurActuel = 0;
     }
 
     public void lancerPartie()
@@ -97,6 +101,16 @@ public class Metier {
                 }
             }
         }
+    }
+
+    private Joueur getJoueurActuel()
+    {
+        return this.lstJoueur.get(this.intJoueurActuel);
+    }
+
+    private void avancerJoueur()
+    {
+        this.intJoueurActuel = (this.intJoueurActuel + 1) % this.lstJoueur.size();
     }
 
     private void initPioche()
@@ -504,7 +518,7 @@ public class Metier {
         return this.lstJoueur.get(i);
     }
 
-    public void setNbJoueur(int n) { this.nbJoueurPartie = n; }
+    public void setNbJoueurPartie(int n) { this.nbJoueurPartie = n; }
 
 
 }

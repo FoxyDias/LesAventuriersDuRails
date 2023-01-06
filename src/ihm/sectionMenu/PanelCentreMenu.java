@@ -283,6 +283,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			}
 			else
 			{
+				this.ctrl.setNbJoueurPartie(Integer.parseInt(this.txtNbJoueursLocal.getText()));
 				this.ctrl.changerPanel("Jeu");
 			}
 
