@@ -69,7 +69,7 @@ public class PanelBasJeu extends JPanel
 		{
 			if(e.getSource() == this.btnPrendCarte)
 			{
-				System.out.println(carteWagon.getCouleur());
+				PanelBasJeu.this.ctrl.getEstJoueurCourant().ajouterCarteWagon(this.carteWagon);
 				this.majMacher(PanelBasJeu.this.ctrl.getLstCarteWagon().remove(0));
 			}
 		}

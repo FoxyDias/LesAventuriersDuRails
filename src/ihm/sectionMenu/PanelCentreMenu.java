@@ -388,18 +388,68 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnValider)
 		{
-			this.dialog.dispose();
+			if(!(this.btnCarteObjectif1.isOpaque() && this.btnCarteObjectif2.isOpaque() ||  
+				 this.btnCarteObjectif1.isOpaque() && this.btnCarteObjectif3.isOpaque() || 
+				 this.btnCarteObjectif2.isOpaque() && this.btnCarteObjectif1.isOpaque() || 
+				 this.btnCarteObjectif2.isOpaque() && this.btnCarteObjectif3.isOpaque() ||
+				 this.btnCarteObjectif3.isOpaque() && this.btnCarteObjectif1.isOpaque() ||
+				 this.btnCarteObjectif3.isOpaque() && this.btnCarteObjectif2.isOpaque()))
+			{
+				JOptionPane.showMessageDialog(null, "Veuillez choisir 2 cartes objectifs", "Erreur", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			else
+			{
+				this.dialog.dispose();
+			}
 		}
 
 		if(e.getSource() == this.btnCarteObjectif1)
 		{
 			this.btnCarteObjectif1.setOpaque(true);
 			this.btnCarteObjectif1.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+
+			if(!this.btnCarteObjectif2.isEnabled())
+			{
+				this.btnCarteObjectif2.setEnabled(true);
+			}
+
+			if(!this.btnCarteObjectif3.isEnabled())
+			{
+				this.btnCarteObjectif3.setEnabled(true);
+			}
 		}
-		else 
+
+		if(e.getSource() == this.btnCarteObjectif2)
 		{
-			this.btnCarteObjectif1.setOpaque(false);
-			this.btnCarteObjectif1.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+			this.btnCarteObjectif2.setOpaque(true);
+			this.btnCarteObjectif2.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+
+			if(!this.btnCarteObjectif3.isEnabled())
+			{
+				this.btnCarteObjectif3.setEnabled(true);
+			}
+
+			if(!this.btnCarteObjectif1.isEnabled())
+			{
+				this.btnCarteObjectif1.setEnabled(true);
+			}
+		}
+
+		if(e.getSource() == this.btnCarteObjectif3)
+		{
+			this.btnCarteObjectif3.setOpaque(true);
+			this.btnCarteObjectif3.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+
+			if(!this.btnCarteObjectif2.isEnabled())
+			{
+				this.btnCarteObjectif2.setEnabled(true);
+			}
+
+			if(!this.btnCarteObjectif1.isEnabled())
+			{
+				this.btnCarteObjectif1.setEnabled(true);
+			}
 		}
 	}
 
