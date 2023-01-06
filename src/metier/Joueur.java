@@ -66,6 +66,16 @@ public class Joueur {
         return false;
     }
 
+    public int getNbCarteWagon()
+    {
+        return this.mainWagon.size();
+    }
+
+    public int getNbCarteObjectif()
+    {
+        return this.mainObjectif.size();
+    }
+
     public void ajouterCarteWagon(CarteWagon cWagon){this.mainWagon.add(cWagon);}
     public void retirerCarteWagon(int indexcWagon){this.mainObjectif.remove(indexcWagon);}
     

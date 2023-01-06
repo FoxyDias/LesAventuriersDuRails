@@ -1,17 +1,14 @@
 package ihm.sectionJeu;
 
 import main.Controleur;
-import metier.CarteWagon;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.FlowLayout;
-import javax.swing.border.Border;
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 import java.awt.Color;
 
@@ -19,9 +16,7 @@ public class PanelHautJeu extends JPanel
 {
 	private Controleur ctrl;
 
-	private JLabel lblTour;
-	private JLabel lblProfil;
-	
+	private ArrayList<JLabel> alProfilJoueur;
 
 	public PanelHautJeu(Controleur ctrl)
 	{
@@ -32,29 +27,25 @@ public class PanelHautJeu extends JPanel
 		this.setLayout(new BorderLayout());
 		this.setPreferredSize(new Dimension(0,70));
 
-		JPanel panelTourJoueur = new JPanel(new GridLayout(this.ctrl.getNbJoueurMax(),1, 15,15));
-		JPanel panelProfilJoueur = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 50));
-		Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
-		this.lblTour = new JLabel("C'est au tour de ");
+		JPanel panelProfilJoueur = new JPanel(new GridLayout(1, this.ctrl.getNbJoueurMax()));
+		
+		this.alProfilJoueur = new ArrayList<JLabel>();
+
+
+		this.alProfilJoueur = new ArrayList<JLabel>();
+
+		for(int i = 0; i < this.ctrl.getNbJoueurMax(); i++)
+		{
+			this.alProfilJoueur.add(new JLabel("Joueur " + (i + 1)));
+			//this.alProfilJoueur.add(new JLabel("Nombre de cartes wagons :" + this.ctrl.getJoueur(i).getNbCarteWagon()));
+			//this.alProfilJoueur.add(new JLabel("Nombre de cartes objectif :" + this.ctrl.getJoueur(i).getNbCarteDestination()));
+			this.alProfilJoueur.get(i).setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+			panelProfilJoueur.add(this.alProfilJoueur.get(i));
+		}
 
 		/**
 		 * Positionnement des composants
 		 */
-
-		 //this.majCarteMarcher();
-		
-		/*
-		for(int i = 0; i < this.ctrl.getNbJoueurMax(); i++)
-		{
-			panelTourJoueur.add(new JLabel("Joueur " + (i + 1)));
-			lblProfil = new JLabel("Joueur " + (i + 1));
-			lblProfil.setBorder(border);
-			panelProfilJoueur.add(lblProfil);
-		}
-		*/
-
-		panelTourJoueur.setBorder(border);
-		panelProfilJoueur.setBorder(border);
 
 		this.add(panelProfilJoueur);
 
@@ -62,6 +53,4 @@ public class PanelHautJeu extends JPanel
 		 * Activation des composants
 		 */
 	}
-
-
 }
