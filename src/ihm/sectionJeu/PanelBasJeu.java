@@ -1,20 +1,15 @@
 package ihm.sectionJeu;
 
 import main.Controleur;
-import metier.CarteObjectif;
 import metier.CarteWagon;
 
 import javax.swing.JPanel;
-import java.awt.FlowLayout;
-import javax.swing.JLabel;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.*;
-import java.util.Collections;
 
 public class PanelBasJeu extends JPanel
 {
@@ -29,14 +24,14 @@ public class PanelBasJeu extends JPanel
 		 */
 		this.setLayout(new GridLayout(1,5));
 		
+
+		/**
+		 * Positionnement des composants
+		 */
 		for(int index = 0; index < 5; index++)
 		{
 			this.add(new PanelPiocheMarcher(this.ctrl.getLstCarteWagon().remove(0)));
 		}
-		/**
-		 * Positionnement des composants
-		 */
-
 
 		/**
 		 * Activation des composants
