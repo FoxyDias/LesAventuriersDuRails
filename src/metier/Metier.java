@@ -126,12 +126,10 @@ public class Metier {
      */
     public void avancerJoueur()
     {  
-        if( this.intJoueurActuel >= this.nbJoueurPartie -1)
-            this.intJoueurActuel = 0;
-        else
-            this.intJoueurActuel = (this.intJoueurActuel++);
 
-        System.out.println(this.intJoueurActuel);
+        this.intJoueurActuel++;
+        if(this.intJoueurActuel >= this.nbJoueurPartie)
+            this.intJoueurActuel = 0;
     }
 
     private void initPioche()
