@@ -11,6 +11,7 @@ import java.awt.FlowLayout;
 import javax.swing.border.Border;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import java.awt.Dimension;
 
 import java.awt.Color;
 
@@ -30,6 +31,7 @@ public class PanelHautJeu extends JPanel
 		 */
 		this.ctrl = ctrl; 
 		this.setLayout(new BorderLayout());
+		this.setPreferredSize(new Dimension(0,70));
 
 		JPanel panelTourJoueur = new JPanel(new GridLayout(this.ctrl.getNbJoueurMax(),1, 15,15));
 		JPanel panelProfilJoueur = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 50));

@@ -3,9 +3,9 @@ package ihm.sectionMenu;
 import main.Controleur;
 
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JLabel;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -53,7 +53,7 @@ public class PanelHautMenu extends JPanel implements ActionListener
 
 		this.validFichier = false;
 
-		JLabel lblTitre 	= new JLabel(new ImageIcon("donnee\\image\\titre.png"));
+		JLabel lblTitre 	= new JLabel(new ImageIcon("donnee/image/titre.png"));
 
 		JPanel panelTitre 	= new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
 		JPanel panelImport 	= new JPanel();
@@ -162,10 +162,12 @@ public class PanelHautMenu extends JPanel implements ActionListener
 								this.jdImporteImageManquante.setSize(300, 100);
 								this.jdImporteImageManquante.setLocationRelativeTo(null);
 								this.jdImporteImageManquante.setModal(true);
+								// ne pas pouvoir fermer la fenetre
+								this.jdImporteImageManquante.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 								this.jdImporteImageManquante.setResizable(false);
 								this.jdImporteImageManquante.setLayout(new BorderLayout());
 								this.jdImporteImageManquante.add(btnImportImage, BorderLayout.SOUTH);
-								this.jdImporteImageManquante.add(new JLabel("L'image " + nomImage +  " n'existe pas, veuillez la placer dans le dossier image"), BorderLayout.CENTER);
+								this.jdImporteImageManquante.add(new JLabel("L'image " + nomImage +  " n'existe pas, placer la dans le dossier image"), BorderLayout.CENTER);
 								//FileNameExtensionFilter filtreImage = new FileNameExtensionFilter("Format XML", "png")
 								this.jdImporteImageManquante.setVisible(true);
 							}

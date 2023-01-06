@@ -270,7 +270,7 @@
 		<txtRoute>Rails</txtRoute>
 		<versoCarteWagon>imageCarte/mer.jpg</versoCarteWagon>
 		<versoCarteObjectif>null</versoCarteObjectif>
-		<image>importe/FortniteMappe.png</image>
+		<image>importe/FortniteMappe2.jpg</image>
 	</details>
 	<CouleurJoueurList>
 		<couleurJoueur>[r=204,g=0,b=204]</couleurJoueur>

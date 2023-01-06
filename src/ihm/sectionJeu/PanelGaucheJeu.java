@@ -13,6 +13,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Dimension;
 
 
 public class PanelGaucheJeu extends JPanel implements ActionListener
@@ -29,7 +30,8 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		 * Création des composants
 		 */
 		this.ctrl = ctrl;
-		this.setLayout(new GridLayout(8,1, 5,0));
+		this.setLayout(new GridLayout(8,1,0,0));
+		this.setPreferredSize(new Dimension(350, 0));
 
 		JLabel lblPiocheCarteWagon		= new JLabel("Pioche carte wagon");
 		JLabel lblPiocheCarteObjectif	= new JLabel("Pioche carte objectif");

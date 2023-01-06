@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.BorderFactory;
 import java.awt.Color;
+import java.awt.Dimension;
 
 public class PanelBasJeu extends JPanel
 {
@@ -18,6 +19,7 @@ public class PanelBasJeu extends JPanel
 		 */
 		this.ctrl = ctrl;
 		this.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 50));
+		this.setPreferredSize(new Dimension(0,70));
 		JLabel lblJoueur;
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
