@@ -6,6 +6,7 @@ import metier.CarteWagon;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JLabel;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -40,9 +41,9 @@ public class PanelHautMenu extends JPanel implements ActionListener
 
 	private String cheminFichier;
 
-	private boolean validFichier;
-
 	private String stringFichierManquant;
+
+	private boolean validFichier;
 
 	public PanelHautMenu(Controleur ctrl)
 	{
@@ -207,18 +208,32 @@ public class PanelHautMenu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnImportImage)
 		{
-			JFileChooser jFileChooserRemplacement = new JFileChooser(new File("donnee/xml"));
+			JFileChooser jFileChooserRemplacement = new JFileChooser(new File("donnee/"));
 			int res2 = jFileChooserRemplacement.showOpenDialog(null);
 
 			
 			if(res2 == JFileChooser.APPROVE_OPTION)
 			{
+				String[] nomDecompose = this.stringFichierManquant.split("/");
+
+				String nom = nomDecompose[nomDecompose.length - 1];
+				String chemin ="";
+				for(int i = 0; i < nomDecompose.length - 1; i++)
+				{
+					chemin = nomDecompose[i] + "/";
+				}
+
+				if(!chemin.contains("donnee/"))
+					chemin = "donnee/" + chemin;
+
 				File fileRemplacement = jFileChooserRemplacement.getSelectedFile();									
 				try {
-					Files.copy(fileRemplacement.toPath(), Paths.get("importe/"	+ fileRemplacement.getName()));
-				} catch (IOException e2) { e2.printStackTrace();}																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										
+					Files.copy(fileRemplacement.toPath(), Paths.get(chemin	+ fileRemplacement.getName()));
+				} catch (IOException e2) { e2.printStackTrace();}
+
 				this.cheminFichier = fileRemplacement.getName();
-				this.validFichier = this.ctrl.getNomImage().equals("importe/"+cheminFichier);
+
+				this.validFichier = this.stringFichierManquant.equals(chemin+cheminFichier);
 				this.FileImagenew =new File(cheminFichier);
 
 				if(this.validFichier)
