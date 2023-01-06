@@ -110,7 +110,7 @@ public class Metier {
 
     public void avancerJoueur()
     {
-        this.intJoueurActuel = (this.intJoueurActuel + 1) % this.lstJoueur.size();
+        this.intJoueurActuel = (this.intJoueurActuel + 1) % this.ctrl.getNbJoueurPartie();
         System.out.println(this.intJoueurActuel);
     }
 

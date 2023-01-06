@@ -2,7 +2,6 @@ package ihm.sectionJeu;
 
 import main.Controleur;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 import java.awt.BorderLayout;
 
 public class PanelJeu extends JPanel
