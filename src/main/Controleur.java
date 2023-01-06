@@ -123,6 +123,8 @@ public class Controleur {
 		this.ihm.changerPanel(nom);
 	}
 
+    public Joueur getJoueur(int i) { return this.metier.getJoueur(i); }
+
     /**
      * Le main du projet
      * @param args

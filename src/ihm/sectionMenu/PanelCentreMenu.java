@@ -269,7 +269,6 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			panelBtnPopUp.add(this.btnRejoindreMultiPopUp);
 
 			//Empecher une autre saisie que cette syntaxe 172.192.1.23
-
 		
 			this.dialogCreerPartie.add(panelPopUp, BorderLayout.CENTER);
 			this.dialogCreerPartie.add(panelBtnPopUp, BorderLayout.SOUTH);
@@ -277,9 +276,8 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		}
 
 		if(e.getSource() == this.btnCreerPartieSolo)
-		{
-			
-			if(this.txtNbJoueursLocal.getText().equals("") || this.txtNbJoueursLocal.getText().equals("0") || this.txtNbJoueursLocal.getText().equals("" + this.ctrl.getNbJoueurMax()))
+		{			
+			if(this.txtNbJoueursLocal.getText().equals(""))
 			{
 				JOptionPane.showMessageDialog(null, "Veuillez remplir le nombre de joueurs", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
@@ -287,7 +285,12 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			{
 				this.ctrl.changerPanel("Jeu");
 			}
-			
+
+			int nbJoueurs = Integer.parseInt(this.txtNbJoueursLocal.getText());
+			if(nbJoueurs < 1 || nbJoueurs > this.ctrl.getNbJoueurMax())
+			{
+				JOptionPane.showMessageDialog(null, "Veuillez remplir le nombre de joueurs", "Erreur", JOptionPane.ERROR_MESSAGE);
+			}	
 		}
 
 		if(e.getSource() == this.btnLancerPartiePopUp)
