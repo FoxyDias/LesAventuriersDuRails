@@ -1,7 +1,6 @@
 package ihm.sectionMenu;
 
 import main.Controleur;
-import metier.Joueur;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -46,7 +45,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 	private JButton btnCarteObjectif3;
 	private JDialog dialog;
 
-	private int nbPopUP = 0;
+	private int nbPopUP = 1;
 
 	public PanelCentreMenu(Controleur ctrl)
 	{
@@ -307,10 +306,9 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 				this.ctrl.setNbJoueurPartie(Integer.parseInt(this.txtNbJoueursLocal.getText()));
 				this.ctrl.changerPanel("Jeu");
 		
-				this.nbPopUP++;
 				this.creerPopUpCarteObjectif();
-				this.nbPopUP++;
-				
+
+
 			}
 		}
 
@@ -381,10 +379,11 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			{
 				this.dialog.dispose();
 
-				while(this.nbPopUP <= this.ctrl.getNbJoueurPartie())
+				while(this.nbPopUP < this.ctrl.getNbJoueurPartie())
 				{
-					this.creerPopUpCarteObjectif();
 					this.nbPopUP++;
+					this.creerPopUpCarteObjectif();
+					
 				}
 			}
 		}
@@ -429,7 +428,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		}
 	}
 
-	public void creerPopUpCarteObjectif()
+	public JDialog creerPopUpCarteObjectif()
 	{
 		JPanel panelBtn = new JPanel(new FlowLayout(FlowLayout.CENTER,0,75));
 
@@ -464,6 +463,9 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		this.btnCarteObjectif2.addActionListener(this);
 		this.btnCarteObjectif3.addActionListener(this);
 		this.btnValider.addActionListener(this);
+
+
+		return this.dialog;
 
 	}
 }
