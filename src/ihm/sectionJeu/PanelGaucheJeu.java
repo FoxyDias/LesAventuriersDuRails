@@ -14,7 +14,7 @@ import javax.swing.JDialog;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-
+import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
@@ -47,10 +47,13 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		this.setLayout(new GridLayout(5,1,0,0));
 		this.setPreferredSize(new Dimension(350, 0));
 
-		JLabel lblPiocheCarteWagon		= new JLabel("Pioche carte " + this.ctrl.getMoyenDeTransport(), JLabel.CENTER);
-		JLabel lblPiocheCarteObjectif	= new JLabel("Pioche carte objectif", JLabel.CENTER);
+		JLabel lblPiocheCarteWagon		= new JLabel("Piocher une carte " + this.ctrl.getMoyenDeTransport(), JLabel.CENTER);
+		JLabel lblPiocheCarteObjectif	= new JLabel("Piocher une carte objectif", JLabel.CENTER);
 		ImageIcon imageIconBtnPiocheCarteObjectif = new ImageIcon(this.ctrl.getVersoCarteObjectif());
 		ImageIcon imageIconBtnPiocheCarteWagon = new ImageIcon("donnee/imageCarte/voiture.jpg");
+
+		lblPiocheCarteWagon.setFont(new Font("", Font.BOLD, 16));
+		lblPiocheCarteObjectif.setFont(new Font("", Font.BOLD, 16));
 
 		imageIconBtnPiocheCarteObjectif.setImage(imageIconBtnPiocheCarteObjectif.getImage().getScaledInstance(300, 100, java.awt.Image.SCALE_DEFAULT));
 		imageIconBtnPiocheCarteWagon.setImage(imageIconBtnPiocheCarteWagon.getImage().getScaledInstance(300, 100, java.awt.Image.SCALE_DEFAULT));
