@@ -23,7 +23,7 @@ public class PanelMainJoueur extends JPanel
 	{
 		this.ctrl = ctrl;
 		this.setLayout(new GridLayout(2,1));
-		this.setSize(500,500);
+		
 
 		this.add(new PanelDispoCarteWagon(this.ctrl.getEstJoueurCourant()));
 
@@ -43,7 +43,6 @@ public class PanelMainJoueur extends JPanel
 			this.panelCoulCarteWagon = new JPanel();
 
 			this.scrollBar = new JScrollBar(JScrollBar.HORIZONTAL);
-
 			this.initValeur();
 
 			this.add(this.lblInfoNumeroCarte,BorderLayout.NORTH);
