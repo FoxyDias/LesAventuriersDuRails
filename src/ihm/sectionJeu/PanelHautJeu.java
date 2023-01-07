@@ -40,15 +40,16 @@ public class PanelHautJeu extends JPanel
  
 		for(int i = 0; i < this.ctrl.getNbJoueurPartie(); i++)
 		{
-			this.panelInfosJoueur = new JPanel(new GridLayout(3,1,10,0));
+			this.panelInfosJoueur = new JPanel(new GridLayout(4,1,10,0));
 			this.alJoueur.add(new JLabel("Joueur " + (i+1), JLabel.CENTER));
-			this.alNbCarteWagon.add(new JLabel("Nombre de cartes wagons : " + this.ctrl.getJoueur(i).getNbCarteWagon(), JLabel.CENTER));
+			this.alNbCarteWagon.add(new JLabel("Nombre de cartes wagons : " + this.ctrl.getNbWagonDebutPartie(), JLabel.CENTER));
 			this.alNbCarteObjectif.add(new JLabel("Nombre de cartes objectifs : " + this.ctrl.getJoueur(i).getNbCarteObjectif(), JLabel.CENTER));
-			//this.alNbPointsChemin.add(new JLabel("Nombre de points chemin : " + this.ctrl.getJoueur(i).getNbPointsChemin(), JLabel.CENTER));
+			this.alNbPointsChemin.add(new JLabel("Nombre de points chemin : ", JLabel.CENTER));
 			panelInfosJoueur.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
 			panelInfosJoueur.add(this.alJoueur.get(i));
 			panelInfosJoueur.add(this.alNbCarteWagon.get(i));
 			panelInfosJoueur.add(this.alNbCarteObjectif.get(i));
+			panelInfosJoueur.add(this.alNbPointsChemin.get(i));
 			panelProfilJoueur.add(panelInfosJoueur);
 		}
 		/**
@@ -74,20 +75,24 @@ public class PanelHautJeu extends JPanel
 				this.alJoueur.get(i).setForeground(this.ctrl.getEstJoueurCourant().getCouleur());
 				this.alNbCarteWagon.get(i).setForeground(this.ctrl.getEstJoueurCourant().getCouleur());
 				this.alNbCarteObjectif.get(i).setForeground(this.ctrl.getEstJoueurCourant().getCouleur());
+				this.alNbPointsChemin.get(i).setForeground(this.ctrl.getEstJoueurCourant().getCouleur());
 
 				this.alJoueur.get(i).setFont(new Font("", Font.BOLD, 14));
 				this.alNbCarteObjectif.get(i).setFont(new Font("", Font.BOLD, 14));
 				this.alNbCarteWagon.get(i).setFont(new Font("", Font.BOLD, 14));
+				this.alNbPointsChemin.get(i).setFont(new Font("", Font.BOLD, 14));
 			}
 			else
 			{
 				this.alJoueur.get(i).setForeground(Color.BLACK);
 				this.alNbCarteWagon.get(i).setForeground(Color.BLACK);
 				this.alNbCarteObjectif.get(i).setForeground(Color.BLACK);
+				this.alNbPointsChemin.get(i).setForeground(Color.BLACK);
 
 				this.alJoueur.get(i).setFont(new Font("", Font.BOLD, 12));
 				this.alNbCarteObjectif.get(i).setFont(new Font("", Font.BOLD, 12));
 				this.alNbCarteWagon.get(i).setFont(new Font("", Font.BOLD, 12));
+				this.alNbPointsChemin.get(i).setFont(new Font("", Font.BOLD, 12));
 			}
 		}
 	}

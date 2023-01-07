@@ -15,19 +15,16 @@ import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.BasicStroke;
-import javax.swing.JButton;
-import javax.swing.JDialog;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
-public class PanelCentreJeu extends JPanel implements ActionListener
+
+public class PanelCentreJeu extends JPanel implements ActionListener, MouseListener, MouseMotionListener
 {
 	private Controleur ctrl;
-	private JDialog dialog;
-	private JButton btnCarteObjectif1;
-	private JButton btnCarteObjectif2;
-	private JButton btnCarteObjectif3;
-	private JButton btnValider;
 
 	public PanelCentreJeu(Controleur ctrl)
 	{
@@ -36,6 +33,12 @@ public class PanelCentreJeu extends JPanel implements ActionListener
 		 */
 		this.ctrl = ctrl;
 		this.setLayout(new BorderLayout());
+
+		/**
+		 * Activation des composants
+		 */
+
+		this.addMouseListener(this);
 	}
 
 
@@ -216,7 +219,30 @@ public class PanelCentreJeu extends JPanel implements ActionListener
 
 	public void actionPerformed(ActionEvent e) 
 	{
-		// TODO Auto-generated method stub
 		this.repaint();
 	}
+
+
+	public void mouseClicked(MouseEvent e) {
+	}
+
+	public void mouseDragged(MouseEvent e) {
+	}
+	@Override
+	public void mouseMoved(MouseEvent e) {
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		System.out.println("x : " + e.getX() + " y : " + e.getY());
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {}
+
+	@Override
+	public void mouseExited(MouseEvent e) {}
 }

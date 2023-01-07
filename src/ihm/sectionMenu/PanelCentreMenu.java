@@ -383,7 +383,6 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 				{
 					this.nbPopUP++;
 					this.creerPopUpCarteObjectif();
-					
 				}
 			}
 		}

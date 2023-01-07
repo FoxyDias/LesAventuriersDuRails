@@ -6,7 +6,6 @@ import metier.CarteWagon;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JLabel;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -145,9 +144,9 @@ public class PanelHautMenu extends JPanel implements ActionListener
 						this.panelInformation.add(new JLabel("Nombre de carte(s) objectif  : " 						, JLabel.RIGHT));
 						this.panelInformation.add(new JLabel("" + this.ctrl.getLstCarteObjectif().size()			, JLabel.LEFT));
 						this.panelInformation.add(new JLabel("Nombre de wagons restants pour arrêter la partie : "	, JLabel.RIGHT)); 	
-						this.panelInformation.add(new JLabel("" + this.ctrl.getNbWagonDebutPartie()					, JLabel.LEFT));
-						this.panelInformation.add(new JLabel("Nombre de wagons / joueurs : " 						, JLabel.RIGHT));
 						this.panelInformation.add(new JLabel("" + this.ctrl.getNbWagonFinPartie()					, JLabel.LEFT));
+						this.panelInformation.add(new JLabel("Nombre de wagons / joueurs : " 						, JLabel.RIGHT));
+						this.panelInformation.add(new JLabel("" + this.ctrl.getNbWagonDebutPartie()					, JLabel.LEFT));
 
 						// Récuperer l'image
 						panelImage.add(new JLabel(new ImageIcon(this.ctrl.getNomImage())));
