@@ -4,8 +4,8 @@ import main.Controleur;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,12 +22,12 @@ public class Metier {
     private ArrayList<Arete> lstArete;
 
     private ArrayList<CarteObjectif> lstCarteObjectif;
+    private ArrayList<CarteObjectif> lstPiocheObjectifs;
 
     private ArrayList<CarteWagon> lstCarteWagon;
     private ArrayList<CarteWagon> lstPiocheWagon;
     private ArrayList<CarteWagon> lstDefausseWagon;
     
-
 
     private String versoCarteObjectif;
     private String versoCarteWagon;
@@ -44,6 +44,8 @@ public class Metier {
 
     private int intJoueurActuel;
 
+    private HashMap<Joueur, ArrayList<Noeud>> hsmJoueurNoeud;
+
     public Metier( Controleur ctrl )
     {
         this.ctrl = ctrl;
@@ -52,6 +54,7 @@ public class Metier {
         this.lstArete = new ArrayList<Arete>();
 
         this.lstCarteObjectif = new ArrayList<CarteObjectif>();
+        this.lstPiocheObjectifs = new ArrayList<CarteObjectif>(); 
 
         this.lstCarteWagon = new ArrayList<CarteWagon>();
         this.lstDefausseWagon = new ArrayList<CarteWagon>();
@@ -61,49 +64,54 @@ public class Metier {
         this.lstJoueur = new ArrayList<Joueur>();
 
         this.intJoueurActuel = 0;
+
+        this.hsmJoueurNoeud = new HashMap<Joueur,ArrayList<Noeud>>();
     }
 
 
     public void lancerPartie()
+    {   
+        initPioche();
+
+        this.ctrl.changerPanel("Jeu");
+
+        //tourChoixObjectif();
+        tourActuel();
+    }
+
+    public void tourActuel()
     {
-        boolean dernierTour = false;
-        int nbTour = 0;
         String action;
 
-        initPioche();
-        
-        while(!dernierTour)
+        Joueur joueurActuel = this.lstJoueur.get(this.intJoueurActuel);
+
+        boolean tourQuitter = true;
+        while (tourQuitter)
         {
-            for(Joueur joueurActuel : lstJoueur)
-            {
-                boolean tourQuitter = true;
-                while (tourQuitter)
-                {
-                    System.out.println("Quelle action choisissez-vous parmit : Piocher | Possession | Carte  ");
-                    Scanner sc = new Scanner(System.in);
-                    action = sc.nextLine().toLowerCase();
+            System.out.println("Quelle action choisissez-vous parmit : Piocher | Possession | Carte  ");
+            Scanner sc = new Scanner(System.in);
+            action = sc.nextLine().toLowerCase();
 
-                    /*                          Choix Piocher                             */
-                    if (action.equals("piocher")) {
-                        tourQuitter = !(tourPiocher(joueurActuel));
-                    }
-
-                    /*-------------------------------------------------------------------*/
-
-                    /*                          Choix Possession                         */
-                    else if (action.equals("possession")) {
-                        tourQuitter = !(tourPossession(joueurActuel));
-                    }
-                    /*-------------------------------------------------------------------*/
-
-                    /*                             Choix Carte                           */
-                    else if (action.equals("carte")) {
-                        tourQuitter = !(tourCarte(joueurActuel));
-                    }
-                    /*-------------------------------------------------------------------*/
-                }
+            /*                          Choix Piocher                             */
+            if (action.equals("piocher")) {
+                tourQuitter = !(tourPiocher(joueurActuel));
             }
+
+            /*-------------------------------------------------------------------*/
+
+            /*                          Choix Possession                         */
+            else if (action.equals("possession")) {
+                tourQuitter = !(tourChoixArete(joueurActuel));
+            }
+            /*-------------------------------------------------------------------*/
+
+            /*                             Choix Carte                           */
+            else if (action.equals("carte")) {
+                tourQuitter = !(tourCarte(joueurActuel));
+            }
+            /*-------------------------------------------------------------------*/
         }
+        
     }
 
     /*
@@ -119,17 +127,18 @@ public class Metier {
      */
     public void avancerJoueur()
     {  
-        this.intJoueurActuel = (this.intJoueurActuel + 1) % this.ctrl.getNbJoueurPartie();
-        System.out.println(this.intJoueurActuel);
+        this.intJoueurActuel++;
+        if(this.intJoueurActuel >= this.nbJoueurPartie)
+            this.intJoueurActuel = 0;
     }
 
     private void initPioche()
     {
         for(int i=0; i<5; i++)
-        {
-            piocherRdm();
-        }
+            piocherWagonRandom();
 
+        for(int i=0; i<3; i++)
+            piocherObjectifRandom();
     }
 
     private boolean tourPiocher(Joueur joueurActuel)
@@ -138,7 +147,7 @@ public class Metier {
         Scanner sc = new Scanner(System.in);
         boolean droitMulti = true;
 
-        for(int nbPioche=0; nbPioche<2; nbPioche++)
+        for(int nbPioche = 0; nbPioche < 2; nbPioche++)
         {
             /* En cas de joker dès les 3 premières cartes */
             for(CarteWagon cw : this.lstPiocheWagon)
@@ -148,58 +157,67 @@ public class Metier {
             /* Choix entre les cartes */
             System.out.println("Choisissez ce que vous voulez piocher parmis : ");
             this.afficherPioche();
+
             choixWagons = sc.nextLine().toLowerCase();
             if(!droitMulti && choixWagons.equals("joker"))
             {
-                System.out.println("Vous n'avez pas le droit de prendre un jeton Multi");
+                System.out.println("Vous n'avez pas le droit de prendre un Joker");
                 choixWagons = sc.nextLine().toLowerCase();
             }
+
             while(!choixWagons(joueurActuel, choixWagons) && !(choixWagons.equals("quitter")))
             {
                 if(!droitMulti && choixWagons.equals("joker"))
-                    System.out.println("Vous n'avez pas le droit de prendre un jeton Multi");
+                    System.out.println("Vous n'avez pas le droit de prendre un Joker");
                 else
                     System.out.println("Erreur de choix");
 
                 choixWagons = sc.nextLine();
             }
+            
             if(choixWagons.equals("quitter"))
                 return false;
 
             for(CarteWagon cw : this.lstPiocheWagon)
-            {
                 if(cw.getCouleur().equals("Joker"))
-                {
                     droitMulti = false;
-                }
-            }
         }
         return true;
     }
 
-    private void afficherPioche() {
-
+    private void afficherPioche() 
+    {
         for( CarteWagon cw : this.lstPiocheWagon )
-        {
             System.out.println(cw.getCouleur());
-        }
-
     }
 
-    private boolean tourPossession(Joueur joueurActuel)
+    private boolean tourChoixArete(Joueur joueurActuel)
     {
-        System.out.println("Quelle territoire voulez-vous ? ");
-        for(Arete a : lstArete){
-            if(joueurActuel.placerWagon(intJoueurActuel) != a.getEstOccupe()){
-                System.out.println("Ouais c ajté :)");
-                return true;
-            }
-            
-            if(joueurActuel.placerWagon(intJoueurActuel) == a.getEstOccupe()){
-                System.out.println("Arête déjà occupée");
-            }
+        System.out.println("Quelle arête voulez-vous ? ");
+        afficherArete();
+
+        Scanner sc = new Scanner(System.in);
+        String choixArete = sc.nextLine().toLowerCase();
+        Arete a = this.lstArete.get(Integer.parseInt(choixArete));
+
+        if(joueurActuel.placerWagon(a.getWagon()) != a.getEstOccupe()){
+            System.out.println("Ouais c ajté :)");
+            return true;
+        }
+        
+        if(joueurActuel.placerWagon(a.getWagon()) == a.getEstOccupe()){
+            System.out.println("Arête déjà occupée");
+            return true;
         }
         return false;
+    }
+
+    public void afficherArete(){
+        int cpt = 0;
+        for(Arete a : lstArete){
+            System.out.println(cpt + " : " + a.getNoeudDep().getNom() + " --- " + a.getNoeudArr().getNom());
+            cpt++;
+        }
     }
 
     private boolean tourCarte(Joueur joueurActuel)
@@ -211,25 +229,34 @@ public class Metier {
         if (choix == null) return false;
 
         for(int i =0; i<this.lstPiocheWagon.size(); i++)
-        {
             if (choix.equals(this.lstPiocheWagon.get(i).getCouleur().toLowerCase())){
                 joueur.ajouterCarteWagon(this.lstPiocheWagon.get(i));
                 this.lstDefausseWagon.add(this.lstPiocheWagon.get(i));
                 this.lstPiocheWagon.remove(i);
-                this.piocherRdm();
+                this.piocherWagonRandom();
                 return true;
             }
-        }
         return false;
     }
 
-    private void piocherRdm()
+    private void piocherWagonRandom()
     {
-        //remettre la fause quand this.lstCarteWagon.size() == 0;
+        if(this.lstCarteWagon.size() == 0)
+            for(int i =0; i<this.lstCarteWagon.size(); i++){
+                this.lstCarteWagon.add(this.lstDefausseWagon.get(i));
+                this.lstDefausseWagon.remove(i);
+            }
 
         int num = (int) (Math.random() * this.lstCarteWagon.size());
         this.lstPiocheWagon.add(this.lstCarteWagon.get(num));
         this.lstCarteWagon.remove(num);
+    }
+
+    private void piocherObjectifRandom()
+    {
+        int num = (int) (Math.random() * this.lstCarteObjectif.size());
+        this.lstPiocheObjectifs.add(this.lstCarteObjectif.get(num));
+        this.lstCarteObjectif.remove(num);
     }
 
     public void lireXml(String pathXml)
@@ -239,14 +266,14 @@ public class Metier {
 
         SAXBuilder sxb = new SAXBuilder();
         try {
-            // On crée un nouveau document JDOM avec en argument le
-            //fichier XML
-            // Le parsing est terminé
+            /* 
+             * On crée un nouveau document JDOM avec en argument le fichier XML
+             * Le parsing est terminé ;)
+             */ 
             document = sxb.build(pathXml);
         } catch (Exception e)
         {
-
-            System.out.println("ça crash");
+            System.out.println("Erreur");
             return;
         }
 
@@ -261,23 +288,19 @@ public class Metier {
 
         // List listVilles = racine.getChildren("noeud");
         // Iterator i = listVilles.iterator();
-        List<Element> lstNoeud = racine.getChildren ( "mappe" ).get(0).getChildren("noeud");
-        List<Element> lstArete = racine.getChildren ( "mappe" ).get(0).getChildren("arete");
-        List<Element> lstObjectif = racine.getChildren ( "mappe" ).get(0).getChildren("carteObjectif");
-        List<Element> lstWagon = racine.getChildren ( "mappe" ).get(0).getChildren("carteWagon");
+        List<Element> lstNoeud       = racine.getChildren ( "mappe" ).get(0).getChildren("noeud");
+        List<Element> lstArete       = racine.getChildren ( "mappe" ).get(0).getChildren("arete");
+        List<Element> lstObjectif    = racine.getChildren ( "mappe" ).get(0).getChildren("carteObjectif");
+        List<Element> lstWagon       = racine.getChildren ( "mappe" ).get(0).getChildren("carteWagon");
         List<Element> lstInformation = racine.getChildren ( "mappe" ).get(0).getChildren("details");
-       
-        List<Element> lstPoints = racine.getChildren ( "mappe" ).get(0).getChildren("points").get(0).getChildren("pointTaille");
+        List<Element> lstPoints      = racine.getChildren ( "mappe" ).get(0).getChildren("points").get(0).getChildren("pointTaille");
 
         for(Element courant : lstNoeud) {
-
             String nomVille = courant.getAttributeValue("nom");
-            int x = Integer.parseInt(courant.getChild("coordonees").getAttributeValue("x"));
-            int y = Integer.parseInt(courant.getChild("coordonees").getAttributeValue("y"));
+            int x    = Integer.parseInt(courant.getChild("coordonees").getAttributeValue("x"));
+            int y    = Integer.parseInt(courant.getChild("coordonees").getAttributeValue("y"));
             int nomX = Integer.parseInt(courant.getChild("coordoneesNom").getAttributeValue("x"));
             int nomY = Integer.parseInt(courant.getChild("coordoneesNom").getAttributeValue("y"));
-
-            //System.out.println("Noeud : " + nomVille + " x : " + x + " y : " + y + " nomX : "+ nomX + " nomY : "+ nomY);
 
             this.creerNoeud(nomVille, x, y, nomX, nomY);
         }
@@ -285,7 +308,7 @@ public class Metier {
         for(Element w : lstWagon)
         {
             String c = w.getChild("couleur").getText(); // la couleur en toString
-            String verso = w.getChild("recto").getText(); //le recto
+            String verso ="donnee/" + w.getChild("recto").getText(); //le recto
             String rgb;
 
             if(!(c.equals("Joker")))
@@ -295,19 +318,19 @@ public class Metier {
 
             for(int i =0; i<Integer.parseInt(w.getChild("nombre").getText()); i++ )
                 this.creerCarteWagon(rgb, verso);
-
         }
         
         for(Element a : lstArete)
         {
-            String nomVille1 = a.getChild("noeudArr").getText ();
-            String nomVille2 = a.getChild("noeudDep").getText ();
-            String couleur = a.getChild("couleur").getText();
+            String nomVille1 = a.getChild("noeudArr").getText();
+            String nomVille2 = a.getChild("noeudDep").getText();
+            String couleur   = a.getChild("couleur") .getText();
+
             int nbW = Integer.parseInt(a.getChild("wagons").getText());
 
-            //System.out.println("Arete : " + nomVille1 + " " + nomVille2 + " " + couleur + " " + nbW + " " + estDouble);
             Noeud n1 = this.lstNoeud.get(Integer.parseInt(nomVille1));
             Noeud n2 = this.lstNoeud.get(Integer.parseInt(nomVille2));
+
             this.creerArete(n1, n2, couleur,nbW);
         }
 
@@ -322,6 +345,7 @@ public class Metier {
             this.heightPanel            = Double.parseDouble(d.getChild("heightPanel").getText());
             this.nomImage               = d.getChild("image").getText();
             this.versoCarteWagon        = d.getChild("versoCarteWagon").getText();
+            this.versoCarteObjectif     = d.getChild("versoCarteObjectif").getText();
         }
 
         for(Element o : lstObjectif)
@@ -368,8 +392,27 @@ public class Metier {
 
             this.lstCouleurJoueur.add(coulRGB);
             this.lstJoueur.add(new Joueur(this.nbWagonDebutPartie, coulRGB));
+            
 
         }
+        Collections.shuffle(this.lstCarteWagon);
+        Collections.shuffle(this.lstCarteObjectif);
+
+        for(Arete a : this.lstArete)
+        {
+            //random entre 0 et 2
+            int joueur = (int)(Math.random()*3);
+            this.lstJoueur.get(joueur).ajouterArete(a);
+            a.setEstOccupe(true);
+            a.setOccupateur(this.lstJoueur.get(joueur));
+
+        }
+
+
+        // System.out.println("Arete prise : " + this.lstArete.get(2));
+        // this.lstJoueur.get(0).ajouterArete(this.lstArete.get(2));
+        // this.lstArete.get(2).setEstOccupe(true);
+        // this.lstArete.get(2).setOccupateur(this.lstJoueur.get(0));
 
     }
 
@@ -403,7 +446,6 @@ public class Metier {
     {
         Arete a = new Arete( n1, n2, c ,nbW);
         for (Arete b : lstArete)
-        {
             if ((b.getNoeudArr().equals(n1) && b.getNoeudDep().equals(n2))||
                     (b.getNoeudArr().equals(n2) && b.getNoeudDep().equals(n1)))
             {
@@ -412,8 +454,6 @@ public class Metier {
                 b.setAreteDouble(a);
                 a.setAreteDouble(b);
             }
-        }
-
         this.lstArete.add( a );
     }
 
@@ -423,7 +463,7 @@ public class Metier {
         this.lstCarteObjectif.add( co );
     }
 
-    public void creerCarteWagon( String c, String s )
+    public void  creerCarteWagon( String c, String s )
     {
         CarteWagon cw = new CarteWagon( c );
         if(!(s == null))
@@ -431,10 +471,7 @@ public class Metier {
 
         this.lstCarteWagon.add( cw );
     }
-
-    public ArrayList<Joueur> getLstJoueur() { return this.lstJoueur; }
-
-
+    
     /*-------------------------------------------------------------------------*/
     /*                                Getters                                  */
     /*-------------------------------------------------------------------------*/
@@ -447,7 +484,21 @@ public class Metier {
     public int getNbWagonDebutPartie    () { return nbWagonDebutPartie;    }
     public int getNbWagonFinPartie      () { return nbWagonFinPartie;      } 
     public int getNbPointsPlusLongChemin() { return nbPointsPlusLongChemin;}
-    public int[] getPointsTaille() { return pointsTaille; }
+    public int[] getPointsTaille        () { return pointsTaille;          }
+
+    public String getVersoCarteWagon    () { return this.versoCarteWagon;  }
+    public String getVersoCarteObjectif () { return versoCarteObjectif;    }
+    public String getNomImage           () { return nomImage;              }
+
+    public Joueur getJoueur                        (int i) { return this.lstJoueur.get(i);}
+
+    public ArrayList<CarteObjectif> getListCarteObjectif() { return this.lstCarteObjectif;}
+    public ArrayList<CarteObjectif> getLstCarteObjectif () { return lstCarteObjectif;     }
+    public ArrayList<CarteWagon> getLstCarteWagon       () { return lstCarteWagon;        }
+    public ArrayList<Noeud> getLstNoeud                 () { return this.lstNoeud;        }
+    public ArrayList<Arete> getLstArete                 () { return this.lstArete;        }
+    public ArrayList<Color> getLstCouleurJoueur         () { return lstCouleurJoueur;     }
+    public ArrayList<Joueur> getLstJoueur() { return this.lstJoueur; } 
     /*-------------------------------------------------------------------------*/
 
     /*-------------------------------------------------------------------------*/
@@ -456,55 +507,6 @@ public class Metier {
     public void setWidthPanel (double witdhPanel) {this.witdhPanel = witdhPanel;  }
     public void setHeightPanel(double heightPanel){this.heightPanel = heightPanel;}
     public void setNbJoueurPartie(int n          ){ this.nbJoueurPartie = n; }
-
     /*-------------------------------------------------------------------------*/
-
-    
-
-    public ArrayList<Color> getLstCouleurJoueur() {
-        return lstCouleurJoueur;
-    }
-
-    public ArrayList<CarteObjectif> getListCarteObjectif()
-    {
-        return this.lstCarteObjectif;
-    }
-
-    public String getVersoCarteWagon(){
-        return this.versoCarteWagon;
-    }
-
-    public String getVersoCarteObjectif() {
-        return versoCarteObjectif;
-    }
-
-    public ArrayList<CarteWagon> getLstCarteWagon() {
-        return lstCarteWagon;
-    }
-
-    
-
-    public ArrayList<CarteObjectif> getLstCarteObjectif() {
-        return lstCarteObjectif;
-    }
-
-    public ArrayList<Noeud> getLstNoeud()
-    {
-        return this.lstNoeud;
-    }
-
-    public ArrayList<Arete> getLstArete()
-    {
-        return this.lstArete;
-    }
-
-    public String getNomImage() {
-        return nomImage;
-    }
-
-    public Joueur getJoueur(int i)
-    {
-        return this.lstJoueur.get(i);
-    }
-
+   
 }

@@ -4,17 +4,15 @@ import main.Controleur;
 import metier.CarteWagon;
 
 import javax.swing.JPanel;
-import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.*;
 
 public class PanelBasJeu extends JPanel
 {
 	private Controleur ctrl;
-	
 
 	public PanelBasJeu(Controleur ctrl)
 	{
@@ -31,7 +29,13 @@ public class PanelBasJeu extends JPanel
 		 */
 		for(int index = 0; index < 5; index++)
 		{
-			this.add(new PanelPiocheMarcher(this.ctrl.getLstCarteWagon().remove(0)));
+			JButton btnPrendCarte = new JButton();
+			/* Ajouter la fonctionnalitée de changmeent d'image quand il n'y a plus de carte d'un certain type */
+			ImageIcon btnIcon = new ImageIcon("donnee/imageCarte/voiture.jpg");
+			btnIcon.setImage(btnIcon.getImage().getScaledInstance(200, 100, java.awt.Image.SCALE_DEFAULT));
+			btnPrendCarte.setIcon(btnIcon);
+			this.add(btnPrendCarte);			
+			//this.add(new PanelPiocheMarcher(this.ctrl.getLstCarteWagon().remove(0)));
 		}
 
 		/**
@@ -47,20 +51,15 @@ public class PanelBasJeu extends JPanel
 		public PanelPiocheMarcher(CarteWagon carteWagon)
 		{
 			this.carteWagon = carteWagon;
-			this.setBackground(this.carteWagon.getColor());
-			this.setBorder(BorderFactory.createLineBorder(Color.black));
-
-			this.btnPrendCarte = new JButton("PrendCarte");
 
 			this.add(this.btnPrendCarte);
-
 			this.btnPrendCarte.addActionListener(this);
 		}
 
-		public void majMacher(CarteWagon carteWagon)
+		public void majMarcher(CarteWagon carteWagon)
 		{
 			this.carteWagon = carteWagon;
-			this.setBackground(this.carteWagon.getColor());
+			this.setBackground(getBackground());
 			this.repaint();
 		}
 
@@ -70,7 +69,7 @@ public class PanelBasJeu extends JPanel
 			if(e.getSource() == this.btnPrendCarte)
 			{
 				PanelBasJeu.this.ctrl.getEstJoueurCourant().ajouterCarteWagon(this.carteWagon);
-				this.majMacher(PanelBasJeu.this.ctrl.getLstCarteWagon().remove(0));
+				this.majMarcher(PanelBasJeu.this.ctrl.getLstCarteWagon().remove(0));
 			}
 		}
 

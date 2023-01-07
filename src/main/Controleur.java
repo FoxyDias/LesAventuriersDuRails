@@ -18,7 +18,6 @@ public class Controleur {
     {
         this.metier = new Metier( this );
         this.ihm = new FrameJeu(this, "init");
-
     }
 
     public void lancerPartie(String nom)
@@ -94,7 +93,7 @@ public class Controleur {
     {
         return this.metier.getLstArete();
     }
-
+    
 	public PanelCentreMenu getPanelCentreMenu() { 
 		
 		if (this.ihm == null) return null;
@@ -147,6 +146,8 @@ public class Controleur {
 	}
 
     public Joueur getJoueur(int i) { return this.metier.getJoueur(i); }
+
+    
 
     /**
      * Le main du projet

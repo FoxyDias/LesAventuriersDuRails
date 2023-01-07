@@ -13,6 +13,8 @@ public class Joueur {
     private ArrayList<CarteWagon> mainWagon;
     private ArrayList<CarteObjectif> mainObjectif;
 
+    private ArrayList<Arete> lstArete;
+    
     private int routeLaPlusLong;
 
     public Joueur(int w, Color c)
@@ -23,6 +25,8 @@ public class Joueur {
 
         this.mainWagon      = new ArrayList<CarteWagon>();
         this.mainObjectif   = new ArrayList<CarteObjectif>();
+
+        this.lstArete       = new ArrayList<Arete>();
 
         this.nbPoints       = 0;
         this.routeLaPlusLong= 0;
@@ -76,12 +80,22 @@ public class Joueur {
         return this.mainObjectif.size();
     }
 
+    public ArrayList<Arete> getLstArete() {
+        return lstArete;
+    }
+
+    public Color getCouleur() {
+        return this.couleur;
+    }
+
     public void ajouterCarteWagon(CarteWagon cWagon){this.mainWagon.add(cWagon);}
     public void retirerCarteWagon(int indexcWagon){this.mainObjectif.remove(indexcWagon);}
     public ArrayList<CarteWagon> getMainWagon() {return this.mainWagon;}
     
     public void ajouterCarteObjectif(CarteObjectif cObjectif){this.mainObjectif.add(cObjectif);}
     public ArrayList<CarteObjectif> getMainObjectif() {return this.mainObjectif;}
+
+    public void ajouterArete(Arete a){this.lstArete.add(a);}
 
     public boolean isJoueurFinal(){return nbWagons <= 2;}
 }

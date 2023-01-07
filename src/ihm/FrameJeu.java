@@ -69,7 +69,7 @@ public class FrameJeu extends JFrame
 				setContentPane(panelJeu);
 				revalidate();
 				repaint();
-				this.ctrl.changerCouleurPanel();
+				this.panelJeu.changerCouleurPanel();
 				break;
 		}
 	}

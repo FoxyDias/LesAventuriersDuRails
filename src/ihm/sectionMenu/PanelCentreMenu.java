@@ -1,6 +1,7 @@
 package ihm.sectionMenu;
 
 import main.Controleur;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.net.InetAddress;
@@ -12,6 +13,7 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
 import javax.swing.border.Border;
 import java.awt.Font;
+import java.awt.FlowLayout;
 
 public class PanelCentreMenu extends JPanel implements ActionListener
 {
@@ -42,6 +44,8 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 	private JButton btnCarteObjectif2;
 	private JButton btnCarteObjectif3;
 	private JDialog dialog;
+
+	private int nbPopUP = 1;
 
 	public PanelCentreMenu(Controleur ctrl)
 	{
@@ -287,7 +291,6 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		if(e.getSource() == this.btnCreerPartieSolo)
 		{			
 			int nbJoueurs = Integer.parseInt(this.txtNbJoueursLocal.getText());
-			System.out.println(nbJoueurs);
 			
 			if(this.txtNbJoueursLocal.getText().equals(""))
 			{
@@ -302,36 +305,10 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			{
 				this.ctrl.setNbJoueurPartie(Integer.parseInt(this.txtNbJoueursLocal.getText()));
 				this.ctrl.changerPanel("Jeu");
-				
-				this.dialog = new JDialog();
-				this.dialog.setTitle("Choix des cartes objectifs");
-				this.dialog.setLayout(new GridLayout(2,3));
-				this.dialog.setBounds(500, 400, 1000, 400);
-				this.dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-				this.dialog.setResizable(false);
+		
+				this.creerPopUpCarteObjectif();
 
-				this.btnCarteObjectif1 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
-				this.btnCarteObjectif2 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
-				this.btnCarteObjectif3 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
-				this.btnValider = new JButton("Valider");
 
-				this.btnCarteObjectif1.setBackground(Color.WHITE);
-				this.btnCarteObjectif2.setBackground(Color.WHITE);
-				this.btnCarteObjectif3.setBackground(Color.WHITE);
-				this.btnValider.setBackground(Color.WHITE);
-			
-				this.dialog.add(btnCarteObjectif1);
-				this.dialog.add(btnCarteObjectif2);
-				this.dialog.add(btnCarteObjectif3);
-				this.dialog.add(new JLabel());
-				this.dialog.add(btnValider);
-				this.dialog.add(new JLabel());
-				this.dialog.setVisible(true);
-
-				this.btnCarteObjectif1.addActionListener(this);
-				this.btnCarteObjectif2.addActionListener(this);
-				this.btnCarteObjectif3.addActionListener(this);
-				this.btnValider.addActionListener(this);
 			}
 		}
 
@@ -388,18 +365,41 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnValider)
 		{
-			this.dialog.dispose();
+			if(!(this.btnCarteObjectif1.isOpaque() && this.btnCarteObjectif2.isOpaque() ||  
+				 this.btnCarteObjectif1.isOpaque() && this.btnCarteObjectif3.isOpaque() || 
+				 this.btnCarteObjectif2.isOpaque() && this.btnCarteObjectif1.isOpaque() || 
+				 this.btnCarteObjectif2.isOpaque() && this.btnCarteObjectif3.isOpaque() ||
+				 this.btnCarteObjectif3.isOpaque() && this.btnCarteObjectif1.isOpaque() ||
+				 this.btnCarteObjectif3.isOpaque() && this.btnCarteObjectif2.isOpaque()))
+			{
+				JOptionPane.showMessageDialog(null, "Veuillez choisir 2 cartes objectifs", "Erreur", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			else
+			{
+				this.dialog.dispose();
+
+				while(this.nbPopUP < this.ctrl.getNbJoueurPartie())
+				{
+					this.nbPopUP++;
+					this.creerPopUpCarteObjectif();
+				}
+			}
 		}
 
 		if(e.getSource() == this.btnCarteObjectif1)
 		{
-			this.btnCarteObjectif1.setOpaque(true);
-			this.btnCarteObjectif1.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+			this.inverseEtatBtn(this.btnCarteObjectif1);
 		}
-		else 
+
+		if(e.getSource() == this.btnCarteObjectif2)
 		{
-			this.btnCarteObjectif1.setOpaque(false);
-			this.btnCarteObjectif1.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+			this.inverseEtatBtn(this.btnCarteObjectif2);
+		}
+
+		if(e.getSource() == this.btnCarteObjectif3)
+		{
+			this.inverseEtatBtn(this.btnCarteObjectif3);
 		}
 	}
 
@@ -411,5 +411,60 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		this.btnCreerPartieMulti.setEnabled(b);
 		this.btnCreerPartieSolo.setEnabled(b);
 		this.txtNbJoueursLocal.setEnabled(b);
+	}
+
+	public void inverseEtatBtn(JButton btn)	
+	{
+		if(btn.isOpaque())
+		{
+			btn.setOpaque(false);
+			btn.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		}
+		else
+		{
+			btn.setOpaque(true);
+			btn.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+		}
+	}
+
+	public JDialog creerPopUpCarteObjectif()
+	{
+		JPanel panelBtn = new JPanel(new FlowLayout(FlowLayout.CENTER,0,75));
+
+		this.dialog = new JDialog();
+		this.dialog.setTitle("Joueur " + this.nbPopUP + ", choisissez au moins deux cartes objectifs");
+		this.dialog.setLayout(new GridLayout(2,3));
+		this.dialog.setBounds(500, 400, 1000, 400);
+		this.dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		this.dialog.setResizable(false);
+
+		this.btnCarteObjectif1 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
+		this.btnCarteObjectif2 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
+		this.btnCarteObjectif3 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
+		this.btnValider = new JButton("Valider");
+
+		this.btnCarteObjectif1.setBackground(Color.WHITE);
+		this.btnCarteObjectif2.setBackground(Color.WHITE);
+		this.btnCarteObjectif3.setBackground(Color.WHITE);
+		this.btnValider.setBackground(Color.WHITE);
+
+		panelBtn.add(this.btnValider);
+	
+		this.dialog.add(btnCarteObjectif1);
+		this.dialog.add(btnCarteObjectif2);
+		this.dialog.add(btnCarteObjectif3);
+		this.dialog.add(new JLabel());
+		this.dialog.add(panelBtn);
+		this.dialog.add(new JLabel());
+		this.dialog.setVisible(true);
+
+		this.btnCarteObjectif1.addActionListener(this);
+		this.btnCarteObjectif2.addActionListener(this);
+		this.btnCarteObjectif3.addActionListener(this);
+		this.btnValider.addActionListener(this);
+
+
+		return this.dialog;
+
 	}
 }

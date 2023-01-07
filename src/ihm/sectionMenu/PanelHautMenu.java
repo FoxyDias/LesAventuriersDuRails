@@ -1,6 +1,7 @@
 package ihm.sectionMenu;
 
 import main.Controleur;
+import metier.CarteWagon;
 
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -16,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -37,6 +39,8 @@ public class PanelHautMenu extends JPanel implements ActionListener
 	private File FileImagenew;
 
 	private String cheminFichier;
+
+	private String stringFichierManquant;
 
 	private boolean validFichier;
 
@@ -109,8 +113,8 @@ public class PanelHautMenu extends JPanel implements ActionListener
 
 			if(res == JFileChooser.APPROVE_OPTION)
 			{
-				try {
-
+				try 
+				{
 					File file = jFileChooser.getSelectedFile();
 					Files.copy(file.toPath(), Paths.get("donnee/xml/"	+ file.getName()));
 					
@@ -140,40 +144,62 @@ public class PanelHautMenu extends JPanel implements ActionListener
 						this.panelInformation.add(new JLabel("Nombre de carte(s) objectif  : " 						, JLabel.RIGHT));
 						this.panelInformation.add(new JLabel("" + this.ctrl.getLstCarteObjectif().size()			, JLabel.LEFT));
 						this.panelInformation.add(new JLabel("Nombre de wagons restants pour arrêter la partie : "	, JLabel.RIGHT)); 	
-						this.panelInformation.add(new JLabel("" + this.ctrl.getNbWagonDebutPartie()					, JLabel.LEFT));
-						this.panelInformation.add(new JLabel("Nombre de wagons / joueurs : " 						, JLabel.RIGHT));
 						this.panelInformation.add(new JLabel("" + this.ctrl.getNbWagonFinPartie()					, JLabel.LEFT));
+						this.panelInformation.add(new JLabel("Nombre de wagons / joueurs : " 						, JLabel.RIGHT));
+						this.panelInformation.add(new JLabel("" + this.ctrl.getNbWagonDebutPartie()					, JLabel.LEFT));
 
 						// Récuperer l'image
 						panelImage.add(new JLabel(new ImageIcon(this.ctrl.getNomImage())));
 
-						String nomImage = this.ctrl.getNomImage();
-						this.FileImagenew =new File(nomImage);
-						this.validFichier = this.FileImagenew.exists();
-						if(!this.validFichier)
+						ArrayList<String> lstImage = new ArrayList<String>();
+						lstImage.add(this.ctrl.getNomImage());
+						lstImage.add(this.ctrl.getVersoCarteObjectif());
+						lstImage.add(this.ctrl.getVersoCarteWagon());
+						
+						for (CarteWagon carte : this.ctrl.getLstCarteWagon())
 						{
-							try
-							{	
-								this.jdImporteImageManquante = new JDialog();
-								this.btnImportImage = new JButton("Importer l'image manquante");
-								this.btnImportImage.addActionListener(this);
-								this.jdImporteImageManquante.setTitle("Erreur");
-								this.jdImporteImageManquante.setSize(300, 100);
-								this.jdImporteImageManquante.setLocationRelativeTo(null);
-								this.jdImporteImageManquante.setModal(true);
-								// ne pas pouvoir fermer la fenetre
-								this.jdImporteImageManquante.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-								this.jdImporteImageManquante.setResizable(false);
-								this.jdImporteImageManquante.setLayout(new BorderLayout());
-								this.jdImporteImageManquante.add(btnImportImage, BorderLayout.SOUTH);
-								this.jdImporteImageManquante.add(new JLabel("L'image " + nomImage +  " n'existe pas, placer la dans le dossier image"), BorderLayout.CENTER);
-								//FileNameExtensionFilter filtreImage = new FileNameExtensionFilter("Format XML", "png")
-								this.jdImporteImageManquante.setVisible(true);
-							}
-							catch(Exception e1){e1.printStackTrace();}
+							lstImage.add(carte.getRecto());
 						}
-						this.FileImagenew =new File(this.ctrl.getNomImage());
-						this.ctrl.getPanelCentreMenu().setEnabled(true);
+
+						for(String s : lstImage)
+						{
+							//System.out.println(s);
+							this.stringFichierManquant = s;
+
+							if(s != null && !s.equals("null") && !s.equals( "donnee/null"))
+							{
+								
+								//System.out.println(s);
+								this.FileImagenew =new File(s);
+								
+								this.validFichier = this.FileImagenew.exists();
+								if(!this.validFichier)
+
+								{
+									try
+									{	
+										this.jdImporteImageManquante = new JDialog();
+										this.btnImportImage = new JButton("Importer l'image manquante");
+										this.btnImportImage.addActionListener(this);
+										this.jdImporteImageManquante.setTitle("Erreur");
+										this.jdImporteImageManquante.setSize(500, 300);
+										this.jdImporteImageManquante.setLocationRelativeTo(null);
+										this.jdImporteImageManquante.setModal(true);
+										// ne pas pouvoir fermer la fenetre
+										this.jdImporteImageManquante.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+										this.jdImporteImageManquante.setResizable(false);
+										this.jdImporteImageManquante.setLayout(new BorderLayout());
+										this.jdImporteImageManquante.add(btnImportImage, BorderLayout.SOUTH);
+										this.jdImporteImageManquante.add(new JLabel("L'image " + s +  " n'existe pas, placer la dans le dossier des image"), BorderLayout.CENTER);
+										//FileNameExtensionFilter filtreImage = new FileNameExtensionFilter("Format XML", "png")
+										this.jdImporteImageManquante.setVisible(true);
+									}
+									catch(Exception e1){e1.printStackTrace();}
+								}
+								this.FileImagenew =new File(this.ctrl.getNomImage());
+								this.ctrl.getPanelCentreMenu().setEnabled(true);
+							}
+						}
 					}
 				} catch (IOException e1) {e1.printStackTrace();}
 			}
@@ -181,18 +207,32 @@ public class PanelHautMenu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnImportImage)
 		{
-			JFileChooser jFileChooserRemplacement = new JFileChooser(new File("donnee/xml"));
+			JFileChooser jFileChooserRemplacement = new JFileChooser(new File("donnee/"));
 			int res2 = jFileChooserRemplacement.showOpenDialog(null);
 
 			
 			if(res2 == JFileChooser.APPROVE_OPTION)
 			{
+				String[] nomDecompose = this.stringFichierManquant.split("/");
+
+				String nom = nomDecompose[nomDecompose.length - 1];
+				String chemin ="";
+				for(int i = 0; i < nomDecompose.length - 1; i++)
+				{
+					chemin = nomDecompose[i] + "/";
+				}
+
+				if(!chemin.contains("donnee/"))
+					chemin = "donnee/" + chemin;
+
 				File fileRemplacement = jFileChooserRemplacement.getSelectedFile();									
 				try {
-					Files.copy(fileRemplacement.toPath(), Paths.get("importe/"	+ fileRemplacement.getName()));
-				} catch (IOException e2) { e2.printStackTrace();}																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										
+					Files.copy(fileRemplacement.toPath(), Paths.get(chemin	+ fileRemplacement.getName()));
+				} catch (IOException e2) { e2.printStackTrace();}
+
 				this.cheminFichier = fileRemplacement.getName();
-				this.validFichier = this.ctrl.getNomImage().equals("importe/"+cheminFichier);
+
+				this.validFichier = this.stringFichierManquant.equals(chemin+cheminFichier);
 				this.FileImagenew =new File(cheminFichier);
 
 				if(this.validFichier)
