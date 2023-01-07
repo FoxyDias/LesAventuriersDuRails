@@ -237,7 +237,9 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 				if(this.ctrl.getEstJoueurCourant().getMainWagon().size() != 0)
 				{
 					JDialog jDialog = new JDialog();
+					jDialog.setSize(600,400);
 					jDialog.add(new PanelMainJoueur(ctrl));
+	
 					jDialog.setVisible(true);
 				}
 				else

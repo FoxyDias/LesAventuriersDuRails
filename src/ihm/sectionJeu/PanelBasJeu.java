@@ -9,6 +9,7 @@ import javax.swing.JButton;
 
 import java.awt.GridLayout;
 import java.awt.event.*;
+import java.util.Collections;
 
 public class PanelBasJeu extends JPanel
 {
@@ -29,12 +30,9 @@ public class PanelBasJeu extends JPanel
 		 */
 		for(int index = 0; index < 5; index++)
 		{
-			JButton btnPrendCarte = new JButton();
-			/* Ajouter la fonctionnalitée de changmeent d'image quand il n'y a plus de carte d'un certain type */
-			ImageIcon btnIcon = new ImageIcon("donnee/imageCarte/voiture.jpg");
-			btnIcon.setImage(btnIcon.getImage().getScaledInstance(200, 100, java.awt.Image.SCALE_DEFAULT));
-			btnPrendCarte.setIcon(btnIcon);
-			this.add(btnPrendCarte);			
+			Collections.shuffle(this.ctrl.getLstCarteWagon());
+			this.add(new PanelPiocheMarcher(this.ctrl.getLstCarteWagon().remove(0)));
+			
 			//this.add(new PanelPiocheMarcher(this.ctrl.getLstCarteWagon().remove(0)));
 		}
 
@@ -52,6 +50,8 @@ public class PanelBasJeu extends JPanel
 		{
 			this.carteWagon = carteWagon;
 
+			this.btnPrendCarte = new JButton("prendre carte");
+
 			this.add(this.btnPrendCarte);
 			this.btnPrendCarte.addActionListener(this);
 		}
@@ -59,7 +59,7 @@ public class PanelBasJeu extends JPanel
 		public void majMarcher(CarteWagon carteWagon)
 		{
 			this.carteWagon = carteWagon;
-			this.setBackground(getBackground());
+			this.setBackground(this.carteWagon.getColor());
 			this.repaint();
 		}
 
