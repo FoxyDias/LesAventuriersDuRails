@@ -85,6 +85,17 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 			Noeud from = a.getNoeudDep();
 			Noeud to = a.getNoeudArr();
 
+			boolean aretePrise= a.getEstOccupe();
+			
+			Color coulJoueur =null;
+
+			if(aretePrise)
+			{
+				coulJoueur = a.getOccupateur().getCouleur();
+			}
+
+
+
 			if (to.getX() != 0 && to.getY() != 0) {
 				if (from.getX() != 0 && from.getY() != 0) {
 
@@ -101,18 +112,18 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 
 						if((fromX > toX && toY < fromY) || (fromX < toX && toY > fromY) )
 						{
-							drawArete(fromX+5, fromY-5, toX+5, toY-5, nb, c, g);//Haut gauche
-							drawArete(fromX-5, fromY+5, toX-5, toY+5, a.getAreteDouble().getWagon(), a.getAreteDouble().getCouleur(), g);//Bas droit
+							drawArete(fromX+5, fromY-5, toX+5, toY-5, nb, c, aretePrise , coulJoueur,g);//Haut gauche
+							drawArete(fromX-5, fromY+5, toX-5, toY+5, a.getAreteDouble().getWagon(), a.getAreteDouble().getCouleur(),aretePrise , coulJoueur, g);//Bas droit
 						}
 						else
 						{
-							drawArete(fromX+5, fromY+5, toX+5, toY+5, nb, c, g);//Haut droit 
-							drawArete(fromX-5, fromY-5, toX-5, toY-5, a.getAreteDouble().getWagon(), a.getAreteDouble().getCouleur(), g);//Bas gauche
+							drawArete(fromX+5, fromY+5, toX+5, toY+5, nb, c,aretePrise , coulJoueur, g);//Haut droit 
+							drawArete(fromX-5, fromY-5, toX-5, toY-5, a.getAreteDouble().getWagon(), a.getAreteDouble().getCouleur(),aretePrise , coulJoueur, g);//Bas gauche
 						}
 					}
 					else 
 						if(!areteDoubleDessine.contains(a))
-							drawArete(fromX, fromY, toX, toY, nb, c, g);
+							drawArete(fromX, fromY, toX, toY, nb, c,aretePrise , coulJoueur, g);
 				}
 			}
 		}
@@ -168,7 +179,7 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 
 	}
 
-	private void drawArete(double fromX, double fromY, double toX, double toY, int nbWagon, String c , Graphics g)
+	private void drawArete(double fromX, double fromY, double toX, double toY, int nbWagon, String c , boolean aretePrise , Color couleurJoueur, Graphics g)
 	{
 	
 		// draw la valeur de l'arete
@@ -212,6 +223,25 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 			(int)(fromY + (toY-fromY)/nbWagon *n),
 			(int)(fromX + (toX-fromX)/nbWagon *(n+1)),
 			(int)(fromY + (toY-fromY)/nbWagon *(n+1)));
+
+			if(aretePrise)
+			{
+				//Dessine les contours du trait en noir 
+				((Graphics2D) g).setStroke(new BasicStroke(6));
+				g.setColor(Color.BLACK);
+				g.drawLine((int)(fromX + (toX-fromX)/nbWagon *n),
+				(int)(fromY + (toY-fromY)/nbWagon *n),
+				(int)(fromX + (toX-fromX)/nbWagon *(n+1)),
+				(int)(fromY + (toY-fromY)/nbWagon *(n+1)));
+
+
+				((Graphics2D) g).setStroke(new BasicStroke(4));
+				g.setColor(couleurJoueur);
+				g.drawLine((int)(fromX + (toX-fromX)/nbWagon *n),
+				(int)(fromY + (toY-fromY)/nbWagon *n),
+				(int)(fromX + (toX-fromX)/nbWagon *(n+1)),
+				(int)(fromY + (toY-fromY)/nbWagon *(n+1)));
+			}
 		}
 		//g.drawLine(fromX, fromY, toX, toY);
 		((Graphics2D) g).setStroke(new BasicStroke(1));

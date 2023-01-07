@@ -163,13 +163,13 @@ public class PanelHautMenu extends JPanel implements ActionListener
 
 						for(String s : lstImage)
 						{
-							System.out.println(s);
+							//System.out.println(s);
 							this.stringFichierManquant = s;
 
 							if(s != null && !s.equals("null") && !s.equals( "donnee/null"))
 							{
 								
-								System.out.println(s);
+								//System.out.println(s);
 								this.FileImagenew =new File(s);
 								
 								this.validFichier = this.FileImagenew.exists();
