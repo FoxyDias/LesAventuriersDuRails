@@ -394,8 +394,8 @@
 		<nbWagonDebutPartie>30</nbWagonDebutPartie>
 		<nbWagonFinPartie>1</nbWagonFinPartie>
 		<nbPointsPlusLongChemin>10</nbPointsPlusLongChemin>
-		<txtNomMoyenDeTransport>Wagon</txtNomMoyenDeTransport>
-		<txtRoute>Rails</txtRoute>
+		<txtNomMoyenDeTransport>wagon</txtNomMoyenDeTransport>
+		<txtRoute>rails</txtRoute>
 		<versoCarteWagon>null</versoCarteWagon>
 		<versoCarteObjectif>billet-cartonne-sncf.jpg</versoCarteObjectif>
 		<heightPanel>958.0</heightPanel>

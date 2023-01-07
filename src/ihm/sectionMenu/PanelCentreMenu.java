@@ -379,7 +379,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			{
 				this.dialog.dispose();
 
-				while(this.nbPopUP < this.ctrl.getNbJoueurPartie())
+				if(this.nbPopUP < this.ctrl.getNbJoueurPartie())
 				{
 					this.nbPopUP++;
 					this.creerPopUpCarteObjectif();
