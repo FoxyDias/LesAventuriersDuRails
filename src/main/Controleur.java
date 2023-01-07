@@ -96,6 +96,18 @@ public class Controleur {
     {
         return this.metier.getLstArete();
     }
+
+    public ArrayList<CarteObjectif> getLstPiocheObjectifs() {
+        return metier.getLstPiocheObjectifs();
+    }
+
+    public ArrayList<CarteWagon> getLstPiocheWagon() {
+        return metier.getLstPiocheWagon();
+    }
+
+    public int getIntJoueurActuel() {
+        return metier.getIntJoueurActuel();
+    }
     
 	public PanelCentreMenu getPanelCentreMenu() { 
 		

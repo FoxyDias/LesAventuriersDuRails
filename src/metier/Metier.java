@@ -76,44 +76,9 @@ public class Metier {
 
         this.ctrl.changerPanel("Jeu");
 
-        //tourChoixObjectif();
-        tourActuel();
     }
 
-    public void tourActuel()
-    {
-        String action;
 
-        Joueur joueurActuel = this.lstJoueur.get(this.intJoueurActuel);
-
-        boolean tourQuitter = true;
-        while (tourQuitter)
-        {
-            System.out.println("Quelle action choisissez-vous parmit : Piocher | Possession | Carte  ");
-            Scanner sc = new Scanner(System.in);
-            action = sc.nextLine().toLowerCase();
-
-            /*                          Choix Piocher                             */
-            if (action.equals("piocher")) {
-                tourQuitter = !(tourPiocher(joueurActuel));
-            }
-
-            /*-------------------------------------------------------------------*/
-
-            /*                          Choix Possession                         */
-            else if (action.equals("possession")) {
-                tourQuitter = !(tourChoixArete(joueurActuel));
-            }
-            /*-------------------------------------------------------------------*/
-
-            /*                             Choix Carte                           */
-            else if (action.equals("carte")) {
-                tourQuitter = !(tourCarte(joueurActuel));
-            }
-            /*-------------------------------------------------------------------*/
-        }
-        
-    }
 
     /*
      * Joueur actuellement entrain de jouer
@@ -238,6 +203,42 @@ public class Metier {
                 return true;
             }
         return false;
+    }
+
+    private void calculPointObjectif(Joueur j)
+    {
+        boolean suite = false;
+        for( CarteObjectif co : j.getMainObjectif() )
+        {
+            Noeud n1 = co.getNoeudDep();
+            for(Noeud n : this.hsmJoueurNoeud.get(j) )
+            {
+                if(n1 == n)
+                {
+                    suite = true;
+                    break;
+                }
+            }
+            if(suite)
+            {
+                Noeud n2 = co.getNoeudArr();
+                suite = false;
+                for(Noeud n : this.hsmJoueurNoeud.get(j) )
+                {
+                    if(n2 == n)
+                    {
+                        suite = true;
+                        break;
+                    }
+                }
+                if(suite)
+                    j.rajouterPoint(co.getNbPoints());
+                else
+                    j.rajouterPoint(co.getNbPoints() * -1);
+            }
+            else
+                j.rajouterPoint(co.getNbPoints() * -1);
+        }
     }
 
     private void piocherWagonRandom()
@@ -501,7 +502,20 @@ public class Metier {
     public ArrayList<Noeud> getLstNoeud                 () { return this.lstNoeud;        }
     public ArrayList<Arete> getLstArete                 () { return this.lstArete;        }
     public ArrayList<Color> getLstCouleurJoueur         () { return lstCouleurJoueur;     }
-    public ArrayList<Joueur> getLstJoueur()                { return this.lstJoueur;       } 
+    public ArrayList<Joueur> getLstJoueur()                { return this.lstJoueur;       }
+
+    public ArrayList<CarteObjectif> getLstPiocheObjectifs() {
+        return lstPiocheObjectifs;
+    }
+
+    public ArrayList<CarteWagon> getLstPiocheWagon() {
+        return lstPiocheWagon;
+    }
+
+    public int getIntJoueurActuel() {
+        return intJoueurActuel;
+    }
+
     /*-------------------------------------------------------------------------*/
 
     /*-------------------------------------------------------------------------*/
