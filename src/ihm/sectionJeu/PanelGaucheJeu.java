@@ -36,6 +36,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 	private JButton btnCarteObjectif2;
 	private JButton btnCarteObjectif3;
 	private JButton btnValider;
+	protected int nbPopUp;
 
 	public PanelGaucheJeu(Controleur ctrl)
 	{
@@ -46,11 +47,16 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		this.setLayout(new GridLayout(5,1,0,0));
 		this.setPreferredSize(new Dimension(350, 0));
 
-		JLabel lblPiocheCarteWagon		= new JLabel("Pioche carte wagon", JLabel.CENTER);
+		JLabel lblPiocheCarteWagon		= new JLabel("Pioche carte " + this.ctrl.getMoyenDeTransport(), JLabel.CENTER);
 		JLabel lblPiocheCarteObjectif	= new JLabel("Pioche carte objectif", JLabel.CENTER);
+		ImageIcon imageIconBtnPiocheCarteObjectif = new ImageIcon(this.ctrl.getVersoCarteObjectif());
+		ImageIcon imageIconBtnPiocheCarteWagon = new ImageIcon("donnee/imageCarte/voiture.jpg");
 
-		this.btnPiocheCarteWagon 		= new JButton("");
-		this.btnPiocheCarteObjectif 	= new JButton("");
+		imageIconBtnPiocheCarteObjectif.setImage(imageIconBtnPiocheCarteObjectif.getImage().getScaledInstance(300, 100, java.awt.Image.SCALE_DEFAULT));
+		imageIconBtnPiocheCarteWagon.setImage(imageIconBtnPiocheCarteWagon.getImage().getScaledInstance(300, 100, java.awt.Image.SCALE_DEFAULT));
+
+		this.btnPiocheCarteWagon 		= new JButton(imageIconBtnPiocheCarteWagon);
+		this.btnPiocheCarteObjectif 	= new JButton(imageIconBtnPiocheCarteObjectif);
 		this.btnFinDuTour 				= new JButton("Fin du tour");
 		this.btnArreterPartie 			= new JButton("Arrêter la partie");
 
@@ -109,9 +115,10 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		if(e.getSource() == this.btnPiocheCarteObjectif)
 		{
 			JPanel panelBtn = new JPanel(new FlowLayout(FlowLayout.CENTER,0,75));
-
+			this.nbPopUp = 1;
+			
 			this.dialog = new JDialog();
-			this.dialog.setTitle("Joueur " + this.ctrl.getEstJoueurCourant() + ", choisissez une de ces 3 cartes objectif :");
+			this.dialog.setTitle("Joueur " + nbPopUp + ", choisissez une de ces 3 cartes objectif minimum :");
 			this.dialog.setLayout(new GridLayout(2,3));
 			this.dialog.setBounds(500, 400, 1000, 400);
 			this.dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);

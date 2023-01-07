@@ -417,7 +417,7 @@
 		<nbWagonDebutPartie>60</nbWagonDebutPartie>
 		<nbWagonFinPartie>2</nbWagonFinPartie>
 		<nbPointsPlusLongChemin>10</nbPointsPlusLongChemin>
-		<txtNomMoyenDeTransport>Quad</txtNomMoyenDeTransport>
+		<txtNomMoyenDeTransport>quad</txtNomMoyenDeTransport>
 		<txtRoute>Chemins</txtRoute>
 		<versoCarteWagon>null</versoCarteWagon>
 		<versoCarteObjectif>FortniteBattlePass.jpg</versoCarteObjectif>

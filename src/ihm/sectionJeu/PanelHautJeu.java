@@ -43,7 +43,7 @@ public class PanelHautJeu extends JPanel
 			this.panelInfosJoueur = new JPanel(new GridLayout(4,1,10,0));
 			this.alJoueur.add(new JLabel("Joueur " + (i+1), JLabel.CENTER));
 			this.alNbCarteWagon.add(new JLabel("Nombre de cartes wagons : " + this.ctrl.getNbWagonDebutPartie(), JLabel.CENTER));
-			this.alNbCarteObjectif.add(new JLabel("Nombre de cartes objectifs : " + this.ctrl.getJoueur(i).getNbCarteObjectif(), JLabel.CENTER));
+			this.alNbCarteObjectif.add(new JLabel("Nombre de cartes objectifs : " + this.ctrl.getEstJoueurCourant().getNbCarteObjectif(), JLabel.CENTER));
 			this.alNbPointsChemin.add(new JLabel("Nombre de points chemin : ", JLabel.CENTER));
 			panelInfosJoueur.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
 			panelInfosJoueur.add(this.alJoueur.get(i));

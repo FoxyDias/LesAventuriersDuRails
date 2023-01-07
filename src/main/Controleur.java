@@ -136,6 +136,8 @@ public class Controleur {
 
     public int getNbJoueurPartie() { return this.metier.getNbJoueurPartie(); }
 
+    public String getMoyenDeTransport() { return this.metier.getMoyenDeTransport(); }
+
 
 	public void setEnabled(boolean b) { this.ihm.setEnabled(b); }
 

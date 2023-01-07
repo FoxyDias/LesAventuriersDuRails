@@ -31,6 +31,7 @@ public class Metier {
 
     private String versoCarteObjectif;
     private String versoCarteWagon;
+    private String moyenDeTransport;
 
     private ArrayList<Color> lstCouleurJoueur;
     private ArrayList<Joueur> lstJoueur;
@@ -346,6 +347,7 @@ public class Metier {
             this.nomImage               = d.getChild("image").getText();
             this.versoCarteWagon        = d.getChild("versoCarteWagon").getText();
             this.versoCarteObjectif     = d.getChild("versoCarteObjectif").getText();
+            this.moyenDeTransport       = d.getChild("txtNomMoyenDeTransport").getText();
         }
 
         for(Element o : lstObjectif)
@@ -485,6 +487,7 @@ public class Metier {
     public int getNbWagonFinPartie      () { return nbWagonFinPartie;      } 
     public int getNbPointsPlusLongChemin() { return nbPointsPlusLongChemin;}
     public int[] getPointsTaille        () { return pointsTaille;          }
+    public String getMoyenDeTransport     () { return this.moyenDeTransport; } 
 
     public String getVersoCarteWagon    () { return this.versoCarteWagon;  }
     public String getVersoCarteObjectif () { return versoCarteObjectif;    }
@@ -498,7 +501,7 @@ public class Metier {
     public ArrayList<Noeud> getLstNoeud                 () { return this.lstNoeud;        }
     public ArrayList<Arete> getLstArete                 () { return this.lstArete;        }
     public ArrayList<Color> getLstCouleurJoueur         () { return lstCouleurJoueur;     }
-    public ArrayList<Joueur> getLstJoueur() { return this.lstJoueur; } 
+    public ArrayList<Joueur> getLstJoueur()                { return this.lstJoueur;       } 
     /*-------------------------------------------------------------------------*/
 
     /*-------------------------------------------------------------------------*/

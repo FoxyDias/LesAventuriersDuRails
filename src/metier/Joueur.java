@@ -98,4 +98,6 @@ public class Joueur {
     public void ajouterArete(Arete a){this.lstArete.add(a);}
 
     public boolean isJoueurFinal(){return nbWagons <= 2;}
+
+    public void retirerCarteObjectif(int indexcObjectif){this.mainObjectif.remove(indexcObjectif);}
 }
