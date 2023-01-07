@@ -26,6 +26,8 @@ public class Joueur {
         this.mainWagon      = new ArrayList<CarteWagon>();
         this.mainObjectif   = new ArrayList<CarteObjectif>();
 
+        this.lstArete       = new ArrayList<Arete>();
+
         this.nbPoints       = 0;
         this.routeLaPlusLong= 0;
     }
@@ -92,6 +94,8 @@ public class Joueur {
     
     public void ajouterCarteObjectif(CarteObjectif cObjectif){this.mainObjectif.add(cObjectif);}
     public ArrayList<CarteObjectif> getMainObjectif() {return this.mainObjectif;}
+
+    public void ajouterArete(Arete a){this.lstArete.add(a);}
 
     public boolean isJoueurFinal(){return nbWagons <= 2;}
 }

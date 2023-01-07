@@ -9,6 +9,7 @@ public class Arete {
     private boolean estDouble;
     private boolean estOccupe;
     private Arete areteDouble;
+    private Joueur occupateur;
 
     /**
     * Constructeur de la classe arrete
@@ -25,6 +26,9 @@ public class Arete {
         this.estDouble = false;
         this.estOccupe = false;
         this.areteDouble = null;
+        this.occupateur = null;
+
+
 
         this.noeudDep.ajoutArete(this);
         this.noeudArr.ajoutArete(this);
@@ -51,6 +55,14 @@ public class Arete {
 
     public Arete getAreteDouble(){
         return this.areteDouble;
+    }
+
+    public void setOccupateur(Joueur occupateur){
+        this.occupateur = occupateur;
+    }
+
+    public Joueur getOccupateur(){
+        return this.occupateur;
     }
 
 

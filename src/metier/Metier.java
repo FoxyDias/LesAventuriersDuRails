@@ -391,7 +391,25 @@ public class Metier {
 
             this.lstCouleurJoueur.add(coulRGB);
             this.lstJoueur.add(new Joueur(this.nbWagonDebutPartie, coulRGB));
+            
+
         }
+
+        for(Arete a : this.lstArete)
+        {
+            //random entre 0 et 2
+            int joueur = (int)(Math.random()*3);
+            this.lstJoueur.get(joueur).ajouterArete(a);
+            a.setEstOccupe(true);
+            a.setOccupateur(this.lstJoueur.get(joueur));
+
+        }
+
+
+        // System.out.println("Arete prise : " + this.lstArete.get(2));
+        // this.lstJoueur.get(0).ajouterArete(this.lstArete.get(2));
+        // this.lstArete.get(2).setEstOccupe(true);
+        // this.lstArete.get(2).setOccupateur(this.lstJoueur.get(0));
 
     }
 
