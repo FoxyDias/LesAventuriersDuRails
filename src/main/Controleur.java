@@ -147,6 +147,8 @@ public class Controleur {
 
     public Joueur getJoueur(int i) { return this.metier.getJoueur(i); }
 
+    
+
     /**
      * Le main du projet
      * @param args

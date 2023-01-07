@@ -19,6 +19,7 @@ public class PanelHautJeu extends JPanel
 	private ArrayList<JLabel> alJoueur;
 	private ArrayList<JLabel> alNbCarteWagon;
 	private ArrayList<JLabel> alNbCarteObjectif;
+	private ArrayList<JLabel> alNbPointsChemin;
 
 	private JPanel panelInfosJoueur;
 
@@ -35,6 +36,7 @@ public class PanelHautJeu extends JPanel
 		this.alJoueur 				= new ArrayList<JLabel>();
 		this.alNbCarteWagon 		= new ArrayList<JLabel>();
 		this.alNbCarteObjectif 		= new ArrayList<JLabel>();
+		this.alNbPointsChemin		= new ArrayList<JLabel>();
  
 		for(int i = 0; i < this.ctrl.getNbJoueurPartie(); i++)
 		{
@@ -42,6 +44,7 @@ public class PanelHautJeu extends JPanel
 			this.alJoueur.add(new JLabel("Joueur " + (i+1), JLabel.CENTER));
 			this.alNbCarteWagon.add(new JLabel("Nombre de cartes wagons : " + this.ctrl.getJoueur(i).getNbCarteWagon(), JLabel.CENTER));
 			this.alNbCarteObjectif.add(new JLabel("Nombre de cartes objectifs : " + this.ctrl.getJoueur(i).getNbCarteObjectif(), JLabel.CENTER));
+			//this.alNbPointsChemin.add(new JLabel("Nombre de points chemin : " + this.ctrl.getJoueur(i).getNbPointsChemin(), JLabel.CENTER));
 			panelInfosJoueur.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
 			panelInfosJoueur.add(this.alJoueur.get(i));
 			panelInfosJoueur.add(this.alNbCarteWagon.get(i));
