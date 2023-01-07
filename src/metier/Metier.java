@@ -4,6 +4,7 @@ import main.Controleur;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -392,6 +393,8 @@ public class Metier {
             this.lstCouleurJoueur.add(coulRGB);
             this.lstJoueur.add(new Joueur(this.nbWagonDebutPartie, coulRGB));
         }
+        Collections.shuffle(this.lstCarteWagon);
+        Collections.shuffle(this.lstCarteObjectif);
 
     }
 

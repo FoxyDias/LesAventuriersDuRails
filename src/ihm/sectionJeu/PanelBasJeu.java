@@ -4,14 +4,11 @@ import main.Controleur;
 import metier.CarteWagon;
 
 import javax.swing.JPanel;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.*;
-import java.util.ArrayList;
 
 public class PanelBasJeu extends JPanel
 {

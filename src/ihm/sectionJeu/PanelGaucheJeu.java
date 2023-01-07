@@ -83,6 +83,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		if(e.getSource() == this.btnPiocheCarteWagon)
 		{
 			System.out.println("Pioche carte wagon");
+
 		}
 
 		if(e.getSource() == this.btnArreterPartie)
@@ -100,6 +101,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnPiocheCarteObjectif)
 		{
+			System.out.println("Pioche carte wagon");
 		}
 	}
 
