@@ -7,6 +7,9 @@ import metier.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+
 import com.formdev.flatlaf.FlatLightLaf;
 
 public class Controleur {
@@ -147,8 +150,20 @@ public class Controleur {
 
     public Joueur getJoueur(int i) { return this.metier.getJoueur(i); }
 
+    public void inverseEtatBtn(JButton btn)
+    {
+        if(btn.isOpaque())
+		{
+			btn.setOpaque(false);
+			btn.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		}
+		else
+		{
+			btn.setOpaque(true);
+			btn.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+		}
+    }
     
-
     /**
      * Le main du projet
      * @param args

@@ -39,6 +39,8 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 		 */
 
 		this.addMouseListener(this);
+		this.addMouseMotionListener(this);
+
 	}
 
 
@@ -234,7 +236,19 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		System.out.println("x : " + e.getX() + " y : " + e.getY());
+
+		int x = e.getX();
+		int y = e.getY();
+
+		System.out.println("X : "+  x + " Y : " + y);
+
+		for (Noeud n : this.ctrl.getLstNoeud())
+		{
+			if(x == n.getX() && y == n.getY())
+			{
+				System.out.println("Noeud : " + n.getNom());
+			}
+		}
 	}
 
 	@Override

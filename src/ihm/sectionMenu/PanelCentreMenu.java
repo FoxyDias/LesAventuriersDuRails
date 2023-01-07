@@ -389,17 +389,17 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnCarteObjectif1)
 		{
-			this.inverseEtatBtn(this.btnCarteObjectif1);
+			this.ctrl.inverseEtatBtn(this.btnCarteObjectif1);
 		}
 
 		if(e.getSource() == this.btnCarteObjectif2)
 		{
-			this.inverseEtatBtn(this.btnCarteObjectif2);
+			this.ctrl.inverseEtatBtn(this.btnCarteObjectif2);
 		}
 
 		if(e.getSource() == this.btnCarteObjectif3)
 		{
-			this.inverseEtatBtn(this.btnCarteObjectif3);
+			this.ctrl.inverseEtatBtn(this.btnCarteObjectif3);
 		}
 	}
 
@@ -411,20 +411,6 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		this.btnCreerPartieMulti.setEnabled(b);
 		this.btnCreerPartieSolo.setEnabled(b);
 		this.txtNbJoueursLocal.setEnabled(b);
-	}
-
-	public void inverseEtatBtn(JButton btn)	
-	{
-		if(btn.isOpaque())
-		{
-			btn.setOpaque(false);
-			btn.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		}
-		else
-		{
-			btn.setOpaque(true);
-			btn.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-		}
 	}
 
 	public JDialog creerPopUpCarteObjectif()

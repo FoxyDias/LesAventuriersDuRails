@@ -19,6 +19,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 
+import javax.swing.ImageIcon;
+
 
 public class PanelGaucheJeu extends JPanel implements ActionListener
 {
@@ -27,6 +29,13 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 	private JButton btnFinDuTour;
 	private JButton btnPiocheCarteObjectif;
 	private JButton btnArreterPartie;
+
+	/* ----- JDialog ---  */
+	private JDialog dialog;
+	private JButton btnCarteObjectif1;
+	private JButton btnCarteObjectif2;
+	private JButton btnCarteObjectif3;
+	private JButton btnValider;
 
 	public PanelGaucheJeu(Controleur ctrl)
 	{
@@ -82,8 +91,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 	{
 		if(e.getSource() == this.btnPiocheCarteWagon)
 		{
-			System.out.println("Pioche carte wagon");
-
 		}
 
 		if(e.getSource() == this.btnArreterPartie)
@@ -101,7 +108,75 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnPiocheCarteObjectif)
 		{
-			System.out.println("Pioche carte wagon");
+			JPanel panelBtn = new JPanel(new FlowLayout(FlowLayout.CENTER,0,75));
+
+			this.dialog = new JDialog();
+			this.dialog.setTitle("Joueur " + this.ctrl.getEstJoueurCourant() + ", choisissez une de ces 3 cartes objectif :");
+			this.dialog.setLayout(new GridLayout(2,3));
+			this.dialog.setBounds(500, 400, 1000, 400);
+			this.dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+			this.dialog.setResizable(false);
+
+			this.btnCarteObjectif1 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
+			this.btnCarteObjectif2 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
+			this.btnCarteObjectif3 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
+			this.btnValider = new JButton("Valider");
+
+			this.btnCarteObjectif1.setBackground(Color.WHITE);
+			this.btnCarteObjectif2.setBackground(Color.WHITE);
+			this.btnCarteObjectif3.setBackground(Color.WHITE);
+			this.btnValider.setBackground(Color.WHITE);
+
+			panelBtn.add(this.btnValider);
+		
+			this.dialog.add(btnCarteObjectif1);
+			this.dialog.add(btnCarteObjectif2);
+			this.dialog.add(btnCarteObjectif3);
+			this.dialog.add(new JLabel());
+			this.dialog.add(panelBtn);
+			this.dialog.add(new JLabel());
+			this.dialog.setVisible(true);
+
+			this.btnCarteObjectif1.addActionListener(this);
+			this.btnCarteObjectif2.addActionListener(this);
+			this.btnCarteObjectif3.addActionListener(this);
+			this.btnValider.addActionListener(this);
+		}
+
+		if(e.getSource() == this.btnCarteObjectif1)
+		{
+			this.ctrl.inverseEtatBtn(this.btnCarteObjectif1);
+		}
+
+		if(e.getSource() == this.btnCarteObjectif2)
+		{
+			this.ctrl.inverseEtatBtn(this.btnCarteObjectif2);
+		}
+
+		if(e.getSource() == this.btnCarteObjectif3)
+		{
+			this.ctrl.inverseEtatBtn(this.btnCarteObjectif3);
+		}
+
+		
+		if(e.getSource() == this.btnValider)
+		{
+			//Vérification que l'utilisateur a bien choisi une carte objectif
+			if(this.btnCarteObjectif1.isOpaque() && !(this.btnCarteObjectif2.isOpaque()) && !(this.btnCarteObjectif3.isOpaque()) 	|| 
+			   this.btnCarteObjectif2.isOpaque() && !(this.btnCarteObjectif1.isOpaque()) && !(this.btnCarteObjectif3.isOpaque()) 	||
+			   this.btnCarteObjectif3.isOpaque() && !(this.btnCarteObjectif1.isOpaque()) && !(this.btnCarteObjectif2.isOpaque()) 	||
+			   this.btnCarteObjectif1.isOpaque() && this.btnCarteObjectif2.isOpaque() && !(this.btnCarteObjectif3.isOpaque()) 		||
+			   this.btnCarteObjectif1.isOpaque() && this.btnCarteObjectif3.isOpaque() && !(this.btnCarteObjectif2.isOpaque()) 		||
+			   this.btnCarteObjectif2.isOpaque() && this.btnCarteObjectif3.isOpaque() && !(this.btnCarteObjectif1.isOpaque()) 		||
+			   this.btnCarteObjectif1.isOpaque() && this.btnCarteObjectif2.isOpaque() && this.btnCarteObjectif3.isOpaque())
+			{
+				this.dialog.dispose();
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "Veuillez choisir au moins 1 carte objectifs", "Erreur", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
 		}
 	}
 
