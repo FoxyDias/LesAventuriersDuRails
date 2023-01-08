@@ -267,17 +267,100 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 	@Override
 	public void mousePressed(MouseEvent e) {
 
-		int x = e.getX();
-		int y = e.getY();
+		int cliqueX = e.getX();
+		int cliqueY = e.getY();
 
-		System.out.println("X : "+  x + " Y : " + y);
+		
 
-		for (Noeud n : this.ctrl.getLstNoeud())
+		// for (Noeud n : this.ctrl.getLstNoeud())
+		// {
+		// 	if(x == n.getX() && y == n.getY())
+		// 	{
+		// 		System.out.println("Noeud : " + n.getNom());
+		// 	}
+		// }
+
+		System.out.println("X : " + cliqueX + " Y : " + cliqueY);
+		for(Arete a : this.ctrl.getLstArete())
 		{
-			if(x == n.getX() && y == n.getY())
+			Dimension testTaille = this.getSize();
+
+			double xMax = testTaille.getWidth() -26;
+			double yMax = testTaille.getHeight() -26;
+
+			double width=this.ctrl.getWidthPanel(); 
+			double height=this.ctrl.getHeightPanel();
+
+			double multiX = (xMax/width);
+			double multiY = (yMax/height);
+
+
+			// AB vecteur de l'arete 
+			double aX = a.getNoeudArr().getX()* multiX;
+			double aY = a.getNoeudArr().getY()* multiY;
+			double bX = a.getNoeudDep().getX()* multiX;
+			double bY = a.getNoeudDep().getY()* multiY;
+
+			// System.out.println(a.getNoeudArr().getNom());
+			// System.out.println("aX : "+  aX + " aY : " + aY);
+			// System.out.println(a.getNoeudDep().getNom());
+			// System.out.println("bX : "+  bX + " bY : " + bY);
+			
+
+			//AB vecteur de l'arete 
+			double vecteurAbX = bX - aX;
+			double vecteurAbY = bY - aY;
+
+			// AC vecteur entre point A et le point cliqué
+			double vecteurAcX  = cliqueX - aX;
+			double vecteurAcY = cliqueY - aY;
+
+			// produit scalaire entre AB et AC
+			double produitScalaireACAB = vecteurAbX * vecteurAcX + vecteurAbY * vecteurAcY;
+
+			// produit scalaire entre AB et AB
+			double produitScalaireABAB = vecteurAbX * vecteurAbX + vecteurAbY * vecteurAbY;
+
+			// distance entre le point cliqué et le point A
+
+			double distance = produitScalaireACAB / produitScalaireABAB;
+
+			double vecteurAhX = distance * vecteurAbX;
+			double vecteurAhY = distance * vecteurAbY;
+
+			double vecteurHcX = vecteurAcX - vecteurAhX;
+			double vecteurHcY = vecteurAcY - vecteurAhY;
+
+			double distanceHC = Math.sqrt(Math.pow(vecteurHcX,2) + Math.pow(vecteurHcY,2));
+
+			//System.out.println("Distance : " + distanceHC);
+
+			if(0<= distance && distance <= 1 && distanceHC <= 8)
 			{
-				System.out.println("Noeud : " + n.getNom());
+				System.out.println("Noeud1 : " + a.getNoeudArr().getNom());
+				System.out.println("Noeud2 : " + a.getNoeudDep().getNom());
 			}
+			
+
+
+			//System.out.println("Distance : " + distance);
+						
+			// if(Math.pow(vecteurAcX - distance * vecteurAbX,2) + Math.pow(vecteurAcY - distance * vecteurAbY, 2) <= 64)
+			
+			// {
+			// 	System.out.println("Noeud1 : " + a.getNoeudArr().getNom());
+			// 	System.out.println("Noeud2 : " + a.getNoeudDep().getNom());
+			// }
+			
+
+			
+
+			
+
+			
+			
+
+
 		}
 	}
 
