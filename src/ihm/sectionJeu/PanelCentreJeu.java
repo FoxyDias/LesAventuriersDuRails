@@ -5,6 +5,10 @@ import metier.*;
 import java.awt.*;
 import java.awt.Font;
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 import java.awt.Image;
@@ -42,6 +46,7 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 		this.addMouseMotionListener(this);
 
 	}
+
 
 
 	public void paintComponent(java.awt.Graphics g)
@@ -112,15 +117,22 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 						areteDoubleDessine.add(a);
 						areteDoubleDessine.add(a.getAreteDouble());
 
+						Color c1 = null;
+						if(a.getAreteDouble().getOccupateur() != null)
+						{
+							c1 = a.getAreteDouble().getOccupateur().getCouleur();
+						}
 						if((fromX > toX && toY < fromY) || (fromX < toX && toY > fromY) )
 						{
+							
 							drawArete(fromX+5, fromY-5, toX+5, toY-5, nb, c, aretePrise , coulJoueur,g);//Haut gauche
-							drawArete(fromX-5, fromY+5, toX-5, toY+5, a.getAreteDouble().getWagon(), a.getAreteDouble().getCouleur(),aretePrise , coulJoueur, g);//Bas droit
+							drawArete(fromX-5, fromY+5, toX-5, toY+5, a.getAreteDouble().getWagon(), a.getAreteDouble().getCouleur(),a.getAreteDouble().getEstOccupe() , c1, g);//Bas droit
 						}
 						else
 						{
 							drawArete(fromX+5, fromY+5, toX+5, toY+5, nb, c,aretePrise , coulJoueur, g);//Haut droit 
-							drawArete(fromX-5, fromY-5, toX-5, toY-5, a.getAreteDouble().getWagon(), a.getAreteDouble().getCouleur(),aretePrise , coulJoueur, g);//Bas gauche
+							
+							drawArete(fromX-5, fromY-5, toX-5, toY-5, a.getAreteDouble().getWagon(), a.getAreteDouble().getCouleur(),a.getAreteDouble().getEstOccupe() , c1, g);//Bas gauche
 						}
 					}
 					else 
@@ -281,6 +293,10 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 		// }
 
 		System.out.println("X : " + cliqueX + " Y : " + cliqueY);
+
+		ArrayList<Arete> lstAretee = new ArrayList<Arete>();
+		
+			
 		for(Arete a : this.ctrl.getLstArete())
 		{
 			Dimension testTaille = this.getSize();
@@ -337,8 +353,8 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 
 			if(0<= distance && distance <= 1 && distanceHC <= 8)
 			{
-				System.out.println("Noeud1 : " + a.getNoeudArr().getNom());
-				System.out.println("Noeud2 : " + a.getNoeudDep().getNom());
+				if(!a.getEstOccupe())
+					lstAretee.add(a);
 			}
 			
 
@@ -351,17 +367,58 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 			// 	System.out.println("Noeud1 : " + a.getNoeudArr().getNom());
 			// 	System.out.println("Noeud2 : " + a.getNoeudDep().getNom());
 			// }
-			
-
-			
-
-			
-
-			
-			
-
-
 		}
+
+		if(lstAretee.size() == 0){return;}
+
+		if(lstAretee.size() == 1 )
+		{
+			Arete a = lstAretee.get(0);
+			Joueur joueur = this.ctrl.getEstJoueurCourant();
+			a.setEstOccupe(true);
+			a.setOccupateur(joueur);
+			joueur.ajouterArete(a);
+
+				
+		}
+		else{
+			JDialog dialog = new JDialog();
+			dialog.setTitle("Choix de l'arete");
+			dialog.setSize(300, 300);
+			
+			JPanel panel = new JPanel();
+			panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+			panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+			panel.setBackground(Color.WHITE);
+
+			for(Arete a : lstAretee)
+			{
+				JButton btn = new JButton(a.getNoeudArr().getNom() + " - " + a.getNoeudDep().getNom());
+				btn.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						System.out.println("Noeud1 : " + a.getNoeudArr().getNom());
+						System.out.println("Noeud2 : " + a.getNoeudDep().getNom());
+						System.out.println("Joueur : " + ctrl.getEstJoueurCourant().getCouleur());
+						Joueur joueur = ctrl.getEstJoueurCourant();
+						a.setEstOccupe(true);
+						a.setOccupateur(joueur);
+						joueur.ajouterArete(a);
+						dialog.dispose(); 
+						PanelCentreJeu.this.repaint();
+					}
+				});
+				panel.add(btn);
+			}
+			dialog.add(panel);
+			dialog.setVisible(true);
+
+			
+		}
+
+
+		this.repaint();
 	}
 
 	@Override

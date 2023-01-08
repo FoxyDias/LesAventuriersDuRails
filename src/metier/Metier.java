@@ -401,15 +401,15 @@ public class Metier {
         Collections.shuffle(this.lstCarteWagon);
         Collections.shuffle(this.lstCarteObjectif);
 
-        for(Arete a : this.lstArete)
-        {
-            //random entre 0 et 2
-            int joueur = (int)(Math.random()*3);
-            this.lstJoueur.get(joueur).ajouterArete(a);
-            a.setEstOccupe(true);
-            a.setOccupateur(this.lstJoueur.get(joueur));
+        // for(Arete a : this.lstArete)
+        // {
+        //     //random entre 0 et 2
+        //     int joueur = (int)(Math.random()*3);
+        //     this.lstJoueur.get(joueur).ajouterArete(a);
+        //     a.setEstOccupe(true);
+        //     a.setOccupateur(this.lstJoueur.get(joueur));
 
-        }
+        // }
 
 
         // System.out.println("Arete prise : " + this.lstArete.get(2));
@@ -500,7 +500,7 @@ public class Metier {
     public ArrayList<CarteObjectif> getLstCarteObjectif () { return lstCarteObjectif;     }
     public ArrayList<CarteWagon> getLstCarteWagon       () { return lstCarteWagon;        }
     public ArrayList<Noeud> getLstNoeud                 () { return this.lstNoeud;        }
-    public ArrayList<Arete> getLstArete                 () { return this.lstArete;        }
+    public synchronized ArrayList<Arete> getLstArete                 () { return this.lstArete;        }
     public ArrayList<Color> getLstCouleurJoueur         () { return lstCouleurJoueur;     }
     public ArrayList<Joueur> getLstJoueur()                { return this.lstJoueur;       }
 
