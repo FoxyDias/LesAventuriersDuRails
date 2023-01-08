@@ -74,10 +74,7 @@ public class Metier {
     {   
         initPioche();
 
-        this.ctrl.changerPanel("Jeu");
-
     }
-
 
 
     /*
@@ -92,7 +89,8 @@ public class Metier {
      * Gère le tour des joueurs à chaque fin de tours
      */
     public void avancerJoueur()
-    {  
+    {
+        this.melangerCarteObjectif();
         this.intJoueurActuel++;
         if(this.intJoueurActuel >= this.nbJoueurPartie)
             this.intJoueurActuel = 0;
@@ -259,6 +257,22 @@ public class Metier {
         int num = (int) (Math.random() * this.lstCarteObjectif.size());
         this.lstPiocheObjectifs.add(this.lstCarteObjectif.get(num));
         this.lstCarteObjectif.remove(num);
+    }
+
+    public void repiocherCarteObjectif(int index) {
+
+        this.lstPiocheObjectifs.set(index, this.lstCarteObjectif.get( (int) (Math.random() * this.lstCarteObjectif.size() )));
+    }
+
+    private void melangerCarteObjectif() {
+
+        for(CarteObjectif co : this.lstPiocheObjectifs)
+        {
+            this.lstCarteObjectif.add(co);
+        }
+        for(int i=0; i<3; i++)
+            piocherObjectifRandom();
+
     }
 
     public void lireXml(String pathXml)
@@ -524,6 +538,8 @@ public class Metier {
     public void setWidthPanel (double witdhPanel) {this.witdhPanel = witdhPanel;  }
     public void setHeightPanel(double heightPanel){this.heightPanel = heightPanel;}
     public void setNbJoueurPartie(int n          ){ this.nbJoueurPartie = n; }
+
+
     /*-------------------------------------------------------------------------*/
    
 }

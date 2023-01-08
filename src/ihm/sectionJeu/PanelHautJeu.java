@@ -96,4 +96,11 @@ public class PanelHautJeu extends JPanel
 			}
 		}
 	}
+
+	public void majIHM()
+	{
+		this.alNbCarteWagon.add(new JLabel("Nombre de cartes wagons : " + this.ctrl.getNbWagonDebutPartie(), JLabel.CENTER));
+		this.alNbCarteObjectif.add(new JLabel("Nombre de cartes objectifs : " + this.ctrl.getEstJoueurCourant().getNbCarteObjectif(), JLabel.CENTER));
+		this.alNbPointsChemin.add(new JLabel("Nombre de points chemin : ", JLabel.CENTER));
+	}
 }
