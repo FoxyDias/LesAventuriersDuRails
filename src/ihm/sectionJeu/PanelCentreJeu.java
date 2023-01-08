@@ -267,8 +267,8 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 	@Override
 	public void mousePressed(MouseEvent e) {
 
-		int cliqueX = e.getX();
-		int cliqueY = e.getY();
+		int cliqueX = e.getX()-20;
+		int cliqueY = e.getY()-8;
 
 		
 
