@@ -420,6 +420,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		this.btnValider = new JButton("Valider");
 
 		JPanel panelDispoCarte = new JPanel(new GridLayout(1,3));
+		JPanel panelBtn		   = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,  50));
 
 		for(int index = 0; index < 3; index++)
 		{
@@ -427,8 +428,13 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			panelDispoCarte.add(this.carteObjectifInfo[index]);
 		}
 
+		btnValider.setBackground(Color.WHITE);
+
+
+		panelBtn.add(this.btnValider);
+
 		this.dialog.add(panelDispoCarte,BorderLayout.CENTER);
-		this.dialog.add(this.btnValider,BorderLayout.SOUTH);
+		this.dialog.add(panelBtn,BorderLayout.SOUTH);
 
 		this.btnValider.addActionListener(this);
 
@@ -446,14 +452,22 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 		public afficherCarteObjectif(CarteObjectif carteObjectif)
 		{
+
+			JLabel lblObjectif = new JLabel("Objectif : " + carteObjectif.getNoeudDep().getNom() + " à " + carteObjectif.getNoeudArr().getNom());
+			lblObjectif.setHorizontalAlignment(JLabel.CENTER);
+			lblObjectif.setFont(new Font("", Font.BOLD, 13));
+			lblObjectif.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+
+
 			this.setLayout(new BorderLayout());
 			this.carteObjectif = carteObjectif;
 			this.btnChoixCarte = new JButton("Choisir carte");
 			this.affichageObjectif = new GenereImageCarteObjectif(this.carteObjectif, PanelCentreMenu.this.ctrl.getNomImage(), PanelCentreMenu.this.ctrl.getWidthPanel(), PanelCentreMenu.this.ctrl.getHeightPanel());
 			this.selection = false;
 			
+			btnChoixCarte.setBackground(Color.WHITE);
 
-			this.add(new JLabel("Objectif : " + this.carteObjectif.getNoeudDep().getNom() + " à " + this.carteObjectif.getNoeudArr().getNom()),BorderLayout.NORTH);
+			this.add(lblObjectif,BorderLayout.NORTH);
 			this.add(this.affichageObjectif,BorderLayout.CENTER);
 			this.add(this.btnChoixCarte,BorderLayout.SOUTH);
 
@@ -470,7 +484,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			if(e.getSource() == this.btnChoixCarte)
 			{
 				
-				if(!this.selection) this.affichageObjectif.setBorder(BorderFactory.createLineBorder(Color.RED, 5));
+				if(!this.selection) this.affichageObjectif.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
 				else this.affichageObjectif.setBorder(BorderFactory.createEmptyBorder());
 
 				this.selection = !this.selection;
