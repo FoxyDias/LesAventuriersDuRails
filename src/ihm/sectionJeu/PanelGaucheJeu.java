@@ -240,7 +240,10 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 				if(this.ctrl.getEstJoueurCourant().getMainWagon().size() != 0)
 				{
 					JDialog jDialog = new JDialog();
-					jDialog.setSize(600,400);
+					jDialog.setBounds(650, 250, 600, 600);
+					jDialog.setResizable(false);
+					jDialog.setModal(true);
+					jDialog.setTitle("Visualisation de vos cartes");
 					jDialog.add(new PanelMainJoueur(ctrl));
 	
 					jDialog.setVisible(true);

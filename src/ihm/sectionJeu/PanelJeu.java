@@ -32,9 +32,10 @@ public class PanelJeu extends JPanel
 		 */
 
 		this.add(this.panelHautJeu, BorderLayout.NORTH);
+		this.add(this.panelBasJeu, BorderLayout.SOUTH);
 		this.add(this.panelGaucheJeu, BorderLayout.WEST);
 		this.add(this.panelCentre, BorderLayout.CENTER);
-		this.add(this.panelBasJeu, BorderLayout.SOUTH);
+		
 
 		this.setVisible(true);
 	}

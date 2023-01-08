@@ -4,7 +4,6 @@ import main.Controleur;
 import metier.CarteWagon;
 
 import javax.swing.JPanel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import java.awt.GridLayout;
