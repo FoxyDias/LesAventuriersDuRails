@@ -44,10 +44,7 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
-
 	}
-
-
 
 	public void paintComponent(java.awt.Graphics g)
 	{
@@ -293,9 +290,7 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 		// }
 
 		System.out.println("X : " + cliqueX + " Y : " + cliqueY);
-
 		ArrayList<Arete> lstAretee = new ArrayList<Arete>();
-		
 			
 		for(Arete a : this.ctrl.getLstArete())
 		{
@@ -357,8 +352,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 					lstAretee.add(a);
 			}
 			
-
-
 			//System.out.println("Distance : " + distance);
 						
 			// if(Math.pow(vecteurAcX - distance * vecteurAbX,2) + Math.pow(vecteurAcY - distance * vecteurAbY, 2) <= 64)
@@ -383,17 +376,18 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 		}
 		else{
 			JDialog dialog = new JDialog();
-			dialog.setTitle("Choix de l'arete");
-			dialog.setSize(300, 300);
-			
-			JPanel panel = new JPanel();
-			panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-			panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-			panel.setBackground(Color.WHITE);
+			int cpt = 2;
+			dialog.setTitle("Choix de l'arête parmis les chemins doubles");
+			dialog.setBounds(800, 400, 300, 300);
+			dialog.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+			dialog.setResizable(false);
+			dialog.setModal(true);
+			dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 
 			for(Arete a : lstAretee)
 			{
-				JButton btn = new JButton(a.getNoeudArr().getNom() + " - " + a.getNoeudDep().getNom());
+				JButton btn = new JButton("Chemin numéro " + cpt + " : " + a.getNoeudArr().getNom() + " - " + a.getNoeudDep().getNom());
+				cpt--;
 				btn.addActionListener(new ActionListener() {
 					
 					@Override
@@ -409,15 +403,10 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 						PanelCentreJeu.this.repaint();
 					}
 				});
-				panel.add(btn);
+				dialog.add(btn);
 			}
-			dialog.add(panel);
 			dialog.setVisible(true);
-
-			
 		}
-
-
 		this.repaint();
 	}
 
