@@ -1,8 +1,10 @@
 package ihm.sectionJeu;
 
 import main.Controleur;
+import metier.CarteObjectif;
 
 import javax.swing.JPanel;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -32,11 +34,9 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 	/* ----- JDialog ---  */
 	private JDialog dialog;
-	private JButton btnCarteObjectif1;
-	private JButton btnCarteObjectif2;
-	private JButton btnCarteObjectif3;
+	private afficherCarteObjectif[] carteObjectifInfo;
 	private JButton btnValider;
-	protected int nbPopUp;
+	protected int nbPopUp = 1;
 
 	public PanelGaucheJeu(Controleur ctrl)
 	{
@@ -117,75 +117,25 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnPiocheCarteObjectif)
 		{
-			JPanel panelBtn = new JPanel(new FlowLayout(FlowLayout.CENTER,0,75));
-			this.nbPopUp = 1;
-			
-			this.dialog = new JDialog();
-			this.dialog.setTitle("Joueur " + nbPopUp + ", choisissez une de ces 3 cartes objectif minimum :");
-			this.dialog.setLayout(new GridLayout(2,3));
-			this.dialog.setBounds(500, 400, 1000, 400);
-			this.dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-			this.dialog.setResizable(false);
-
-			this.btnCarteObjectif1 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
-			this.btnCarteObjectif2 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
-			this.btnCarteObjectif3 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
-			this.btnValider = new JButton("Valider");
-
-			this.btnCarteObjectif1.setBackground(Color.WHITE);
-			this.btnCarteObjectif2.setBackground(Color.WHITE);
-			this.btnCarteObjectif3.setBackground(Color.WHITE);
-			this.btnValider.setBackground(Color.WHITE);
-
-			panelBtn.add(this.btnValider);
-		
-			this.dialog.add(btnCarteObjectif1);
-			this.dialog.add(btnCarteObjectif2);
-			this.dialog.add(btnCarteObjectif3);
-			this.dialog.add(new JLabel());
-			this.dialog.add(panelBtn);
-			this.dialog.add(new JLabel());
-			this.dialog.setVisible(true);
-
-			this.btnCarteObjectif1.addActionListener(this);
-			this.btnCarteObjectif2.addActionListener(this);
-			this.btnCarteObjectif3.addActionListener(this);
-			this.btnValider.addActionListener(this);
+			this.creerPopUpCarteObjectif();
 		}
 
-		if(e.getSource() == this.btnCarteObjectif1)
-		{
-			this.ctrl.inverseEtatBtn(this.btnCarteObjectif1);
-		}
-
-		if(e.getSource() == this.btnCarteObjectif2)
-		{
-			this.ctrl.inverseEtatBtn(this.btnCarteObjectif2);
-		}
-
-		if(e.getSource() == this.btnCarteObjectif3)
-		{
-			this.ctrl.inverseEtatBtn(this.btnCarteObjectif3);
-		}
-
-		
 		if(e.getSource() == this.btnValider)
 		{
-			//Vérification que l'utilisateur a bien choisi une carte objectif
-			if(this.btnCarteObjectif1.isOpaque() && !(this.btnCarteObjectif2.isOpaque()) && !(this.btnCarteObjectif3.isOpaque()) 	|| 
-			   this.btnCarteObjectif2.isOpaque() && !(this.btnCarteObjectif1.isOpaque()) && !(this.btnCarteObjectif3.isOpaque()) 	||
-			   this.btnCarteObjectif3.isOpaque() && !(this.btnCarteObjectif1.isOpaque()) && !(this.btnCarteObjectif2.isOpaque()) 	||
-			   this.btnCarteObjectif1.isOpaque() && this.btnCarteObjectif2.isOpaque() && !(this.btnCarteObjectif3.isOpaque()) 		||
-			   this.btnCarteObjectif1.isOpaque() && this.btnCarteObjectif3.isOpaque() && !(this.btnCarteObjectif2.isOpaque()) 		||
-			   this.btnCarteObjectif2.isOpaque() && this.btnCarteObjectif3.isOpaque() && !(this.btnCarteObjectif1.isOpaque()) 		||
-			   this.btnCarteObjectif1.isOpaque() && this.btnCarteObjectif2.isOpaque() && this.btnCarteObjectif3.isOpaque())
+			int nbSelectionner = 0;
+
+			if(this.carteObjectifInfo[0].isSelectionner()) nbSelectionner++;
+			if(this.carteObjectifInfo[1].isSelectionner()) nbSelectionner++;
+			if(this.carteObjectifInfo[2].isSelectionner()) nbSelectionner++;
+
+			if(nbSelectionner < 1)
 			{
-				this.dialog.dispose();
+				JOptionPane.showMessageDialog(null, "Veuillez choisir 1 carte objectif", "Erreur", JOptionPane.ERROR_MESSAGE);
+				return;
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(null, "Veuillez choisir au moins 1 carte objectifs", "Erreur", JOptionPane.ERROR_MESSAGE);
-				return;
+				this.dialog.dispose();
 			}
 		}
 	}
@@ -267,5 +217,91 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 				this.ctrl.avancerJoueur();
 			}
 		}
+	}
+
+
+	public class afficherCarteObjectif extends JPanel implements ActionListener
+	{
+		private CarteObjectif carteObjectif;
+		private JButton btnChoixCarte;
+		private GenereImageCarteObjectif affichageObjectif;
+		private boolean selection;
+
+		public afficherCarteObjectif(CarteObjectif carteObjectif)
+		{
+
+			JLabel lblObjectif = new JLabel("Objectif : " + carteObjectif.getNoeudDep().getNom() + " à " + carteObjectif.getNoeudArr().getNom());
+			lblObjectif.setHorizontalAlignment(JLabel.CENTER);
+			lblObjectif.setFont(new Font("", Font.BOLD, 13));
+			lblObjectif.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+
+
+			this.setLayout(new BorderLayout());
+			this.carteObjectif = carteObjectif;
+			this.btnChoixCarte = new JButton("Choisir carte");
+			this.affichageObjectif = new GenereImageCarteObjectif(this.carteObjectif, PanelGaucheJeu.this.ctrl.getNomImage(), PanelGaucheJeu.this.ctrl.getWidthPanel(), PanelGaucheJeu.this.ctrl.getHeightPanel());
+			this.selection = false;
+			
+			btnChoixCarte.setBackground(Color.WHITE);
+
+			this.add(lblObjectif,BorderLayout.NORTH);
+			this.add(this.affichageObjectif,BorderLayout.CENTER);
+			this.add(this.btnChoixCarte,BorderLayout.SOUTH);
+
+			this.btnChoixCarte.addActionListener(this);			
+		}
+
+		public boolean isSelectionner(){return this.selection;}
+
+		public CarteObjectif getCarteObjectif()	{return this.carteObjectif;}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			if(e.getSource() == this.btnChoixCarte)
+			{
+				
+				if(!this.selection) this.affichageObjectif.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+				else this.affichageObjectif.setBorder(BorderFactory.createEmptyBorder());
+
+				this.selection = !this.selection;
+			}	
+		}
+	}
+
+
+	public JDialog creerPopUpCarteObjectif()
+	{
+		this.dialog = new JDialog();
+		this.dialog.setTitle("Joueur " + this.nbPopUp + ", choisissez au moins une carte objectif");
+		this.dialog.setLayout(new BorderLayout());
+		this.dialog.setBounds(500, 400, 1000, 400);
+		this.dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		this.dialog.setResizable(false);
+
+		this.carteObjectifInfo = new afficherCarteObjectif[3];
+		this.btnValider = new JButton("Valider");
+
+		JPanel panelDispoCarte = new JPanel(new GridLayout(1,3));
+		JPanel panelBtn		   = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,  50));
+
+		for(int index = 0; index < 3; index++)
+		{
+			this.carteObjectifInfo[index] = new afficherCarteObjectif(this.ctrl.getLstCarteObjectif().remove(0));
+			panelDispoCarte.add(this.carteObjectifInfo[index]);
+		}
+
+		btnValider.setBackground(Color.WHITE);
+
+		panelBtn.add(this.btnValider);
+
+		this.dialog.add(panelDispoCarte,BorderLayout.CENTER);
+		this.dialog.add(panelBtn,BorderLayout.SOUTH);
+
+		this.btnValider.addActionListener(this);
+
+		this.dialog.setVisible(true);
+
+		return this.dialog;
 	}
 }

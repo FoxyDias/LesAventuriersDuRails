@@ -310,8 +310,6 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 				this.ctrl.changerPanel("Jeu");
 		
 				this.creerPopUpCarteObjectif();
-
-
 			}
 		}
 
@@ -389,6 +387,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 				if(this.nbPopUP < this.ctrl.getNbJoueurPartie())
 				{
+					
 					this.nbPopUP++;
 					this.creerPopUpCarteObjectif();
 				}
