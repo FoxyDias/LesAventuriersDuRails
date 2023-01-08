@@ -47,9 +47,6 @@ public class GenereImageCarteObjectif extends JPanel
 
 		g2d.setStroke(new BasicStroke(10));
 		g2d.drawRect(0, 0, this.getWidth(), this.getHeight());
-
-		g2d.setColor(Color.white);
-		g2d.fillOval(this.getWidth() -50 - 10, 45 -30, 50, 50);
 		
 		g2d.setColor(Color.BLACK);
 		g2d.setFont(new Font("Courier", Font.BOLD, 40));

@@ -53,6 +53,7 @@ public class PanelBasJeu extends JPanel
 			this.btnPrendCarte = new JButton("prendre carte");
 
 			this.add(this.btnPrendCarte);
+			this.setBackground(this.carteWagon.getColor());
 			this.btnPrendCarte.addActionListener(this);
 		}
 

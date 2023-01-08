@@ -1,6 +1,7 @@
 package ihm.sectionMenu;
 
 import main.Controleur;
+import metier.CarteObjectif;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -11,7 +12,12 @@ import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
 import javax.swing.border.Border;
+
+
+import ihm.sectionJeu.GenereImageCarteObjectif;
+
 import java.awt.Font;
 import java.awt.FlowLayout;
 
@@ -40,11 +46,8 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 	/* --- JDIALOG --- */
 	private JButton btnValider;
-	private JButton btnCarteObjectif1;
-	private JButton btnCarteObjectif2;
-	private JButton btnCarteObjectif3;
 	private JDialog dialog;
-
+	private afficherCarteObjectif[] carteObjectifInfo;
 	private int nbPopUP = 1;
 
 	public PanelCentreMenu(Controleur ctrl)
@@ -365,12 +368,13 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnValider)
 		{
-			if(!(this.btnCarteObjectif1.isOpaque() && this.btnCarteObjectif2.isOpaque() ||  
-				 this.btnCarteObjectif1.isOpaque() && this.btnCarteObjectif3.isOpaque() || 
-				 this.btnCarteObjectif2.isOpaque() && this.btnCarteObjectif1.isOpaque() || 
-				 this.btnCarteObjectif2.isOpaque() && this.btnCarteObjectif3.isOpaque() ||
-				 this.btnCarteObjectif3.isOpaque() && this.btnCarteObjectif1.isOpaque() ||
-				 this.btnCarteObjectif3.isOpaque() && this.btnCarteObjectif2.isOpaque()))
+			int nbSelectionner = 0;
+
+			if(this.carteObjectifInfo[0].isSelectionner()) nbSelectionner++;
+			if(this.carteObjectifInfo[1].isSelectionner()) nbSelectionner++;
+			if(this.carteObjectifInfo[2].isSelectionner()) nbSelectionner++;
+
+			if(nbSelectionner < 2)
 			{
 				JOptionPane.showMessageDialog(null, "Veuillez choisir 2 cartes objectifs", "Erreur", JOptionPane.ERROR_MESSAGE);
 				return;
@@ -378,6 +382,10 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			else
 			{
 				this.dialog.dispose();
+
+				for(int index = 0; index < this.carteObjectifInfo.length; index++)
+					if(this.carteObjectifInfo[index].isSelectionner())
+						this.ctrl.getJoueur(this.nbPopUP+1).ajouterCarteObjectif(this.carteObjectifInfo[index].getCarteObjectif());
 
 				if(this.nbPopUP < this.ctrl.getNbJoueurPartie())
 				{
@@ -387,20 +395,6 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			}
 		}
 
-		if(e.getSource() == this.btnCarteObjectif1)
-		{
-			this.ctrl.inverseEtatBtn(this.btnCarteObjectif1);
-		}
-
-		if(e.getSource() == this.btnCarteObjectif2)
-		{
-			this.ctrl.inverseEtatBtn(this.btnCarteObjectif2);
-		}
-
-		if(e.getSource() == this.btnCarteObjectif3)
-		{
-			this.ctrl.inverseEtatBtn(this.btnCarteObjectif3);
-		}
 	}
 
 	public PanelCentreMenu getPanelCentreMenu() { return this;} 
@@ -415,42 +409,74 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 	public JDialog creerPopUpCarteObjectif()
 	{
-		JPanel panelBtn = new JPanel(new FlowLayout(FlowLayout.CENTER,0,75));
-
 		this.dialog = new JDialog();
 		this.dialog.setTitle("Joueur " + this.nbPopUP + ", choisissez au moins deux cartes objectifs");
-		this.dialog.setLayout(new GridLayout(2,3));
+		this.dialog.setLayout(new BorderLayout());
 		this.dialog.setBounds(500, 400, 1000, 400);
 		this.dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		this.dialog.setResizable(false);
 
-		this.btnCarteObjectif1 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
-		this.btnCarteObjectif2 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
-		this.btnCarteObjectif3 = new JButton(new ImageIcon(this.ctrl.getVersoCarteObjectif()));
+		this.carteObjectifInfo = new afficherCarteObjectif[3];
 		this.btnValider = new JButton("Valider");
 
-		this.btnCarteObjectif1.setBackground(Color.WHITE);
-		this.btnCarteObjectif2.setBackground(Color.WHITE);
-		this.btnCarteObjectif3.setBackground(Color.WHITE);
-		this.btnValider.setBackground(Color.WHITE);
+		JPanel panelDispoCarte = new JPanel(new GridLayout(1,3));
 
-		panelBtn.add(this.btnValider);
-	
-		this.dialog.add(btnCarteObjectif1);
-		this.dialog.add(btnCarteObjectif2);
-		this.dialog.add(btnCarteObjectif3);
-		this.dialog.add(new JLabel());
-		this.dialog.add(panelBtn);
-		this.dialog.add(new JLabel());
-		this.dialog.setVisible(true);
+		for(int index = 0; index < 3; index++)
+		{
+			this.carteObjectifInfo[index] = new afficherCarteObjectif(this.ctrl.getLstCarteObjectif().remove(0));
+			panelDispoCarte.add(this.carteObjectifInfo[index]);
+		}
 
-		this.btnCarteObjectif1.addActionListener(this);
-		this.btnCarteObjectif2.addActionListener(this);
-		this.btnCarteObjectif3.addActionListener(this);
+		this.dialog.add(panelDispoCarte,BorderLayout.CENTER);
+		this.dialog.add(this.btnValider,BorderLayout.SOUTH);
+
 		this.btnValider.addActionListener(this);
 
+		this.dialog.setVisible(true);
 
 		return this.dialog;
+	}
 
+	public class afficherCarteObjectif extends JPanel implements ActionListener
+	{
+		private CarteObjectif carteObjectif;
+		private JButton btnChoixCarte;
+		private GenereImageCarteObjectif affichageObjectif;
+		private boolean selection;
+
+		public afficherCarteObjectif(CarteObjectif carteObjectif)
+		{
+			this.setLayout(new BorderLayout());
+			this.carteObjectif = carteObjectif;
+			this.btnChoixCarte = new JButton("Choisir carte");
+			this.affichageObjectif = new GenereImageCarteObjectif(this.carteObjectif, PanelCentreMenu.this.ctrl.getNomImage(), PanelCentreMenu.this.ctrl.getWidthPanel(), PanelCentreMenu.this.ctrl.getHeightPanel());
+			this.selection = false;
+			
+
+			this.add(new JLabel("Objectif : " + this.carteObjectif.getNoeudDep().getNom() + " à " + this.carteObjectif.getNoeudArr().getNom()),BorderLayout.NORTH);
+			this.add(this.affichageObjectif,BorderLayout.CENTER);
+			this.add(this.btnChoixCarte,BorderLayout.SOUTH);
+
+			this.btnChoixCarte.addActionListener(this);			
+		}
+
+		public boolean isSelectionner(){return this.selection;}
+
+		public CarteObjectif getCarteObjectif()	{return this.carteObjectif;}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			if(e.getSource() == this.btnChoixCarte)
+			{
+				
+				if(!this.selection) this.affichageObjectif.setBorder(BorderFactory.createLineBorder(Color.RED, 5));
+				else this.affichageObjectif.setBorder(BorderFactory.createEmptyBorder());
+
+				this.selection = !this.selection;
+			}
+			
+		}
+		
 	}
 }
