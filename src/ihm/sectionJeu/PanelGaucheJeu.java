@@ -214,9 +214,11 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		private JButton btnFinTour;
 		private JButton btnFinPartie;
 		private JButton btnValiderRecap;
-
 		private JDialog dialogRecap;
+
 		private JTable tableRecap;
+		private Object[][] donnees;
+		private String[] entetes = {"Longueur de la route", "Points marqués"};
 
 		public PanelDispoParam(Controleur ctrl)
 		{
@@ -255,16 +257,15 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		public void recapFinPartie()
 		{
-			JLabel lblRecap = new JLabel("Joueur " + this.ctrl.getEstJoueurCourant() + ", il vous reste " + this.ctrl.getEstJoueurCourant().getNbCarteWagon() + ". La partie s'arrête au prochain tour.");
-			JOptionPane.showMessageDialog(null, lblRecap, "Fin de partie", JOptionPane.INFORMATION_MESSAGE);
+			//JLabel lblRecap = new JLabel("Joueur " + this.ctrl.getEstJoueurCourant() + ", il vous reste " + this.ctrl.getEstJoueurCourant().getNbCarteWagon() + ". La partie s'arrête au prochain tour.");
+			//JOptionPane.showMessageDialog(null, lblRecap, "Fin de partie", JOptionPane.INFORMATION_MESSAGE);
 			if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêtez la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 			{
 				this.dialogRecap = new JDialog();
 				JPanel panelBtn = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,50));
-				this.dialogRecap.setTitle("Récapitulatif de la partie");
+				this.dialogRecap.setTitle("Récapitulatif et score de la partie");
 				this.dialogRecap.setBounds(650,350,500,500);
 				this.dialogRecap.setResizable(false);
-				this.dialogRecap.setModal(true);
 				this.dialogRecap.setLayout(new GridLayout(5,1,0,5));
 				this.dialogRecap.setModalityType(JDialog.ModalityType.APPLICATION_MODAL);
 
@@ -273,16 +274,15 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 				panelBtn.add(this.btnValiderRecap);
 
 
-				/*
+				
 				this.tableRecap = new JTable(4, 4);
-
+				/*
 				this.tableRecap.setValueAt("Joueur", 0, 0);
 				this.tableRecap.setValueAt("Nombre de points cummulés avec les chemins", 0, 1);
 				this.tableRecap.setValueAt("Nombre de points cummulés avec les cartes objectifs", 0, 2);
 				this.tableRecap.setValueAt("Nombre de points du plus long chemin", 0, 3);
 				*/
-
-
+			
 				this.dialogRecap.add(new JLabel("Joueur : " + this.ctrl.getJoueur(this.ctrl.getIntJoueurActuel()) , JLabel.CENTER));
 				this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les chemins : ", JLabel.CENTER));
 				this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les cartes objectifs : ", JLabel.CENTER));
