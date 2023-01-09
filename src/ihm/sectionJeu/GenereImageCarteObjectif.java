@@ -34,6 +34,11 @@ public class GenereImageCarteObjectif extends JPanel
 		this.height = height;
 	}
 
+	public void setCarteObjectif(CarteObjectif carteObjectif) {
+		this.carteObjectif = carteObjectif;
+		this.repaint();
+	}
+
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
