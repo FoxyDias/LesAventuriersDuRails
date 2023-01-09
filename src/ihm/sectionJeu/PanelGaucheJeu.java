@@ -19,9 +19,9 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
+import java.awt.Image;
 
 
 public class PanelGaucheJeu extends JPanel implements ActionListener
@@ -122,33 +122,23 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		if(e.getSource() == this.btnPiocheCarteWagon)
 		{
 			JDialog jDialog = new JDialog();
-			jDialog.setLayout(new GridLayout(2,1));
-			JPanel panelLabel = new JPanel();
-			JPanel panelCouleur = new JPanel(new GridLayout(1,3));
-			JPanel panelSetBk = new JPanel();
-			panelSetBk.setBackground(PanelGaucheJeu.this.ctrl.getLstCarteWagon().get(0).getColor());
-			panelSetBk.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-			JLabel  lblCouleurChoisis = new JLabel("Vous avez pioché une carte de couleur : " + PanelGaucheJeu.this.ctrl.getLstCarteWagon().get(0).getColor(), JLabel.CENTER); 
-
-			
-			cpt++;
-			jDialog.setBounds(650, 250, 600, 300);
+			jDialog.setBounds(650, 350, 600, 300);
 			jDialog.setResizable(false);
 			jDialog.setModal(true);
-			jDialog.setTitle("Visualisation de la carte piochée ");
+			jDialog.setTitle("Vous avez pioché une carte " + this.ctrl.getMoyenDeTransport() + " de couleur : " + this.ctrl.getLstCarteWagon().get(0).getColor());
+			
+			ImageIcon icon = new ImageIcon(this.ctrl.getLstCarteWagon().get(0).getRecto());
 
-			panelSetBk.setBackground(PanelGaucheJeu.this.ctrl.getLstCarteWagon().get(0).getColor());
+            icon.setImage(icon.getImage().getScaledInstance(jDialog.getWidth() -5,jDialog.getHeight()-10,Image.SCALE_DEFAULT));
 
-			panelLabel.add(lblCouleurChoisis);
-			panelCouleur.add(new JPanel());
-			panelCouleur.add(panelSetBk);
-			panelCouleur.add(new JPanel());
+			JLabel lblImage = new JLabel(icon);
+
+			cpt++;
 			
 			this.ctrl.getEstJoueurCourant().getMainWagon().add(this.ctrl.getLstCarteWagon().get(0));
 			this.ctrl.getLstCarteWagon().remove(0);
 
-			jDialog.add(panelLabel);
-			jDialog.add(panelCouleur);
+			jDialog.add(lblImage);
 			jDialog.setVisible(true);
 		}
 		if(this.cpt == 2)
@@ -207,7 +197,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		}
 	}
 
-	
 	public class PanelDispoParam extends JPanel implements ActionListener
 	{
 		private Controleur ctrl;

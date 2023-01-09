@@ -3,6 +3,9 @@ package ihm.sectionJeu;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
@@ -58,10 +61,14 @@ public class PanelMainJoueur extends JPanel
 
 		public void initValeurCarteWagon()
 		{
+			ImageIcon icon = new ImageIcon(PanelMainJoueur.this.ctrl.getLstCarteWagon().get(0).getRecto());
+            icon.setImage(icon.getImage().getScaledInstance(this.getWidth() -5,this.getHeight()-10,Image.SCALE_DEFAULT));
+			JLabel lblImage = new JLabel(icon);
+
 			this.scrollBar.setMinimum(0);
 			this.scrollBar.setMaximum(1);
 			this.lblInfoNumeroCarte.setText("1 / " + PanelMainJoueur.this.ctrl.getEstJoueurCourant().getNbCarteWagon());
-			this.panelCoulCarteWagon.setBackground(PanelMainJoueur.this.ctrl.getEstJoueurCourant().getMainWagon().get(0).getColor());
+			this.panelCoulCarteWagon.add(lblImage);
 			this.repaint();
 
 		}
@@ -71,10 +78,14 @@ public class PanelMainJoueur extends JPanel
 			
 			if(e.getSource() == this.scrollBar)
 			{
+				ImageIcon icon = new ImageIcon(PanelMainJoueur.this.ctrl.getLstCarteWagon().get(0).getRecto());
+				icon.setImage(icon.getImage().getScaledInstance(this.getWidth() -5,this.getHeight()-10,Image.SCALE_DEFAULT));
+				JLabel lblImage = new JLabel(icon);
+
 				this.scrollBar.setMaximum(PanelMainJoueur.this.ctrl.getEstJoueurCourant().getNbCarteWagon());
 				this.lblInfoNumeroCarte.setText((e.getValue()+1)+ " / " + this.scrollBar.getMaximum());
 				if(PanelMainJoueur.this.ctrl.getEstJoueurCourant().getMainWagon().get(this.scrollBar.getValue()).getColor() != null)
-					this.panelCoulCarteWagon.setBackground(PanelMainJoueur.this.ctrl.getEstJoueurCourant().getMainWagon().get(scrollBar.getValue()).getColor());
+					this.panelCoulCarteWagon.add(lblImage);
 			
 				this.repaint();
 			}
