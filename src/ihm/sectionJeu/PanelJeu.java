@@ -13,7 +13,7 @@ public class PanelJeu extends JPanel
 	private PanelHautJeu panelHautJeu;
 	private PanelGaucheJeu panelGaucheJeu;
 	private PanelCentreJeu panelCentre;
-	private PanelBasJeu panelBasJeu;
+	private PanelDroiteJeu panelDroiteJeu;
 
 	public PanelJeu(Controleur ctrl)
 	{
@@ -25,14 +25,14 @@ public class PanelJeu extends JPanel
 		this.panelHautJeu = new PanelHautJeu(this.ctrl);
 		this.panelGaucheJeu = new PanelGaucheJeu(this.ctrl);
 		this.panelCentre = new PanelCentreJeu(this.ctrl);
-		this.panelBasJeu = new PanelBasJeu(this.ctrl);
+		this.panelDroiteJeu = new PanelDroiteJeu(this.ctrl);
 
 		/**
 		 * Positionnement des composants
 		 */
 
 		this.add(this.panelHautJeu, BorderLayout.NORTH);
-		this.add(this.panelBasJeu, BorderLayout.SOUTH);
+		this.add(this.panelDroiteJeu, BorderLayout.EAST);
 		this.add(this.panelGaucheJeu, BorderLayout.WEST);
 		this.add(this.panelCentre, BorderLayout.CENTER);
 		

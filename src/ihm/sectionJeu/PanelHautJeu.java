@@ -1,7 +1,6 @@
 package ihm.sectionJeu;
 
 import main.Controleur;
-import metier.Joueur;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -106,16 +105,6 @@ public class PanelHautJeu extends JPanel
 				this.alNbPointsChemin.get(i).setFont(new Font("", Font.BOLD, 12));
 				this.alNbCarteWagons.get(i).setFont(new Font("", Font.BOLD, 12));
 			}
-		}
-	}
-
-	public void resetPanelHautJeu(){
-		for(int i = 0; i < this.ctrl.getNbJoueurPartie(); i++)
-		{
-			this.alNbPionsWagon.get(i).setText("Nombre de pions " + this.ctrl.getMoyenDeTransport() + " : " +  0);
-			this.alNbCarteObjectif.get(i).setText("Nombre de cartes objectifs : " + 0);
-			this.alNbPointsChemin.get(i).setText("Nombre de points chemin : " + 0);
-			this.alNbCarteWagons.get(i).setText("Nombre de cartes wagons : " + 0);
 		}
 	}
 
