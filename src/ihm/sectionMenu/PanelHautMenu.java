@@ -124,15 +124,13 @@ public class PanelHautMenu extends JPanel implements ActionListener
 						JPanel panelImage = new JPanel(new FlowLayout(FlowLayout.RIGHT, 0, 40));
 
 						this.ctrl.lireXml("donnee/xml/"+file.getName());
-						this.panelInformation.setLayout(new GridLayout(10,2,0,5));
+						this.panelInformation.setLayout(new GridLayout(9,2,0,5));
 						
 			
 						this.lblInformationMappe.setText(lblVide.getText());
 						this.panelInformation.add(new JLabel());
 						this.panelInformation.add(new JLabel("Nombre de joueurs maximum  : " 						, JLabel.RIGHT));
 						this.panelInformation.add(new JLabel("" + this.ctrl.getNbJoueurMax()						, JLabel.LEFT));
-						this.panelInformation.add(new JLabel("Nombre de couleur / joueur : "      					, JLabel.RIGHT));	
-						this.panelInformation.add(new JLabel("" + this.ctrl.getLstCouleurJoueur().size()			, JLabel.LEFT));
 						this.panelInformation.add(new JLabel("Nombre de noeud dans la mappe : "						, JLabel.RIGHT));
 						this.panelInformation.add(new JLabel("" + this.ctrl.getLstNoeud().size()					, JLabel.LEFT));
 						this.panelInformation.add(new JLabel("Nombre d'arête dans la mappe : " 				 		, JLabel.RIGHT));
