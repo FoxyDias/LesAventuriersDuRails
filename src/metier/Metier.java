@@ -104,7 +104,7 @@ public class Metier {
                 System.out.println("Nb Wagons pour les arêtes" + a.getWagon() + " Nb Wagons que le joueur actuel possède : " + this.getEstJoueurCourant().getNbCarteWagon());
                 if(a.getWagon() > this.getEstJoueurCourant().getNbCarteWagon() && this.lstCarteWagon.size() == 0){
                     System.out.println("nbWagonFinPartie" + this.getNbWagonFinPartie());
-                    this.ctrl.changerPanel("Menu");
+                    this.ctrl.recapFinPartie();
                 }
             }
         }
@@ -114,13 +114,14 @@ public class Metier {
         for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++){
             if(this.getEstJoueurCourant().getNbCarteWagon() == getNbWagonFinPartie()){
                 System.out.println("Appeler la méthode recapFinPartie dans panelDispoParam qu'est dans la classe PanelGaucheJeu");
+                this.ctrl.recapFinPartie();
             }
         }
 
         /* Si toutes les arêtes sont prises */
         Joueur joueur = getEstJoueurCourant();
         if(lstArete.size() == joueur.getAlCheminsPtsCpts().size()){
-            this.ctrl.changerPanel("Menu");
+            this.ctrl.recapFinPartie();
         }
     }
 
@@ -430,6 +431,8 @@ public class Metier {
         //     this.lstDefausseWagon.add(carteJoker);
 
         // }   
+
+
         return true;
     }
 

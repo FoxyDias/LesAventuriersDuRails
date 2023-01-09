@@ -1,6 +1,7 @@
 package main;
 
 import ihm.FrameJeu;
+import ihm.sectionJeu.PanelGaucheJeu.PanelDispoParam;
 import ihm.sectionMenu.PanelCentreMenu;
 import metier.*;
 
@@ -17,6 +18,7 @@ public class Controleur {
     private Metier metier;
     private FrameJeu ihm;
     private int nbPiocheWagon = 0;
+    private PanelDispoParam panelDispoParam;
 
     public Controleur()
     {
@@ -28,6 +30,10 @@ public class Controleur {
     {
         this.metier.lancerPartie();
         this.ihm.changerPanel(nom);
+    }
+
+    public void recapFinPartie(){
+        panelDispoParam.recapFinPartie();
     }
 
     public String getNomImage() {
