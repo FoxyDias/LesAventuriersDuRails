@@ -143,7 +143,6 @@ public class Metier {
         if(this.intJoueurActuel >= this.nbJoueurPartie)
             this.intJoueurActuel = 0;
         
-            this.finPartie();
     }
 
     private void initPioche()
@@ -312,6 +311,9 @@ public class Metier {
     public void repiocherCarteObjectif(int index) {
 
         this.lstPiocheObjectifs.set(index, this.lstCarteObjectif.get( (int) (Math.random() * this.lstCarteObjectif.size() )));
+    }
+    public void repiocherCarteWagon(int i) {
+        this.lstPiocheWagon.set(i, this.lstCarteWagon.get( (int) (Math.random() * this.lstCarteWagon.size() )));
     }
 
     private void melangerCarteObjectif() {
@@ -667,7 +669,7 @@ public class Metier {
     public String getVersoCarteObjectif () { return versoCarteObjectif;    }
     public String getNomImage           () { return nomImage;              }
 
-    public Joueur getJoueur        (int i) { return this.lstJoueur.get(i); }
+    public Joueur getJoueur        (int i) { return this.lstJoueur.get(i);}
 
     public ArrayList<CarteObjectif> getListCarteObjectif() { return this.lstCarteObjectif;}
     public ArrayList<CarteObjectif> getLstCarteObjectif () { return lstCarteObjectif;     }
@@ -697,6 +699,8 @@ public class Metier {
     public void setWidthPanel (double witdhPanel) {this.witdhPanel = witdhPanel;  }
     public void setHeightPanel(double heightPanel){this.heightPanel = heightPanel;}
     public void setNbJoueurPartie(int n          ){ this.nbJoueurPartie = n; }
+
+
 
 
     /*-------------------------------------------------------------------------*/

@@ -16,6 +16,7 @@ public class Controleur {
 
     private Metier metier;
     private FrameJeu ihm;
+    private int nbPiocheWagon;
 
     public Controleur()
     {
@@ -25,8 +26,8 @@ public class Controleur {
 
     public void lancerPartie(String nom)
     {
-        this.ihm.changerPanel(nom);
         this.metier.lancerPartie();
+        this.ihm.changerPanel(nom);
     }
 
     public String getNomImage() {
@@ -108,8 +109,12 @@ public class Controleur {
     public int getIntJoueurActuel() {
         return metier.getIntJoueurActuel();
     }
-    
-	public PanelCentreMenu getPanelCentreMenu() { 
+
+    public int getNbPiocheWagon() {
+        return nbPiocheWagon;
+    }
+
+    public PanelCentreMenu getPanelCentreMenu() {
 		
 		if (this.ihm == null) return null;
 		
@@ -126,6 +131,13 @@ public class Controleur {
         this.metier.avancerJoueur();
         this.ihm.changerCouleurPanel();
         this.ihm.majIhm();
+    }
+
+    public void ajouterNbPiocheWagon() {
+        if(nbPiocheWagon > 2)
+            this.nbPiocheWagon = 0;
+        else
+            this.nbPiocheWagon++;
     }
 
     public void changerCouleurPanel()
@@ -154,9 +166,10 @@ public class Controleur {
 
     public String getMoyenDeTransport() { return this.metier.getMoyenDeTransport(); }
 
-    public void repiocherCarteObjectif(int index) {
-        this.metier.repiocherCarteObjectif(index);
+    public void repiocherCarteObjectif(int i) {
+        this.metier.repiocherCarteObjectif(i);
     }
+    public void repiocherCarteWagon(int i) { this.metier.repiocherCarteWagon(i); }
 
 
 	public void setEnabled(boolean b) { this.ihm.setEnabled(b); }
@@ -195,4 +208,7 @@ public class Controleur {
 		FlatLightLaf.setup();
         new Controleur();
     }
+
+
+
 }
