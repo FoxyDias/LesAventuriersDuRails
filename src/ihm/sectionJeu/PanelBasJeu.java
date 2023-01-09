@@ -3,15 +3,10 @@ package ihm.sectionJeu;
 import main.Controleur;
 import metier.CarteWagon;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
-import java.util.Collections;
-import java.util.Scanner;
 
 public class PanelBasJeu extends JPanel implements ActionListener
 {
@@ -93,7 +88,7 @@ public class PanelBasJeu extends JPanel implements ActionListener
 
 	public void actionPerformed(ActionEvent e)
 	{
-		for(int i = 0; i<this.ctrl.getLstPiocheWagon().size(); i++)
+		for(int i = 0; i < this.ctrl.getLstPiocheWagon().size(); i++)
 		{
 			if (e.getSource() == this.tabPanelPioche[i].getBtnPrendCarte()) {
 
@@ -105,10 +100,9 @@ public class PanelBasJeu extends JPanel implements ActionListener
 				this.ctrl.ajouterNbPiocheWagon();
 				if(this.ctrl.getNbPiocheWagon()==2)
 				{
-					this.ctrl.ajouterNbPiocheWagon();
 					this.ctrl.avancerJoueur();
+					this.ctrl.ajouterNbPiocheWagon();
 				}
-
 			}
 		}
 	}

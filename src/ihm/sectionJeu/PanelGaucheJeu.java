@@ -48,8 +48,16 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		 * Création des composants
 		 */
 		this.ctrl   = ctrl;
-		this.setLayout(new GridLayout(5,1,0,0));
-		this.setPreferredSize(new Dimension(350, 0));
+		this.setLayout(new GridLayout(6,1,0,0));
+
+
+		JPanel panelHautGrid = new JPanel(new BorderLayout());
+		JPanel panelHautLbl = new JPanel();
+		JPanel panelHautImg = new JPanel();
+
+		JPanel panelMilieuGrid = new JPanel(new BorderLayout());
+		JPanel panelMilieuLbl = new JPanel();			
+		JPanel panelMilieuImg = new JPanel();
 
 		JLabel lblPiocheCarteWagon		= new JLabel("Piocher une carte " + this.ctrl.getMoyenDeTransport(), JLabel.CENTER);
 		JLabel lblPiocheCarteObjectif	= new JLabel("Piocher une carte objectif", JLabel.CENTER);
@@ -59,8 +67,8 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		lblPiocheCarteWagon.setFont(new Font("", Font.BOLD, 16));
 		lblPiocheCarteObjectif.setFont(new Font("", Font.BOLD, 16));
 
-		imageIconBtnPiocheCarteObjectif.setImage(imageIconBtnPiocheCarteObjectif.getImage().getScaledInstance(250, 150, java.awt.Image.SCALE_DEFAULT));
-		imageIconBtnPiocheCarteWagon.setImage(imageIconBtnPiocheCarteWagon.getImage().getScaledInstance(300, 100, java.awt.Image.SCALE_DEFAULT));
+		imageIconBtnPiocheCarteObjectif.setImage(imageIconBtnPiocheCarteObjectif.getImage().getScaledInstance(200, 100, java.awt.Image.SCALE_DEFAULT));
+		imageIconBtnPiocheCarteWagon.setImage(imageIconBtnPiocheCarteWagon.getImage().getScaledInstance(200, 100, java.awt.Image.SCALE_DEFAULT));
 
 		this.btnPiocheCarteWagon 		= new JButton(imageIconBtnPiocheCarteWagon);
 		this.btnPiocheCarteObjectif 	= new JButton(imageIconBtnPiocheCarteObjectif);
@@ -83,12 +91,23 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		/**
 		 * Positionnement des composants
 		 */
+		panelHautLbl.add(lblPiocheCarteWagon);
+		panelHautImg.add(this.btnPiocheCarteWagon);
+		panelHautGrid.add(panelHautLbl, BorderLayout.NORTH);
+		panelHautGrid.add(panelHautImg, BorderLayout.CENTER);
 
-		this.add(lblPiocheCarteObjectif);
-		this.add(this.btnPiocheCarteObjectif);
-		this.add(lblPiocheCarteWagon);
-		this.add(this.btnPiocheCarteWagon);
+		panelMilieuLbl.add(lblPiocheCarteObjectif);
+		panelMilieuImg.add(this.btnPiocheCarteObjectif);
+		panelMilieuGrid.add(panelMilieuLbl, BorderLayout.NORTH);
+		panelMilieuGrid.add(panelMilieuImg, BorderLayout.CENTER);
+
+		this.add(new JPanel());
+		this.add(panelMilieuGrid);
+		this.add(new JPanel());
+		this.add(panelHautGrid);
+		this.add(new JPanel());
 		this.add(new PanelDispoParam(this.ctrl));
+
 		/**
 		 * Activation des composants
 		 */
@@ -292,7 +311,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			}
 		}
 	}
-
 
 	public class AfficherCarteObjectif extends JPanel implements ActionListener
 	{

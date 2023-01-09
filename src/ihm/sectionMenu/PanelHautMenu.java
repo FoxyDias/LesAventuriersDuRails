@@ -238,11 +238,8 @@ public class PanelHautMenu extends JPanel implements ActionListener
 
 				this.cheminFichier = fileRemplacement.getName();
 
-				System.out.println("Fichier attendu : "+  this.stringFichierManquant+"|");
 				this.validFichier = this.stringFichierManquant.contains(chemin+cheminFichier);
-				System.out.println("Fichier donner  : "+ chemin+cheminFichier+"|");
 				
-				System.out.println("fichier valide fdp : " + this.validFichier);
 				this.FileImagenew =new File(cheminFichier);
 
 				if(this.validFichier)

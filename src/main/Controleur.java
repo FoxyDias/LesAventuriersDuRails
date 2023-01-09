@@ -16,7 +16,7 @@ public class Controleur {
 
     private Metier metier;
     private FrameJeu ihm;
-    private int nbPiocheWagon;
+    private int nbPiocheWagon = 0;
 
     public Controleur()
     {
@@ -134,7 +134,7 @@ public class Controleur {
     }
 
     public void ajouterNbPiocheWagon() {
-        if(nbPiocheWagon > 2)
+        if(nbPiocheWagon >= 2)
             this.nbPiocheWagon = 0;
         else
             this.nbPiocheWagon++;
