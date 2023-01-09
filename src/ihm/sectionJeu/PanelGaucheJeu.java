@@ -242,6 +242,33 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			this.btnFinTour.addActionListener(this);
 		}
 
+		public void recapFinPartie(){
+			if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêtez la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+			{
+				this.dialogRecap = new JDialog();
+				JPanel panelBtn = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,50));
+				this.dialogRecap.setTitle("Récapitulatif de la partie");
+				this.dialogRecap.setBounds(650,350,500,500);
+				this.dialogRecap.setResizable(false);
+				this.dialogRecap.setModal(true);
+				this.dialogRecap.setLayout(new GridLayout(5,1,0,5));
+
+				this.btnValiderRecap = new JButton("Quitter");
+
+				panelBtn.add(this.btnValiderRecap);
+
+				this.dialogRecap.add(new JLabel("Joueur : " + this.ctrl.getJoueur(this.ctrl.getIntJoueurActuel()) , JLabel.CENTER));
+				this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les chemins : ", JLabel.CENTER));
+				this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les cartes objectifs : ", JLabel.CENTER));
+				this.dialogRecap.add(new JLabel("Nombre de points du plus long chemin : ", JLabel.CENTER));
+				this.dialogRecap.add(panelBtn);
+
+				this.btnValiderRecap.addActionListener(this);
+
+				this.dialogRecap.setVisible(true);
+			}
+		}
+
 		public void actionPerformed(ActionEvent e)
 		{
 			if(e.getSource() == this.btnVisualisation)
@@ -265,30 +292,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 			if(e.getSource() == this.btnFinPartie)
 			{
-				if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêtez la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-				{
-					this.dialogRecap = new JDialog();
-					JPanel panelBtn = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,50));
-					this.dialogRecap.setTitle("Récapitulatif de la partie");
-					this.dialogRecap.setBounds(650,350,500,500);
-					this.dialogRecap.setResizable(false);
-					this.dialogRecap.setModal(true);
-					this.dialogRecap.setLayout(new GridLayout(5,1,0,5));
-
-					this.btnValiderRecap = new JButton("Quitter");
-
-					panelBtn.add(this.btnValiderRecap);
-
-					this.dialogRecap.add(new JLabel("Joueur : " + this.ctrl.getJoueur(this.ctrl.getIntJoueurActuel()) , JLabel.CENTER));
-					this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les chemins : ", JLabel.CENTER));
-					this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les cartes objectifs : ", JLabel.CENTER));
-					this.dialogRecap.add(new JLabel("Nombre de points du plus long chemin : ", JLabel.CENTER));
-					this.dialogRecap.add(panelBtn);
-
-					this.btnValiderRecap.addActionListener(this);
-
-					this.dialogRecap.setVisible(true);
-				}
+				this.recapFinPartie();
 			}
 
 			if(e.getSource() == this.btnFinTour)
