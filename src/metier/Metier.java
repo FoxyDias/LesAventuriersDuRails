@@ -354,21 +354,21 @@ public class Metier {
        
             if(nbCarteCoulJoueur ==0 && nbCarteJoker == 0)
                 break;
-            if(this.getEstJoueurCourant().getMainWagon().get(i).getColor().equals(c))
+
+
+            if((this.getEstJoueurCourant().getMainWagon().get(i).getColor() == null)){
+                this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().get(i));
+                this.getEstJoueurCourant().getMainWagon().remove(i);
+                i--;
+                nbCarteJoker--;
+            }
+            else if(this.getEstJoueurCourant().getMainWagon().get(i).getColor().equals(c))
             {
                 this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().get(i));
                 this.getEstJoueurCourant().getMainWagon().remove(i);
                 i--;
                 nbCarteCoulJoueur--;
             }
-
-            else 
-                if((this.getEstJoueurCourant().getMainWagon().get(i).getColor() == null)){
-                    this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().get(i));
-                    this.getEstJoueurCourant().getMainWagon().remove(i);
-                    i--;
-                    nbCarteJoker--;
-                }
 
         }
         // for(int i = 0 ; i<nbCarteJoker ; i++)

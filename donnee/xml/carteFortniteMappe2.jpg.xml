@@ -5,7 +5,7 @@
 			<coordonees x="256" y="252"/>
 			<coordoneesNom x="241" y="267"/>
 		</noeud>
-		<noeud nom="Tilted Tower">
+		<noeud nom="Titlted Tower">
 			<coordonees x="324" y="469"/>
 			<coordoneesNom x="324" y="469"/>
 		</noeud>
@@ -63,7 +63,7 @@
 		</noeud>
 		<noeud nom="Shifty Shaft">
 			<coordonees x="334" y="619"/>
-			<coordoneesNom x="319" y="634"/>
+			<coordoneesNom x="325" y="621"/>
 		</noeud>
 		<noeud nom="Haunted Hills">
 			<coordonees x="96" y="140"/>
@@ -80,79 +80,79 @@
 		<arete>
 			<noeudArr>0</noeudArr>
 			<noeudDep>1</noeudDep>
-			<couleur>[r=204,g=255,b=204]</couleur>
+			<couleur>[r=0,g=0,b=255]</couleur>
 			<wagons>3</wagons>
 		</arete>
 		<arete>
 			<noeudArr>0</noeudArr>
 			<noeudDep>1</noeudDep>
-			<couleur>[r=153,g=255,b=204]</couleur>
+			<couleur>[r=255,g=0,b=0]</couleur>
 			<wagons>3</wagons>
 		</arete>
 		<arete>
 			<noeudArr>0</noeudArr>
 			<noeudDep>17</noeudDep>
-			<couleur>[r=102,g=255,b=204]</couleur>
+			<couleur>[r=255,g=255,b=0]</couleur>
 			<wagons>2</wagons>
 		</arete>
 		<arete>
 			<noeudArr>0</noeudArr>
 			<noeudDep>16</noeudDep>
-			<couleur>[r=51,g=255,b=204]</couleur>
+			<couleur>[r=204,g=204,b=204]</couleur>
 			<wagons>2</wagons>
 		</arete>
 		<arete>
 			<noeudArr>16</noeudArr>
 			<noeudDep>7</noeudDep>
-			<couleur>[r=204,g=255,b=204]</couleur>
+			<couleur>[r=0,g=0,b=255]</couleur>
 			<wagons>1</wagons>
 		</arete>
 		<arete>
 			<noeudArr>16</noeudArr>
 			<noeudDep>6</noeudDep>
-			<couleur>[r=153,g=255,b=153]</couleur>
+			<couleur>[r=255,g=102,b=0]</couleur>
 			<wagons>4</wagons>
 		</arete>
 		<arete>
 			<noeudArr>6</noeudArr>
 			<noeudDep>5</noeudDep>
-			<couleur>[r=204,g=255,b=204]</couleur>
+			<couleur>[r=255,g=255,b=0]</couleur>
 			<wagons>3</wagons>
 		</arete>
 		<arete>
 			<noeudArr>5</noeudArr>
 			<noeudDep>15</noeudDep>
-			<couleur>[r=204,g=255,b=204]</couleur>
+			<couleur>[r=255,g=0,b=255]</couleur>
 			<wagons>1</wagons>
 		</arete>
 		<arete>
 			<noeudArr>15</noeudArr>
 			<noeudDep>1</noeudDep>
-			<couleur>[r=204,g=255,b=204]</couleur>
+			<couleur>[r=204,g=204,b=204]</couleur>
 			<wagons>1</wagons>
 		</arete>
 		<arete>
 			<noeudArr>15</noeudArr>
 			<noeudDep>13</noeudDep>
-			<couleur>[r=153,g=255,b=153]</couleur>
+			<couleur>[r=204,g=204,b=204]</couleur>
 			<wagons>4</wagons>
 		</arete>
 		<arete>
 			<noeudArr>15</noeudArr>
 			<noeudDep>3</noeudDep>
-			<couleur>[r=102,g=255,b=51]</couleur>
+			<couleur>[r=0,g=255,b=0]</couleur>
 			<wagons>3</wagons>
 		</arete>
 		<arete>
 			<noeudArr>3</noeudArr>
 			<noeudDep>2</noeudDep>
-			<couleur>[r=255,g=255,b=204]</couleur>
+			<couleur>[r=255,g=255,b=0]</couleur>
 			<wagons>3</wagons>
 		</arete>
 		<arete>
 			<noeudArr>3</noeudArr>
 			<noeudDep>10</noeudDep>
-			<couleur>[r=255,g=102,b=102]</couleur>
+			<couleur>[r=204,g=204,b=204]</couleur>
 			<wagons>2</wagons>
 		</arete>
 		<arete>
@@ -164,7 +164,7 @@
 		<arete>
 			<noeudArr>10</noeudArr>
 			<noeudDep>9</noeudDep>
-			<couleur>[r=204,g=204,b=255]</couleur>
+			<couleur>[r=0,g=255,b=0]</couleur>
 			<wagons>3</wagons>
 		</arete>
 		<arete>
@@ -176,37 +176,37 @@
 		<arete>
 			<noeudArr>9</noeudArr>
 			<noeudDep>11</noeudDep>
-			<couleur>[r=153,g=153,b=255]</couleur>
+			<couleur>[r=255,g=0,b=255]</couleur>
 			<wagons>2</wagons>
 		</arete>
 		<arete>
 			<noeudArr>11</noeudArr>
 			<noeudDep>2</noeudDep>
-			<couleur>[r=102,g=0,b=102]</couleur>
+			<couleur>[r=204,g=204,b=204]</couleur>
 			<wagons>4</wagons>
 		</arete>
 		<arete>
 			<noeudArr>2</noeudArr>
 			<noeudDep>14</noeudDep>
-			<couleur>[r=102,g=102,b=255]</couleur>
+			<couleur>[r=0,g=0,b=255]</couleur>
 			<wagons>5</wagons>
 		</arete>
 		<arete>
 			<noeudArr>14</noeudArr>
 			<noeudDep>18</noeudDep>
-			<couleur>[r=204,g=0,b=51]</couleur>
+			<couleur>[r=255,g=102,b=0]</couleur>
 			<wagons>6</wagons>
 		</arete>
 		<arete>
 			<noeudArr>18</noeudArr>
 			<noeudDep>13</noeudDep>
-			<couleur>[r=255,g=255,b=102]</couleur>
+			<couleur>[r=255,g=255,b=0]</couleur>
 			<wagons>4</wagons>
 		</arete>
 		<arete>
 			<noeudArr>18</noeudArr>
 			<noeudDep>4</noeudDep>
-			<couleur>[r=255,g=51,b=51]</couleur>
+			<couleur>[r=255,g=0,b=255]</couleur>
 			<wagons>3</wagons>
 		</arete>
 		<arete>
@@ -218,197 +218,122 @@
 		<arete>
 			<noeudArr>17</noeudArr>
 			<noeudDep>1</noeudDep>
-			<couleur>[r=204,g=0,b=0]</couleur>
+			<couleur>[r=255,g=102,b=0]</couleur>
 			<wagons>3</wagons>
 		</arete>
 		<arete>
 			<noeudArr>17</noeudArr>
 			<noeudDep>10</noeudDep>
-			<couleur>[r=255,g=102,b=102]</couleur>
+			<couleur>[r=255,g=0,b=0]</couleur>
 			<wagons>4</wagons>
 		</arete>
 		<arete>
 			<noeudArr>17</noeudArr>
 			<noeudDep>8</noeudDep>
-			<couleur>[r=255,g=153,b=153]</couleur>
+			<couleur>[r=0,g=255,b=0]</couleur>
 			<wagons>4</wagons>
 		</arete>
 		<arete>
 			<noeudArr>2</noeudArr>
 			<noeudDep>9</noeudDep>
-			<couleur>[r=0,g=51,b=102]</couleur>
+			<couleur>[r=0,g=255,b=0]</couleur>
 			<wagons>5</wagons>
 		</arete>
 		<arete>
 			<noeudArr>6</noeudArr>
 			<noeudDep>1</noeudDep>
-			<couleur>[r=102,g=255,b=102]</couleur>
+			<couleur>[r=0,g=255,b=0]</couleur>
 			<wagons>6</wagons>
 		</arete>
 		<arete>
 			<noeudArr>14</noeudArr>
 			<noeudDep>3</noeudDep>
-			<couleur>[r=51,g=255,b=51]</couleur>
+			<couleur>[r=0,g=255,b=0]</couleur>
 			<wagons>5</wagons>
 		</arete>
 		<carteWagon>
-			<couleur>[r=255,g=255,b=102]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=255,g=102,b=102]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=102,g=102,b=255]</couleur>
-			<nombre>10</nombre>
-			<recto>imageCarte/quad.jpg</recto>
-		</carteWagon>
-		<carteWagon>
 			<couleur>[r=255,g=0,b=0]</couleur>
-			<nombre>10</nombre>
-			<recto>imageCarte/quad.jpg</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=102,g=255,b=204]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=153,g=255,b=204]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
+			<nombre>18</nombre>
+			<recto>imageCarte/Ferrari_F8_Tributo_2019_02dc2-615x410.jpg</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>Joker</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
+			<nombre>22</nombre>
+			<recto>imageCarte/bb4b6a7797d7654958ea22320a84722a.jpg</recto>
 		</carteWagon>
 		<carteWagon>
-			<couleur>[r=255,g=153,b=153]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
+			<couleur>[r=0,g=0,b=255]</couleur>
+			<nombre>18</nombre>
+			<recto>imageCarte/bugatti-chiron-bleu-royal.jpg</recto>
 		</carteWagon>
 		<carteWagon>
-			<couleur>[r=0,g=51,b=102]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
+			<couleur>[r=0,g=255,b=0]</couleur>
+			<nombre>30</nombre>
+			<recto>imageCarte/2gg958d.jpg</recto>
 		</carteWagon>
 		<carteWagon>
-			<couleur>[r=153,g=255,b=153]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=204,g=255,b=204]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=102,g=255,b=51]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=153,g=153,b=255]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=102,g=0,b=102]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
+			<couleur>[r=204,g=204,b=204]</couleur>
+			<nombre>13</nombre>
+			<recto>imageCarte/ppfzf80xaj.jpg</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=255,g=0,b=255]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
+			<nombre>12</nombre>
+			<recto>imageCarte/8770-fiat-500-so-pink-edition-limitee-2010.jpg</recto>
 		</carteWagon>
 		<carteWagon>
-			<couleur>[r=204,g=0,b=0]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
+			<couleur>[r=255,g=102,b=0]</couleur>
+			<nombre>15</nombre>
+			<recto>imageCarte/bugatti_supercar.jpg</recto>
 		</carteWagon>
 		<carteWagon>
-			<couleur>[r=255,g=51,b=51]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=255,g=255,b=204]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=51,g=255,b=51]</couleur>
-			<nombre>10</nombre>
-			<recto>imageCarte/quad.jpg</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=204,g=0,b=51]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=102,g=255,b=102]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=204,g=204,b=255]</couleur>
-			<nombre>10</nombre>
-			<recto>imageCarte/quad.jpg</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=51,g=255,b=204]</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
+			<couleur>[r=255,g=255,b=0]</couleur>
+			<nombre>13</nombre>
+			<recto>imageCarte/1200-L-chevrolet-camaro-transformers-3-joue-la-comme-bumblebee.jpg</recto>
 		</carteWagon>
 		<carteObjectif>
-			<noeudArr>0</noeudArr>
-			<noeudDep>1</noeudDep>
+			<noeudArr>1</noeudArr>
+			<noeudDep>0</noeudDep>
 			<points>6</points>
 		</carteObjectif>
 		<carteObjectif>
-			<noeudArr>0</noeudArr>
-			<noeudDep>17</noeudDep>
+			<noeudArr>17</noeudArr>
+			<noeudDep>0</noeudDep>
 			<points>2</points>
 		</carteObjectif>
 		<carteObjectif>
-			<noeudArr>0</noeudArr>
+			<noeudArr>16</noeudArr>
+			<noeudDep>0</noeudDep>
+			<points>2</points>
+		</carteObjectif>
+		<carteObjectif>
+			<noeudArr>7</noeudArr>
 			<noeudDep>16</noeudDep>
 			<points>2</points>
 		</carteObjectif>
 		<carteObjectif>
-			<noeudArr>16</noeudArr>
-			<noeudDep>7</noeudDep>
-			<points>2</points>
-		</carteObjectif>
-		<carteObjectif>
-			<noeudArr>16</noeudArr>
-			<noeudDep>6</noeudDep>
+			<noeudArr>6</noeudArr>
+			<noeudDep>16</noeudDep>
 			<points>6</points>
 		</carteObjectif>
 		<carteObjectif>
-			<noeudArr>7</noeudArr>
-			<noeudDep>8</noeudDep>
+			<noeudArr>8</noeudArr>
+			<noeudDep>7</noeudDep>
 			<points>10</points>
 		</carteObjectif>
 		<carteObjectif>
-			<noeudArr>8</noeudArr>
-			<noeudDep>17</noeudDep>
+			<noeudArr>17</noeudArr>
+			<noeudDep>8</noeudDep>
 			<points>4</points>
 		</carteObjectif>
 		<carteObjectif>
-			<noeudArr>9</noeudArr>
-			<noeudDep>11</noeudDep>
+			<noeudArr>11</noeudArr>
+			<noeudDep>9</noeudDep>
 			<points>4</points>
 		</carteObjectif>
 		<carteObjectif>
-			<noeudArr>9</noeudArr>
-			<noeudDep>11</noeudDep>
+			<noeudArr>11</noeudArr>
+			<noeudDep>9</noeudDep>
 			<points>4</points>
 		</carteObjectif>
 	<details>
@@ -417,12 +342,12 @@
 		<nbWagonDebutPartie>60</nbWagonDebutPartie>
 		<nbWagonFinPartie>2</nbWagonFinPartie>
 		<nbPointsPlusLongChemin>10</nbPointsPlusLongChemin>
-		<txtNomMoyenDeTransport>voiture</txtNomMoyenDeTransport>
-		<txtRoute>chemins</txtRoute>
-		<versoCarteWagon>null</versoCarteWagon>
-		<versoCarteObjectif>FortniteBattlePass.jpg</versoCarteObjectif>
-		<heightPanel>971.0</heightPanel>
-		<witdhPanel>928.0</witdhPanel>
+		<txtNomMoyenDeTransport>Voitures</txtNomMoyenDeTransport>
+		<txtRoute>Routes</txtRoute>
+		<versoCarteWagon>imageCarte/voiture.jpg</versoCarteWagon>
+		<versoCarteObjectif>billet-cartonne-sncf.jpg</versoCarteObjectif>
+		<heightPanel>973.0</heightPanel>
+		<witdhPanel>927.0</witdhPanel>
 		<image>importe/FortniteMappe2.jpg</image>
 	</details>
 	<CouleurJoueurList>
