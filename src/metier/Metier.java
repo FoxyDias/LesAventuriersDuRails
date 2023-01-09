@@ -12,8 +12,6 @@ import java.util.Scanner;
 import org.jdom2.*;
 import org.jdom2.input.*;
 
-import ihm.sectionJeu.PanelGaucheJeu;
-import ihm.sectionJeu.PanelGaucheJeu.PanelDispoParam;   
 
 public class Metier {
 

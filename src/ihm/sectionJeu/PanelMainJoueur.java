@@ -9,7 +9,6 @@ import javax.swing.JScrollBar;
 
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
-import java.util.ArrayList;
 
 import main.Controleur;
 import metier.CarteObjectif;
@@ -22,12 +21,13 @@ public class PanelMainJoueur extends JPanel
 	public PanelMainJoueur(Controleur ctrl)
 	{
 		this.ctrl = ctrl;
-		this.setSize(600,600);
-		this.setLayout(new GridLayout(2,1,5,5));
-		
+		this.setSize(600,1000);
+		this.setLayout(new GridLayout(3,1,5,5));
+
 
 		this.add(new PanelDispoCarteWagon());
 		this.add(new PanelDispoCarteObjectif());	
+		this.add(new PanelInformationCarte());
 		this.repaint();	
 	}
 
@@ -41,7 +41,7 @@ public class PanelMainJoueur extends JPanel
 		public PanelDispoCarteWagon()
 		{
 			this.setLayout(new BorderLayout());
-			this.lblInfoNumeroCarte = new JLabel();
+			this.lblInfoNumeroCarte = new JLabel("", JLabel.CENTER);
 			this.panelCoulCarteWagon = new JPanel();
 			this.lblCoulCarteWagon = new JLabel();
 
@@ -96,7 +96,7 @@ public class PanelMainJoueur extends JPanel
 		public PanelDispoCarteObjectif()
 		{
 			this.setLayout(new BorderLayout());
-			this.lblInfoNumeroCarte = new JLabel();
+			this.lblInfoNumeroCarte = new JLabel("", JLabel.CENTER);
 
 			this.scrollBar = new JScrollBar(JScrollBar.HORIZONTAL);
 			this.scrollBar.setUnitIncrement(1);
@@ -134,6 +134,50 @@ public class PanelMainJoueur extends JPanel
 				this.carteObjectif = PanelMainJoueur.this.ctrl.getEstJoueurCourant().getMainObjectif().get(e.getValue());
 				this.affichageCarte.setCarteObjectif(this.carteObjectif);
 			}	
+		}
+	}
+
+	public class PanelInformationCarte extends JPanel 
+	{
+
+
+		public PanelInformationCarte()
+		{
+			this.setLayout(new GridLayout(8,2,0,5));
+
+			JLabel lblNbCouleurRouge	= new JLabel("" + PanelMainJoueur.this.ctrl.getEstJoueurCourant().getNbCarteWagon(), JLabel.CENTER);
+			JLabel lblLibelleRouge		= new JLabel(" Cartes de couleur rouges : ", JLabel.LEFT);
+			JLabel lblNbCouleurBleu		= new JLabel("" + PanelMainJoueur.this.ctrl.getEstJoueurCourant().getNbCarteWagon(), JLabel.CENTER);
+			JLabel lblLibelleBleu		= new JLabel(" Cartes de couleur bleues : ", JLabel.LEFT);
+			JLabel lblNbCouleurVert		= new JLabel("" +PanelMainJoueur.this.ctrl.getEstJoueurCourant().getNbCarteWagon(), JLabel.CENTER);
+			JLabel lblLibelleVert		= new JLabel(" Cartes de couleur vertes : ", JLabel.LEFT);
+			JLabel lblNbCouleurJaune	= new JLabel("" + PanelMainJoueur.this.ctrl.getEstJoueurCourant().getNbCarteWagon(), JLabel.CENTER);
+			JLabel lblLibelleJaune		= new JLabel(" Cartes de couleur jaunes : ", JLabel.LEFT);
+			JLabel lblNbCouleurRose 	= new JLabel("" + PanelMainJoueur.this.ctrl.getEstJoueurCourant().getNbCarteWagon(), JLabel.CENTER);
+			JLabel lblLibelleRose		= new JLabel(" Cartes de couleur roses : ", JLabel.LEFT);
+			JLabel lblNbCouleurOrange	= new JLabel("" + PanelMainJoueur.this.ctrl.getEstJoueurCourant().getNbCarteWagon(), JLabel.CENTER);
+			JLabel lblLibelleOrange		= new JLabel(" Cartes de couleur oranges : ", JLabel.LEFT);
+			JLabel lblNbCouleurGris		= new JLabel("" + PanelMainJoueur.this.ctrl.getEstJoueurCourant().getNbCarteWagon(), JLabel.CENTER);
+			JLabel lblLibelleGris		= new JLabel(" Cartes de couleur grises : ", JLabel.LEFT);
+			JLabel lblNbCouleurMulti 	= new JLabel("" + PanelMainJoueur.this.ctrl.getEstJoueurCourant().getNbCarteWagon(), JLabel.CENTER);
+			JLabel lblLibelleMulti		= new JLabel(" Cartes multicouleurs : ", JLabel.LEFT);
+
+			this.add(lblLibelleRouge);
+			this.add(lblNbCouleurRouge);
+			this.add(lblLibelleBleu);
+			this.add(lblNbCouleurBleu);
+			this.add(lblLibelleVert);
+			this.add(lblNbCouleurVert);
+			this.add(lblLibelleJaune);
+			this.add(lblNbCouleurJaune);
+			this.add(lblLibelleRose);
+			this.add(lblNbCouleurRose);
+			this.add(lblLibelleOrange);
+			this.add(lblNbCouleurOrange);
+			this.add(lblLibelleGris);
+			this.add(lblNbCouleurGris);
+			this.add(lblLibelleMulti);
+			this.add(lblNbCouleurMulti);
 		}
 	}
 }

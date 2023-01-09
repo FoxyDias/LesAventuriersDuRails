@@ -297,15 +297,19 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnCreerPartieSolo)
 		{			
-			int nbJoueurs = Integer.parseInt(this.txtNbJoueursLocal.getText());
 			
-			if(this.txtNbJoueursLocal.getText().equals(""))
+			
+			if(this.txtNbJoueursLocal.getText().isEmpty())
 			{
 				JOptionPane.showMessageDialog(null, "Veuillez remplir le nombre de joueurs", "Erreur", JOptionPane.ERROR_MESSAGE);
 				return;
+				
 			}
-			
-			if(nbJoueurs < 1 || nbJoueurs > this.ctrl.getNbJoueurMax()){
+
+			int nbJoueurs = Integer.parseInt(this.txtNbJoueursLocal.getText());
+
+			if(nbJoueurs < 1 || nbJoueurs > this.ctrl.getNbJoueurMax())
+			{
 				JOptionPane.showMessageDialog(null, "Veuillez renseignez un nombre de joueurs entre 1 et le nombre de joueurs maximale de la mappe", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
 			else
@@ -322,7 +326,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			String port = this.txtPortMachineCreer.getText();  
 			String motDePasse = this.txtMotDePasseCreer.getText();
 
-			if( this.txtNbJoueursMiniCreer.getText().equals("0") || this.txtNbJoueursMiniCreer.getText().equals("" +  this.ctrl.getNbJoueurMax()) || port.equals("") || motDePasse.equals(""))
+			if( this.txtNbJoueursMiniCreer.getText().equals("0") || this.txtNbJoueursMiniCreer.getText().equals("" +  this.ctrl.getNbJoueurMax()) || port.isEmpty() || motDePasse.isEmpty())
 			{
 				JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
 				return;
@@ -340,7 +344,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			String port = this.txtPortMachineRejoindre.getText();
 			String motDePasse = this.txtMotDePasseRejoindre.getText();
 
-			if(ip.equals("") || motDePasse.equals("") || port.equals(""))
+			if(ip.isEmpty() || motDePasse.isEmpty() || port.isEmpty())
 			{
 				JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
 				return;
@@ -421,6 +425,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		this.dialog.setBounds(500, 400, 1000, 400);
 		this.dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		this.dialog.setResizable(false);
+		this.dialog.setModalityType(JDialog.ModalityType.APPLICATION_MODAL);
 
 		this.carteObjectifInfo = new AfficherCarteObjectif[3];
 		this.btnValider = new JButton("Valider");

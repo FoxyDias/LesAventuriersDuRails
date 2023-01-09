@@ -342,7 +342,7 @@
 		<nbWagonDebutPartie>60</nbWagonDebutPartie>
 		<nbWagonFinPartie>2</nbWagonFinPartie>
 		<nbPointsPlusLongChemin>10</nbPointsPlusLongChemin>
-		<txtNomMoyenDeTransport>quad</txtNomMoyenDeTransport>
+		<txtNomMoyenDeTransport>voiture</txtNomMoyenDeTransport>
 		<txtRoute>Routes</txtRoute>
 		<versoCarteWagon>imageCarte/voiture.jpg</versoCarteWagon>
 		<versoCarteObjectif>billet-cartonne-sncf.jpg</versoCarteObjectif>

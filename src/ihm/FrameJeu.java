@@ -38,9 +38,8 @@ public class FrameJeu extends JFrame
 		this.setSize(longueur, hauteur);
 		this.setLocation(0,0);
 		this.setTitle("Les aventuriers du rail");
-		this.setDefaultLookAndFeelDecorated(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.themebox(4);
+		this.themebox(1);
 
 		/**
 		 * Positionnement des composants

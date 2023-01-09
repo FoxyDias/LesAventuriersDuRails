@@ -127,6 +127,12 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			jDialog.setResizable(false);
 			jDialog.setModal(true);
 			jDialog.setTitle("Vous avez pioché une carte " + this.ctrl.getMoyenDeTransport() + " de couleur : " + this.ctrl.getLstCarteWagon().get(0).getColor());
+			jDialog.setModalityType(JDialog.ModalityType.APPLICATION_MODAL);
+
+			if(this.ctrl.getLstCarteWagon().get(0).getColor().equals("null"))
+			{
+				jDialog.setTitle("Vous avez pioché une carte " + this.ctrl.getMoyenDeTransport() + " multicolore");
+			}
 			
 			ImageIcon icon = new ImageIcon(this.ctrl.getLstCarteWagon().get(0).getRecto());
 
@@ -257,6 +263,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 				this.dialogRecap.setResizable(false);
 				this.dialogRecap.setModal(true);
 				this.dialogRecap.setLayout(new GridLayout(5,1,0,5));
+				this.dialogRecap.setModalityType(JDialog.ModalityType.APPLICATION_MODAL);
 
 				this.btnValiderRecap = new JButton("Quitter");
 
@@ -297,6 +304,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 					jDialog.setModal(true);
 					jDialog.setTitle("Visualisation de vos cartes");
 					jDialog.add(new PanelMainJoueur(ctrl));
+					jDialog.setModalityType(JDialog.ModalityType.APPLICATION_MODAL);
 	
 					jDialog.setVisible(true);
 				}
@@ -382,6 +390,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		this.dialog.setBounds(500, 400, 1000, 400);
 		this.dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		this.dialog.setResizable(false);
+		this.dialog.setModalityType(JDialog.ModalityType.APPLICATION_MODAL);
 
 		this.carteObjectifInfo = new AfficherCarteObjectif[3];
 		this.btnValider = new JButton("Valider");
