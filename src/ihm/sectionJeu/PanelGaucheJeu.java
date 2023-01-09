@@ -4,7 +4,8 @@ import main.Controleur;
 import metier.CarteObjectif;
 
 import javax.swing.JPanel;
-
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -206,6 +207,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		private JButton btnValiderRecap;
 
 		private JDialog dialogRecap;
+		private JTable tableRecap;
 
 		public PanelDispoParam(Controleur ctrl)
 		{
@@ -257,11 +259,25 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 				panelBtn.add(this.btnValiderRecap);
 
+
+				/*
+				this.tableRecap = new JTable(4, 4);
+
+				this.tableRecap.setValueAt("Joueur", 0, 0);
+				this.tableRecap.setValueAt("Nombre de points cummulés avec les chemins", 0, 1);
+				this.tableRecap.setValueAt("Nombre de points cummulés avec les cartes objectifs", 0, 2);
+				this.tableRecap.setValueAt("Nombre de points du plus long chemin", 0, 3);
+				*/
+
+
 				this.dialogRecap.add(new JLabel("Joueur : " + this.ctrl.getJoueur(this.ctrl.getIntJoueurActuel()) , JLabel.CENTER));
 				this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les chemins : ", JLabel.CENTER));
 				this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les cartes objectifs : ", JLabel.CENTER));
 				this.dialogRecap.add(new JLabel("Nombre de points du plus long chemin : ", JLabel.CENTER));
 				this.dialogRecap.add(panelBtn);
+
+
+
 
 				this.btnValiderRecap.addActionListener(this);
 
