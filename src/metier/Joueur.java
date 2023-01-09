@@ -159,6 +159,10 @@ public class Joueur {
         this.lstArete.add(a);
     }
 
+    public String toString(){
+        return "TA RACE YA PAS DE PSEUDO GROS";
+    }
+
     public boolean isJoueurFinal(){return nbWagons <= 2;}
 
     public void retirerCarteObjectif(int indexcObjectif){this.mainObjectif.remove(indexcObjectif);}
