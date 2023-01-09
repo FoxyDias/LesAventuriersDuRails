@@ -49,6 +49,11 @@ public class PanelHautMenu extends JPanel implements ActionListener
 		 * Création des composants
 		 */
 
+		 /**
+		  * Je voudrais mettre en place dans un premier temps un title "joueur actif" et retirer les string de couleur bleu pour les informations -> JBox jsplus quoi
+		  * Je voudrais que chaque colonne ne prennent pas toute le panel, je trouve cela assez moche
+		  */
+
 		this.ctrl = ctrl; 
 		this.setLayout(new BorderLayout());
 

@@ -128,7 +128,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			jDialog.setTitle("Vous avez pioché une carte " + this.ctrl.getMoyenDeTransport() + " de couleur : " + this.ctrl.getLstCarteWagon().get(0).getColor());
 			jDialog.setModalityType(JDialog.ModalityType.APPLICATION_MODAL);
 
-			if(this.ctrl.getLstCarteWagon().get(0).getColor().equals("null"))
+			if(this.ctrl.getLstCarteWagon().get(0).getColor().equals(null))
 			{
 				jDialog.setTitle("Vous avez pioché une carte " + this.ctrl.getMoyenDeTransport() + " multicolore");
 			}
@@ -271,6 +271,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 				this.btnValiderRecap 	= new JButton("Quitter");
 				this.donnees 			= new Object[this.ctrl.getNbJoueurPartie()][6];
 				this.tableRecap 		= new JTable(this.donnees, this.entetes);
+				this.tableRecap.setEnabled(false);
 
 				for(int i = 0; i < this.ctrl.getNbJoueurPartie(); i++)
 				{

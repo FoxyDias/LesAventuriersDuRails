@@ -584,7 +584,7 @@ public class Metier {
 
         this.lstCarteWagon.add( cw );
     }
-    
+  
     /*-------------------------------------------------------------------------*/
     /*                                Getters                                  */
     /*-------------------------------------------------------------------------*/
@@ -607,24 +607,16 @@ public class Metier {
     public Joueur getJoueur        (int i) { return this.lstJoueur.get(i);}
 
     public ArrayList<CarteObjectif> getListCarteObjectif() { return this.lstCarteObjectif;}
-    public ArrayList<CarteObjectif> getLstCarteObjectif () { return lstCarteObjectif;     }
-    public ArrayList<CarteWagon> getLstCarteWagon       () { return lstCarteWagon;        }
+    public ArrayList<CarteObjectif> getLstCarteObjectif () { return this.lstCarteObjectif;}
+    public ArrayList<CarteWagon> getLstCarteWagon       () { return this.lstCarteWagon;   }
     public ArrayList<Noeud> getLstNoeud                 () { return this.lstNoeud;        }
     public synchronized ArrayList<Arete> getLstArete    () { return this.lstArete;        }
-    public ArrayList<Color> getLstCouleurJoueur         () { return lstCouleurJoueur;     }
+    public ArrayList<Color> getLstCouleurJoueur         () { return this.lstCouleurJoueur;}
     public ArrayList<Joueur> getLstJoueur               () { return this.lstJoueur;       }
 
-    public ArrayList<CarteObjectif> getLstPiocheObjectifs() {
-        return lstPiocheObjectifs;
-    }
-
-    public ArrayList<CarteWagon> getLstPiocheWagon() {
-        return lstPiocheWagon;
-    }
-
-    public int getIntJoueurActuel() {
-        return intJoueurActuel;
-    }
+    public ArrayList<CarteObjectif> getLstPiocheObjectifs(){return lstPiocheObjectifs;    }
+    public ArrayList<CarteWagon> getLstPiocheWagon()       {return lstPiocheWagon;        }
+    public int getIntJoueurActuel()                        {return intJoueurActuel;       }
 
     /*-------------------------------------------------------------------------*/
     /*                                Setters                                  */
