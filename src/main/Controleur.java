@@ -125,6 +125,7 @@ public class Controleur {
     {
         this.metier.avancerJoueur();
         this.ihm.changerCouleurPanel();
+        this.ihm.majIhm();
     }
 
     public void changerCouleurPanel()
@@ -177,7 +178,7 @@ public class Controleur {
 			btn.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
 		}
     }
-    
+
     /**
      * Le main du projet
      * @param args

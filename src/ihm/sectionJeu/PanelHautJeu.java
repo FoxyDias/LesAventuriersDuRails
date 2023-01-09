@@ -44,7 +44,7 @@ public class PanelHautJeu extends JPanel
 			this.alJoueur.add(new JLabel("Joueur " + (i+1), JLabel.CENTER));
 			this.alNbCarteWagon.add(new JLabel("Nombre de cartes wagons : " + this.ctrl.getNbWagonDebutPartie(), JLabel.CENTER));
 			this.alNbCarteObjectif.add(new JLabel("Nombre de cartes objectifs : " + this.ctrl.getEstJoueurCourant().getNbCarteObjectif(), JLabel.CENTER));
-			this.alNbPointsChemin.add(new JLabel("Nombre de points chemin : ", JLabel.CENTER));
+			this.alNbPointsChemin.add(new JLabel("Nombre de points chemin : " + this.ctrl.getEstJoueurCourant().getNbPointsChemin(), JLabel.CENTER));
 			panelInfosJoueur.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
 			panelInfosJoueur.add(this.alJoueur.get(i));
 			panelInfosJoueur.add(this.alNbCarteWagon.get(i));
@@ -94,6 +94,15 @@ public class PanelHautJeu extends JPanel
 				this.alNbCarteWagon.get(i).setFont(new Font("", Font.BOLD, 12));
 				this.alNbPointsChemin.get(i).setFont(new Font("", Font.BOLD, 12));
 			}
+		}
+	}
+
+	public void majIhm(){
+		for(int i = 0; i < this.ctrl.getNbJoueurPartie(); i++)
+		{
+			this.alNbCarteWagon.get(i).setText("Nombre de cartes wagons : " + this.ctrl.getJoueur(i).getNbCarteWagon());
+			this.alNbCarteObjectif.get(i).setText("Nombre de cartes objectifs : " + this.ctrl.getJoueur(i).getNbCarteObjectif());
+			this.alNbPointsChemin.get(i).setText("Nombre de points chemin : " + this.ctrl.getJoueur(i).getNbPointsChemin());
 		}
 	}
 }

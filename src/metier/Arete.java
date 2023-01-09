@@ -28,8 +28,6 @@ public class Arete {
         this.areteDouble = null;
         this.occupateur = null;
 
-
-
         this.noeudDep.ajoutArete(this);
         this.noeudArr.ajoutArete(this);
     }
@@ -65,7 +63,6 @@ public class Arete {
         return this.occupateur;
     }
 
-
     public void supprArete() {
         this.noeudDep.supprArete(this);
         this.noeudArr.supprArete(this);
@@ -73,6 +70,7 @@ public class Arete {
 
     public Noeud getNoeudDep()  {return this.noeudDep;}
     public Noeud getNoeudArr()  {return this.noeudArr;}
+
     public String getCouleur() {
         return this.couleur;
     }

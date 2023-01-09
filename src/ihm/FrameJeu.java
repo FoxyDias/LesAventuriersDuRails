@@ -78,4 +78,8 @@ public class FrameJeu extends JFrame
 	{
 		this.panelJeu.changerCouleurPanel();
 	}
+
+    public void majIhm() {
+		this.panelJeu.majIhm();
+    }
 }

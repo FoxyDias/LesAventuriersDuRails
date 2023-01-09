@@ -488,21 +488,21 @@ public class Metier {
     public int getNbWagonFinPartie      () { return nbWagonFinPartie;      } 
     public int getNbPointsPlusLongChemin() { return nbPointsPlusLongChemin;}
     public int[] getPointsTaille        () { return pointsTaille;          }
-    public String getMoyenDeTransport     () { return this.moyenDeTransport; } 
-
+    
+    public String getMoyenDeTransport   () { return this.moyenDeTransport; } 
     public String getVersoCarteWagon    () { return this.versoCarteWagon;  }
     public String getVersoCarteObjectif () { return versoCarteObjectif;    }
     public String getNomImage           () { return nomImage;              }
 
-    public Joueur getJoueur                        (int i) { return this.lstJoueur.get(i);}
+    public Joueur getJoueur        (int i) { return this.lstJoueur.get(i);}
 
     public ArrayList<CarteObjectif> getListCarteObjectif() { return this.lstCarteObjectif;}
     public ArrayList<CarteObjectif> getLstCarteObjectif () { return lstCarteObjectif;     }
     public ArrayList<CarteWagon> getLstCarteWagon       () { return lstCarteWagon;        }
     public ArrayList<Noeud> getLstNoeud                 () { return this.lstNoeud;        }
-    public synchronized ArrayList<Arete> getLstArete                 () { return this.lstArete;        }
+    public synchronized ArrayList<Arete> getLstArete    () { return this.lstArete;        }
     public ArrayList<Color> getLstCouleurJoueur         () { return lstCouleurJoueur;     }
-    public ArrayList<Joueur> getLstJoueur()                { return this.lstJoueur;       }
+    public ArrayList<Joueur> getLstJoueur               () { return this.lstJoueur;       }
 
     public ArrayList<CarteObjectif> getLstPiocheObjectifs() {
         return lstPiocheObjectifs;

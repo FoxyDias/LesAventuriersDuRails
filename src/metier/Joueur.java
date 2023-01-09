@@ -3,6 +3,8 @@ package metier;
 import java.awt.*;
 import java.util.ArrayList;
 
+import ihm.sectionJeu.PanelHautJeu;
+
 public class Joueur {
 
     private Color couleur;
@@ -15,40 +17,69 @@ public class Joueur {
 
     private ArrayList<Arete> lstArete;
     
-    private int routeLaPlusLong;
+    private PanelHautJeu panelHautJeu;
+
+    private int routeLaPlusLongue;
 
     public Joueur(int w, Color c)
     {
-        this.couleur = c;
+        this.couleur  = c;
+        this.nbWagons = w;
 
-        this.nbWagons       = w;
+        this.mainWagon       = new ArrayList<CarteWagon>();
+        this.mainObjectif    = new ArrayList<CarteObjectif>();
+        this.lstArete        = new ArrayList<Arete>();
 
-        this.mainWagon      = new ArrayList<CarteWagon>();
-        this.mainObjectif   = new ArrayList<CarteObjectif>();
-
-        this.lstArete       = new ArrayList<Arete>();
-
-        this.nbPoints       = 0;
-        this.routeLaPlusLong= 0;
+        this.nbPoints        = this.getNbPointsChemin();
+        this.routeLaPlusLongue = 0;
     }
 
-    public int getNbPoints() {return this.nbPoints;}
+    /**
+     * Renvoi le nombre de points des chemins du joueur
+     */
+    public int getNbPointsChemin() {
+        //Les points d'un chemin sont calculés par rapport aux nombres de wagons nécessaires pour le parcourir
+        for (Arete a : this.lstArete)
+                this.nbPoints += a.getWagon();
+        
+        return this.nbPoints;
+    }
 
     /**
-     * Rajoute un nombre de point pour le joueur, cette fonction sera utilisé en fin de partie
+     * Renvoi le chemin le plus long
+     * @return int routeLaPlusLongue
+     */
+    public int getCheminLePlusLong(){
+        for(Arete a : lstArete){
+            if(a.getWagon() > routeLaPlusLongue){
+                routeLaPlusLongue = a.getWagon();
+            }
+        }
+        return routeLaPlusLongue;
+    }
+
+    /**
+     * Renvoi la route la plus longue entre 2 noeuds
+     * @return
+     */
+    public int getRouteLaPlusLongue(){
+        return routeLaPlusLongue;
+    }
+
+    /**
+     * Rajoute un nombre de points pour le joueur, cette fonction sera utilisé en fin de partie
      * @param nbPoint
      */
     public void rajouterPoint(int nbPoint)  {this.nbPoints += nbPoint;}
 
     /**
-     * Enlever un nombre de point pour le joueur, cette fonction sera utilisé en fin de partie
+     * Enlever un nombre de points pour le joueur, cette fonction sera utilisé en fin de partie
      * @param nbPoint
      */
     public void enleverPoint(int nbPoint)   {this.nbPoints -= nbPoint;}
 
 
-    public int getNbWagons() {return this.nbWagons;}
-    public int getRouteLaPlusLong() {return this.routeLaPlusLong;}
+    public int getNbWagons         () {return this.nbWagons;}
     
     /**
      * Prend en paramettre le nombre de wagon à placer
@@ -59,11 +90,12 @@ public class Joueur {
     {
         if(nbWagonAPlacer<this.nbWagons)
         {
-            //TODO: mettre le lien entre le nombre de pion à placer et nbPoint gagner
+            //TODO: mettre le lien entre le nombre de pion à placer et nbPoint gagné
             this.nbWagons -= nbWagonAPlacer;
 
-            if(this.routeLaPlusLong<nbWagonAPlacer){this.routeLaPlusLong = nbWagonAPlacer;}
-
+            if(this.routeLaPlusLongue<nbWagonAPlacer){
+                this.routeLaPlusLongue = nbWagonAPlacer;
+            }
             return true;
         }
 

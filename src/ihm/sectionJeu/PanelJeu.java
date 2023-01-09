@@ -47,4 +47,8 @@ public class PanelJeu extends JPanel
 	{
 		this.panelHautJeu.changerCouleurPanel();
 	}
+
+    public void majIhm() {
+		this.panelHautJeu.majIhm();
+    }
 }
