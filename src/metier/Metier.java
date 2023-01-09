@@ -74,6 +74,10 @@ public class Metier {
      * @return
      */
     public int getPointsTailleAretes(int nbWagons){
+        /* Au cas ou l'arête ferait + de 10 de distances */
+        if( nbWagons > this.pointsTaille.length)
+            return this.pointsTaille.length -1;
+
         return this.pointsTaille[nbWagons];
     }
 
@@ -81,7 +85,38 @@ public class Metier {
     public void lancerPartie()
     {   
         initPioche();
+    }
 
+    public void finPartie(){
+        /** 
+         * 3 conditions de fin de partie 
+         * - Que le nombre de wagons d'1 joueurs atteint le nombre indiqué en paramètre ( 2 ou moins )
+         * - Qu'il n'y ait plus d'arêtes disponible
+         * - Qu'aucun joueurs ne puissent plus rien faire
+         */
+        
+        /* Si les joueurs n'ont plus assez de cartes wagons pour prendre quelconque arêtes */
+        for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++){
+            for(Arete a : lstArete){
+                if(a.getWagon() > getEstJoueurCourant().getNbCarteWagon()){
+                    System.out.println("Pas assez de cartes wagons pour continuer la partie");
+
+                }
+            }
+        }
+
+        /* Si un joueur a 2 || 1 || 0 cartes wagons dans sa main */
+        for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++){
+            if(this.getEstJoueurCourant().getNbCarteWagon() == getNbWagonFinPartie()){
+                System.out.println("Fin de partie quelqu'un a " + getNbWagonFinPartie() + "dans sa pioche");
+            }
+        }
+
+        /* Si toutes les arêtes sont prises */
+        Joueur joueur = getEstJoueurCourant();
+        if(lstArete.size() == joueur.getAlCheminsPtsCpts().size()){
+            System.out.println("Fin de partie, toutes les arêtes sont prises");
+        }
     }
 
 
@@ -102,6 +137,8 @@ public class Metier {
         this.intJoueurActuel++;
         if(this.intJoueurActuel >= this.nbJoueurPartie)
             this.intJoueurActuel = 0;
+        
+        this.finPartie();
     }
 
     private void initPioche()

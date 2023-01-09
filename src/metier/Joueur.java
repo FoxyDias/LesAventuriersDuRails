@@ -61,6 +61,14 @@ public class Joueur {
     }
 
     /**
+     * Renvoie l'arrayList des arêtes occupées
+     * @return
+     */
+    public ArrayList<Arete> getAlCheminsPtsCpts(){
+        return this.alCheminsPtsCpts;
+    }
+
+    /**
      * Renvoi le chemin le plus long
      * @return int routeLaPlusLongue
      */
