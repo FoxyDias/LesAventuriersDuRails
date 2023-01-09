@@ -130,6 +130,11 @@ public class Joueur {
         return this.mainWagon.size();
     }
 
+    public void removeNbWagons(int n )
+    {
+        this.nbWagons = this.nbWagons-n;
+    }
+
     public int getNbCarteObjectif()
     {
         return this.mainObjectif.size();

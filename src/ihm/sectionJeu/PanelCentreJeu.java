@@ -370,6 +370,7 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 				a.setEstOccupe(true);
 				a.setOccupateur(joueur);
 				joueur.ajouterArete(a);
+				joueur.removeNbWagons(a.getWagon());
 				this.repaint();
 				this.ctrl.avancerJoueur();
 			}
@@ -399,6 +400,7 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 							a.setEstOccupe(true);
 							a.setOccupateur(joueur);
 							joueur.ajouterArete(a);
+							joueur.removeNbWagons(a.getWagon());
 							ctrl.avancerJoueur();
 							
 							

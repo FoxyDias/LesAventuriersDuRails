@@ -111,7 +111,7 @@ public class PanelHautJeu extends JPanel
 	{
 		for(int i = 0; i < this.ctrl.getNbJoueurPartie(); i++)
 		{
-			this.alNbPionsWagon.get(i).setText("Nombre de pions " 					+ this.ctrl.getMoyenDeTransport() + " : " + this.ctrl.getNbWagonDebutPartie());
+			this.alNbPionsWagon.get(i).setText("Nombre de pions " 					+ this.ctrl.getMoyenDeTransport() + " : " + this.ctrl.getJoueur(i).getNbWagons());
 			this.alNbCarteObjectif.get(i).setText("Nombre de cartes objectifs : "	+ this.ctrl.getJoueur(i).getNbCarteObjectif());
 			this.alNbPointsChemin.get(i).setText("Nombre de points chemin : " 		+ this.ctrl.getJoueur(i).getNbPointsChemin());
 			this.alNbCarteWagons.get(i).setText("Nombre de cartes wagons : " 		+ this.ctrl.getJoueur(i).getMainWagon().size());
