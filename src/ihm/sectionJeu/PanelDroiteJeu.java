@@ -25,8 +25,8 @@ public class PanelDroiteJeu extends JPanel implements ActionListener
 		/**
 		 * Création des composants
 		 */
-		this.setLayout(new GridLayout(1,5));
-		this.setPreferredSize(new java.awt.Dimension(0, 100));
+		this.setLayout(new GridLayout(5,1,5,5));
+		this.setPreferredSize(new java.awt.Dimension(200, 0));
 
 		/**
 		 * Positionnement des composants
@@ -46,8 +46,6 @@ public class PanelDroiteJeu extends JPanel implements ActionListener
 		private PanelDroiteJeu papa;
 		private CarteWagon carteWagon;
 		private JButton btnPrendCarte;
-		private int width;
-		private int height;
 
 		public PanelPiocheMarcher( Controleur ctrl, PanelDroiteJeu papa, CarteWagon carteWagon) {
 			this.ctrl = ctrl;
@@ -99,7 +97,7 @@ public class PanelDroiteJeu extends JPanel implements ActionListener
 		{
 			if (e.getSource() == this.tabPanelPioche[i].getBtnPrendCarte()) {
 
-				PanelDroiteJeu.this.ctrl.getEstJoueurCourant().ajouterCarteWagon(this.tabPanelPioche[i].getCarteWagon());
+				this.ctrl.getEstJoueurCourant().ajouterCarteWagon(this.tabPanelPioche[i].getCarteWagon());
 				this.ctrl.repiocherCarteWagon(i);
 
 				this.tabPanelPioche[i].majMarcher(this.ctrl.getLstPiocheWagon().get(i));
