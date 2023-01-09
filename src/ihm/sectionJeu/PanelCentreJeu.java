@@ -263,11 +263,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 		this.repaint();
 	}
 
-	public static Controleur getCtrl()
-	{
-		return ctrl;
-	}
-
 
 	public void mouseClicked(MouseEvent e) {
 	}
