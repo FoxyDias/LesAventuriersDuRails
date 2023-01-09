@@ -204,6 +204,9 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		}
 	}
 
+	/**
+	 * TODO : Placer dans sa propre classe
+	 */
 	public class PanelDispoParam extends JPanel implements ActionListener
 	{
 		private Controleur ctrl;
