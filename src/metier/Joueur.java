@@ -16,6 +16,7 @@ public class Joueur {
     private ArrayList<CarteObjectif> mainObjectif;
 
     private ArrayList<Arete> lstArete;
+    private ArrayList<Arete> alCheminsPtsCpts;
     
     private PanelHautJeu panelHautJeu;
 
@@ -29,8 +30,9 @@ public class Joueur {
         this.mainWagon       = new ArrayList<CarteWagon>();
         this.mainObjectif    = new ArrayList<CarteObjectif>();
         this.lstArete        = new ArrayList<Arete>();
+        this.alCheminsPtsCpts= new ArrayList<Arete>();
 
-        this.nbPoints        = this.getNbPointsChemin();
+        this.nbPoints          = 0;
         this.routeLaPlusLongue = 0;
     }
 
@@ -38,10 +40,25 @@ public class Joueur {
      * Renvoi le nombre de points des chemins du joueur
      */
     public int getNbPointsChemin() {
-        //Les points d'un chemin sont calculés par rapport aux nombres de wagons nécessaires pour le parcourir
-        for (Arete a : this.lstArete)
+        //Les points d'une arête sont calculés par rapport aux nombres de wagons nécessaires pour la parcourire
+        for (Arete a : this.lstArete){
+            if( this.alCheminsPtsCpts.size() != 0){
+                for(Arete b : this.alCheminsPtsCpts){
+                    if(a.equals(b))
+                        /* Si l'arête a déjà étée comptabilisée on augmente pas le nbPoints */
+                        return nbPoints;   
+                    else{
+                        /* Sinon on augmente le nbPoints et on l'ajoute dans l'arrayList des arêtes déjà comptabilisées */
+                        this.nbPoints += a.getWagon();
+                        this.alCheminsPtsCpts.add(a);
+                    }
+                }
+            }else{
+                /* Pour le premier cas si aucun joueurs n'a d'arêtes */
                 this.nbPoints += a.getWagon();
-        
+                this.alCheminsPtsCpts.add(a);
+            }
+        }
         return this.nbPoints;
     }
 
@@ -63,7 +80,7 @@ public class Joueur {
      * @return
      */
     public int getRouteLaPlusLongue(){
-        return routeLaPlusLongue;
+        return 0;
     }
 
     /**
@@ -127,7 +144,10 @@ public class Joueur {
     public void ajouterCarteObjectif(CarteObjectif cObjectif){this.mainObjectif.add(cObjectif);}
     public ArrayList<CarteObjectif> getMainObjectif() {return this.mainObjectif;}
 
-    public void ajouterArete(Arete a){this.lstArete.add(a);}
+    public void ajouterArete(Arete a){
+        //this.rajouterPoint(a.getWagon());
+        this.lstArete.add(a);
+    }
 
     public boolean isJoueurFinal(){return nbWagons <= 2;}
 
