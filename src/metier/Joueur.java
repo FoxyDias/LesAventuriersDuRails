@@ -8,24 +8,22 @@ import ihm.sectionJeu.PanelHautJeu;
 public class Joueur {
 
     private Color couleur;
+    private Metier metier;
 
     private int nbPoints;
     private int nbWagons;
+    private int routeLaPlusLongue;
 
     private ArrayList<CarteWagon> mainWagon;
     private ArrayList<CarteObjectif> mainObjectif;
-
     private ArrayList<Arete> lstArete;
     private ArrayList<Arete> alCheminsPtsCpts;
-    
-    private PanelHautJeu panelHautJeu;
 
-    private int routeLaPlusLongue;
-
-    public Joueur(int w, Color c)
+    public Joueur(int wagons, Color coul, Metier metier)
     {
-        this.couleur  = c;
-        this.nbWagons = w;
+        this.couleur  = coul;
+        this.nbWagons = wagons;
+        this.metier   = metier;
 
         this.mainWagon       = new ArrayList<CarteWagon>();
         this.mainObjectif    = new ArrayList<CarteObjectif>();
@@ -44,18 +42,18 @@ public class Joueur {
         for (Arete a : this.lstArete){
             if( this.alCheminsPtsCpts.size() != 0){
                 for(Arete b : this.alCheminsPtsCpts){
+                    /* Si l'arête a déjà étée comptabilisée on augmente pas le nbPoints */
                     if(a.equals(b))
-                        /* Si l'arête a déjà étée comptabilisée on augmente pas le nbPoints */
                         return nbPoints;   
                     else{
                         /* Sinon on augmente le nbPoints et on l'ajoute dans l'arrayList des arêtes déjà comptabilisées */
-                        this.nbPoints += a.getWagon();
+                        this.nbPoints += metier.getPointsTailleAretes(a.getWagon());
                         this.alCheminsPtsCpts.add(a);
                     }
                 }
             }else{
                 /* Pour le premier cas si aucun joueurs n'a d'arêtes */
-                this.nbPoints += a.getWagon();
+                this.nbPoints += this.metier.getPointsTailleAretes(a.getWagon());
                 this.alCheminsPtsCpts.add(a);
             }
         }
