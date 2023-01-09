@@ -104,7 +104,7 @@ public class Metier {
                 System.out.println("Nb Wagons pour les arêtes" + a.getWagon() + " Nb Wagons que le joueur actuel possède : " + this.getEstJoueurCourant().getNbCarteWagon());
                 if(a.getWagon() > this.getEstJoueurCourant().getNbCarteWagon() && this.lstCarteWagon.size() == 0){
                     System.out.println("nbWagonFinPartie" + this.getNbWagonFinPartie());
-                    this.ctrl.changerPanel("Menu");
+                    this.ctrl.recapFinPartie();
                 }
             }
         }
@@ -112,15 +112,16 @@ public class Metier {
         /* Si un joueur a 2 || 1 || 0 cartes wagons dans sa main */
         
         for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++){
-            if(this.getEstJoueurCourant().getNbCarteWagon() == getNbWagonFinPartie()){
-                System.out.println("Appeler la méthode recapFinPartie dans panelDispoParam qu'est dans la classe PanelGaucheJeu");
+            if(this.getEstJoueurCourant().getNbCarteWagon() == getNbWagonFinPartie())
+            {
+                this.ctrl.recapFinPartie();
             }
         }
 
         /* Si toutes les arêtes sont prises */
         Joueur joueur = getEstJoueurCourant();
         if(lstArete.size() == joueur.getAlCheminsPtsCpts().size()){
-            this.ctrl.changerPanel("Menu");
+            this.ctrl.recapFinPartie();
         }
     }
 
@@ -330,24 +331,25 @@ public class Metier {
     public boolean priseVoie(Joueur j , Arete a )
     {
 
-        System.out.println("DEFAUSE CARTE WAGON : ");
-        for(CarteWagon cw  : this.lstDefausseWagon)
-        {
-            System.out.println(cw.getCouleur());
-        }
-        System.out.println("MAIN CARTE WAGON : ");
-        for(CarteWagon cw  : j.getMainWagon())
-        {
-            System.out.println(cw.getCouleur());
-        }
-        System.out.println("-------------------");
-        System.out.println("CLIQUER SUR UNE ARETE DE COULEUR : ");
-        System.out.println(a.getCouleur());
-        System.out.println("-------------------");
+        // System.out.println("DEFAUSE CARTE WAGON : ");
+        // for(CarteWagon cw  : this.lstDefausseWagon)
+        // {
+        //     System.out.println(cw.getCouleur());
+        // }
+        // System.out.println("MAIN CARTE WAGON : ");
+        // for(CarteWagon cw  : j.getMainWagon())
+        // {
+        //     System.out.println(cw.getCouleur());
+        // }
+        // System.out.println("-------------------");
+        // System.out.println("CLIQUER SUR UNE ARETE DE COULEUR : ");
+        // System.out.println(a.getCouleur());
+        // System.out.println("-------------------");
 
 
         if(a.getEstOccupe())
             return false;
+        
         
         int nbWagonArete = a.getWagon();
         String couleurTmp  =  a.getCouleur();
@@ -429,6 +431,8 @@ public class Metier {
         //     this.lstDefausseWagon.add(carteJoker);
 
         // }   
+
+
         return true;
     }
 

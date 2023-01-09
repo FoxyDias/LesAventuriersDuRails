@@ -4,7 +4,8 @@ import main.Controleur;
 import metier.CarteObjectif;
 
 import javax.swing.JPanel;
-
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -206,6 +207,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		private JButton btnValiderRecap;
 
 		private JDialog dialogRecap;
+		private JTable tableRecap;
 
 		public PanelDispoParam(Controleur ctrl)
 		{
@@ -242,6 +244,47 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			this.btnFinTour.addActionListener(this);
 		}
 
+		public void recapFinPartie()
+		{
+			JLabel lblRecap = new JLabel("Joueur " + this.ctrl.getEstJoueurCourant() + ", il vous reste " + this.ctrl.getEstJoueurCourant().getNbCarteWagon() + ". La partie s'arrête au prochain tour.");
+			JOptionPane.showMessageDialog(null, lblRecap, "Fin de partie", JOptionPane.INFORMATION_MESSAGE);
+			if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêtez la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+			{
+				this.dialogRecap = new JDialog();
+				JPanel panelBtn = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,50));
+				this.dialogRecap.setTitle("Récapitulatif de la partie");
+				this.dialogRecap.setBounds(650,350,500,500);
+				this.dialogRecap.setResizable(false);
+				this.dialogRecap.setModal(true);
+				this.dialogRecap.setLayout(new GridLayout(5,1,0,5));
+
+				this.btnValiderRecap = new JButton("Quitter");
+
+				panelBtn.add(this.btnValiderRecap);
+
+
+				/*
+				this.tableRecap = new JTable(4, 4);
+
+				this.tableRecap.setValueAt("Joueur", 0, 0);
+				this.tableRecap.setValueAt("Nombre de points cummulés avec les chemins", 0, 1);
+				this.tableRecap.setValueAt("Nombre de points cummulés avec les cartes objectifs", 0, 2);
+				this.tableRecap.setValueAt("Nombre de points du plus long chemin", 0, 3);
+				*/
+
+
+				this.dialogRecap.add(new JLabel("Joueur : " + this.ctrl.getJoueur(this.ctrl.getIntJoueurActuel()) , JLabel.CENTER));
+				this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les chemins : ", JLabel.CENTER));
+				this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les cartes objectifs : ", JLabel.CENTER));
+				this.dialogRecap.add(new JLabel("Nombre de points du plus long chemin : ", JLabel.CENTER));
+				this.dialogRecap.add(panelBtn);
+
+				this.btnValiderRecap.addActionListener(this);
+
+				this.dialogRecap.setVisible(true);
+			}
+		}
+
 		public void actionPerformed(ActionEvent e)
 		{
 			if(e.getSource() == this.btnVisualisation)
@@ -265,30 +308,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 			if(e.getSource() == this.btnFinPartie)
 			{
-				if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêtez la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-				{
-					this.dialogRecap = new JDialog();
-					JPanel panelBtn = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,50));
-					this.dialogRecap.setTitle("Récapitulatif de la partie");
-					this.dialogRecap.setBounds(650,350,500,500);
-					this.dialogRecap.setResizable(false);
-					this.dialogRecap.setModal(true);
-					this.dialogRecap.setLayout(new GridLayout(5,1,0,5));
-
-					this.btnValiderRecap = new JButton("Quitter");
-
-					panelBtn.add(this.btnValiderRecap);
-
-					this.dialogRecap.add(new JLabel("Joueur : " + this.ctrl.getJoueur(this.ctrl.getIntJoueurActuel()) , JLabel.CENTER));
-					this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les chemins : ", JLabel.CENTER));
-					this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les cartes objectifs : ", JLabel.CENTER));
-					this.dialogRecap.add(new JLabel("Nombre de points du plus long chemin : ", JLabel.CENTER));
-					this.dialogRecap.add(panelBtn);
-
-					this.btnValiderRecap.addActionListener(this);
-
-					this.dialogRecap.setVisible(true);
-				}
+				this.recapFinPartie();
 			}
 
 			if(e.getSource() == this.btnFinTour)

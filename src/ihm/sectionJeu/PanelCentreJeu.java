@@ -7,6 +7,7 @@ import java.awt.Font;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.awt.Image;
@@ -367,6 +368,13 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 
 			if(this.ctrl.priseVoie(joueur, a))
 			{
+				if(a.getWagon() > joueur.getNbWagons())
+				{
+					System.out.println("couille");
+					JOptionPane.showMessageDialog(null, "Il reste " + joueur.getNbWagons() + " wagons pour vous, fin du jeu au prochain tour");
+					return;
+				}
+        
 				a.setEstOccupe(true);
 				a.setOccupateur(joueur);
 				joueur.ajouterArete(a);
