@@ -457,6 +457,7 @@ public class Metier {
         this.lstArete = new ArrayList<Arete>();
         this.lstCarteObjectif = new ArrayList<CarteObjectif>();
         this.lstCarteWagon = new ArrayList<CarteWagon>();
+        this.lstJoueur = new ArrayList<Joueur>();
 
         racine = document.getRootElement();
 

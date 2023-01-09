@@ -2,8 +2,6 @@ package ihm.sectionJeu;
 
 import main.Controleur;
 import metier.CarteObjectif;
-import metier.Joueur;
-import metier.Metier;
 
 import javax.swing.JPanel;
 
@@ -45,32 +43,34 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		/**
 		 * Création des composants
 		 */
-		this.ctrl   = ctrl;
-		this.setLayout(new GridLayout(5,1,0,0));
+		this.ctrl = ctrl;
+		this.setLayout(new GridLayout(6,1,0,0));
 		this.setPreferredSize(new Dimension(350, 0));
 
 		JLabel lblPiocheCarteWagon		= new JLabel("Piocher une carte " + this.ctrl.getMoyenDeTransport(), JLabel.CENTER);
 		JLabel lblPiocheCarteObjectif	= new JLabel("Piocher une carte objectif", JLabel.CENTER);
+		JLabel lblBlanc					= new JLabel("____________________", JLabel.CENTER);
 		ImageIcon imageIconBtnPiocheCarteObjectif = new ImageIcon(this.ctrl.getNomImage());
-		ImageIcon imageIconBtnPiocheCarteWagon = new ImageIcon("donnee/imageCarte/voiture.jpg");
+		ImageIcon imageIconBtnPiocheCarteWagon = new ImageIcon("donnee/imageCarte/voiture.png");
 
 		lblPiocheCarteWagon.setFont(new Font("", Font.BOLD, 16));
 		lblPiocheCarteObjectif.setFont(new Font("", Font.BOLD, 16));
+		lblBlanc.setFont(new Font("", Font.BOLD, 16));
 
 		imageIconBtnPiocheCarteObjectif.setImage(imageIconBtnPiocheCarteObjectif.getImage().getScaledInstance(250, 150, java.awt.Image.SCALE_DEFAULT));
-		imageIconBtnPiocheCarteWagon.setImage(imageIconBtnPiocheCarteWagon.getImage().getScaledInstance(300, 100, java.awt.Image.SCALE_DEFAULT));
+		imageIconBtnPiocheCarteWagon.setImage(imageIconBtnPiocheCarteWagon.getImage().getScaledInstance(150, 100, java.awt.Image.SCALE_DEFAULT));
 
 		this.btnPiocheCarteWagon 		= new JButton(imageIconBtnPiocheCarteWagon);
 		this.btnPiocheCarteObjectif 	= new JButton(imageIconBtnPiocheCarteObjectif);
 		this.btnFinDuTour 				= new JButton("Fin du tour");
 		this.btnArreterPartie 			= new JButton("Arrêter la partie");
 
-		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		this.setBorder(BorderFactory.createLineBorder(Color.WHITE, 5));
 
-		this.btnPiocheCarteWagon.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		this.btnPiocheCarteObjectif.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		this.btnFinDuTour.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		this.btnArreterPartie.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		this.btnPiocheCarteWagon.setBorder		(BorderFactory.createLineBorder(Color.BLACK, 1));
+		this.btnPiocheCarteObjectif.setBorder	(BorderFactory.createLineBorder(Color.BLACK, 1));
+		this.btnFinDuTour.setBorder				(BorderFactory.createLineBorder(Color.BLACK, 1));
+		this.btnArreterPartie.setBorder			(BorderFactory.createLineBorder(Color.BLACK, 1));
 
 		this.btnPiocheCarteWagon.setBackground(Color.WHITE);
 		this.btnPiocheCarteObjectif.setBackground(Color.WHITE);
@@ -84,6 +84,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		this.add(lblPiocheCarteObjectif);
 		this.add(this.btnPiocheCarteObjectif);
+		this.add(lblBlanc);
 		this.add(lblPiocheCarteWagon);
 		this.add(this.btnPiocheCarteWagon);
 		this.add(new PanelDispoParam(this.ctrl));
@@ -104,45 +105,40 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		{
 
 			JDialog jDialog = new JDialog();
-			jDialog.setLayout(new GridLayout(2,1));
-			JPanel panelLabel = new JPanel();
-			JPanel panelCouleur = new JPanel(new GridLayout(1,3));
-			JPanel panelSetBk = new JPanel();
-			panelSetBk.setBackground(PanelGaucheJeu.this.ctrl.getLstCarteWagon().get(0).getColor());
-			panelSetBk.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-			JLabel  lblCouleurChoisis = new JLabel("Vous avez pioché une carte de couleur : " + PanelGaucheJeu.this.ctrl.getLstCarteWagon().get(0).getColor(), JLabel.CENTER); 
+			JPanel  panelCouleur = new JPanel(new GridLayout(10,0));
+			JLabel  lblCouleurChoisis = new JLabel("Vous avez pioché une carte de couleur : " + PanelGaucheJeu.this.ctrl.getLstCarteWagon().get(0).getColor()); 
 
 			
-			jDialog.setBounds(650, 250, 600, 300);
+			jDialog.setBounds(650, 250, 600, 600);
 			jDialog.setResizable(false);
 			jDialog.setModal(true);
 			jDialog.setTitle("Visualisation de la carte piochée ");
 
-			panelLabel.add(lblCouleurChoisis);
-
-			panelCouleur.add(new JPanel());
-			panelCouleur.add(panelSetBk);
-			panelCouleur.add(new JPanel());
+			panelCouleur.add(lblCouleurChoisis);
+			panelCouleur.setBackground(PanelGaucheJeu.this.ctrl.getLstCarteWagon().get(0).getColor());
 			this.ctrl.getEstJoueurCourant().getMainWagon().add(this.ctrl.getLstCarteWagon().get(0));
 			this.ctrl.getLstCarteWagon().remove(0);
 
-			jDialog.add(panelLabel);
 			jDialog.add(panelCouleur);
 			jDialog.setVisible(true);
 		}
 
 		if(e.getSource() == this.btnArreterPartie)
+		{
 			if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêter la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 				this.ctrl.changerPanel("Menu");
-		
+			
+		}
 
 		if(e.getSource() == this.btnFinDuTour)
+		{
 			this.ctrl.avancerJoueur();
-		
+		}
 
 		if(e.getSource() == this.btnPiocheCarteObjectif)
+		{
 			this.creerPopUpCarteObjectif();
-		
+		}
 
 		if(e.getSource() == this.btnValider)
 		{
@@ -183,14 +179,12 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		private JDialog dialogRecap;
 
-		private Joueur joueur;
-
 		public PanelDispoParam(Controleur ctrl)
 		{
 			/**
 			 * Création des composants
 			 */
-			this.ctrl   = ctrl;
+			this.ctrl = ctrl;
 
 			this.setLayout(new BorderLayout());
 			this.btnVisualisation = new JButton("Visualiser mes cartes");
@@ -202,7 +196,8 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 			/**
 			 * Positionnement des composants
-			 */		 
+			 */
+			 
 			panelVisualiser.add(this.btnVisualisation);
 
 			panelDispoBtnBas.add(this.btnFinPartie);
@@ -219,36 +214,10 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			this.btnFinTour.addActionListener(this);
 		}
 
-		public void recapFinPartie(){
-			if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêtez la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-			{
-				this.dialogRecap = new JDialog();
-				JPanel panelBtn = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,50));
-				this.dialogRecap.setTitle("Récapitulatif de la partie");
-				this.dialogRecap.setBounds(650,350,500,500);
-				this.dialogRecap.setResizable(false);
-				this.dialogRecap.setModal(true);
-				this.dialogRecap.setLayout(new GridLayout(5,1,0,5));
-
-				this.btnValiderRecap = new JButton("Quitter");
-
-				panelBtn.add(this.btnValiderRecap);
-
-				this.dialogRecap.add(new JLabel("Joueur : ", JLabel.CENTER));
-				this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les chemins : ", JLabel.CENTER));
-				this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les cartes objectifs : ", JLabel.CENTER));
-				this.dialogRecap.add(new JLabel("Nombre de points du plus long chemin : " , JLabel.CENTER));
-				this.dialogRecap.add(panelBtn);
-
-				this.btnValiderRecap.addActionListener(this);
-
-				this.dialogRecap.setVisible(true);
-			}
-		}
-
 		public void actionPerformed(ActionEvent e)
 		{
 			if(e.getSource() == this.btnVisualisation)
+			{
 				if(this.ctrl.getEstJoueurCourant().getMainWagon().size() != 0 || this.ctrl.getEstJoueurCourant().getMainObjectif().size() != 0 )
 				{
 					JDialog jDialog = new JDialog();
@@ -261,13 +230,41 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 					jDialog.setVisible(true);
 				}
 				else
+				{
 					JOptionPane.showMessageDialog(null,"Vous n'avez aucune carte");
+				}
+			}
 
 			if(e.getSource() == this.btnFinPartie)
-				this.recapFinPartie();
-			
+			{
+				if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêtez la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+				{
+					this.dialogRecap = new JDialog();
+					JPanel panelBtn = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,50));
+					this.dialogRecap.setTitle("Récapitulatif de la partie");
+					this.dialogRecap.setBounds(650,350,500,500);
+					this.dialogRecap.setResizable(false);
+					this.dialogRecap.setModal(true);
+					this.dialogRecap.setLayout(new GridLayout(5,1,0,5));
 
-			if(e.getSource() == this.btnFinTour){
+					this.btnValiderRecap = new JButton("Quitter");
+
+					panelBtn.add(this.btnValiderRecap);
+
+					this.dialogRecap.add(new JLabel("Joueur : " + this.ctrl.getJoueur(this.ctrl.getIntJoueurActuel()) , JLabel.CENTER));
+					this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les chemins : ", JLabel.CENTER));
+					this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les cartes objectifs : ", JLabel.CENTER));
+					this.dialogRecap.add(new JLabel("Nombre de points du plus long chemin : ", JLabel.CENTER));
+					this.dialogRecap.add(panelBtn);
+
+					this.btnValiderRecap.addActionListener(this);
+
+					this.dialogRecap.setVisible(true);
+				}
+			}
+
+			if(e.getSource() == this.btnFinTour)
+			{
 				this.ctrl.avancerJoueur();
 			}
 
@@ -289,10 +286,12 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		public AfficherCarteObjectif(CarteObjectif carteObjectif)
 		{
+
 			JLabel lblObjectif = new JLabel("Objectif : " + carteObjectif.getNoeudDep().getNom() + " à " + carteObjectif.getNoeudArr().getNom());
 			lblObjectif.setHorizontalAlignment(JLabel.CENTER);
 			lblObjectif.setFont(new Font("", Font.BOLD, 13));
 			lblObjectif.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+
 
 			this.setLayout(new BorderLayout());
 			this.carteObjectif = carteObjectif;
@@ -314,8 +313,8 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		public CarteObjectif getCarteObjectif()	{return this.carteObjectif;}
 
 		@Override
-		public void actionPerformed(ActionEvent e) 
-		{	
+		public void actionPerformed(ActionEvent e) {
+			
 			if(e.getSource() == this.btnChoixCarte)
 			{
 				
