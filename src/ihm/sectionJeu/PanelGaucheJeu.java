@@ -184,7 +184,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		private JDialog dialogRecap;
 
 		private Joueur joueur;
-		private Metier metier;
 
 		public PanelDispoParam(Controleur ctrl)
 		{
@@ -270,7 +269,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 			if(e.getSource() == this.btnFinTour){
 				this.ctrl.avancerJoueur();
-				this.metier.finPartie();
 			}
 
 			if(e.getSource() == this.btnValiderRecap)

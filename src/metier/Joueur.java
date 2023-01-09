@@ -150,6 +150,10 @@ public class Joueur {
     public void ajouterCarteObjectif(CarteObjectif cObjectif){this.mainObjectif.add(cObjectif);}
     public ArrayList<CarteObjectif> getMainObjectif() {return this.mainObjectif;}
 
+    public int getNbPoints() {
+        return nbPoints;
+    }
+
     public void ajouterArete(Arete a){
         //this.rajouterPoint(a.getWagon());
         this.lstArete.add(a);

@@ -312,6 +312,9 @@ public class Metier {
 
         this.lstPiocheObjectifs.set(index, this.lstCarteObjectif.get( (int) (Math.random() * this.lstCarteObjectif.size() )));
     }
+    public void repiocherCarteWagon(int i) {
+        this.lstPiocheWagon.set(i, this.lstCarteWagon.get( (int) (Math.random() * this.lstCarteWagon.size() )));
+    }
 
     private void melangerCarteObjectif() {
 
@@ -696,6 +699,8 @@ public class Metier {
     public void setWidthPanel (double witdhPanel) {this.witdhPanel = witdhPanel;  }
     public void setHeightPanel(double heightPanel){this.heightPanel = heightPanel;}
     public void setNbJoueurPartie(int n          ){ this.nbJoueurPartie = n; }
+
+
 
 
     /*-------------------------------------------------------------------------*/
