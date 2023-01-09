@@ -164,15 +164,19 @@ public class PanelHautMenu extends JPanel implements ActionListener
 							//System.out.println(s);
 							this.stringFichierManquant = s;
 
+							if(!this.stringFichierManquant.contains("donnee/") && !this.stringFichierManquant.contains("importe/"))
+								this.stringFichierManquant = "donnee/" + this.stringFichierManquant;
+
+							System.out.println(s);
+
 							if(s != null && !s.equals("null") && !s.equals( "donnee/null"))
 							{
 								
 								//System.out.println(s);
-								this.FileImagenew =new File(s);
+								this.FileImagenew =new File(this.stringFichierManquant);
 								
 								this.validFichier = this.FileImagenew.exists();
 								if(!this.validFichier)
-
 								{
 									try
 									{	
@@ -223,6 +227,10 @@ public class PanelHautMenu extends JPanel implements ActionListener
 				if(!chemin.contains("donnee/"))
 					chemin = "donnee/" + chemin;
 
+				
+
+				System.out.println("Chemin : " + chemin+"|");
+				System.out.println("Nom    : " + nom   +"|");
 				File fileRemplacement = jFileChooserRemplacement.getSelectedFile();									
 				try {
 					Files.copy(fileRemplacement.toPath(), Paths.get(chemin	+ fileRemplacement.getName()));
@@ -230,7 +238,11 @@ public class PanelHautMenu extends JPanel implements ActionListener
 
 				this.cheminFichier = fileRemplacement.getName();
 
-				this.validFichier = this.stringFichierManquant.equals(chemin+cheminFichier);
+				System.out.println("Fichier attendu : "+  this.stringFichierManquant+"|");
+				this.validFichier = this.stringFichierManquant.contains(chemin+cheminFichier);
+				System.out.println("Fichier donner  : "+ chemin+cheminFichier+"|");
+				
+				System.out.println("fichier valide fdp : " + this.validFichier);
 				this.FileImagenew =new File(cheminFichier);
 
 				if(this.validFichier)

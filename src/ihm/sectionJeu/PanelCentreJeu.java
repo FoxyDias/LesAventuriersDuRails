@@ -5,8 +5,6 @@ import metier.*;
 import java.awt.*;
 import java.awt.Font;
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
