@@ -144,7 +144,7 @@ public class Joueur {
     }
 
     public void ajouterCarteWagon(CarteWagon cWagon){this.mainWagon.add(cWagon);}
-    public void retirerCarteWagon(int indexcWagon){this.mainObjectif.remove(indexcWagon);}
+    public void retirerCarteWagon(int indexcWagon){this.mainWagon.remove(indexcWagon);}
     public ArrayList<CarteWagon> getMainWagon() {return this.mainWagon;}
     
     public void ajouterCarteObjectif(CarteObjectif cObjectif){this.mainObjectif.add(cObjectif);}
@@ -157,6 +157,10 @@ public class Joueur {
     public void ajouterArete(Arete a){
         //this.rajouterPoint(a.getWagon());
         this.lstArete.add(a);
+    }
+
+    public String toString(){
+        return "TA RACE YA PAS DE PSEUDO GROS";
     }
 
     public boolean isJoueurFinal(){return nbWagons <= 2;}

@@ -263,7 +263,7 @@
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=0,g=0,b=255]</couleur>
-			<nombre>30</nombre>
+			<nombre>18</nombre>
 			<recto>imageCarte/bugatti-chiron-bleu-royal.jpg</recto>
 		</carteWagon>
 		<carteWagon>
@@ -273,22 +273,22 @@
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=204,g=204,b=204]</couleur>
-			<nombre>30</nombre>
+			<nombre>13</nombre>
 			<recto>imageCarte/ppfzf80xaj.jpg</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=255,g=0,b=255]</couleur>
-			<nombre>30</nombre>
+			<nombre>12</nombre>
 			<recto>imageCarte/8770-fiat-500-so-pink-edition-limitee-2010.jpg</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=255,g=102,b=0]</couleur>
-			<nombre>30</nombre>
+			<nombre>15</nombre>
 			<recto>imageCarte/bugatti_supercar.jpg</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=255,g=255,b=0]</couleur>
-			<nombre>30</nombre>
+			<nombre>13</nombre>
 			<recto>imageCarte/1200-L-chevrolet-camaro-transformers-3-joue-la-comme-bumblebee.jpg</recto>
 		</carteWagon>
 		<carteObjectif>
@@ -343,7 +343,7 @@
 		<nbWagonFinPartie>2</nbWagonFinPartie>
 		<nbPointsPlusLongChemin>10</nbPointsPlusLongChemin>
 		<txtNomMoyenDeTransport>quad</txtNomMoyenDeTransport>
-		<txtRoute>routes</txtRoute>
+		<txtRoute>Routes</txtRoute>
 		<versoCarteWagon>imageCarte/voiture.jpg</versoCarteWagon>
 		<versoCarteObjectif>billet-cartonne-sncf.jpg</versoCarteObjectif>
 		<heightPanel>973.0</heightPanel>

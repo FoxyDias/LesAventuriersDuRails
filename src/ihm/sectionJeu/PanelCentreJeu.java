@@ -371,6 +371,7 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 				a.setOccupateur(joueur);
 				joueur.ajouterArete(a);
 				this.repaint();
+				this.ctrl.avancerJoueur();
 			}
 		
 		}
@@ -398,6 +399,7 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 							a.setEstOccupe(true);
 							a.setOccupateur(joueur);
 							joueur.ajouterArete(a);
+							ctrl.avancerJoueur();
 							
 							
 						}
