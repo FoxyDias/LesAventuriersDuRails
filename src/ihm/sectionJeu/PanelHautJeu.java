@@ -56,11 +56,14 @@ public class PanelHautJeu extends JPanel
 			panelInfosJoueur.add(this.alNbCarteWagons.get(i));
 			panelProfilJoueur.add(panelInfosJoueur);
 
-			for(int ii = 0; ii<4; ii++)
+			for(int j = 0; j<4; j++)
 			{
 				this.ctrl.getLstJoueur().get(i).ajouterCarteWagon(this.ctrl.getLstCarteWagon().get(0));
 				this.ctrl.getLstCarteWagon().remove(0);
 			}
+
+		
+        
 		}
 		/**
 		 * Positionnement des composants

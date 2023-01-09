@@ -330,24 +330,25 @@ public class Metier {
     public boolean priseVoie(Joueur j , Arete a )
     {
 
-        System.out.println("DEFAUSE CARTE WAGON : ");
-        for(CarteWagon cw  : this.lstDefausseWagon)
-        {
-            System.out.println(cw.getCouleur());
-        }
-        System.out.println("MAIN CARTE WAGON : ");
-        for(CarteWagon cw  : j.getMainWagon())
-        {
-            System.out.println(cw.getCouleur());
-        }
-        System.out.println("-------------------");
-        System.out.println("CLIQUER SUR UNE ARETE DE COULEUR : ");
-        System.out.println(a.getCouleur());
-        System.out.println("-------------------");
+        // System.out.println("DEFAUSE CARTE WAGON : ");
+        // for(CarteWagon cw  : this.lstDefausseWagon)
+        // {
+        //     System.out.println(cw.getCouleur());
+        // }
+        // System.out.println("MAIN CARTE WAGON : ");
+        // for(CarteWagon cw  : j.getMainWagon())
+        // {
+        //     System.out.println(cw.getCouleur());
+        // }
+        // System.out.println("-------------------");
+        // System.out.println("CLIQUER SUR UNE ARETE DE COULEUR : ");
+        // System.out.println(a.getCouleur());
+        // System.out.println("-------------------");
 
 
         if(a.getEstOccupe())
             return false;
+        
         
         int nbWagonArete = a.getWagon();
         String couleurTmp  =  a.getCouleur();
