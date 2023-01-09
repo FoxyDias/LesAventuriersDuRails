@@ -69,6 +69,14 @@ public class Metier {
         this.hsmJoueurNoeud = new HashMap<Joueur,ArrayList<Noeud>>();
     }
 
+    /**
+     * Permet d'avoir le tableau des points fournit par les joueurs pour l'obtention d'une arête suivant leurs distances
+     * @return
+     */
+    public int getPointsTailleAretes(int nbWagons){
+        return this.pointsTaille[nbWagons];
+    }
+
 
     public void lancerPartie()
     {   
@@ -516,7 +524,7 @@ public class Metier {
             coulRGB = RGBtoColor (coulSTR);
 
             this.lstCouleurJoueur.add(coulRGB);
-            this.lstJoueur.add(new Joueur(this.nbWagonDebutPartie, coulRGB));
+            this.lstJoueur.add(new Joueur(this.nbWagonDebutPartie, coulRGB, this));
             
 
         }
