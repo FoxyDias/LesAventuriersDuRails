@@ -143,13 +143,15 @@ public class Controleur {
         return this.metier.getHeightPanel();
     }
 
-    
-
     public void setNbJoueurPartie(int n ){this.metier.setNbJoueurPartie(n);}
 
     public int getNbJoueurPartie() { return this.metier.getNbJoueurPartie(); }
 
     public String getMoyenDeTransport() { return this.metier.getMoyenDeTransport(); }
+
+    public void repiocherCarteObjectif(int index) {
+        this.metier.repiocherCarteObjectif(index);
+    }
 
 
 	public void setEnabled(boolean b) { this.ihm.setEnabled(b); }

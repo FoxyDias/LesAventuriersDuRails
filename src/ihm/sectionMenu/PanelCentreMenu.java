@@ -47,7 +47,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 	/* --- JDIALOG --- */
 	private JButton btnValider;
 	private JDialog dialog;
-	private afficherCarteObjectif[] carteObjectifInfo;
+	private AfficherCarteObjectif[] carteObjectifInfo;
 	private int nbPopUP = 1;
 
 	public PanelCentreMenu(Controleur ctrl)
@@ -307,7 +307,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			else
 			{
 				this.ctrl.setNbJoueurPartie(Integer.parseInt(this.txtNbJoueursLocal.getText()));
-				this.ctrl.changerPanel("Jeu");
+				this.ctrl.lancerPartie("Jeu");
 		
 				this.creerPopUpCarteObjectif();
 			}
@@ -325,7 +325,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			}
 			else
 			{
-				this.ctrl.changerPanel("Jeu");
+				this.ctrl.lancerPartie("Jeu");
 				this.dialogCreerPartie.dispose();
 			}
 		}
@@ -382,15 +382,18 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 				this.dialog.dispose();
 
 				for(int index = 0; index < this.carteObjectifInfo.length; index++)
-					if(this.carteObjectifInfo[index].isSelectionner())
-						this.ctrl.getJoueur(this.nbPopUP+1).ajouterCarteObjectif(this.carteObjectifInfo[index].getCarteObjectif());
+					if(this.carteObjectifInfo[index].isSelectionner()) {
+						this.ctrl.getEstJoueurCourant().ajouterCarteObjectif(this.carteObjectifInfo[index].getCarteObjectif());
+						this.ctrl.repiocherCarteObjectif(index);
+					}
 
+				this.ctrl.avancerJoueur();
 				if(this.nbPopUP < this.ctrl.getNbJoueurPartie())
 				{
-					
 					this.nbPopUP++;
 					this.creerPopUpCarteObjectif();
 				}
+
 			}
 		}
 
@@ -415,7 +418,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		this.dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		this.dialog.setResizable(false);
 
-		this.carteObjectifInfo = new afficherCarteObjectif[3];
+		this.carteObjectifInfo = new AfficherCarteObjectif[3];
 		this.btnValider = new JButton("Valider");
 
 		JPanel panelDispoCarte = new JPanel(new GridLayout(1,3));
@@ -423,7 +426,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 		for(int index = 0; index < 3; index++)
 		{
-			this.carteObjectifInfo[index] = new afficherCarteObjectif(this.ctrl.getLstCarteObjectif().remove(0));
+			this.carteObjectifInfo[index] = new AfficherCarteObjectif(this.ctrl.getLstPiocheObjectifs().get(index));
 			panelDispoCarte.add(this.carteObjectifInfo[index]);
 		}
 
@@ -442,14 +445,14 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		return this.dialog;
 	}
 
-	public class afficherCarteObjectif extends JPanel implements ActionListener
+	public class AfficherCarteObjectif extends JPanel implements ActionListener
 	{
 		private CarteObjectif carteObjectif;
 		private JButton btnChoixCarte;
 		private GenereImageCarteObjectif affichageObjectif;
 		private boolean selection;
 
-		public afficherCarteObjectif(CarteObjectif carteObjectif)
+		public AfficherCarteObjectif(CarteObjectif carteObjectif)
 		{
 
 			JLabel lblObjectif = new JLabel("Objectif : " + carteObjectif.getNoeudDep().getNom() + " à " + carteObjectif.getNoeudArr().getNom());
