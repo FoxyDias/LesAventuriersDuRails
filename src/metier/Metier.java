@@ -143,6 +143,7 @@ public class Metier {
         if(this.intJoueurActuel >= this.nbJoueurPartie)
             this.intJoueurActuel = 0;
         
+            this.finPartie();
     }
 
     private void initPioche()
@@ -666,7 +667,7 @@ public class Metier {
     public String getVersoCarteObjectif () { return versoCarteObjectif;    }
     public String getNomImage           () { return nomImage;              }
 
-    public Joueur getJoueur        (int i) { return this.lstJoueur.get(i);}
+    public Joueur getJoueur        (int i) { return this.lstJoueur.get(i); }
 
     public ArrayList<CarteObjectif> getListCarteObjectif() { return this.lstCarteObjectif;}
     public ArrayList<CarteObjectif> getLstCarteObjectif () { return lstCarteObjectif;     }
