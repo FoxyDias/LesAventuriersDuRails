@@ -1,6 +1,5 @@
 package ihm.sectionJeu;
 
-import ihm.sectionMenu.PanelCentreMenu;
 import main.Controleur;
 import metier.CarteObjectif;
 
@@ -156,6 +155,9 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		private JButton btnVisualisation;
 		private JButton btnFinTour;
 		private JButton btnFinPartie;
+		private JButton btnValiderRecap;
+
+		private JDialog dialogRecap;
 
 		public PanelDispoParam(Controleur ctrl)
 		{
@@ -217,13 +219,39 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			{
 				if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêtez la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 				{
-					this.ctrl.changerPanel("Menu");
+					this.dialogRecap = new JDialog();
+					JPanel panelBtn = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,50));
+					this.dialogRecap.setTitle("Récapitulatif de la partie");
+					this.dialogRecap.setBounds(650,350,500,500);
+					this.dialogRecap.setResizable(false);
+					this.dialogRecap.setModal(true);
+					this.dialogRecap.setLayout(new GridLayout(5,1,0,5));
+
+					this.btnValiderRecap = new JButton("Quitter");
+
+					panelBtn.add(this.btnValiderRecap);
+
+					this.dialogRecap.add(new JLabel("Joueur : ", JLabel.CENTER));
+					this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les chemins : ", JLabel.CENTER));
+					this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les cartes objectifs : ", JLabel.CENTER));
+					this.dialogRecap.add(new JLabel("Nombre de points du plus long chemin : ", JLabel.CENTER));
+					this.dialogRecap.add(panelBtn);
+
+					this.btnValiderRecap.addActionListener(this);
+
+					this.dialogRecap.setVisible(true);
 				}
 			}
 
 			if(e.getSource() == this.btnFinTour)
 			{
 				this.ctrl.avancerJoueur();
+			}
+
+			if(e.getSource() == this.btnValiderRecap)
+			{
+				this.dialogRecap.dispose();
+				this.ctrl.changerPanel("Menu");
 			}
 		}
 	}
