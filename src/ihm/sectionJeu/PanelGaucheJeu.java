@@ -132,17 +132,22 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 			
 			cpt++;
-			System.out.println("cpt : " + cpt);
 			jDialog.setBounds(650, 250, 600, 300);
 			jDialog.setResizable(false);
 			jDialog.setModal(true);
 			jDialog.setTitle("Visualisation de la carte piochée ");
 
-			panelCouleur.add(lblCouleurChoisis);
-			panelCouleur.setBackground(PanelGaucheJeu.this.ctrl.getLstCarteWagon().get(0).getColor());
+			panelSetBk.setBackground(PanelGaucheJeu.this.ctrl.getLstCarteWagon().get(0).getColor());
+
+			panelLabel.add(lblCouleurChoisis);
+			panelCouleur.add(new JPanel());
+			panelCouleur.add(panelSetBk);
+			panelCouleur.add(new JPanel());
+			
 			this.ctrl.getEstJoueurCourant().getMainWagon().add(this.ctrl.getLstCarteWagon().get(0));
 			this.ctrl.getLstCarteWagon().remove(0);
 
+			jDialog.add(panelLabel);
 			jDialog.add(panelCouleur);
 			jDialog.setVisible(true);
 		}
