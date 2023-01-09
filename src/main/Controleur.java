@@ -138,6 +138,11 @@ public class Controleur {
         return this.metier.getWidthPanel();
     }
 
+    public boolean priseVoie(Joueur j , Arete a )
+    {
+        return this.metier.priseVoie(j,a);
+    }
+
     public double getHeightPanel()
     {
         return this.metier.getHeightPanel();

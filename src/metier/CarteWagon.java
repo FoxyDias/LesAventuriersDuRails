@@ -11,7 +11,8 @@ public class CarteWagon {
     public CarteWagon(String couleur) {
         this.couleur = couleur;
         if(this.couleur.equals("Joker"))
-            this.color = new Color(255, 255, 255);
+            //this.color = new Color(255, 255, 255);
+            this.color = null;
         else
             this.color = new Color(Integer.parseInt(couleur.split(",")[0]), Integer.parseInt(couleur.split(",")[1]) , Integer.parseInt(couleur.split(",")[2]));
     }

@@ -275,6 +275,114 @@ public class Metier {
 
     }
 
+    public boolean priseVoie(Joueur j , Arete a )
+    {
+
+        // System.out.println("DEFAUSE CARTE WAGON : ");
+        // for(CarteWagon cw  : this.lstDefausseWagon)
+        // {
+        //     System.out.println(cw.getCouleur());
+        // }
+        // System.out.println("MAIN CARTE WAGON : ");
+        // for(CarteWagon cw  : j.getMainWagon())
+        // {
+        //     System.out.println(cw.getCouleur());
+        // }
+        // System.out.println("-------------------");
+        // System.out.println("CLIQUER SUR UNE ARETE DE COULEUR : ");
+        // System.out.println(a.getCouleur());
+        // System.out.println("-------------------");
+
+
+        if(a.getEstOccupe())
+            return false;
+        
+        int nbWagonArete = a.getWagon();
+        String couleurTmp  =  a.getCouleur();
+
+        
+        //My string look like this [r=xxx,g=xxx,b=xxx] i want to get read of the [] the rgb and the = ? 
+        String[] rgb = couleurTmp.split(",");
+        int r = Integer.parseInt(rgb[0].replace("[r=", ""));
+        int g = Integer.parseInt(rgb[1].replace("g=", ""));
+        int b = Integer.parseInt(rgb[2].replace("b=", "").replace("]", ""));
+
+        Color c = new Color(r,g,b);
+        
+        // System.out.println("COULEUR EN STRING        : " + couleurTmp);
+        // System.out.println("COULEUR APRES TRAITEMENT : " + c.toString());
+        int nbCarteCoulJoueur = 0;
+        int nbCarteJoker      = 0;
+
+        CarteWagon carteCouleur= null;
+        CarteWagon carteJoker = null;
+        for(CarteWagon cw : this.getEstJoueurCourant().getMainWagon())
+
+        {
+            if(cw.getColor() == null)
+            {
+                nbCarteJoker++;
+                carteJoker = cw;
+            }
+            else if(cw.getColor().equals(c))
+            {
+                nbCarteCoulJoueur++;
+                carteCouleur = cw;
+            }
+        }
+
+        System.out.println("NOMBRE : " + nbCarteCoulJoueur);
+
+        if(nbCarteCoulJoueur+nbCarteJoker< nbWagonArete)
+            return false;
+
+
+        int nbCarteJokerAUtilise = nbWagonArete - nbCarteCoulJoueur;
+
+        if(nbCarteJokerAUtilise > 0)
+        {
+            nbCarteJoker = nbCarteJokerAUtilise;
+        }
+        else{
+            nbCarteJoker = 0;
+            nbCarteCoulJoueur = nbWagonArete;
+        }
+
+        
+        for(int i = 0 ; i< this.getEstJoueurCourant().getMainWagon().size();i++)
+        {
+       
+            if(nbCarteCoulJoueur ==0 && nbCarteJoker == 0)
+                break;
+            if(this.getEstJoueurCourant().getMainWagon().get(i).getColor().equals(c))
+            {
+                this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().get(i));
+                this.getEstJoueurCourant().getMainWagon().remove(i);
+                i--;
+                nbCarteCoulJoueur--;
+            }
+
+            else 
+                if((this.getEstJoueurCourant().getMainWagon().get(i).getColor() == null)){
+                    this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().get(i));
+                    this.getEstJoueurCourant().getMainWagon().remove(i);
+                    i--;
+                    nbCarteJoker--;
+                }
+
+        }
+        // for(int i = 0 ; i<nbCarteJoker ; i++)
+        // {
+        //     j.getMainWagon().remove(carteJoker);
+        //     this.lstDefausseWagon.add(carteJoker);
+
+        // }   
+
+
+        return true;
+    }
+
+
     public void lireXml(String pathXml)
     {
         Document document;

@@ -263,6 +263,11 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 		this.repaint();
 	}
 
+	public static Controleur getCtrl()
+	{
+		return ctrl;
+	}
+
 
 	public void mouseClicked(MouseEvent e) {
 	}
@@ -361,18 +366,22 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 			// 	System.out.println("Noeud2 : " + a.getNoeudDep().getNom());
 			// }
 		}
-
 		if(lstAretee.size() == 0){return;}
 
 		if(lstAretee.size() == 1 )
 		{
+			
 			Arete a = lstAretee.get(0);
 			Joueur joueur = this.ctrl.getEstJoueurCourant();
-			a.setEstOccupe(true);
-			a.setOccupateur(joueur);
-			joueur.ajouterArete(a);
 
-				
+			if(this.ctrl.priseVoie(joueur, a))
+			{
+				a.setEstOccupe(true);
+				a.setOccupateur(joueur);
+				joueur.ajouterArete(a);
+				this.repaint();
+			}
+		
 		}
 		else{
 			JDialog dialog = new JDialog();
@@ -396,9 +405,14 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 						System.out.println("Noeud2 : " + a.getNoeudDep().getNom());
 						System.out.println("Joueur : " + ctrl.getEstJoueurCourant().getCouleur());
 						Joueur joueur = ctrl.getEstJoueurCourant();
-						a.setEstOccupe(true);
-						a.setOccupateur(joueur);
-						joueur.ajouterArete(a);
+						if(ctrl.priseVoie(joueur, a))
+						{
+							a.setEstOccupe(true);
+							a.setOccupateur(joueur);
+							joueur.ajouterArete(a);
+							
+							
+						}
 						dialog.dispose(); 
 						PanelCentreJeu.this.repaint();
 					}
@@ -407,7 +421,7 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 			}
 			dialog.setVisible(true);
 		}
-		this.repaint();
+		
 	}
 
 	@Override
