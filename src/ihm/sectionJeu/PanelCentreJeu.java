@@ -159,12 +159,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 		double multiX = (xMax/width);
 		double multiY = (yMax/height);
 
-
-		/*
-		double multiX = 1;
-		double multiY = 1;
-		*/
-		
 		// draw la Noeud
 		g.setColor(Color.BLACK);
 		g.fillOval((int) (noeud.getX()*multiX), (int) (noeud.getY()*multiY), size, size);
@@ -193,7 +187,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 	{
 	
 		// draw la valeur de l'arete
-		//System.out.print(c);
 		//from string : "java.awt.Color[r=0,g=0,b=0]" to : 0,0,0
 		
 		//now remove "r=" and "g=" and "b="
@@ -278,15 +271,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 		int cliqueX = e.getX()-20;
 		int cliqueY = e.getY()-8;
 
-		
-
-		// for (Noeud n : this.ctrl.getLstNoeud())
-		// {
-		// 	if(x == n.getX() && y == n.getY())
-		// 	{
-		// 		System.out.println("Noeud : " + n.getNom());
-		// 	}
-		// }
 		ArrayList<Arete> lstAretee = new ArrayList<Arete>();
 			
 		for(Arete a : this.ctrl.getLstArete())
@@ -308,12 +292,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 			double aY = a.getNoeudArr().getY()* multiY;
 			double bX = a.getNoeudDep().getX()* multiX;
 			double bY = a.getNoeudDep().getY()* multiY;
-
-			// System.out.println(a.getNoeudArr().getNom());
-			// System.out.println("aX : "+  aX + " aY : " + aY);
-			// System.out.println(a.getNoeudDep().getNom());
-			// System.out.println("bX : "+  bX + " bY : " + bY);
-			
 
 			//AB vecteur de l'arete 
 			double vecteurAbX = bX - aX;
@@ -348,15 +326,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 				if(!a.getEstOccupe())
 					lstAretee.add(a);
 			}
-			
-			//System.out.println("Distance : " + distance);
-						
-			// if(Math.pow(vecteurAcX - distance * vecteurAbX,2) + Math.pow(vecteurAcY - distance * vecteurAbY, 2) <= 64)
-			
-			// {
-			// 	System.out.println("Noeud1 : " + a.getNoeudArr().getNom());
-			// 	System.out.println("Noeud2 : " + a.getNoeudDep().getNom());
-			// }
 		}
 		if(lstAretee.size() == 0){return;}
 
@@ -382,7 +351,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 				this.repaint();
 				this.ctrl.avancerJoueur();
 			}
-		
 		}
 		else{
 			JDialog dialog = new JDialog();
@@ -410,8 +378,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 							joueur.ajouterArete(a);
 							joueur.removeNbWagons(a.getWagon());
 							ctrl.avancerJoueur();
-							
-							
 						}
 						dialog.dispose(); 
 						PanelCentreJeu.this.repaint();
@@ -423,7 +389,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 		}
 		
 	}
-
 	@Override
 	public void mouseReleased(MouseEvent e) {}
 

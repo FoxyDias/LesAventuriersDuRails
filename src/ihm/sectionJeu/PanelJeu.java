@@ -42,12 +42,7 @@ public class PanelJeu extends JPanel
 	/**
 	 * Méthode qui permet de changer la couleur du panel
 	 */
-	public void changerCouleurPanel()
-	{
-		this.panelHautJeu.changerCouleurPanel();
-	}
+	public void changerCouleurPanel() { this.panelHautJeu.changerCouleurPanel(); }
 
-    public void majIhm() {
-		this.panelHautJeu.majIhm();
-    }
+    public void majIhm() 			  { this.panelHautJeu.majIhm(); 			 }
 }

@@ -3,8 +3,6 @@ package ihm.sectionMenu;
 import main.Controleur;
 import javax.swing.*;
 
-import ihm.FrameJeu;
-
 import java.awt.BorderLayout;
 
 public class PanelMenu extends JPanel

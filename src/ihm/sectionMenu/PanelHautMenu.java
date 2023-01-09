@@ -39,7 +39,6 @@ public class PanelHautMenu extends JPanel implements ActionListener
 	private File FileImagenew;
 
 	private String cheminFichier;
-
 	private String stringFichierManquant;
 
 	private boolean validFichier;
@@ -53,11 +52,9 @@ public class PanelHautMenu extends JPanel implements ActionListener
 		this.ctrl = ctrl; 
 		this.setLayout(new BorderLayout());
 
-
 		this.validFichier = false;
 
 		JLabel lblTitre 	= new JLabel(new ImageIcon("donnee/image/titre.png"));
-
 		JPanel panelTitre 	= new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
 		JPanel panelImport 	= new JPanel();
 		
@@ -68,7 +65,6 @@ public class PanelHautMenu extends JPanel implements ActionListener
 		/**
 		 * Positionnement des composants
 		 */
-
 		this.lblInformationMappe.setFont(new Font("", Font.BOLD, 13));
 		panelTitre.add(lblTitre);
 		panelImport.add(this.btnImport);
@@ -126,7 +122,6 @@ public class PanelHautMenu extends JPanel implements ActionListener
 						this.ctrl.lireXml("donnee/xml/"+file.getName());
 						this.panelInformation.setLayout(new GridLayout(9,2,0,5));
 						
-			
 						this.lblInformationMappe.setText(lblVide.getText());
 						this.panelInformation.add(new JLabel());
 						this.panelInformation.add(new JLabel("Nombre de joueurs maximum  : " 						, JLabel.RIGHT));
@@ -155,13 +150,10 @@ public class PanelHautMenu extends JPanel implements ActionListener
 						lstImage.add(this.ctrl.getVersoCarteWagon());
 						
 						for (CarteWagon carte : this.ctrl.getLstCarteWagon())
-						{
 							lstImage.add(carte.getRecto());
-						}
 
 						for(String s : lstImage)
 						{
-							//System.out.println(s);
 							this.stringFichierManquant = s;
 
 							if(!this.stringFichierManquant.contains("donnee/") && !this.stringFichierManquant.contains("importe/"))
@@ -169,8 +161,6 @@ public class PanelHautMenu extends JPanel implements ActionListener
 
 							if(s != null && !s.equals("null") && !s.equals( "donnee/null"))
 							{
-								
-								//System.out.println(s);
 								this.FileImagenew =new File(this.stringFichierManquant);
 								
 								this.validFichier = this.FileImagenew.exists();
@@ -210,13 +200,11 @@ public class PanelHautMenu extends JPanel implements ActionListener
 			JFileChooser jFileChooserRemplacement = new JFileChooser(new File("donnee/"));
 			int res2 = jFileChooserRemplacement.showOpenDialog(null);
 
-			
 			if(res2 == JFileChooser.APPROVE_OPTION)
 			{
 				String[] nomDecompose = this.stringFichierManquant.split("/");
-
-				String nom = nomDecompose[nomDecompose.length - 1];
 				String chemin ="";
+
 				for(int i = 0; i < nomDecompose.length - 1; i++)
 				{
 					chemin = nomDecompose[i] + "/";
@@ -225,10 +213,7 @@ public class PanelHautMenu extends JPanel implements ActionListener
 				if(!chemin.contains("donnee/"))
 					chemin = "donnee/" + chemin;
 
-				
 
-				System.out.println("Chemin : " + chemin+"|");
-				System.out.println("Nom    : " + nom   +"|");
 				File fileRemplacement = jFileChooserRemplacement.getSelectedFile();									
 				try {
 					Files.copy(fileRemplacement.toPath(), Paths.get(chemin	+ fileRemplacement.getName()));
@@ -241,10 +226,7 @@ public class PanelHautMenu extends JPanel implements ActionListener
 				this.FileImagenew =new File(cheminFichier);
 
 				if(this.validFichier)
-					this.jdImporteImageManquante.dispose();
-				//import/FortniteMappe.png
-				//importe/FortniteMappe.png
-				//this.jdImporteImageManquante.dispose();		
+					this.jdImporteImageManquante.dispose();	
 			}
 		}		
 	}

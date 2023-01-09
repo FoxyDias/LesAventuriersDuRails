@@ -139,8 +139,6 @@ public class PanelMainJoueur extends JPanel
 
 	public class PanelInformationCarte extends JPanel 
 	{
-
-
 		public PanelInformationCarte()
 		{
 			this.setLayout(new GridLayout(8,2,0,5));

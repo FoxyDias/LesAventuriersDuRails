@@ -3,8 +3,6 @@ package metier;
 import java.awt.*;
 import java.util.ArrayList;
 
-import ihm.sectionJeu.PanelHautJeu;
-
 public class Joueur {
 
     private Color couleur;
@@ -164,8 +162,12 @@ public class Joueur {
         this.lstArete.add(a);
     }
 
-    public String toString(){
-        return "TA RACE YA PAS DE PSEUDO GROS";
+    public String toString()
+    {
+        int i = 0;
+        i++;
+        return "Joueur " + i + "\n";
+        
     }
 
     public boolean isJoueurFinal(){return nbWagons <= 2;}

@@ -12,13 +12,7 @@ import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
-import java.awt.event.MouseAdapter;
 import javax.swing.border.Border;
-
-import com.formdev.flatlaf.FlatDarculaLaf;
-import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.FlatIntelliJLaf;
-import com.formdev.flatlaf.FlatLightLaf;
 
 import ihm.sectionJeu.GenereImageCarteObjectif;
 
@@ -123,11 +117,9 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		this.txtPortMachineCreer	.setBorder(border);
 		this.txtPortMachineRejoindre.setBorder(border);
 
-
 		/**
 		 * Positionnement des composants
 		 */
-
 
 		panelTitreCreerPartieMult.add(lblPartieMulti);
 		
@@ -166,7 +158,6 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		panelCreerPartieSolo.add(panelGrillePartieSolo, BorderLayout.CENTER);
 		panelCreerPartieSolo.add(new JPanel(), BorderLayout.SOUTH);
 		
-
 		panelRelierPartieMult.add(panelCreerPartieMult);
 		panelRelierPartieMult.add(panelCreerPartieSolo);
 
@@ -297,21 +288,16 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnCreerPartieSolo)
 		{			
-			
-			
 			if(this.txtNbJoueursLocal.getText().isEmpty())
 			{
 				JOptionPane.showMessageDialog(null, "Veuillez remplir le nombre de joueurs", "Erreur", JOptionPane.ERROR_MESSAGE);
 				return;
-				
 			}
 
 			int nbJoueurs = Integer.parseInt(this.txtNbJoueursLocal.getText());
 
 			if(nbJoueurs < 1 || nbJoueurs > this.ctrl.getNbJoueurMax())
-			{
 				JOptionPane.showMessageDialog(null, "Veuillez renseignez un nombre de joueurs entre 1 et le nombre de joueurs maximale de la mappe", "Erreur", JOptionPane.ERROR_MESSAGE);
-			}
 			else
 			{
 				this.ctrl.setNbJoueurPartie(Integer.parseInt(this.txtNbJoueursLocal.getText()));
@@ -324,9 +310,8 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		if(e.getSource() == this.btnLancerPartiePopUp)
 		{
 			String port = this.txtPortMachineCreer.getText();  
-			String motDePasse = this.txtMotDePasseCreer.getText();
 
-			if( this.txtNbJoueursMiniCreer.getText().equals("0") || this.txtNbJoueursMiniCreer.getText().equals("" +  this.ctrl.getNbJoueurMax()) || port.isEmpty() || motDePasse.isEmpty())
+			if( this.txtNbJoueursMiniCreer.getText().equals("0") || this.txtNbJoueursMiniCreer.getText().equals("" +  this.ctrl.getNbJoueurMax()) || port.isEmpty() || this.txtMotDePasseCreer.getText().isEmpty())
 			{
 				JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
 				return;
@@ -342,9 +327,8 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		{
 			String ip = this.txtIPMachineRejoindre.getText();
 			String port = this.txtPortMachineRejoindre.getText();
-			String motDePasse = this.txtMotDePasseRejoindre.getText();
 
-			if(ip.isEmpty() || motDePasse.isEmpty() || port.isEmpty())
+			if(ip.isEmpty() || this.txtMotDePasseRejoindre.getText().isEmpty() || port.isEmpty())
 			{
 				JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
 				return;
@@ -366,7 +350,6 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
 			} catch (UnknownHostException e1) {e1.printStackTrace();}
 		}
-
 
 		/* ------------------------------ */
 		/* 		 BOUTON JDIALOG 		  */
@@ -401,10 +384,8 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 					this.nbPopUP++;
 					this.creerPopUpCarteObjectif();
 				}
-
 			}
 		}
-
 	}
 
 	public PanelCentreMenu getPanelCentreMenu() { return this;} 
@@ -441,7 +422,6 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 		btnValider.setBackground(Color.WHITE);
 
-
 		panelBtn.add(this.btnValider);
 
 		this.dialog.add(panelDispoCarte,BorderLayout.CENTER);
@@ -463,12 +443,10 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 		public AfficherCarteObjectif(CarteObjectif carteObjectif)
 		{
-
 			JLabel lblObjectif = new JLabel("Objectif : " + carteObjectif.getNoeudDep().getNom() + " à " + carteObjectif.getNoeudArr().getNom());
 			lblObjectif.setHorizontalAlignment(JLabel.CENTER);
 			lblObjectif.setFont(new Font("", Font.BOLD, 13));
 			lblObjectif.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-
 
 			this.setLayout(new BorderLayout());
 			this.carteObjectif = carteObjectif;
@@ -499,8 +477,6 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 
 				this.selection = !this.selection;
 			}
-			
 		}
-		
 	}
 }

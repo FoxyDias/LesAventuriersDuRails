@@ -4,8 +4,8 @@ import main.Controleur;
 import metier.CarteObjectif;
 
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -23,7 +23,6 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
 import java.awt.Image;
-
 
 public class PanelGaucheJeu extends JPanel implements ActionListener
 {
@@ -193,7 +192,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 						this.ctrl.getEstJoueurCourant().ajouterCarteObjectif(this.carteObjectifInfo[index].getCarteObjectif());
 						this.ctrl.repiocherCarteObjectif(index);
 					}
-
 				this.ctrl.avancerJoueur();
 			}
 		}
@@ -205,7 +203,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 	}
 
 	/**
-	 * TODO : Placer dans sa propre classe
+	 * Sous classe à déplacer
 	 */
 	public class PanelDispoParam extends JPanel implements ActionListener
 	{
@@ -218,7 +216,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		private JTable tableRecap;
 		private Object[][] donnees;
-		private String[] entetes = {"Longueur de la route", "Points marqués"};
+		private String[] entetes = {"Nom","Couleur", "Nb points chemins", "Nb points objectifs", "Nb points plus long chemins", "Nb points total"};
 
 		public PanelDispoParam(Controleur ctrl)
 		{
@@ -262,32 +260,42 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêtez la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 			{
 				this.dialogRecap = new JDialog();
-				JPanel panelBtn = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,50));
+				this.dialogRecap.setLayout(new BorderLayout());
 				this.dialogRecap.setTitle("Récapitulatif et score de la partie");
-				this.dialogRecap.setBounds(650,350,500,500);
+				this.dialogRecap.setBounds(400,300,1200,500);
 				this.dialogRecap.setResizable(false);
-				this.dialogRecap.setLayout(new GridLayout(5,1,0,5));
 				this.dialogRecap.setModalityType(JDialog.ModalityType.APPLICATION_MODAL);
 
-				this.btnValiderRecap = new JButton("Quitter");
+				JPanel panelBtn 		= new JPanel(new FlowLayout(FlowLayout.CENTER, 0,50));
+
+				this.btnValiderRecap 	= new JButton("Quitter");
+				this.donnees 			= new Object[this.ctrl.getNbJoueurPartie()][6];
+				this.tableRecap 		= new JTable(this.donnees, this.entetes);
+
+				for(int i = 0; i < this.ctrl.getNbJoueurPartie(); i++)
+				{
+					this.donnees[i][0] = this.ctrl.getJoueur(i);
+					this.donnees[i][1] = this.ctrl.getJoueur(i).getCouleur();
+					this.donnees[i][2] = this.ctrl.getJoueur(i).getNbPointsChemin();
+					this.donnees[i][3] = this.ctrl.getJoueur(i);
+					//this.donnees[i][2] = this.ctrl.getJoueur(i).getNbPointsObjectif();
+					this.donnees[i][4] = this.ctrl.getJoueur(i).getRouteLaPlusLongue();
+					this.donnees[i][5] = this.ctrl.getJoueur(i);
+					//this.donnees[i][5] = this.ctrl.getJoueur(i).getNbPointsTotal();
+				}
+				
+				DefaultTableCellRenderer custom = new DefaultTableCellRenderer();
+				custom.setHorizontalAlignment(JLabel.CENTER);
+
+
+				for(int i = 0; i < this.tableRecap.getColumnCount(); i++)
+					this.tableRecap.getColumnModel().getColumn(i).setCellRenderer(custom);
 
 				panelBtn.add(this.btnValiderRecap);
 
-
-				
-				this.tableRecap = new JTable(4, 4);
-				/*
-				this.tableRecap.setValueAt("Joueur", 0, 0);
-				this.tableRecap.setValueAt("Nombre de points cummulés avec les chemins", 0, 1);
-				this.tableRecap.setValueAt("Nombre de points cummulés avec les cartes objectifs", 0, 2);
-				this.tableRecap.setValueAt("Nombre de points du plus long chemin", 0, 3);
-				*/
-			
-				this.dialogRecap.add(new JLabel("Joueur : " + this.ctrl.getJoueur(this.ctrl.getIntJoueurActuel()) , JLabel.CENTER));
-				this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les chemins : ", JLabel.CENTER));
-				this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les cartes objectifs : ", JLabel.CENTER));
-				this.dialogRecap.add(new JLabel("Nombre de points du plus long chemin : ", JLabel.CENTER));
-				this.dialogRecap.add(panelBtn);
+				this.dialogRecap.add(this.tableRecap.getTableHeader(), BorderLayout.NORTH);
+				this.dialogRecap.add(this.tableRecap, BorderLayout.CENTER);
+				this.dialogRecap.add(panelBtn, BorderLayout.SOUTH);
 
 				this.btnValiderRecap.addActionListener(this);
 
@@ -318,14 +326,10 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			}
 
 			if(e.getSource() == this.btnFinPartie)
-			{
 				this.recapFinPartie();
-			}
 
 			if(e.getSource() == this.btnFinTour)
-			{
 				this.ctrl.avancerJoueur();
-			}
 
 			if(e.getSource() == this.btnValiderRecap)
 			{	
@@ -367,7 +371,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		}
 
 		public boolean isSelectionner(){return this.selection;}
-
 		public CarteObjectif getCarteObjectif()	{return this.carteObjectif;}
 
 		@Override
@@ -383,7 +386,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			}	
 		}
 	}
-
 
 	public JDialog creerPopUpCarteObjectif()
 	{
