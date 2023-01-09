@@ -263,7 +263,7 @@
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=0,g=0,b=255]</couleur>
-			<nombre>30</nombre>
+			<nombre>18</nombre>
 			<recto>imageCarte/bugatti-chiron-bleu-royal.jpg</recto>
 		</carteWagon>
 		<carteWagon>
@@ -273,22 +273,22 @@
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=204,g=204,b=204]</couleur>
-			<nombre>30</nombre>
+			<nombre>13</nombre>
 			<recto>imageCarte/ppfzf80xaj.jpg</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=255,g=0,b=255]</couleur>
-			<nombre>30</nombre>
+			<nombre>12</nombre>
 			<recto>imageCarte/8770-fiat-500-so-pink-edition-limitee-2010.jpg</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=255,g=102,b=0]</couleur>
-			<nombre>30</nombre>
+			<nombre>15</nombre>
 			<recto>imageCarte/bugatti_supercar.jpg</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=255,g=255,b=0]</couleur>
-			<nombre>30</nombre>
+			<nombre>13</nombre>
 			<recto>imageCarte/1200-L-chevrolet-camaro-transformers-3-joue-la-comme-bumblebee.jpg</recto>
 		</carteWagon>
 		<carteObjectif>
@@ -336,53 +336,53 @@
 			<noeudDep>9</noeudDep>
 			<points>4</points>
 		</carteObjectif>
-	<details>
-		<nbJoueurMinDoubleArete>4</nbJoueurMinDoubleArete>
-		<nbJoueurMax>6</nbJoueurMax>
-		<nbWagonDebutPartie>60</nbWagonDebutPartie>
-		<nbWagonFinPartie>2</nbWagonFinPartie>
-		<nbPointsPlusLongChemin>10</nbPointsPlusLongChemin>
-		<txtNomMoyenDeTransport>Voitures</txtNomMoyenDeTransport>
-		<txtRoute>Routes</txtRoute>
-		<versoCarteWagon>imageCarte/voiture.jpg</versoCarteWagon>
-		<versoCarteObjectif>billet-cartonne-sncf.jpg</versoCarteObjectif>
-		<heightPanel>973.0</heightPanel>
-		<witdhPanel>927.0</witdhPanel>
-		<image>importe/FortniteMappe2.jpg</image>
-	</details>
-	<CouleurJoueurList>
-		<couleurJoueur>[r=0,g=0,b=255]</couleurJoueur>
-		<couleurJoueur>[r=255,g=0,b=0]</couleurJoueur>
-		<couleurJoueur>[r=255,g=255,b=51]</couleurJoueur>
-		<couleurJoueur>[r=51,g=255,b=51]</couleurJoueur>
-		<couleurJoueur>[r=51,g=255,b=204]</couleurJoueur>
-		<couleurJoueur>[r=153,g=153,b=153]</couleurJoueur>
-	</CouleurJoueurList>
-	<points>
-		<pointTaille>
-			<taille>1</taille>
-			<points>1</points>
-		</pointTaille>
-		<pointTaille>
-			<taille>2</taille>
-			<points>4</points>
-		</pointTaille>
-		<pointTaille>
-			<taille>3</taille>
-			<points>6</points>
-		</pointTaille>
-		<pointTaille>
-			<taille>4</taille>
-			<points>8</points>
-		</pointTaille>
-		<pointTaille>
-			<taille>5</taille>
-			<points>10</points>
-		</pointTaille>
-		<pointTaille>
-			<taille>6</taille>
-			<points>15</points>
-		</pointTaille>
-	</points>
+		<details>
+			<nbJoueurMinDoubleArete>4</nbJoueurMinDoubleArete>
+			<nbJoueurMax>6</nbJoueurMax>
+			<nbWagonDebutPartie>60</nbWagonDebutPartie>
+			<nbWagonFinPartie>2</nbWagonFinPartie>
+			<nbPointsPlusLongChemin>10</nbPointsPlusLongChemin>
+			<txtNomMoyenDeTransport>Voitures</txtNomMoyenDeTransport>
+			<txtRoute>Routes</txtRoute>
+			<versoCarteWagon>imageCarte/voiture.jpg</versoCarteWagon>
+			<versoCarteObjectif>billet-cartonne-sncf.jpg</versoCarteObjectif>
+			<heightPanel>973.0</heightPanel>
+			<witdhPanel>927.0</witdhPanel>
+			<image>importe/FortniteMappe2.jpg</image>
+		</details>
+		<CouleurJoueurList>
+			<couleurJoueur>[r=0,g=0,b=255]</couleurJoueur>
+			<couleurJoueur>[r=255,g=0,b=0]</couleurJoueur>
+			<couleurJoueur>[r=255,g=255,b=51]</couleurJoueur>
+			<couleurJoueur>[r=51,g=255,b=51]</couleurJoueur>
+			<couleurJoueur>[r=51,g=255,b=204]</couleurJoueur>
+			<couleurJoueur>[r=153,g=153,b=153]</couleurJoueur>
+		</CouleurJoueurList>
+		<points>
+			<pointTaille>
+				<taille>1</taille>
+				<points>1</points>
+			</pointTaille>
+			<pointTaille>
+				<taille>2</taille>
+				<points>4</points>
+			</pointTaille>
+			<pointTaille>
+				<taille>3</taille>
+				<points>6</points>
+			</pointTaille>
+			<pointTaille>
+				<taille>4</taille>
+				<points>8</points>
+			</pointTaille>
+			<pointTaille>
+				<taille>5</taille>
+				<points>10</points>
+			</pointTaille>
+			<pointTaille>
+				<taille>6</taille>
+				<points>15</points>
+			</pointTaille>
+		</points>
 	</mappe>
 </infos>

@@ -167,8 +167,6 @@ public class PanelHautMenu extends JPanel implements ActionListener
 							if(!this.stringFichierManquant.contains("donnee/") && !this.stringFichierManquant.contains("importe/"))
 								this.stringFichierManquant = "donnee/" + this.stringFichierManquant;
 
-							System.out.println(s);
-
 							if(s != null && !s.equals("null") && !s.equals( "donnee/null"))
 							{
 								

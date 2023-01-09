@@ -46,6 +46,8 @@ public class PanelBasJeu extends JPanel implements ActionListener
 		private PanelBasJeu papa;
 		private CarteWagon carteWagon;
 		private JButton btnPrendCarte;
+		private int width;
+		private int height;
 
 		public PanelPiocheMarcher( Controleur ctrl, PanelBasJeu papa, CarteWagon carteWagon) {
 			this.ctrl = ctrl;
@@ -57,12 +59,12 @@ public class PanelBasJeu extends JPanel implements ActionListener
 			this.add(this.btnPrendCarte);
 
 			this.btnPrendCarte.addActionListener(papa);
-
-			this.setOpaque(false);
 		}
 
 		@Override
 		protected void paintComponent(Graphics g) {
+
+			super.paintComponent(g);
 
 			if(this.carteWagon.getRecto() == null) {
 				this.btnPrendCarte.setBackground(this.carteWagon.getColor());
@@ -70,10 +72,10 @@ public class PanelBasJeu extends JPanel implements ActionListener
 			else
 			{
 				ImageIcon icon = new ImageIcon(this.carteWagon.getRecto());
-				icon.getImage().getScaledInstance(this.btnPrendCarte.getWidth(),this.btnPrendCarte.getHeight(),Image.SCALE_DEFAULT);
+				icon.setImage(icon.getImage().getScaledInstance(this.getWidth()-10,this.getHeight()-10,Image.SCALE_DEFAULT));
 				this.btnPrendCarte.setIcon(icon);
 			}
-			super.paintComponent(g);
+
 		}
 
 		public void majMarcher(CarteWagon carteWagon)
