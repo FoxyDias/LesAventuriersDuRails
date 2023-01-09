@@ -2,6 +2,8 @@ package ihm.sectionJeu;
 
 import main.Controleur;
 import metier.CarteObjectif;
+import metier.Joueur;
+import metier.Metier;
 
 import javax.swing.JPanel;
 
@@ -43,7 +45,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		/**
 		 * Création des composants
 		 */
-		this.ctrl = ctrl;
+		this.ctrl   = ctrl;
 		this.setLayout(new GridLayout(5,1,0,0));
 		this.setPreferredSize(new Dimension(350, 0));
 
@@ -130,21 +132,17 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		}
 
 		if(e.getSource() == this.btnArreterPartie)
-		{
 			if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêter la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 				this.ctrl.changerPanel("Menu");
-			
-		}
+		
 
 		if(e.getSource() == this.btnFinDuTour)
-		{
 			this.ctrl.avancerJoueur();
-		}
+		
 
 		if(e.getSource() == this.btnPiocheCarteObjectif)
-		{
 			this.creerPopUpCarteObjectif();
-		}
+		
 
 		if(e.getSource() == this.btnValider)
 		{
@@ -185,12 +183,15 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		private JDialog dialogRecap;
 
+		private Joueur joueur;
+		private Metier metier;
+
 		public PanelDispoParam(Controleur ctrl)
 		{
 			/**
 			 * Création des composants
 			 */
-			this.ctrl = ctrl;
+			this.ctrl   = ctrl;
 
 			this.setLayout(new BorderLayout());
 			this.btnVisualisation = new JButton("Visualiser mes cartes");
@@ -202,8 +203,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 			/**
 			 * Positionnement des composants
-			 */
-			 
+			 */		 
 			panelVisualiser.add(this.btnVisualisation);
 
 			panelDispoBtnBas.add(this.btnFinPartie);
@@ -220,10 +220,36 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			this.btnFinTour.addActionListener(this);
 		}
 
+		public void recapFinPartie(){
+			if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêtez la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+			{
+				this.dialogRecap = new JDialog();
+				JPanel panelBtn = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,50));
+				this.dialogRecap.setTitle("Récapitulatif de la partie");
+				this.dialogRecap.setBounds(650,350,500,500);
+				this.dialogRecap.setResizable(false);
+				this.dialogRecap.setModal(true);
+				this.dialogRecap.setLayout(new GridLayout(5,1,0,5));
+
+				this.btnValiderRecap = new JButton("Quitter");
+
+				panelBtn.add(this.btnValiderRecap);
+
+				this.dialogRecap.add(new JLabel("Joueur : ", JLabel.CENTER));
+				this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les chemins : ", JLabel.CENTER));
+				this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les cartes objectifs : ", JLabel.CENTER));
+				this.dialogRecap.add(new JLabel("Nombre de points du plus long chemin : " , JLabel.CENTER));
+				this.dialogRecap.add(panelBtn);
+
+				this.btnValiderRecap.addActionListener(this);
+
+				this.dialogRecap.setVisible(true);
+			}
+		}
+
 		public void actionPerformed(ActionEvent e)
 		{
 			if(e.getSource() == this.btnVisualisation)
-			{
 				if(this.ctrl.getEstJoueurCourant().getMainWagon().size() != 0 || this.ctrl.getEstJoueurCourant().getMainObjectif().size() != 0 )
 				{
 					JDialog jDialog = new JDialog();
@@ -236,42 +262,15 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 					jDialog.setVisible(true);
 				}
 				else
-				{
 					JOptionPane.showMessageDialog(null,"Vous n'avez aucune carte");
-				}
-			}
 
 			if(e.getSource() == this.btnFinPartie)
-			{
-				if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêtez la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-				{
-					this.dialogRecap = new JDialog();
-					JPanel panelBtn = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,50));
-					this.dialogRecap.setTitle("Récapitulatif de la partie");
-					this.dialogRecap.setBounds(650,350,500,500);
-					this.dialogRecap.setResizable(false);
-					this.dialogRecap.setModal(true);
-					this.dialogRecap.setLayout(new GridLayout(5,1,0,5));
+				this.recapFinPartie();
+			
 
-					this.btnValiderRecap = new JButton("Quitter");
-
-					panelBtn.add(this.btnValiderRecap);
-
-					this.dialogRecap.add(new JLabel("Joueur : ", JLabel.CENTER));
-					this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les chemins : ", JLabel.CENTER));
-					this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les cartes objectifs : ", JLabel.CENTER));
-					this.dialogRecap.add(new JLabel("Nombre de points du plus long chemin : ", JLabel.CENTER));
-					this.dialogRecap.add(panelBtn);
-
-					this.btnValiderRecap.addActionListener(this);
-
-					this.dialogRecap.setVisible(true);
-				}
-			}
-
-			if(e.getSource() == this.btnFinTour)
-			{
+			if(e.getSource() == this.btnFinTour){
 				this.ctrl.avancerJoueur();
+				this.metier.finPartie();
 			}
 
 			if(e.getSource() == this.btnValiderRecap)
@@ -292,12 +291,10 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		public AfficherCarteObjectif(CarteObjectif carteObjectif)
 		{
-
 			JLabel lblObjectif = new JLabel("Objectif : " + carteObjectif.getNoeudDep().getNom() + " à " + carteObjectif.getNoeudArr().getNom());
 			lblObjectif.setHorizontalAlignment(JLabel.CENTER);
 			lblObjectif.setFont(new Font("", Font.BOLD, 13));
 			lblObjectif.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-
 
 			this.setLayout(new BorderLayout());
 			this.carteObjectif = carteObjectif;
@@ -319,8 +316,8 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		public CarteObjectif getCarteObjectif()	{return this.carteObjectif;}
 
 		@Override
-		public void actionPerformed(ActionEvent e) {
-			
+		public void actionPerformed(ActionEvent e) 
+		{	
 			if(e.getSource() == this.btnChoixCarte)
 			{
 				

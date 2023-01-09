@@ -10,7 +10,10 @@ import java.util.List;
 import java.util.Scanner;
 
 import org.jdom2.*;
-import org.jdom2.input.*;   
+import org.jdom2.input.*;
+
+import ihm.sectionJeu.PanelGaucheJeu;
+import ihm.sectionJeu.PanelGaucheJeu.PanelDispoParam;   
 
 public class Metier {
 
@@ -98,24 +101,26 @@ public class Metier {
         /* Si les joueurs n'ont plus assez de cartes wagons pour prendre quelconque arêtes */
         for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++){
             for(Arete a : lstArete){
-                if(a.getWagon() > getEstJoueurCourant().getNbCarteWagon()){
-                    System.out.println("Pas assez de cartes wagons pour continuer la partie");
-
+                System.out.println("Nb Wagons pour les arêtes" + a.getWagon() + " Nb Wagons que le joueur actuel possède : " + this.getEstJoueurCourant().getNbCarteWagon());
+                if(a.getWagon() > this.getEstJoueurCourant().getNbCarteWagon() && this.lstCarteWagon.size() == 0){
+                    System.out.println("nbWagonFinPartie" + this.getNbWagonFinPartie());
+                    this.ctrl.changerPanel("Menu");
                 }
             }
         }
 
         /* Si un joueur a 2 || 1 || 0 cartes wagons dans sa main */
+        
         for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++){
             if(this.getEstJoueurCourant().getNbCarteWagon() == getNbWagonFinPartie()){
-                System.out.println("Fin de partie quelqu'un a " + getNbWagonFinPartie() + "dans sa pioche");
+                System.out.println("Appeler la méthode recapFinPartie dans panelDispoParam qu'est dans la classe PanelGaucheJeu");
             }
         }
 
         /* Si toutes les arêtes sont prises */
         Joueur joueur = getEstJoueurCourant();
         if(lstArete.size() == joueur.getAlCheminsPtsCpts().size()){
-            System.out.println("Fin de partie, toutes les arêtes sont prises");
+            this.ctrl.changerPanel("Menu");
         }
     }
 
@@ -138,7 +143,6 @@ public class Metier {
         if(this.intJoueurActuel >= this.nbJoueurPartie)
             this.intJoueurActuel = 0;
         
-        this.finPartie();
     }
 
     private void initPioche()
@@ -436,7 +440,7 @@ public class Metier {
         SAXBuilder sxb = new SAXBuilder();
         try {
             /* 
-             * On crée un nouveau document JDOM avec en argument le fichier XML
+             * On créé un nouveau document JDOM avec en argument le fichier XML
              * Le parsing est terminé ;)
              */ 
             document = sxb.build(pathXml);
