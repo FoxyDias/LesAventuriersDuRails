@@ -15,6 +15,10 @@ import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import javax.swing.border.Border;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatIntelliJLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 
 import ihm.sectionJeu.GenereImageCarteObjectif;
 
@@ -485,7 +489,6 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 			
 			if(e.getSource() == this.btnChoixCarte)
 			{
-				
 				if(!this.selection) this.affichageObjectif.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
 				else this.affichageObjectif.setBorder(BorderFactory.createEmptyBorder());
 

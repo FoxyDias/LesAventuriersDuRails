@@ -1,9 +1,3 @@
-/**
- * @author Decharrois Adrien
- * @version 1.0
- * @date 2023-01-03
- */
-
 package ihm;
 
 import main.Controleur;
@@ -14,10 +8,16 @@ import ihm.sectionJeu.PanelJeu;
 import java.awt.*;
 import javax.swing.*;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatIntelliJLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+
 public class FrameJeu extends JFrame
 {
-    Controleur ctrl;
+    private Controleur ctrl;
 
+	/* En fonction de la résolution d'écrans des ordinateurs */
 	private Dimension tailleEcran = Toolkit.getDefaultToolkit().getScreenSize();
 	private int longueur, hauteur;
 
@@ -35,17 +35,16 @@ public class FrameJeu extends JFrame
 		this.hauteur = this.tailleEcran.height - (int) (this.tailleEcran.height * 0.06);
 		this.panelMenu = new PanelMenu(this.ctrl);
 
-
 		this.setSize(longueur, hauteur);
 		this.setLocation(0,0);
 		this.setTitle("Les aventuriers du rail");
-
+		this.setDefaultLookAndFeelDecorated(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.themebox(4);
 
 		/**
 		 * Positionnement des composants
 		 */
-
 		this.add(this.panelMenu);
 		this.setVisible(true);
 	}
@@ -77,6 +76,30 @@ public class FrameJeu extends JFrame
 	public void changerCouleurPanel()
 	{
 		this.panelJeu.changerCouleurPanel();
+	}
+
+	public void themebox(int themebox){
+		System.out.println("THEMEBOX FLAG1");
+		try{
+			if(themebox == 1){
+				UIManager.setLookAndFeel(new FlatLightLaf());
+				System.out.println("THEMEBOX FLAG2");
+			}
+			else if(themebox == 2){
+				UIManager.setLookAndFeel(new FlatDarkLaf());
+				System.out.println("THEMEBOX FLAG3");
+			}
+			else if(themebox == 3){
+				UIManager.setLookAndFeel(new FlatIntelliJLaf());
+				System.out.println("THEMEBOX FLAG4");
+			}
+			else if(themebox == 4){
+				UIManager.setLookAndFeel(new FlatDarculaLaf());
+				System.out.println("THEMEBOX FLAG5");
+			}
+		}catch(Exception e){
+			System.out.println("Error setting native LAF: " + e);
+		}
 	}
 
     public void majIhm() {
