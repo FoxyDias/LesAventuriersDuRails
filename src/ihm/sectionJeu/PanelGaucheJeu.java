@@ -102,20 +102,29 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		{
 
 			JDialog jDialog = new JDialog();
-			JPanel  panelCouleur = new JPanel(new GridLayout(10,0));
-			JLabel  lblCouleurChoisis = new JLabel("Vous avez pioché une carte de couleur : " + PanelGaucheJeu.this.ctrl.getLstCarteWagon().get(0).getColor()); 
+			jDialog.setLayout(new GridLayout(2,1));
+			JPanel panelLabel = new JPanel();
+			JPanel panelCouleur = new JPanel(new GridLayout(1,3));
+			JPanel panelSetBk = new JPanel();
+			panelSetBk.setBackground(PanelGaucheJeu.this.ctrl.getLstCarteWagon().get(0).getColor());
+			panelSetBk.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+			JLabel  lblCouleurChoisis = new JLabel("Vous avez pioché une carte de couleur : " + PanelGaucheJeu.this.ctrl.getLstCarteWagon().get(0).getColor(), JLabel.CENTER); 
 
 			
-			jDialog.setBounds(650, 250, 600, 600);
+			jDialog.setBounds(650, 250, 600, 300);
 			jDialog.setResizable(false);
 			jDialog.setModal(true);
 			jDialog.setTitle("Visualisation de la carte piochée ");
 
-			panelCouleur.add(lblCouleurChoisis);
-			panelCouleur.setBackground(PanelGaucheJeu.this.ctrl.getLstCarteWagon().get(0).getColor());
+			panelLabel.add(lblCouleurChoisis);
+
+			panelCouleur.add(new JPanel());
+			panelCouleur.add(panelSetBk);
+			panelCouleur.add(new JPanel());
 			this.ctrl.getEstJoueurCourant().getMainWagon().add(this.ctrl.getLstCarteWagon().get(0));
 			this.ctrl.getLstCarteWagon().remove(0);
 
+			jDialog.add(panelLabel);
 			jDialog.add(panelCouleur);
 			jDialog.setVisible(true);
 		}
