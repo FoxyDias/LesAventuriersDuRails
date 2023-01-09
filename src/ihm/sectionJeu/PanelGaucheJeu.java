@@ -244,7 +244,10 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			this.btnFinTour.addActionListener(this);
 		}
 
-		public void recapFinPartie(){
+		public void recapFinPartie()
+		{
+			JLabel lblRecap = new JLabel("Joueur " + this.ctrl.getEstJoueurCourant() + ", il vous reste " + this.ctrl.getEstJoueurCourant().getNbCarteWagon() + ". La partie s'arrête au prochain tour.");
+			JOptionPane.showMessageDialog(null, lblRecap, "Fin de partie", JOptionPane.INFORMATION_MESSAGE);
 			if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêtez la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 			{
 				this.dialogRecap = new JDialog();
@@ -275,9 +278,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 				this.dialogRecap.add(new JLabel("Nombre de points cummulés avec les cartes objectifs : ", JLabel.CENTER));
 				this.dialogRecap.add(new JLabel("Nombre de points du plus long chemin : ", JLabel.CENTER));
 				this.dialogRecap.add(panelBtn);
-
-
-
 
 				this.btnValiderRecap.addActionListener(this);
 

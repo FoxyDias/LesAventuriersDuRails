@@ -112,8 +112,8 @@ public class Metier {
         /* Si un joueur a 2 || 1 || 0 cartes wagons dans sa main */
         
         for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++){
-            if(this.getEstJoueurCourant().getNbCarteWagon() == getNbWagonFinPartie()){
-                System.out.println("Appeler la méthode recapFinPartie dans panelDispoParam qu'est dans la classe PanelGaucheJeu");
+            if(this.getEstJoueurCourant().getNbCarteWagon() == getNbWagonFinPartie())
+            {
                 this.ctrl.recapFinPartie();
             }
         }
