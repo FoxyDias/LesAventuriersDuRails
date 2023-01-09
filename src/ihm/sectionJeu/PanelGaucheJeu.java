@@ -100,6 +100,23 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 	{
 		if(e.getSource() == this.btnPiocheCarteWagon)
 		{
+			System.out.println("Vous avez pioché une carte de couleur : " + PanelGaucheJeu.this.ctrl.getEstJoueurCourant().getMainWagon().get(0).getColor());			
+
+			JDialog jDialog = new JDialog();
+			JPanel  panelCouleur = new JPanel();
+
+			
+			jDialog.setBounds(650, 250, 600, 600);
+			jDialog.setResizable(false);
+			jDialog.setModal(true);
+			jDialog.setTitle("Visualisation de la carte piochée ");
+
+			panelCouleur.setBackground(PanelGaucheJeu.this.ctrl.getLstCarteWagon().get(0).getColor());
+			this.ctrl.getEstJoueurCourant().getMainWagon().add(this.ctrl.getLstCarteWagon().get(0));
+			this.ctrl.getLstCarteWagon().remove(0);
+
+			jDialog.add(panelCouleur);
+			jDialog.setVisible(true);
 		}
 
 		if(e.getSource() == this.btnArreterPartie)
@@ -111,7 +128,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnFinDuTour)
 		{
-			System.out.println("Fin du tour");
 			this.ctrl.avancerJoueur();
 		}
 
@@ -249,7 +265,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			}
 
 			if(e.getSource() == this.btnValiderRecap)
-			{
+			{	
 				this.dialogRecap.dispose();
 				this.ctrl.changerPanel("Menu");
 			}

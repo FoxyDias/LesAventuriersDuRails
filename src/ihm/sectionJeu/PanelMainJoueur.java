@@ -100,6 +100,8 @@ public class PanelMainJoueur extends JPanel
 			this.scrollBar.setUnitIncrement(1);
 			this.scrollBar.setBlockIncrement(1);
 			this.scrollBar.setBackground(Color.WHITE);
+
+			this.initValeurCarteObjectif();
 			
 			this.affichageCarte = new GenereImageCarteObjectif(this.carteObjectif, PanelMainJoueur.this.ctrl.getNomImage(),PanelMainJoueur.this.ctrl.getWidthPanel(),PanelMainJoueur.this.ctrl.getHeightPanel());
 

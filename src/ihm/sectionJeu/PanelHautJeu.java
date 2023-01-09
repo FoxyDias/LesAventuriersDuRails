@@ -48,7 +48,7 @@ public class PanelHautJeu extends JPanel
 			this.alNbPionsWagon.add(new JLabel("Nombre de pions " + this.ctrl.getMoyenDeTransport() + " : " + this.ctrl.getNbWagonDebutPartie(), JLabel.CENTER));
 			this.alNbCarteObjectif.add(new JLabel("Nombre de cartes objectifs : " + this.ctrl.getEstJoueurCourant().getNbCarteObjectif(), JLabel.CENTER));
 			this.alNbPointsChemin.add(new JLabel("Nombre de points chemin : " + this.ctrl.getEstJoueurCourant().getNbPointsChemin(), JLabel.CENTER));
-			this.alNbCarteWagons.add(new JLabel("Nombre de carte wagons : " + nbCarte, JLabel.CENTER));
+			this.alNbCarteWagons.add(new JLabel("Nombre de cartes wagons : " + nbCarte, JLabel.CENTER));
 			panelInfosJoueur.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
 			panelInfosJoueur.add(this.alJoueur.get(i));
 			panelInfosJoueur.add(this.alNbPionsWagon.get(i));
@@ -68,10 +68,6 @@ public class PanelHautJeu extends JPanel
 		 */
 
 		this.add(panelProfilJoueur);
-
-		/**
-		 * Activation des composants
-		 */
 	}
 
 	/**
@@ -107,7 +103,7 @@ public class PanelHautJeu extends JPanel
 				this.alNbCarteObjectif.get(i).setFont(new Font("", Font.BOLD, 12));
 				this.alNbPionsWagon.get(i).setFont(new Font("", Font.BOLD, 12));
 				this.alNbPointsChemin.get(i).setFont(new Font("", Font.BOLD, 12));
-				this.alNbPointsChemin.get(i).setFont(new Font("", Font.BOLD, 12));
+				this.alNbCarteWagons.get(i).setFont(new Font("", Font.BOLD, 12));
 			}
 		}
 	}
