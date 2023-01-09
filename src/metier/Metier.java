@@ -422,8 +422,6 @@ public class Metier {
         //     this.lstDefausseWagon.add(carteJoker);
 
         // }   
-
-
         return true;
     }
 

@@ -286,8 +286,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 		// 		System.out.println("Noeud : " + n.getNom());
 		// 	}
 		// }
-
-		System.out.println("X : " + cliqueX + " Y : " + cliqueY);
 		ArrayList<Arete> lstAretee = new ArrayList<Arete>();
 			
 		for(Arete a : this.ctrl.getLstArete())
@@ -380,7 +378,7 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 			JDialog dialog = new JDialog();
 			int cpt = 2;
 			dialog.setTitle("Choix de l'arête parmis les chemins doubles");
-			dialog.setBounds(800, 400, 300, 300);
+			dialog.setBounds(800, 400, 350, 300);
 			dialog.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 			dialog.setResizable(false);
 			dialog.setModal(true);
@@ -394,9 +392,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						System.out.println("Noeud1 : " + a.getNoeudArr().getNom());
-						System.out.println("Noeud2 : " + a.getNoeudDep().getNom());
-						System.out.println("Joueur : " + ctrl.getEstJoueurCourant().getCouleur());
 						Joueur joueur = ctrl.getEstJoueurCourant();
 						if(ctrl.priseVoie(joueur, a))
 						{

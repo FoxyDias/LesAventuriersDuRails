@@ -13,7 +13,7 @@ import java.util.Collections;
 public class PanelBasJeu extends JPanel
 {
 	private Controleur ctrl;
-
+	
 	public PanelBasJeu(Controleur ctrl)
 	{
 		this.ctrl = ctrl;

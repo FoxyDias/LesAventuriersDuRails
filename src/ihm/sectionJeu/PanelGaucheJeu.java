@@ -36,7 +36,9 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 	private JDialog dialog;
 	private AfficherCarteObjectif[] carteObjectifInfo;
 	private JButton btnValider;
+	private JButton btnAnnuler;
 	protected int nbPopUp = 1;
+	private   int cpt 	  = 0;
 
 	public PanelGaucheJeu(Controleur ctrl)
 	{
@@ -100,17 +102,19 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 	{
 		if(e.getSource() == this.btnPiocheCarteWagon)
 		{
-
 			JDialog jDialog = new JDialog();
 			jDialog.setLayout(new GridLayout(2,1));
+			jDialog.setBackground(Color.WHITE);
 			JPanel panelLabel = new JPanel();
 			JPanel panelCouleur = new JPanel(new GridLayout(1,3));
 			JPanel panelSetBk = new JPanel();
+			JLabel  lblCouleurChoisis = new JLabel("Vous avez pioché une carte de couleur : " + PanelGaucheJeu.this.ctrl.getLstCarteWagon().get(0).getColor(), JLabel.CENTER); 
 			panelSetBk.setBackground(PanelGaucheJeu.this.ctrl.getLstCarteWagon().get(0).getColor());
 			panelSetBk.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-			JLabel  lblCouleurChoisis = new JLabel("Vous avez pioché une carte de couleur : " + PanelGaucheJeu.this.ctrl.getLstCarteWagon().get(0).getColor(), JLabel.CENTER); 
 
-			
+			cpt++;
+			System.out.println("cpt : " + cpt);
+
 			jDialog.setBounds(650, 250, 600, 300);
 			jDialog.setResizable(false);
 			jDialog.setModal(true);
@@ -128,7 +132,12 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			jDialog.add(panelCouleur);
 			jDialog.setVisible(true);
 		}
-
+		if(this.cpt == 2)
+		{
+			this.ctrl.avancerJoueur();
+			this.cpt = 0;
+		}
+	
 		if(e.getSource() == this.btnArreterPartie)
 		{
 			if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêter la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
@@ -171,6 +180,11 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 				this.ctrl.avancerJoueur();
 			}
+		}
+
+		if(e.getSource() == this.btnAnnuler)
+		{
+			this.dialog.dispose();
 		}
 	}
 
@@ -344,6 +358,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		this.carteObjectifInfo = new AfficherCarteObjectif[3];
 		this.btnValider = new JButton("Valider");
+		this.btnAnnuler = new JButton("Annuler");
 
 		JPanel panelDispoCarte = new JPanel(new GridLayout(1,3));
 		JPanel panelBtn		   = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,  50));
@@ -357,11 +372,13 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		btnValider.setBackground(Color.WHITE);
 
 		panelBtn.add(this.btnValider);
+		panelBtn.add(this.btnAnnuler);
 
 		this.dialog.add(panelDispoCarte,BorderLayout.CENTER);
 		this.dialog.add(panelBtn,BorderLayout.SOUTH);
 
 		this.btnValider.addActionListener(this);
+		this.btnAnnuler.addActionListener(this);
 
 		this.dialog.setVisible(true);
 
