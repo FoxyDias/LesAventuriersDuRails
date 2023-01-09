@@ -40,6 +40,9 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 	private JButton btnValider;
 	protected int nbPopUp = 1;
 
+	private PanelHautJeu panelHautJeu;
+	private Joueur       joueur;
+
 	public PanelGaucheJeu(Controleur ctrl)
 	{
 		/**
@@ -132,8 +135,10 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		}
 
 		if(e.getSource() == this.btnArreterPartie)
-			if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêter la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+			if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêter la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
 				this.ctrl.changerPanel("Menu");
+				this.panelHautJeu.resetPanelHautJeu();
+			}
 		
 
 		if(e.getSource() == this.btnFinDuTour)
