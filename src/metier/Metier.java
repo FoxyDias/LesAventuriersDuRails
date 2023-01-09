@@ -142,6 +142,7 @@ public class Metier {
         if(this.intJoueurActuel >= this.nbJoueurPartie)
             this.intJoueurActuel = 0;
         
+        System.out.println("QSEDRGEQSRGQEZRGQEZR" + this.getEstJoueurCourant().getNbPoints());
     }
 
     private void initPioche()

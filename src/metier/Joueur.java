@@ -41,17 +41,26 @@ public class Joueur {
         //Les points d'une arête sont calculés par rapport aux nombres de wagons nécessaires pour la parcourire
         for (Arete a : this.lstArete){
             if( this.alCheminsPtsCpts.size() != 0){
+                System.out.println("FLAG1");
                 for(Arete b : this.alCheminsPtsCpts){
+                    System.out.println("FLAG2");
+                    System.out.println("LE A.EQUALSB C ICI : " + a.equals(b));
+                    System.out.println("LE A ICI : " + a.toString());
+                    System.out.println("LE B ICI : " + b.toString());
                     /* Si l'arête a déjà étée comptabilisée on augmente pas le nbPoints */
-                    if(a.equals(b))
-                        return nbPoints;   
+                    if(a.equals(b)){
+                        System.out.println("FLAG3");
+                        return nbPoints;
+                    }   
                     else{
+                        System.out.println("FLAG4");
                         /* Sinon on augmente le nbPoints et on l'ajoute dans l'arrayList des arêtes déjà comptabilisées */
                         this.nbPoints += metier.getPointsTailleAretes(a.getWagon());
                         this.alCheminsPtsCpts.add(a);
                     }
                 }
             }else{
+                System.out.println("FLAG5");
                 /* Pour le premier cas si aucun joueurs n'a d'arêtes */
                 this.nbPoints += this.metier.getPointsTailleAretes(a.getWagon());
                 this.alCheminsPtsCpts.add(a);
