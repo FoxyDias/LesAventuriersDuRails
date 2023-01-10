@@ -94,6 +94,7 @@ public class PanelMainJoueur extends JPanel
 	public class PanelDispoCarteObjectif extends JPanel implements AdjustmentListener
 	{
 		private JLabel lblInfoNumeroCarte;
+		private JLabel lblInfoObjectif;
 		private CarteObjectif carteObjectif;
 		private GenereImageCarteObjectif affichageCarte;
 		private JScrollBar scrollBar;
@@ -102,6 +103,7 @@ public class PanelMainJoueur extends JPanel
 		{
 			this.setLayout(new BorderLayout());
 			this.lblInfoNumeroCarte = new JLabel("", JLabel.CENTER);
+			this.lblInfoObjectif = new JLabel("",JLabel.CENTER);
 
 			this.scrollBar = new JScrollBar(JScrollBar.HORIZONTAL);
 			this.scrollBar.setUnitIncrement(1);
@@ -110,11 +112,14 @@ public class PanelMainJoueur extends JPanel
 			this.scrollBar.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
 			this.initValeurCarteObjectif();
-			
-			this.affichageCarte = new GenereImageCarteObjectif(this.carteObjectif, PanelMainJoueur.this.ctrl.getNomImage(),PanelMainJoueur.this.ctrl.getWidthPanel(),PanelMainJoueur.this.ctrl.getHeightPanel());
 
-			this.add(this.lblInfoNumeroCarte,BorderLayout.NORTH);
-			this.add(affichageCarte,BorderLayout.CENTER);
+			JPanel panelDispoInfo = new JPanel(new GridLayout(2,1));
+
+			panelDispoInfo.add(this.lblInfoNumeroCarte);
+			panelDispoInfo.add(this.lblInfoObjectif);
+		
+			this.add(panelDispoInfo,BorderLayout.NORTH);
+			this.add(this.affichageCarte,BorderLayout.CENTER);
 			this.add(this.scrollBar,BorderLayout.SOUTH);
 
 			this.scrollBar.addAdjustmentListener(this);
@@ -127,6 +132,12 @@ public class PanelMainJoueur extends JPanel
 			this.lblInfoNumeroCarte.setText("1 / " + PanelMainJoueur.this.ctrl.getEstJoueurCourant().getMainObjectif().size());
 			this.carteObjectif = PanelMainJoueur.this.ctrl.getEstJoueurCourant().getMainObjectif().get(this.scrollBar.getValue());
 			this.affichageCarte = new GenereImageCarteObjectif(this.carteObjectif,PanelMainJoueur.this.ctrl.getNomImage(),PanelMainJoueur.this.ctrl.getWidthPanel(),PanelMainJoueur.this.ctrl.getHeightPanel());
+			
+			this.lblInfoObjectif.setText("Objectif : " + this.carteObjectif.getNoeudDep().getNom() + " à " + this.carteObjectif.getNoeudArr().getNom());
+
+			if(this.carteObjectif.isAccomplie()) this.lblInfoObjectif.setForeground(Color.GREEN);
+			else this.lblInfoObjectif.setForeground(Color.RED);
+	
 		}
 
 		@Override
@@ -139,6 +150,11 @@ public class PanelMainJoueur extends JPanel
 				this.lblInfoNumeroCarte.setText((e.getValue()+1)+ " / " + this.scrollBar.getMaximum());
 				this.carteObjectif = PanelMainJoueur.this.ctrl.getEstJoueurCourant().getMainObjectif().get(e.getValue());
 				this.affichageCarte.setCarteObjectif(this.carteObjectif);
+
+				this.lblInfoObjectif.setText("Objectif : " + this.carteObjectif.getNoeudDep().getNom() + " à " + this.carteObjectif.getNoeudArr().getNom());
+
+				if(this.carteObjectif.isAccomplie()) this.lblInfoObjectif.setForeground(Color.GREEN);
+				else this.lblInfoObjectif.setForeground(Color.RED);
 			}	
 		}
 	}

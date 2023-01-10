@@ -5,6 +5,7 @@ public class CarteObjectif {
 
     private Noeud noeudDep;
     private Noeud noeudArr;
+    private boolean accomplie;
     private int nbPoints;
 
 
@@ -12,6 +13,7 @@ public class CarteObjectif {
         this.noeudDep = noeudDep;
         this.noeudArr = noeudArr;
         this.nbPoints = nbPoints;
+        this.accomplie = false;
     }
 
     public Noeud getNoeudDep()  {return this.noeudDep;}
@@ -19,4 +21,6 @@ public class CarteObjectif {
     public Noeud getNoeudArr()  {return this.noeudArr;}
 
     public int getNbPoints()    {return this.nbPoints;}
+
+    public boolean isAccomplie() {return this.accomplie;}
 }
