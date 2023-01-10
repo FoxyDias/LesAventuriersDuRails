@@ -67,7 +67,7 @@ public class GenereImageCarteObjectif extends JPanel
 
 	private void drawNoeud(Noeud noeud, Graphics g)
 	{
-		int size = 26;
+		int size = 20;
 
 		Dimension testTaille = this.getSize();
 
@@ -92,10 +92,11 @@ public class GenereImageCarteObjectif extends JPanel
 		// draw l'ID de la noeud
 		g.setColor(Color.BLACK);
 		String str = String.valueOf(noeud.getNom());
+		g.setFont(new Font("",Font.BOLD,10));
 
-		g.drawRect((int)(noeud.getNomX()*multiX) + size/2 - g.getFontMetrics().stringWidth(str)/2, (int)(noeud.getNomY()*multiY) - size, g.getFontMetrics().stringWidth(str), 20);
+		g.drawRect((int)(noeud.getNomX()*multiX) + size/2 - g.getFontMetrics().stringWidth(str)/2, (int)(noeud.getNomY()*multiY) - size, g.getFontMetrics().stringWidth(str), 16);
 		g.setColor(Color.WHITE);
-		g.fillRect((int)(noeud.getNomX()*multiX) + size/2 - g.getFontMetrics().stringWidth(str)/2, (int)(noeud.getNomY()*multiY) - size, g.getFontMetrics().stringWidth(str), 22);
+		g.fillRect((int)(noeud.getNomX()*multiX) + size/2 - g.getFontMetrics().stringWidth(str)/2, (int)(noeud.getNomY()*multiY) - size, g.getFontMetrics().stringWidth(str), 18);
 
 
 		g.setColor(Color.BLACK);
