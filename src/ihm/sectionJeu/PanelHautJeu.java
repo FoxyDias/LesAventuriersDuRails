@@ -79,32 +79,12 @@ public class PanelHautJeu extends JPanel
 			if(this.ctrl.getJoueur(i).equals(this.ctrl.getEstJoueurCourant()))
 			{
 				this.alJoueur.get(i).setForeground(this.ctrl.getEstJoueurCourant().getCouleur());
-				
-				/* this.alNbPionsWagon.get(i).setForeground(this.ctrl.getEstJoueurCourant().getCouleur());
-				this.alNbCarteObjectif.get(i).setForeground(this.ctrl.getEstJoueurCourant().getCouleur());
-				this.alNbPointsChemin.get(i).setForeground(this.ctrl.getEstJoueurCourant().getCouleur());
-				this.alNbCarteWagons.get(i).setForeground(this.ctrl.getEstJoueurCourant().getCouleur()); */
-
 				this.alJoueur.get(i).setFont(new Font("", Font.BOLD, 14));
-				
-				/*this.alNbCarteObjectif.get(i).setFont(new Font("", Font.BOLD, 14));
-				this.alNbPionsWagon.get(i).setFont(new Font("", Font.BOLD, 14));
-				this.alNbPointsChemin.get(i).setFont(new Font("", Font.BOLD, 14));
-				this.alNbCarteWagons.get(i).setFont(new Font("", Font.BOLD, 14)); */
 			}
 			else
 			{
 				this.alJoueur.get(i).setForeground(Color.BLACK);
-			/*	this.alNbPionsWagon.get(i).setForeground(Color.BLACK);
-				this.alNbCarteObjectif.get(i).setForeground(Color.BLACK);
-				this.alNbPointsChemin.get(i).setForeground(Color.BLACK);
-				this.alNbCarteWagons.get(i).setForeground(Color.BLACK); */
-
 				this.alJoueur.get(i).setFont(new Font("", Font.BOLD, 12));
-			/*	this.alNbCarteObjectif.get(i).setFont(new Font("", Font.BOLD, 12));
-				this.alNbPionsWagon.get(i).setFont(new Font("", Font.BOLD, 12));
-				this.alNbPointsChemin.get(i).setFont(new Font("", Font.BOLD, 12));
-				this.alNbCarteWagons.get(i).setFont(new Font("", Font.BOLD, 12)); */
 			}
 		}
 	}

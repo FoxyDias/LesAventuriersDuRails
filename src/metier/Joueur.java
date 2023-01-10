@@ -196,22 +196,16 @@ public class Joueur {
     public int completeCarteObjectif()
     {
        int nbPoint = 0;
-       System.out.println("---------------------------------");
        for(CarteObjectif co : this.mainObjectif)
        {
             if(co.isAccomplie()){
                 continue;
             }
-
-            System.out.println("JE REGARDE LA CARTE OBJECTIF DE : " + co.getNoeudArr().getNom() + " a " + co.getNoeudDep().getNom());
             
             Noeud n1 = co.getNoeudArr();
 
             ArrayList<Arete> lstAreteValide = new ArrayList<Arete>();
-
-
             ArrayList<Arete> lstAreteMorte  = new ArrayList<Arete>();
-
             ArrayList<Noeud> lstNoeudUtilise = new ArrayList<Noeud>();
 
             
@@ -228,7 +222,6 @@ public class Joueur {
                 //ArrayList<Arete> lstAreteTmp = new ArrayList<Arete>();
                 
                 Arete a = lstAreteValide.get(0);
-                System.out.println("Arete test : " + a.toString());
                 lstAreteMorte.add(a);
                 lstAreteValide.remove(0);
 
@@ -251,15 +244,10 @@ public class Joueur {
                     co.setAccomplie(true);
                     //this.rajouterPoint(co.getNbPoints());
                     //nbPoint = co.getNbPoints();
-                    System.out.println("Carte objectif de : " + co.getNoeudArr().getNom() + " a " + co.getNoeudDep().getNom() + " SHEEEEEEEESH ");
 
                     return co.getNbPoints();
-
                 }
 
-
-
-                
                 for(Arete areteAjoue : this.lstArete)
                 {
                     if((areteAjoue.getNoeudArr() == n2 || areteAjoue.getNoeudDep() == n2 ||
@@ -271,15 +259,12 @@ public class Joueur {
                 }
             }
        }
-
-       System.out.println("---------------------------------");
-       return nbPoint;
-            
+       return nbPoint;            
     }  
 
     public boolean isJoueurFinal(){return nbWagons <= 2;}
 
     public void retirerCarteObjectif(int indexcObjectif){this.mainObjectif.remove(indexcObjectif);}
 
-    public int getNbPointsTotal() { return this.getNbPointsChemin() + this.routeLaPlusLongue; }
+    public int getNbPointsTotal() { return this.getNbPointsChemin() + this.completeCarteObjectif(); }
 }
