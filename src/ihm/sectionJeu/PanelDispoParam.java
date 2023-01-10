@@ -58,10 +58,7 @@ public class PanelDispoParam extends JPanel implements ActionListener
     public void recapFinPartie()
     {
         //JOPtionPane --> Etes vous sur d'arreter la partie ?
-        JOptionPane jop = new JOptionPane();
-        jop.showConfirmDialog(null, "Etes vous sur de vouloir arrêter la partie ?", "Arrêt de la partie", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-        jop.setVisible(true);
+        JOptionPane.showConfirmDialog(null, "Etes vous sur de vouloir arrêter la partie ?", "Arrêt de la partie", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         
         this.dialogRecap = new JDialog();
         this.dialogRecap.setLayout(new BorderLayout());
