@@ -4,8 +4,6 @@ import main.Controleur;
 import metier.CarteObjectif;
 
 import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
