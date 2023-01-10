@@ -62,11 +62,10 @@ public class PanelDispoParam extends JPanel implements ActionListener
 
     public void recapFinPartie()
     {
-        //JOPtionPane --> Etes vous sur d'arreter la partie ?
         JOptionPane.showConfirmDialog(null, "Etes vous sur de vouloir arrêter la partie ?", "Arrêt de la partie", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        //JLabel lblRecap = new JLabel("Joueur " + this.ctrl.getEstJoueurCourant() + ", il vous reste " + this.ctrl.getEstJoueurCourant().getNbCarteWagon() + ". La partie s'arrête au prochain tour.");
-        //JOptionPane.showMessageDialog(null, lblRecap, "Fin de partie", JOptionPane.INFORMATION_MESSAGE);
+        if(JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog(null, "Etes vous sur de vouloir arrêter la partie ?", "Arrêt de la partie", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE))
+            return;
 
         this.ctrl.chercheCheminLeplusPlong();
 
@@ -102,7 +101,6 @@ public class PanelDispoParam extends JPanel implements ActionListener
         
         DefaultTableCellRenderer custom = new DefaultTableCellRenderer();
         custom.setHorizontalAlignment(JLabel.CENTER);
-
 
         for(int i = 0; i < this.tableRecap.getColumnCount(); i++)
             this.tableRecap.getColumnModel().getColumn(i).setCellRenderer(custom);

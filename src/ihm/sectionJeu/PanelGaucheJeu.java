@@ -140,14 +140,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			jDialog.setVisible(true);
 		}
 
-	
-		if(e.getSource() == this.btnArreterPartie)
-		{
-			if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêter la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-				this.ctrl.changerPanel("Menu");
-			
-		}
-
 		if(e.getSource() == this.btnPiocheCarteObjectif)
 		{
 			this.creerPopUpCarteObjectif();
@@ -177,6 +169,13 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 					}
 				this.ctrl.avancerJoueur();
 			}
+		}
+	
+		if(e.getSource() == this.btnArreterPartie)
+		{
+			if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêter la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+				this.ctrl.changerPanel("Menu");
+			
 		}
 	}
 

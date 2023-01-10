@@ -367,7 +367,7 @@
 		<nbWagonDebutPartie>60</nbWagonDebutPartie>
 		<nbWagonFinPartie>2</nbWagonFinPartie>
 		<nbPointsPlusLongChemin>10</nbPointsPlusLongChemin>
-		<txtNomMoyenDeTransport>voitures</txtNomMoyenDeTransport>
+		<txtNomMoyenDeTransport>voiture</txtNomMoyenDeTransport>
 		<txtRoute>routes</txtRoute>
 		<versoCarteWagon>fortnite.png</versoCarteWagon>
 		<versoCarteObjectif>billet-cartonne-sncf.jpg</versoCarteObjectif>

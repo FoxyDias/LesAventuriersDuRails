@@ -91,31 +91,45 @@ public class Metier {
          * - Qu'aucun joueurs ne puissent plus rien faire
          */
         
-
-        /* Si un joueur a le nb pions wagons dans sa main équivalent à ceux de fin de partie dans les param du xml*/
+        // Si un joueur a le nb pions wagons dans sa main équivalent à ceux de fin de partie dans les param du xml 
         for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++)
-            if(this.getEstJoueurCourant().getNbWagons() <= getNbWagonFinPartie())
-                this.ctrl.recapFinPartie();
-
-
-        /* Si les joueurs n'ont plus assez de pions wagons pour prendre quelconque arêtes */
+            if(this.getEstJoueurCourant().getNbWagons() <= this.ctrl.getNbWagonFinPartie())
+            {
+                if(this.getNbJoueurPartie() == 1)
+                {
+                    JOptionPane.showMessageDialog(null, "Le joueur " + this.getEstJoueurCourant() + " a atteint le nombre de pions wagons indiqué dans les paramètres du jeu. Fin de partie au prochaine tour !");
+                    this.ctrl.recapFinPartie();
+                }
+                else 
+                {
+                    this.ctrl.avancerJoueur();
+                    this.ctrl.recapFinPartie();
+                }
+            }
+            
+        // Si les joueurs n'ont plus assez de pions wagons pour prendre quelconque arêtes 
         for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++)
             for(Arete a : lstArete)
                 if(a.getWagon() > this.getEstJoueurCourant().getNbWagons())
+                {
+                    JOptionPane.showMessageDialog(null, "Le joueur " + this.getEstJoueurCourant() + " n'a plus assez de pions pour jouer. Fin de partie au prochaine tour !");
+                    this.ctrl.avancerJoueur();
                     this.ctrl.recapFinPartie();
+                }
+                
 
-
-        /* Si toutes les arêtes sont occupées */
+        // Si toutes les arêtes sont occupées 
         joueurTotArt = 0;
-        for(int cpt = 0; cpt < getNbJoueurPartie(); cpt++){
+        for(int cpt = 0; cpt < getNbJoueurPartie(); cpt++)
+        {
             joueurTotArt += getJoueur(cpt).getLstArete().size();
         }
 
-        if(joueurTotArt == this.lstArete.size()){
+        if(joueurTotArt == this.lstArete.size())
+        {
+            JOptionPane.showMessageDialog(null, "Toutes les arêtes sont prises, fin du jeu.");
             this.ctrl.recapFinPartie();
         }
-        System.out.println(joueurTotArt + " DIFFERENCE " + this.lstArete.size());
-
     }
 
     /*
