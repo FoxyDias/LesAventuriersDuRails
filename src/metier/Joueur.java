@@ -200,7 +200,7 @@ public class Joueur {
        for(CarteObjectif co : this.mainObjectif)
        {
             if(co.isAccomplie()){
-                nbPoint = co.getNbPoints();
+                nbPoint += co.getNbPoints();
                 continue;
             }
 
@@ -212,9 +212,6 @@ public class Joueur {
 
 
             ArrayList<Arete> lstAreteMorte  = new ArrayList<Arete>();
-
-            ArrayList<Noeud> lstNoeudUtilise = new ArrayList<Noeud>();
-
             
             for(Arete a : this.lstArete)
             {
@@ -271,6 +268,12 @@ public class Joueur {
                     }
                 }
             }
+
+
+            if(!co.isAccomplie()){
+                nbPoint -= co.getNbPoints();
+            }
+
        }
 
        System.out.println("---------------------------------");
