@@ -107,8 +107,6 @@ public class PanelMainJoueur extends JPanel
 
 	public class PanelDispoInfoPossesion extends JPanel
 	{
-		private ArrayList<JLabel> listLblPossesion;
-
 		public PanelDispoInfoPossesion()
 		{
 			this.setLayout(new GridLayout(PanelMainJoueur.this.ctrl.getEstJoueurCourant().getLstArete().size() + 1 ,1));
