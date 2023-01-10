@@ -88,8 +88,7 @@ public class PanelDispoParam extends JPanel implements ActionListener
             this.donnees[i][3] = this.ctrl.getJoueur(i);
             //this.donnees[i][2] = this.ctrl.getJoueur(i).getNbPointsObjectif();
             this.donnees[i][4] = this.ctrl.getJoueur(i).getRouteLaPlusLongue();
-            this.donnees[i][5] = this.ctrl.getJoueur(i);
-            //this.donnees[i][5] = this.ctrl.getJoueur(i).getNbPointsTotal();
+            this.donnees[i][5] = this.ctrl.getJoueur(i).getNbPointsTotal();
         }
         
         DefaultTableCellRenderer custom = new DefaultTableCellRenderer();
