@@ -17,7 +17,6 @@ public class PanelBasMenu extends JPanel implements ActionListener
 		 */
 		this.ctrl = ctrl;
 		this.btnQuitter = new JButton("Fermer l'application.");
-		
 		/**
 		 * Positionnement des composants
 		 */
@@ -28,7 +27,7 @@ public class PanelBasMenu extends JPanel implements ActionListener
 		 * Activation des composants
 		 */
 		
-		this.btnQuitter.setBackground(Color.WHITE);
+		this.btnQuitter.setBackground(Color.RED);
 		this.btnQuitter.addActionListener(this);
 
 	}

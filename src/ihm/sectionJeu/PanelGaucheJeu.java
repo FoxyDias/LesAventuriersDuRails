@@ -33,7 +33,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 	private JDialog dialog;
 	private AfficherCarteObjectif[] carteObjectifInfo;
 	private JButton btnValider;
-	private JButton btnAnnuler;
 	protected int nbPopUp = 1;
 
 	public PanelGaucheJeu(Controleur ctrl)
@@ -179,9 +178,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 				this.ctrl.avancerJoueur();
 			}
 		}
-
-		if(e.getSource() == this.btnAnnuler)
-			this.dialog.dispose();
 	}
 
 	public void griserCarteObjectif(boolean b) {
@@ -253,7 +249,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		this.carteObjectifInfo = new AfficherCarteObjectif[3];
 		this.btnValider = new JButton("Valider");
-		this.btnAnnuler = new JButton("Annuler");
 
 		JPanel panelDispoCarte = new JPanel(new GridLayout(1,3));
 		JPanel panelBtn		   = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,  50));
@@ -267,13 +262,11 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		btnValider.setBackground(Color.WHITE);
 
 		panelBtn.add(this.btnValider);
-		panelBtn.add(this.btnAnnuler);
 
 		this.dialog.add(panelDispoCarte,BorderLayout.CENTER);
 		this.dialog.add(panelBtn,BorderLayout.SOUTH);
 
 		this.btnValider.addActionListener(this);
-		this.btnAnnuler.addActionListener(this);
 
 		this.dialog.setVisible(true);
 

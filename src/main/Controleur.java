@@ -227,7 +227,4 @@ public class Controleur {
 		FlatLightLaf.setup();
         new Controleur();
     }
-
-
-
 }
