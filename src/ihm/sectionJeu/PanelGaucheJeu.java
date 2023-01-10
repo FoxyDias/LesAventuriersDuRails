@@ -55,7 +55,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		JLabel lblPiocheCarteWagon		= new JLabel("Piocher une carte " + this.ctrl.getMoyenDeTransport(), JLabel.CENTER);
 		JLabel lblPiocheCarteObjectif	= new JLabel("Piocher une carte objectif", JLabel.CENTER);
 		ImageIcon imageIconBtnPiocheCarteObjectif = new ImageIcon(this.ctrl.getNomImage());
-		ImageIcon imageIconBtnPiocheCarteWagon = new ImageIcon("donnee/imageCarte/voiture.jpg");
+		ImageIcon imageIconBtnPiocheCarteWagon = new ImageIcon("donnee\\imageCarte\\" + this.ctrl.getVersoCarteWagon()); 
 
 		lblPiocheCarteWagon.setFont(new Font("", Font.BOLD, 16));
 		lblPiocheCarteObjectif.setFont(new Font("", Font.BOLD, 16));

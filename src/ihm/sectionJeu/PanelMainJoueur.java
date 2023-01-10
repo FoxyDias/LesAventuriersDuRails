@@ -10,12 +10,11 @@ import javax.swing.JScrollBar;
 
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 import main.Controleur;
+import metier.Arete;
 import metier.CarteObjectif;
 import metier.CarteWagon;
 
@@ -35,6 +34,8 @@ public class PanelMainJoueur extends JPanel
 		this.add(new PanelDispoCarteWagon());
 		this.add(new PanelDispoCarteObjectif());	
 		this.add(new PanelInformationCarte());
+		this.add(new PanelDispoInfoPossesion());
+		
 		this.repaint();	
 	}
 
@@ -101,6 +102,21 @@ public class PanelMainJoueur extends JPanel
 				this.lblCoulCarteWagon.setIcon(icon);
 			}
 
+		}
+	}
+
+	public class PanelDispoInfoPossesion extends JPanel
+	{
+		private ArrayList<JLabel> listLblPossesion;
+
+		public PanelDispoInfoPossesion()
+		{
+			this.setLayout(new GridLayout(PanelMainJoueur.this.ctrl.getEstJoueurCourant().getLstArete().size() + 1 ,1));
+
+			this.add(new JLabel("Les arete que vous possedé :",JLabel.CENTER));
+
+			for(Arete a : PanelMainJoueur.this.ctrl.getEstJoueurCourant().getLstArete())
+				this.add(new JLabel("| " + String.format("%-20s",a.getNoeudDep().getNom()) + "<->" +String.format("%20s",a.getNoeudArr().getNom()) + " |",JLabel.CENTER));
 		}
 	}
 

@@ -175,9 +175,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 		g.setColor(Color.WHITE);
 		g.fillRect((int)(noeud.getNomX()*multiX) + size/2 - g.getFontMetrics().stringWidth(str)/2, (int)(noeud.getNomY()*multiY) - size, g.getFontMetrics().stringWidth(str), 22);
 
-
-
-
 		g.setColor(Color.BLACK);
 		g.drawString(str, (int) (noeud.getNomX()*multiX) + size/2 - g.getFontMetrics().stringWidth(str)/2, (int)(noeud.getNomY()*multiY) -10);
 
