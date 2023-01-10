@@ -72,8 +72,6 @@ public class Controleur {
         return this.metier.getListCarteObjectif();
     }
 
-
-
     public String getVersoCarteWagon(){
         return this.metier.getVersoCarteWagon();
     }
@@ -227,4 +225,7 @@ public class Controleur {
 		FlatLightLaf.setup();
         new Controleur();
     }
+
+
+
 }

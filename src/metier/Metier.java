@@ -18,7 +18,6 @@ public class Metier {
 
     private ArrayList<Noeud> lstNoeud;
     private ArrayList<Arete> lstArete;
-    private ArrayList<Arete> tmpArete;
     private ArrayList<CarteObjectif> lstCarteObjectif;
     private ArrayList<CarteObjectif> lstPiocheObjectifs;
     private ArrayList<CarteWagon> lstCarteWagon;
@@ -38,6 +37,7 @@ public class Metier {
     private int nbJoueurMax, nbJoueurPartie, nbJoueurMinDoubleArete , nbWagonDebutPartie ,nbWagonFinPartie , nbPointsPlusLongChemin;
     private int intJoueurActuel;
     private int[] pointsTaille;
+    private int joueurTotArt;
 
     private HashMap<Joueur, ArrayList<Noeud>> hsmJoueurNoeud;
 
@@ -47,7 +47,6 @@ public class Metier {
 
         this.lstNoeud = new ArrayList<Noeud>();
         this.lstArete = new ArrayList<Arete>();
-        this.tmpArete = new ArrayList<Arete>();
 
         this.lstCarteObjectif = new ArrayList<CarteObjectif>();
         this.lstPiocheObjectifs = new ArrayList<CarteObjectif>(); 
@@ -60,6 +59,7 @@ public class Metier {
         this.lstJoueur = new ArrayList<Joueur>();
 
         this.intJoueurActuel = 0;
+        this.joueurTotArt = 0;
 
         this.hsmJoueurNoeud = new HashMap<Joueur,ArrayList<Noeud>>();
     }
@@ -102,15 +102,17 @@ public class Metier {
                 if(a.getWagon() > this.getEstJoueurCourant().getNbWagons())
                     this.ctrl.recapFinPartie();  
             
-                    
-       
-        /* Si toutes les arêtes sont prises */
         
-        System.out.println("VERIFICATION TAILLE TMPARETE : " + this.tmpArete.size());
-        for(Arete a : this.lstArete)
-            /* si toutes les arêtes sont occupées par un joueur */
-            if(a.getEstOccupe() == true && this.tmpArete.size() == 0)  
-                this.ctrl.recapFinPartie();
+        /* Si toutes les arêtes sont occupées */
+        joueurTotArt = 0;
+        for(int cpt = 0; cpt < getNbJoueurPartie(); cpt++){
+            joueurTotArt += getJoueur(cpt).getLstArete().size();
+        }
+        
+        if(joueurTotArt == this.lstArete.size()){
+            this.ctrl.recapFinPartie();
+        }
+        System.out.println(joueurTotArt + " DIFFERENCE " + this.lstArete.size());
 
     }
 
@@ -198,8 +200,6 @@ public class Metier {
     {
         if(a.getEstOccupe())
             return false;
-
-        this.tmpArete.remove(a);
 
         int nbWagonArete = a.getWagon();
         String couleurTmp  =  a.getCouleur();
@@ -451,7 +451,6 @@ public class Metier {
                 a.setAreteDouble(b);
             }
         this.lstArete.add( a );
-        this.tmpArete.add( a );
     }
 
     public void creerCarteObjectif( Noeud noeudDep, Noeud noeudArr, int nbW )
