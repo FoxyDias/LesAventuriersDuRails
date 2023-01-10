@@ -69,7 +69,7 @@ public class Metier {
      */
     public int getPointsTailleAretes(int nbWagons){
         /* Au cas ou l'arête ferait + de 10 de distances */
-        if( nbWagons > this.pointsTaille.length)
+        if( nbWagons >= this.pointsTaille.length)
             return this.pointsTaille.length -1;
 
         return this.pointsTaille[nbWagons];
@@ -132,7 +132,7 @@ public class Metier {
         if(this.intJoueurActuel >= this.nbJoueurPartie)
             this.intJoueurActuel = 0;
         
-        System.out.println("QSEDRGEQSRGQEZRGQEZR" + this.getEstJoueurCourant().getNbPoints());
+        System.out.println("Joueur" + this.intJoueurActuel + " : " + this.getEstJoueurCourant().getNbPoints());
     }
 
     private void initPioche()
@@ -326,7 +326,6 @@ public class Metier {
         int nbWagonArete = a.getWagon();
         String couleurTmp  =  a.getCouleur();
 
-        //My string look like this [r=xxx,g=xxx,b=xxx] i want to get read of the [] the rgb and the = ? 
         String[] rgb = couleurTmp.split(",");
         int r = Integer.parseInt(rgb[0].replace("[r=", ""));
         int g = Integer.parseInt(rgb[1].replace("g=", ""));
@@ -372,17 +371,21 @@ public class Metier {
         for(int i = 0 ; i< this.getEstJoueurCourant().getMainWagon().size();i++)
         {
        
-            if(nbCarteCoulJoueur ==0 && nbCarteJoker == 0)
+            if(nbCarteCoulJoueur <=0 && nbCarteJoker <= 0)
                 break;
 
 
             if((this.getEstJoueurCourant().getMainWagon().get(i).getColor() == null)){
-                this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().get(i));
-                this.getEstJoueurCourant().getMainWagon().remove(i);
-                i--;
-                nbCarteJoker--;
+                if( nbCarteJoker  > 0)
+                {
+                    this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().get(i));
+                    this.getEstJoueurCourant().getMainWagon().remove(i);
+                    i--;
+                    nbCarteJoker--;
+            
+                }
             }
-            else if(this.getEstJoueurCourant().getMainWagon().get(i).getColor().equals(c))
+            else if(this.getEstJoueurCourant().getMainWagon().get(i).getColor().equals(c) && nbCarteCoulJoueur >0)
             {
                 this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().get(i));
                 this.getEstJoueurCourant().getMainWagon().remove(i);

@@ -268,6 +268,11 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 	@Override
 	public void mousePressed(MouseEvent e) {
 
+		if(this.ctrl.getNbPiocheWagon()>=1)
+		{
+			JOptionPane.showMessageDialog(null, "Vous ne pouvez pas piocher des carte et prendre des voies en même temps. ");
+			return;
+		}
 		int cliqueX = e.getX()-20;
 		int cliqueY = e.getY()-8;
 
@@ -323,6 +328,9 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 			{
 				if(!a.getEstOccupe())
 					lstAretee.add(a);
+				else 
+					JOptionPane.showMessageDialog(null, "Cette voie et déja occupé par un Joueur ");
+				
 			}
 		}
 		if(lstAretee.size() == 0){return;}
@@ -340,7 +348,15 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 					JOptionPane.showMessageDialog(null, "Il reste " + joueur.getNbWagons() + " wagons pour vous, fin du jeu au prochain tour");
 					return;
 				}
-        
+
+				if((this.ctrl.getNbJoueurPartie() < this.ctrl.getNbJoueurMinDoubleArete()) && 
+				(a.getEstDouble() &&(a.getEstOccupe() || a.getAreteDouble().getEstOccupe())))
+				{
+					JOptionPane.showMessageDialog(null, "Impossible car il y a moins de " + this.ctrl.getNbJoueurMinDoubleArete() + " joueurs pour jouer avec les arêtes doubles.");
+					return;
+				}
+				
+				
 				a.setEstOccupe(true);
 				a.setOccupateur(joueur);
 				joueur.ajouterArete(a);
@@ -350,8 +366,9 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 			}
 		}
 		else {
-
-			if(this.ctrl.getNbJoueurPartie() < this.ctrl.getNbJoueurMinDoubleArete())
+			Arete aTmp = lstAretee.get(0);
+			if((this.ctrl.getNbJoueurPartie() < this.ctrl.getNbJoueurMinDoubleArete()) && 
+				(aTmp.getEstDouble() &&(aTmp.getEstOccupe() || aTmp.getAreteDouble().getEstOccupe())))
 			{
 				JOptionPane.showMessageDialog(null, "Impossible car il y a moins de " + this.ctrl.getNbJoueurMinDoubleArete() + " joueurs pour jouer avec les arêtes doubles.");
 				return;
