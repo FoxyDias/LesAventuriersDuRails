@@ -200,6 +200,7 @@ public class Joueur {
        for(CarteObjectif co : this.mainObjectif)
        {
             if(co.isAccomplie()){
+                nbPoint = co.getNbPoints();
                 continue;
             }
 
