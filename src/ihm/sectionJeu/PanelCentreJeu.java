@@ -159,12 +159,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 		double multiX = (xMax/width);
 		double multiY = (yMax/height);
 
-
-		/*
-		double multiX = 1;
-		double multiY = 1;
-		*/
-		
 		// draw la Noeud
 		g.setColor(Color.BLACK);
 		g.fillOval((int) (noeud.getX()*multiX), (int) (noeud.getY()*multiY), size, size);
@@ -193,7 +187,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 	{
 	
 		// draw la valeur de l'arete
-		//System.out.print(c);
 		//from string : "java.awt.Color[r=0,g=0,b=0]" to : 0,0,0
 		
 		//now remove "r=" and "g=" and "b="
@@ -278,15 +271,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 		int cliqueX = e.getX()-20;
 		int cliqueY = e.getY()-8;
 
-		
-
-		// for (Noeud n : this.ctrl.getLstNoeud())
-		// {
-		// 	if(x == n.getX() && y == n.getY())
-		// 	{
-		// 		System.out.println("Noeud : " + n.getNom());
-		// 	}
-		// }
 		ArrayList<Arete> lstAretee = new ArrayList<Arete>();
 			
 		for(Arete a : this.ctrl.getLstArete())
@@ -308,12 +292,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 			double aY = a.getNoeudArr().getY()* multiY;
 			double bX = a.getNoeudDep().getX()* multiX;
 			double bY = a.getNoeudDep().getY()* multiY;
-
-			// System.out.println(a.getNoeudArr().getNom());
-			// System.out.println("aX : "+  aX + " aY : " + aY);
-			// System.out.println(a.getNoeudDep().getNom());
-			// System.out.println("bX : "+  bX + " bY : " + bY);
-			
 
 			//AB vecteur de l'arete 
 			double vecteurAbX = bX - aX;
@@ -341,22 +319,11 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 
 			double distanceHC = Math.sqrt(Math.pow(vecteurHcX,2) + Math.pow(vecteurHcY,2));
 
-			//System.out.println("Distance : " + distanceHC);
-
 			if(0<= distance && distance <= 1 && distanceHC <= 8)
 			{
 				if(!a.getEstOccupe())
 					lstAretee.add(a);
 			}
-			
-			//System.out.println("Distance : " + distance);
-						
-			// if(Math.pow(vecteurAcX - distance * vecteurAbX,2) + Math.pow(vecteurAcY - distance * vecteurAbY, 2) <= 64)
-			
-			// {
-			// 	System.out.println("Noeud1 : " + a.getNoeudArr().getNom());
-			// 	System.out.println("Noeud2 : " + a.getNoeudDep().getNom());
-			// }
 		}
 		if(lstAretee.size() == 0){return;}
 
@@ -370,7 +337,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 			{
 				if(a.getWagon() > joueur.getNbWagons())
 				{
-					System.out.println("couille");
 					JOptionPane.showMessageDialog(null, "Il reste " + joueur.getNbWagons() + " wagons pour vous, fin du jeu au prochain tour");
 					return;
 				}
@@ -382,48 +348,52 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 				this.repaint();
 				this.ctrl.avancerJoueur();
 			}
-		
 		}
-		else{
-			JDialog dialog = new JDialog();
-			int cpt = 2;
-			dialog.setTitle("Choix de l'arête parmis les chemins doubles");
-			dialog.setBounds(800, 400, 350, 300);
-			dialog.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-			dialog.setResizable(false);
-			dialog.setModal(true);
-			dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		else {
 
-			for(Arete a : lstAretee)
+			if(this.ctrl.getNbJoueurPartie() < this.ctrl.getNbJoueurMinDoubleArete())
 			{
-				JButton btn = new JButton("Chemin numéro " + cpt + " : " + a.getNoeudArr().getNom() + " - " + a.getNoeudDep().getNom());
-				cpt--;
-				btn.addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						Joueur joueur = ctrl.getEstJoueurCourant();
-						if(ctrl.priseVoie(joueur, a))
-						{
-							a.setEstOccupe(true);
-							a.setOccupateur(joueur);
-							joueur.ajouterArete(a);
-							joueur.removeNbWagons(a.getWagon());
-							ctrl.avancerJoueur();
-							
-							
-						}
-						dialog.dispose(); 
-						PanelCentreJeu.this.repaint();
-					}
-				});
-				dialog.add(btn);
+				JOptionPane.showMessageDialog(null, "Impossible car il y a moins de " + this.ctrl.getNbJoueurMinDoubleArete() + " joueurs pour jouer avec les arêtes doubles.");
+				return;
 			}
-			dialog.setVisible(true);
-		}
-		
-	}
+			else
+			{
+				JDialog dialog = new JDialog();
+				int cpt = 2;
+				dialog.setTitle("Choix de l'arête parmis les chemins doubles");
+				dialog.setBounds(800, 400, 350, 300);
+				dialog.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+				dialog.setResizable(false);
+				dialog.setModal(true);
+				dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 
+				for(Arete a : lstAretee)
+				{
+					JButton btn = new JButton("Chemin numéro " + cpt + " : " + a.getNoeudArr().getNom() + " - " + a.getNoeudDep().getNom());
+					cpt--;
+					btn.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							Joueur joueur = ctrl.getEstJoueurCourant();
+							if(ctrl.priseVoie(joueur, a))
+							{
+								a.setEstOccupe(true);
+								a.setOccupateur(joueur);
+								joueur.ajouterArete(a);
+								joueur.removeNbWagons(a.getWagon());
+								ctrl.avancerJoueur();
+							}
+							dialog.dispose(); 
+							PanelCentreJeu.this.repaint();
+						}
+					});
+					dialog.add(btn);
+				}
+				dialog.setVisible(true);
+			}
+		}
+	}
 	@Override
 	public void mouseReleased(MouseEvent e) {}
 

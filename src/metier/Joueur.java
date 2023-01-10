@@ -26,7 +26,7 @@ public class Joueur {
     {
         Joueur.nbJoueur++;
         this.numJoueur = nbJoueur;
-
+        
         this.couleur  = coul;
         this.nbWagons = wagons;
         this.metier   = metier;

@@ -12,41 +12,32 @@ import java.util.Scanner;
 import org.jdom2.*;
 import org.jdom2.input.*;
 
-import ihm.sectionJeu.PanelGaucheJeu;
-import ihm.sectionJeu.PanelGaucheJeu.PanelDispoParam;   
 
 public class Metier {
 
     private Controleur ctrl;
 
-    private String nomImage;
-
     private ArrayList<Noeud> lstNoeud;
     private ArrayList<Arete> lstArete;
-
     private ArrayList<CarteObjectif> lstCarteObjectif;
     private ArrayList<CarteObjectif> lstPiocheObjectifs;
-
     private ArrayList<CarteWagon> lstCarteWagon;
     private ArrayList<CarteWagon> lstPiocheWagon;
-    private ArrayList<CarteWagon> lstDefausseWagon;
-    
+    private ArrayList<CarteWagon> lstDefausseWagon;    
+    private ArrayList<Color> lstCouleurJoueur;
+    private ArrayList<Joueur> lstJoueur;
 
     private String versoCarteObjectif;
     private String versoCarteWagon;
     private String moyenDeTransport;
-
-    private ArrayList<Color> lstCouleurJoueur;
-    private ArrayList<Joueur> lstJoueur;
-
+    private String nomImage;
 
     private double witdhPanel;
     private double heightPanel;
 
-    private int nbJoueurMax, nbJoueurPartie, nbJoueurMinDoubleArete , nbWagonDebutPartie ,nbWagonFinPartie , nbPointsPlusLongChemin ;
-    private int[] pointsTaille;
-
+    private int nbJoueurMax, nbJoueurPartie, nbJoueurMinDoubleArete , nbWagonDebutPartie ,nbWagonFinPartie , nbPointsPlusLongChemin;
     private int intJoueurActuel;
+    private int[] pointsTaille;
 
     private HashMap<Joueur, ArrayList<Noeud>> hsmJoueurNoeud;
 
@@ -84,7 +75,6 @@ public class Metier {
         return this.pointsTaille[nbWagons];
     }
 
-
     public void lancerPartie()
     {   
         initPioche();
@@ -110,7 +100,6 @@ public class Metier {
         }
 
         /* Si un joueur a 2 || 1 || 0 cartes wagons dans sa main */
-        
         for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++){
             if(this.getEstJoueurCourant().getNbCarteWagon() == getNbWagonFinPartie())
             {
@@ -124,7 +113,6 @@ public class Metier {
             this.ctrl.recapFinPartie();
         }
     }
-
 
     /*
      * Joueur actuellement entrain de jouer
@@ -144,6 +132,7 @@ public class Metier {
         if(this.intJoueurActuel >= this.nbJoueurPartie)
             this.intJoueurActuel = 0;
         
+        System.out.println("QSEDRGEQSRGQEZRGQEZR" + this.getEstJoueurCourant().getNbPoints());
     }
 
     private void initPioche()
@@ -309,11 +298,13 @@ public class Metier {
         this.lstCarteObjectif.remove(num);
     }
 
-    public void repiocherCarteObjectif(int index) {
-
+    public void repiocherCarteObjectif(int index) 
+    {
         this.lstPiocheObjectifs.set(index, this.lstCarteObjectif.get( (int) (Math.random() * this.lstCarteObjectif.size() )));
     }
-    public void repiocherCarteWagon(int i) {
+
+    public void repiocherCarteWagon(int i) 
+    {
         this.lstPiocheWagon.set(i, this.lstCarteWagon.get( (int) (Math.random() * this.lstCarteWagon.size() )));
     }
 
@@ -325,36 +316,16 @@ public class Metier {
         }
         for(int i=0; i<3; i++)
             piocherObjectifRandom();
-
     }
 
     public boolean priseVoie(Joueur j , Arete a )
     {
-
-        // System.out.println("DEFAUSE CARTE WAGON : ");
-        // for(CarteWagon cw  : this.lstDefausseWagon)
-        // {
-        //     System.out.println(cw.getCouleur());
-        // }
-        // System.out.println("MAIN CARTE WAGON : ");
-        // for(CarteWagon cw  : j.getMainWagon())
-        // {
-        //     System.out.println(cw.getCouleur());
-        // }
-        // System.out.println("-------------------");
-        // System.out.println("CLIQUER SUR UNE ARETE DE COULEUR : ");
-        // System.out.println(a.getCouleur());
-        // System.out.println("-------------------");
-
-
         if(a.getEstOccupe())
             return false;
-        
         
         int nbWagonArete = a.getWagon();
         String couleurTmp  =  a.getCouleur();
 
-        
         //My string look like this [r=xxx,g=xxx,b=xxx] i want to get read of the [] the rgb and the = ? 
         String[] rgb = couleurTmp.split(",");
         int r = Integer.parseInt(rgb[0].replace("[r=", ""));
@@ -362,16 +333,13 @@ public class Metier {
         int b = Integer.parseInt(rgb[2].replace("b=", "").replace("]", ""));
 
         Color c = new Color(r,g,b);
-        
-        // System.out.println("COULEUR EN STRING        : " + couleurTmp);
-        // System.out.println("COULEUR APRES TRAITEMENT : " + c.toString());
+
         int nbCarteCoulJoueur = 0;
         int nbCarteJoker      = 0;
 
         CarteWagon carteCouleur= null;
         CarteWagon carteJoker = null;
         for(CarteWagon cw : this.getEstJoueurCourant().getMainWagon())
-
         {
             if(cw.getColor() == null)
             {
@@ -384,8 +352,6 @@ public class Metier {
                 carteCouleur = cw;
             }
         }
-
-        System.out.println("NOMBRE : " + nbCarteCoulJoueur);
 
         if(nbCarteCoulJoueur+nbCarteJoker< nbWagonArete)
             return false;
@@ -423,19 +389,9 @@ public class Metier {
                 i--;
                 nbCarteCoulJoueur--;
             }
-
         }
-        // for(int i = 0 ; i<nbCarteJoker ; i++)
-        // {
-        //     j.getMainWagon().remove(carteJoker);
-        //     this.lstDefausseWagon.add(carteJoker);
-
-        // }   
-
-
         return true;
     }
-
 
     public void lireXml(String pathXml)
     {
@@ -463,10 +419,6 @@ public class Metier {
 
         racine = document.getRootElement();
 
-        System.out.println("Test1");
-
-        // List listVilles = racine.getChildren("noeud");
-        // Iterator i = listVilles.iterator();
         List<Element> lstNoeud       = racine.getChildren ( "mappe" ).get(0).getChildren("noeud");
         List<Element> lstArete       = racine.getChildren ( "mappe" ).get(0).getChildren("arete");
         List<Element> lstObjectif    = racine.getChildren ( "mappe" ).get(0).getChildren("carteObjectif");
@@ -567,35 +519,15 @@ public class Metier {
             String coulSTR = c.getText();
             Color  coulRGB;
 
-            /* Conversion des couleurs en RGB / Sring */
+            /* Conversion des couleurs en RGB / String */
             coulSTR = stringToRGB(coulSTR);
             coulRGB = RGBtoColor (coulSTR);
 
             this.lstCouleurJoueur.add(coulRGB);
             this.lstJoueur.add(new Joueur(this.nbWagonDebutPartie, coulRGB, this));
-            
-
         }
         Collections.shuffle(this.lstCarteWagon);
         Collections.shuffle(this.lstCarteObjectif);
-
-
-        // for(Arete a : this.lstArete)
-        // {
-        //     //random entre 0 et 2
-        //     int joueur = (int)(Math.random()*3);
-        //     this.lstJoueur.get(joueur).ajouterArete(a);
-        //     a.setEstOccupe(true);
-        //     a.setOccupateur(this.lstJoueur.get(joueur));
-
-        // }
-
-
-        // System.out.println("Arete prise : " + this.lstArete.get(2));
-        // this.lstJoueur.get(0).ajouterArete(this.lstArete.get(2));
-        // this.lstArete.get(2).setEstOccupe(true);
-        // this.lstArete.get(2).setOccupateur(this.lstJoueur.get(0));
-
     }
 
     private Color RGBtoColor(String couleur) 
@@ -653,7 +585,7 @@ public class Metier {
 
         this.lstCarteWagon.add( cw );
     }
-    
+  
     /*-------------------------------------------------------------------------*/
     /*                                Getters                                  */
     /*-------------------------------------------------------------------------*/
@@ -676,37 +608,21 @@ public class Metier {
     public Joueur getJoueur        (int i) { return this.lstJoueur.get(i);}
 
     public ArrayList<CarteObjectif> getListCarteObjectif() { return this.lstCarteObjectif;}
-    public ArrayList<CarteObjectif> getLstCarteObjectif () { return lstCarteObjectif;     }
-    public ArrayList<CarteWagon> getLstCarteWagon       () { return lstCarteWagon;        }
+    public ArrayList<CarteObjectif> getLstCarteObjectif () { return this.lstCarteObjectif;}
+    public ArrayList<CarteWagon> getLstCarteWagon       () { return this.lstCarteWagon;   }
     public ArrayList<Noeud> getLstNoeud                 () { return this.lstNoeud;        }
     public synchronized ArrayList<Arete> getLstArete    () { return this.lstArete;        }
-    public ArrayList<Color> getLstCouleurJoueur         () { return lstCouleurJoueur;     }
+    public ArrayList<Color> getLstCouleurJoueur         () { return this.lstCouleurJoueur;}
     public ArrayList<Joueur> getLstJoueur               () { return this.lstJoueur;       }
 
-    public ArrayList<CarteObjectif> getLstPiocheObjectifs() {
-        return lstPiocheObjectifs;
-    }
-
-    public ArrayList<CarteWagon> getLstPiocheWagon() {
-        return lstPiocheWagon;
-    }
-
-    public int getIntJoueurActuel() {
-        return intJoueurActuel;
-    }
-
-    /*-------------------------------------------------------------------------*/
+    public ArrayList<CarteObjectif> getLstPiocheObjectifs(){return lstPiocheObjectifs;    }
+    public ArrayList<CarteWagon> getLstPiocheWagon()       {return lstPiocheWagon;        }
+    public int getIntJoueurActuel()                        {return intJoueurActuel;       }
 
     /*-------------------------------------------------------------------------*/
     /*                                Setters                                  */
     /*-------------------------------------------------------------------------*/
     public void setWidthPanel (double witdhPanel) {this.witdhPanel = witdhPanel;  }
     public void setHeightPanel(double heightPanel){this.heightPanel = heightPanel;}
-    public void setNbJoueurPartie(int n          ){ this.nbJoueurPartie = n; }
-
-
-
-
-    /*-------------------------------------------------------------------------*/
-   
+    public void setNbJoueurPartie(int n          ){ this.nbJoueurPartie = n;      }
 }

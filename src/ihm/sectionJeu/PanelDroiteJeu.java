@@ -37,21 +37,17 @@ public class PanelDroiteJeu extends JPanel implements ActionListener
 
 	public class PanelPiocheMarcher extends JPanel
 	{
-		private Controleur ctrl;
-		private PanelDroiteJeu papa;
 		private CarteWagon carteWagon;
 		private JButton btnPrendCarte;
 
-		public PanelPiocheMarcher( Controleur ctrl, PanelDroiteJeu papa, CarteWagon carteWagon) {
-			this.ctrl = ctrl;
-			this.papa = papa;
+		public PanelPiocheMarcher( Controleur ctrl, PanelDroiteJeu panelDroiteJeu, CarteWagon carteWagon) {
+			
 			this.carteWagon = carteWagon;
-
 			this.btnPrendCarte = new JButton();
 
 			this.add(this.btnPrendCarte);
 
-			this.btnPrendCarte.addActionListener(papa);
+			this.btnPrendCarte.addActionListener(panelDroiteJeu);
 		}
 
 		@Override
@@ -106,6 +102,5 @@ public class PanelDroiteJeu extends JPanel implements ActionListener
 			}
 		}
 	}
-
 }
 

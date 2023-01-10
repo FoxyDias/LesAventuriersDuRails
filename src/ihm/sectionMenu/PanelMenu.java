@@ -2,6 +2,7 @@ package ihm.sectionMenu;
 
 import main.Controleur;
 import javax.swing.*;
+
 import java.awt.BorderLayout;
 
 public class PanelMenu extends JPanel
