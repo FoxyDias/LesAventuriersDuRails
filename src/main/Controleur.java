@@ -1,7 +1,8 @@
 package main;
 
 import ihm.FrameJeu;
-import ihm.sectionJeu.PanelGaucheJeu.PanelDispoParam;
+import ihm.sectionJeu.PanelDispoParam;
+import ihm.sectionJeu.PanelGaucheJeu;
 import ihm.sectionMenu.PanelCentreMenu;
 import metier.*;
 
@@ -18,7 +19,7 @@ public class Controleur {
     private Metier metier;
     private FrameJeu ihm;
     private int nbPiocheWagon = 0;
-    private PanelDispoParam panelDispoParam;
+    private PanelDispoParam panelDispoParam = new PanelDispoParam(this);
 
     public Controleur()
     {
