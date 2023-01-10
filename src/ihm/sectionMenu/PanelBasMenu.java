@@ -27,7 +27,7 @@ public class PanelBasMenu extends JPanel implements ActionListener
 		 * Activation des composants
 		 */
 		
-		this.btnQuitter.setBackground(Color.RED);
+		this.btnQuitter.setBackground(Color.WHITE);
 		this.btnQuitter.addActionListener(this);
 
 	}
