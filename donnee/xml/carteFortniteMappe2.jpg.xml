@@ -5,7 +5,7 @@
 			<coordonees x="256" y="252"/>
 			<coordoneesNom x="241" y="267"/>
 		</noeud>
-		<noeud nom="Tilted Tower">
+		<noeud nom="Titlted Tower">
 			<coordonees x="324" y="469"/>
 			<coordoneesNom x="324" y="469"/>
 		</noeud>
@@ -96,12 +96,6 @@
 			<wagons>2</wagons>
 		</arete>
 		<arete>
-			<noeudArr>0</noeudArr>
-			<noeudDep>16</noeudDep>
-			<couleur>[r=204,g=204,b=204]</couleur>
-			<wagons>2</wagons>
-		</arete>
-		<arete>
 			<noeudArr>16</noeudArr>
 			<noeudDep>7</noeudDep>
 			<couleur>[r=0,g=0,b=255]</couleur>
@@ -127,18 +121,6 @@
 		</arete>
 		<arete>
 			<noeudArr>15</noeudArr>
-			<noeudDep>1</noeudDep>
-			<couleur>[r=204,g=204,b=204]</couleur>
-			<wagons>1</wagons>
-		</arete>
-		<arete>
-			<noeudArr>15</noeudArr>
-			<noeudDep>13</noeudDep>
-			<couleur>[r=204,g=204,b=204]</couleur>
-			<wagons>4</wagons>
-		</arete>
-		<arete>
-			<noeudArr>15</noeudArr>
 			<noeudDep>3</noeudDep>
 			<couleur>[r=0,g=255,b=0]</couleur>
 			<wagons>3</wagons>
@@ -152,19 +134,13 @@
 		<arete>
 			<noeudArr>3</noeudArr>
 			<noeudDep>10</noeudDep>
-			<couleur>[r=204,g=204,b=204]</couleur>
+			<couleur>[r=255,g=102,b=0]</couleur>
 			<wagons>2</wagons>
 		</arete>
 		<arete>
 			<noeudArr>3</noeudArr>
 			<noeudDep>4</noeudDep>
 			<couleur>[r=255,g=0,b=0]</couleur>
-			<wagons>3</wagons>
-		</arete>
-		<arete>
-			<noeudArr>10</noeudArr>
-			<noeudDep>9</noeudDep>
-			<couleur>[r=0,g=255,b=0]</couleur>
 			<wagons>3</wagons>
 		</arete>
 		<arete>
@@ -178,12 +154,6 @@
 			<noeudDep>11</noeudDep>
 			<couleur>[r=255,g=0,b=255]</couleur>
 			<wagons>2</wagons>
-		</arete>
-		<arete>
-			<noeudArr>11</noeudArr>
-			<noeudDep>2</noeudDep>
-			<couleur>[r=204,g=204,b=204]</couleur>
-			<wagons>4</wagons>
 		</arete>
 		<arete>
 			<noeudArr>2</noeudArr>
@@ -251,15 +221,56 @@
 			<couleur>[r=0,g=255,b=0]</couleur>
 			<wagons>5</wagons>
 		</arete>
+		<arete>
+			<noeudArr>1</noeudArr>
+			<noeudDep>15</noeudDep>
+			<couleur>Neutre</couleur>
+			<wagons>2</wagons>
+		</arete>
+		<arete>
+			<noeudArr>13</noeudArr>
+			<noeudDep>15</noeudDep>
+			<couleur>Neutre</couleur>
+			<wagons>4</wagons>
+		</arete>
+		<arete>
+			<noeudArr>9</noeudArr>
+			<noeudDep>10</noeudDep>
+			<couleur>Neutre</couleur>
+			<wagons>2</wagons>
+		</arete>
+		<arete>
+			<noeudArr>11</noeudArr>
+			<noeudDep>2</noeudDep>
+			<couleur>Neutre</couleur>
+			<wagons>4</wagons>
+		</arete>
+		<arete>
+			<noeudArr>14</noeudArr>
+			<noeudDep>18</noeudDep>
+			<couleur>[r=255,g=255,b=0]</couleur>
+			<wagons>6</wagons>
+		</arete>
+		<arete>
+			<noeudArr>16</noeudArr>
+			<noeudDep>0</noeudDep>
+			<couleur>Neutre</couleur>
+			<wagons>2</wagons>
+		</arete>
 		<carteWagon>
-			<couleur>[r=255,g=0,b=0]</couleur>
-			<nombre>18</nombre>
-			<recto>imageCarte/Ferrari_F8_Tributo_2019_02dc2-615x410.jpg</recto>
+			<couleur>[r=255,g=0,b=255]</couleur>
+			<nombre>12</nombre>
+			<recto>imageCarte/8770-fiat-500-so-pink-edition-limitee-2010.jpg</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>Joker</couleur>
 			<nombre>22</nombre>
 			<recto>imageCarte/bb4b6a7797d7654958ea22320a84722a.jpg</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=255,g=102,b=0]</couleur>
+			<nombre>15</nombre>
+			<recto>imageCarte/bugatti_supercar.jpg</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=0,g=0,b=255]</couleur>
@@ -272,68 +283,58 @@
 			<recto>imageCarte/2gg958d.jpg</recto>
 		</carteWagon>
 		<carteWagon>
-			<couleur>[r=204,g=204,b=204]</couleur>
-			<nombre>13</nombre>
-			<recto>imageCarte/ppfzf80xaj.jpg</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=255,g=0,b=255]</couleur>
-			<nombre>12</nombre>
-			<recto>imageCarte/8770-fiat-500-so-pink-edition-limitee-2010.jpg</recto>
-		</carteWagon>
-		<carteWagon>
-			<couleur>[r=255,g=102,b=0]</couleur>
-			<nombre>15</nombre>
-			<recto>imageCarte/bugatti_supercar.jpg</recto>
-		</carteWagon>
-		<carteWagon>
 			<couleur>[r=255,g=255,b=0]</couleur>
 			<nombre>13</nombre>
 			<recto>imageCarte/1200-L-chevrolet-camaro-transformers-3-joue-la-comme-bumblebee.jpg</recto>
 		</carteWagon>
+		<carteWagon>
+			<couleur>[r=255,g=0,b=0]</couleur>
+			<nombre>18</nombre>
+			<recto>imageCarte/Ferrari_F8_Tributo_2019_02dc2-615x410.jpg</recto>
+		</carteWagon>
 		<carteObjectif>
-			<noeudArr>1</noeudArr>
-			<noeudDep>0</noeudDep>
+			<noeudArr>0</noeudArr>
+			<noeudDep>1</noeudDep>
 			<points>6</points>
 		</carteObjectif>
 		<carteObjectif>
-			<noeudArr>17</noeudArr>
-			<noeudDep>0</noeudDep>
+			<noeudArr>0</noeudArr>
+			<noeudDep>17</noeudDep>
+			<points>2</points>
+		</carteObjectif>
+		<carteObjectif>
+			<noeudArr>0</noeudArr>
+			<noeudDep>16</noeudDep>
 			<points>2</points>
 		</carteObjectif>
 		<carteObjectif>
 			<noeudArr>16</noeudArr>
-			<noeudDep>0</noeudDep>
+			<noeudDep>7</noeudDep>
 			<points>2</points>
 		</carteObjectif>
 		<carteObjectif>
-			<noeudArr>7</noeudArr>
-			<noeudDep>16</noeudDep>
-			<points>2</points>
-		</carteObjectif>
-		<carteObjectif>
-			<noeudArr>6</noeudArr>
-			<noeudDep>16</noeudDep>
+			<noeudArr>16</noeudArr>
+			<noeudDep>6</noeudDep>
 			<points>6</points>
 		</carteObjectif>
 		<carteObjectif>
-			<noeudArr>8</noeudArr>
-			<noeudDep>7</noeudDep>
+			<noeudArr>7</noeudArr>
+			<noeudDep>8</noeudDep>
 			<points>10</points>
 		</carteObjectif>
 		<carteObjectif>
-			<noeudArr>17</noeudArr>
-			<noeudDep>8</noeudDep>
+			<noeudArr>8</noeudArr>
+			<noeudDep>17</noeudDep>
 			<points>4</points>
 		</carteObjectif>
 		<carteObjectif>
-			<noeudArr>11</noeudArr>
-			<noeudDep>9</noeudDep>
+			<noeudArr>9</noeudArr>
+			<noeudDep>11</noeudDep>
 			<points>4</points>
 		</carteObjectif>
 		<carteObjectif>
-			<noeudArr>11</noeudArr>
-			<noeudDep>9</noeudDep>
+			<noeudArr>9</noeudArr>
+			<noeudDep>11</noeudDep>
 			<points>4</points>
 		</carteObjectif>
 	<details>
@@ -342,21 +343,21 @@
 		<nbWagonDebutPartie>60</nbWagonDebutPartie>
 		<nbWagonFinPartie>2</nbWagonFinPartie>
 		<nbPointsPlusLongChemin>10</nbPointsPlusLongChemin>
-		<txtNomMoyenDeTransport>voiture</txtNomMoyenDeTransport>
-		<txtRoute>Routes</txtRoute>
+		<txtNomMoyenDeTransport>voitures</txtNomMoyenDeTransport>
+		<txtRoute>routes</txtRoute>
 		<versoCarteWagon>imageCarte/voiture.jpg</versoCarteWagon>
 		<versoCarteObjectif>billet-cartonne-sncf.jpg</versoCarteObjectif>
-		<heightPanel>973.0</heightPanel>
-		<witdhPanel>927.0</witdhPanel>
+		<heightPanel>965.0</heightPanel>
+		<witdhPanel>942.0</witdhPanel>
 		<image>importe/FortniteMappe2.jpg</image>
 	</details>
 	<CouleurJoueurList>
 		<couleurJoueur>[r=0,g=0,b=255]</couleurJoueur>
 		<couleurJoueur>[r=255,g=0,b=0]</couleurJoueur>
-		<couleurJoueur>[r=255,g=255,b=51]</couleurJoueur>
+		<couleurJoueur>[r=153,g=153,b=0]</couleurJoueur>
 		<couleurJoueur>[r=51,g=255,b=51]</couleurJoueur>
-		<couleurJoueur>[r=51,g=255,b=204]</couleurJoueur>
-		<couleurJoueur>[r=153,g=153,b=153]</couleurJoueur>
+		<couleurJoueur>[r=153,g=0,b=255]</couleurJoueur>
+		<couleurJoueur>[r=0,g=0,b=0]</couleurJoueur>
 	</CouleurJoueurList>
 	<points>
 		<pointTaille>
