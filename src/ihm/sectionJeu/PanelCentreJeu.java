@@ -356,7 +356,7 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 					return;
 				}
 				
-				
+
 				a.setEstOccupe(true);
 				a.setOccupateur(joueur);
 				joueur.ajouterArete(a);
@@ -410,6 +410,8 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 				dialog.setVisible(true);
 			}
 		}
+
+		this.ctrl.getEstJoueurCourant().completeCarteObjectif();
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {}

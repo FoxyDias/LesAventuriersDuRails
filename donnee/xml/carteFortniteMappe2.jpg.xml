@@ -339,7 +339,7 @@
 	<details>
 		<nbJoueurMinDoubleArete>4</nbJoueurMinDoubleArete>
 		<nbJoueurMax>6</nbJoueurMax>
-		<nbWagonDebutPartie>500</nbWagonDebutPartie>
+		<nbWagonDebutPartie>60</nbWagonDebutPartie>
 		<nbWagonFinPartie>2</nbWagonFinPartie>
 		<nbPointsPlusLongChemin>10</nbPointsPlusLongChemin>
 		<txtNomMoyenDeTransport>voiture</txtNomMoyenDeTransport>

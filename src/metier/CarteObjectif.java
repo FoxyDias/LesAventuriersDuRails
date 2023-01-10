@@ -22,5 +22,7 @@ public class CarteObjectif {
 
     public int getNbPoints()    {return this.nbPoints;}
 
+    public void setAccomplie(boolean state)  {this.accomplie = state;}
+
     public boolean isAccomplie() {return this.accomplie;}
 }

@@ -172,6 +172,38 @@ public class Joueur {
         return "Joueur" + this.numJoueur;
     }
 
+    public int completeCarteObjectif()
+    {
+       int nbPoint = 0;
+       System.out.println("---------------------------------");
+       for(CarteObjectif co : this.mainObjectif)
+       {
+            
+            System.out.println("Joueur " + this.numJoueur + " : " + co.toString());
+            
+            Noeud n1 = co.getNoeudArr();
+
+            ArrayList<Arete> lstAreteValide = new ArrayList<Arete>();
+            ArrayList<Arete> lstAreteMorte  = new ArrayList<Arete>();
+
+            for(Arete a : this.lstArete)
+            {
+                if(a.getNoeudArr() == n1 || a.getNoeudDep() == n1)
+                {
+                    lstAreteValide.add(a);
+                }
+                else
+                {
+                    lstAreteMorte.add(a);
+                }
+            }
+
+        //            while(lstAreteValide.);
+       }
+       System.out.println("---------------------------------");
+       return 0;
+    }  
+
     public boolean isJoueurFinal(){return nbWagons <= 2;}
 
     public void retirerCarteObjectif(int indexcObjectif){this.mainObjectif.remove(indexcObjectif);}

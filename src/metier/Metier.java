@@ -91,17 +91,15 @@ public class Metier {
         /* Si un joueur a 2 || 1 || 0 cartes wagons dans sa main */
         for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++){
             
-            if(this.getEstJoueurCourant().getNbWagons() == getNbWagonFinPartie() || this.getEstJoueurCourant().getNbWagons() < getNbWagonFinPartie() )
-                //this.ctrl.recapFinPartie();
-                System.out.println("hehehe");
+            if(this.getEstJoueurCourant().getNbWagons() <= getNbWagonFinPartie() )
+                this.ctrl.recapFinPartie();
         }
 
         /* Si les joueurs n'ont plus assez de pions wagons pour prendre quelconque arêtes */
         for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++){
             for(Arete a : lstArete){
                 if(a.getWagon() > this.getEstJoueurCourant().getNbWagons())
-                    //this.ctrl.recapFinPartie();
-                    System.out.println("hehehe");
+                    this.ctrl.recapFinPartie();
                 
             }
         }
@@ -110,7 +108,6 @@ public class Metier {
         Joueur joueur = getEstJoueurCourant();
         if(lstArete.size() == joueur.getAlCheminsPtsCpts().size()){
             this.ctrl.recapFinPartie();
-            System.out.println("FLAG3");
         }
     }
 
