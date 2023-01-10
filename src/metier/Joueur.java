@@ -7,6 +7,9 @@ import ihm.sectionJeu.PanelHautJeu;
 
 public class Joueur {
 
+    private static int nbJoueur;
+    private int numJoueur;
+
     private Color couleur;
     private Metier metier;
 
@@ -21,6 +24,9 @@ public class Joueur {
 
     public Joueur(int wagons, Color coul, Metier metier)
     {
+        Joueur.nbJoueur++;
+        this.numJoueur = nbJoueur;
+
         this.couleur  = coul;
         this.nbWagons = wagons;
         this.metier   = metier;
@@ -164,8 +170,20 @@ public class Joueur {
         this.lstArete.add(a);
     }
 
+    public static void setNbJoueur(int nbJoueur) {
+        Joueur.nbJoueur = nbJoueur;
+    }
+
+    public static int getNbJoueur() {
+        return nbJoueur;
+    }
+
+    public int getNumJoueur() {
+        return numJoueur;
+    }
+
     public String toString(){
-        return "TA RACE YA PAS DE PSEUDO GROS";
+        return "Joueur" + this.numJoueur;
     }
 
     public boolean isJoueurFinal(){return nbWagons <= 2;}

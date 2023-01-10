@@ -560,6 +560,7 @@ public class Metier {
         }
 
         Element lstCouleurJoueur = racine.getChildren ( "mappe" ).get(0).getChild("CouleurJoueurList");
+        Joueur.setNbJoueur(0);
 
         for(Element c : lstCouleurJoueur.getChildren("couleurJoueur"))
         {
