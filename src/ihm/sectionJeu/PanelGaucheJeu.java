@@ -259,13 +259,13 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 				for(int i = 0; i < this.ctrl.getNbJoueurPartie(); i++)
 				{
 					this.donnees[i][0] = this.ctrl.getJoueur(i);
-					this.donnees[i][1] = this.ctrl.getJoueur(i).getCouleur();
+					this.donnees[i][1] = this.ctrl.getJoueur(i).getCouleur().toString().replace("java.awt.Color", "");
 					this.donnees[i][2] = this.ctrl.getJoueur(i).getNbPointsChemin();
 					this.donnees[i][3] = this.ctrl.getJoueur(i);
 					//this.donnees[i][2] = this.ctrl.getJoueur(i).getNbPointsObjectif();
 					this.donnees[i][4] = this.ctrl.getJoueur(i).getRouteLaPlusLongue();
 					this.donnees[i][5] = this.ctrl.getJoueur(i);
-					//this.donnees[i][5] = this.ctrl.getJoueur(i).getNbPointsTotal();
+					this.donnees[i][5] = this.ctrl.getJoueur(i).getNbPointsTotal();
 				}
 				
 				DefaultTableCellRenderer custom = new DefaultTableCellRenderer();
