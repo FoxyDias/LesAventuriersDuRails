@@ -107,11 +107,13 @@ public class PanelMainJoueur extends JPanel
 
 	public class PanelDispoInfoPossesion extends JPanel
 	{
+		private ArrayList<JLabel> listLblPossesion;
+
 		public PanelDispoInfoPossesion()
 		{
 			this.setLayout(new GridLayout(PanelMainJoueur.this.ctrl.getEstJoueurCourant().getLstArete().size() + 1 ,1));
 
-			this.add(new JLabel("Les arêtes que vous possedez : ",JLabel.CENTER));
+			this.add(new JLabel("Les arete que vous possedé :",JLabel.CENTER));
 
 			for(Arete a : PanelMainJoueur.this.ctrl.getEstJoueurCourant().getLstArete())
 				this.add(new JLabel("| " + String.format("%-20s",a.getNoeudDep().getNom()) + "<->" +String.format("%20s",a.getNoeudArr().getNom()) + " |",JLabel.CENTER));
@@ -242,7 +244,7 @@ public class PanelMainJoueur extends JPanel
 				colorList.add(new ColorName("Bisque", 0xFF, 0xE4, 0xC4));
 				colorList.add(new ColorName("Noir", 0x00, 0x00, 0x00));
 				colorList.add(new ColorName("BlanchedAlmond", 0xFF, 0xEB, 0xCD));
-				colorList.add(new ColorName("bleu", 0x00, 0x00, 0xFF));
+				colorList.add(new ColorName("Bleu", 0x00, 0x00, 0xFF));
 				colorList.add(new ColorName("Bleu-Violé", 0x8A, 0x2B, 0xE2));
 				colorList.add(new ColorName("Marron", 0xA5, 0x2A, 0x2A));
 				colorList.add(new ColorName("BurlyWood", 0xDE, 0xB8, 0x87));
@@ -264,7 +266,7 @@ public class PanelMainJoueur extends JPanel
 				colorList.add(new ColorName("Foncé OliveVert", 0x55, 0x6B, 0x2F));
 				colorList.add(new ColorName("Orange Foncé", 0xFF, 0x8C, 0x00));
 				colorList.add(new ColorName("Foncé Orchid", 0x99, 0x32, 0xCC));
-				colorList.add(new ColorName("rouge foncé", 0x8B, 0x00, 0x00));
+				colorList.add(new ColorName("Rouge foncé", 0x8B, 0x00, 0x00));
 				colorList.add(new ColorName("Foncé Salmon", 0xE9, 0x96, 0x7A));
 				colorList.add(new ColorName("Foncé SeaVert", 0x8F, 0xBC, 0x8F));
 				colorList.add(new ColorName("Foncé SlateBleu", 0x48, 0x3D, 0x8B));
@@ -278,7 +280,7 @@ public class PanelMainJoueur extends JPanel
 				colorList.add(new ColorName("FireBrick", 0xB2, 0x22, 0x22));
 				colorList.add(new ColorName("FloralBlanc", 0xFF, 0xFA, 0xF0));
 				colorList.add(new ColorName("ForestVert", 0x22, 0x8B, 0x22));
-				colorList.add(new ColorName("rose", 0xFF, 0x00, 0xFF));
+				colorList.add(new ColorName("Fuchsia", 0xFF, 0x00, 0xFF));
 				colorList.add(new ColorName("Gainsboro", 0xDC, 0xDC, 0xDC));
 				colorList.add(new ColorName("GhostBlanc", 0xF8, 0xF8, 0xFF));
 				colorList.add(new ColorName("Gold", 0xFF, 0xD7, 0x00));
@@ -309,7 +311,7 @@ public class PanelMainJoueur extends JPanel
 				colorList.add(new ColorName("Clair SlateGris", 0x77, 0x88, 0x99));
 				colorList.add(new ColorName("Clair Metalique-Bleu", 0xB0, 0xC4, 0xDE));
 				colorList.add(new ColorName("Clair Jaune", 0xFF, 0xFF, 0xE0));
-				colorList.add(new ColorName("verte", 0x00, 0xFF, 0x00));
+				colorList.add(new ColorName("Lime", 0x00, 0xFF, 0x00));
 				colorList.add(new ColorName("LimeVert", 0x32, 0xCD, 0x32));
 				colorList.add(new ColorName("Linen", 0xFA, 0xF0, 0xE6));
 				colorList.add(new ColorName("Magenta", 0xFF, 0x00, 0xFF));
@@ -333,7 +335,7 @@ public class PanelMainJoueur extends JPanel
 				colorList.add(new ColorName("Olive", 0x80, 0x80, 0x00));
 				colorList.add(new ColorName("OliveDrab", 0x6B, 0x8E, 0x23));
 				colorList.add(new ColorName("Orange", 0xFF, 0xA5, 0x00));
-				colorList.add(new ColorName("orange", 0xFF, 0x45, 0x00));
+				colorList.add(new ColorName("Orange Rouge", 0xFF, 0x45, 0x00));
 				colorList.add(new ColorName("Orchid", 0xDA, 0x70, 0xD6));
 				colorList.add(new ColorName("PaleGoldenRod", 0xEE, 0xE8, 0xAA));
 				colorList.add(new ColorName("PaleVert", 0x98, 0xFB, 0x98));
@@ -371,7 +373,7 @@ public class PanelMainJoueur extends JPanel
 				colorList.add(new ColorName("Wheat", 0xF5, 0xDE, 0xB3));
 				colorList.add(new ColorName("Blanc", 0xFF, 0xFF, 0xFF));
 				colorList.add(new ColorName("BlancSmoke", 0xF5, 0xF5, 0xF5));
-				colorList.add(new ColorName("jaune", 0xFF, 0xFF, 0x00));
+				colorList.add(new ColorName("Jaune", 0xFF, 0xFF, 0x00));
 				colorList.add(new ColorName("JauneVert", 0x9A, 0xCD, 0x32));
 				return colorList;
 			}
@@ -419,7 +421,7 @@ public class PanelMainJoueur extends JPanel
 		
 			public String getColorNameFromColor(Color color) {
 				if(color == null)
-					return "joker";
+					return "Joker";
 
 				return getColorNameFromRgb(color.getRed(), color.getGreen(),
 						color.getBlue());

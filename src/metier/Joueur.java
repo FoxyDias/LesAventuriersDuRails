@@ -193,13 +193,22 @@ public class Joueur {
         return "Joueur" + this.numJoueur;
     }
 
+    public int getMalusCarteObjectif()
+    {
+        int nbMalus =0;
+        for(CarteObjectif co : this.mainObjectif)
+            if(!co.isAccomplie())
+                nbMalus-=co.getNbPoints();
+        return nbMalus;
+    }
+
     public int completeCarteObjectif()
     {
        int nbPoint = 0;
        for(CarteObjectif co : this.mainObjectif)
        {
             if(co.isAccomplie()){
-                nbPoint = co.getNbPoints();
+                nbPoint += co.getNbPoints();
                 continue;
             }
             
@@ -207,8 +216,6 @@ public class Joueur {
 
             ArrayList<Arete> lstAreteValide = new ArrayList<Arete>();
             ArrayList<Arete> lstAreteMorte  = new ArrayList<Arete>();
-            ArrayList<Noeud> lstNoeudUtilise = new ArrayList<Noeud>();
-
             
             for(Arete a : this.lstArete)
             {
@@ -258,6 +265,7 @@ public class Joueur {
                     }
                 }
             }
+
        }
        return nbPoint;            
     }  
