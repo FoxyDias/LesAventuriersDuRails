@@ -154,11 +154,20 @@ public class Joueur {
     }
 
     public ArrayList<Arete> getLstArete() {
-        return lstArete;
+        return this.lstArete;
     }
 
     public Color getCouleur() {
         return this.couleur;
+    }
+
+    public String estPlusLong()
+    {
+        //if()
+        return "Oui";
+        //else()
+        //return "Non";
+
     }
 
     public void ajouterCarteWagon(CarteWagon cWagon){this.mainWagon.add(cWagon);}
@@ -169,7 +178,7 @@ public class Joueur {
     public ArrayList<CarteObjectif> getMainObjectif() {return this.mainObjectif;}
 
     public int getNbPoints() {
-        return nbPoints;
+        return this.nbPoints;
     }
 
     public void ajouterArete(Arete a){
@@ -191,15 +200,6 @@ public class Joueur {
 
     public String toString(){
         return "Joueur" + this.numJoueur;
-    }
-
-    public int getMalusCarteObjectif()
-    {
-        int nbMalus =0;
-        for(CarteObjectif co : this.mainObjectif)
-            if(!co.isAccomplie())
-                nbMalus-=co.getNbPoints();
-        return nbMalus;
     }
 
     public int completeCarteObjectif()
@@ -270,9 +270,19 @@ public class Joueur {
        return nbPoint;            
     }  
 
-    public boolean isJoueurFinal(){return nbWagons <= 2;}
+    public int getMalusCarteObjectif()
+    {
+        int nbMalus =0;
+        for(CarteObjectif co : this.mainObjectif)
+            if(!co.isAccomplie())
+                nbMalus+=co.getNbPoints();
+
+        return nbMalus;
+    }
+
+    public boolean isJoueurFinal(){return this.nbWagons <= 2;}
 
     public void retirerCarteObjectif(int indexcObjectif){this.mainObjectif.remove(indexcObjectif);}
 
-    public int getNbPointsTotal() { return this.getNbPointsChemin() + this.completeCarteObjectif(); }
+    public int getNbPointsTotal() { return this.getNbPointsChemin() + this.completeCarteObjectif() - this.getMalusCarteObjectif(); }
 }

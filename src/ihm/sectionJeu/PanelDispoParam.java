@@ -71,12 +71,13 @@ public class PanelDispoParam extends JPanel implements ActionListener
         this.dialogRecap.setBounds(400,300,1200,500);
         this.dialogRecap.setResizable(false);
         this.dialogRecap.setModalityType(JDialog.ModalityType.APPLICATION_MODAL);
+        this.dialogRecap.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 
         JPanel panelBtn 		= new JPanel(new FlowLayout(FlowLayout.CENTER, 0,50));
 
         this.btnValiderRecap 	= new JButton("Quitter");
         this.btnValiderRecap.setBackground(Color.WHITE);
-        this.donnees 			= new Object[this.ctrl.getNbJoueurPartie()][6];
+        this.donnees 			= new Object[this.ctrl.getNbJoueurPartie()][8];
         this.tableRecap 		= new JTable(this.donnees, this.entetes);
         this.tableRecap.setEnabled(false);
 
@@ -86,13 +87,11 @@ public class PanelDispoParam extends JPanel implements ActionListener
             this.donnees[i][0] = this.ctrl.getJoueur(i);
             this.donnees[i][1] = this.ctrl.getJoueur(i).getCouleur().toString().replace("java.awt.Color", "");
             this.donnees[i][2] = this.ctrl.getJoueur(i).getNbPointsChemin();
-            this.donnees[i][3] = this.ctrl.getJoueur(i);
-            //this.donnees[i][2] = this.ctrl.getJoueur(i).getNbPointsObjectif();
+            this.donnees[i][3] = this.ctrl.getJoueur(i).completeCarteObjectif();
             this.donnees[i][4] = this.ctrl.getJoueur(i).getRouteLaPlusLongue();
             this.donnees[i][5] = this.ctrl.getJoueur(i);
             //this.donnees[i][5] = this.ctrl.getJoueur(i).estPlusLong();
-            this.donnees[i][6] = this.ctrl.getJoueur(i);
-            //this.donnees[i][6] = this.ctrl.getJoueur(i).getMalusCarteObjectif();
+            this.donnees[i][6] = this.ctrl.getJoueur(i).getMalusCarteObjectif();
             this.donnees[i][7] = this.ctrl.getJoueur(i).getNbPointsTotal();
         }
         

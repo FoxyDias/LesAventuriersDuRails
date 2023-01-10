@@ -147,137 +147,11 @@ public class Metier {
             piocherObjectifRandom();
     }
 
-    private boolean tourPiocher(Joueur joueurActuel)
-    {
-        String  choixWagons;
-        Scanner sc = new Scanner(System.in);
-        boolean droitMulti = true;
-
-        for(int nbPioche = 0; nbPioche < 2; nbPioche++)
-        {
-            /* En cas de joker dès les 3 premières cartes */
-            for(CarteWagon cw : this.lstPiocheWagon)
-                if(cw.getCouleur().equals("Joker"))
-                    droitMulti = false; 
-
-            /* Choix entre les cartes */
-            System.out.println("Choisissez ce que vous voulez piocher parmis : ");
-            this.afficherPioche();
-
-            choixWagons = sc.nextLine().toLowerCase();
-            if(!droitMulti && choixWagons.equals("joker"))
-            {
-                System.out.println("Vous n'avez pas le droit de prendre un Joker");
-                choixWagons = sc.nextLine().toLowerCase();
-            }
-
-            while(!choixWagons(joueurActuel, choixWagons) && !(choixWagons.equals("quitter")))
-            {
-                if(!droitMulti && choixWagons.equals("joker"))
-                    System.out.println("Vous n'avez pas le droit de prendre un Joker");
-                else
-                    System.out.println("Erreur de choix");
-
-                choixWagons = sc.nextLine();
-            }
-            
-            if(choixWagons.equals("quitter"))
-                return false;
-
-            for(CarteWagon cw : this.lstPiocheWagon)
-                if(cw.getCouleur().equals("Joker"))
-                    droitMulti = false;
-        }
-        return true;
-    }
-
-    private void afficherPioche() 
-    {
-        for( CarteWagon cw : this.lstPiocheWagon )
-            System.out.println(cw.getCouleur());
-    }
-
-    private boolean tourChoixArete(Joueur joueurActuel)
-    {
-        System.out.println("Quelle arête voulez-vous ? ");
-        afficherArete();
-
-        Scanner sc = new Scanner(System.in);
-        String choixArete = sc.nextLine().toLowerCase();
-        Arete a = this.lstArete.get(Integer.parseInt(choixArete));
-
-        if(joueurActuel.placerWagon(a.getWagon()) != a.getEstOccupe()){
-            System.out.println("Ouais c ajté :)");
-            return true;
-        }
-        
-        if(joueurActuel.placerWagon(a.getWagon()) == a.getEstOccupe()){
-            System.out.println("Arête déjà occupée");
-            return true;
-        }
-        return false;
-    }
-
     public void afficherArete(){
         int cpt = 0;
         for(Arete a : lstArete){
             System.out.println(cpt + " : " + a.getNoeudDep().getNom() + " --- " + a.getNoeudArr().getNom());
             cpt++;
-        }
-    }
-
-    private boolean tourCarte(Joueur joueurActuel)
-    {
-        return true;
-    }
-
-    private boolean choixWagons(Joueur joueur, String choix){
-        if (choix == null) return false;
-
-        for(int i =0; i<this.lstPiocheWagon.size(); i++)
-            if (choix.equals(this.lstPiocheWagon.get(i).getCouleur().toLowerCase())){
-                joueur.ajouterCarteWagon(this.lstPiocheWagon.get(i));
-                this.lstDefausseWagon.add(this.lstPiocheWagon.get(i));
-                this.lstPiocheWagon.remove(i);
-                this.piocherWagonRandom();
-                return true;
-            }
-        return false;
-    }
-
-    private void calculPointObjectif(Joueur j)
-    {
-        boolean suite = false;
-        for( CarteObjectif co : j.getMainObjectif() )
-        {
-            Noeud n1 = co.getNoeudDep();
-            for(Noeud n : this.hsmJoueurNoeud.get(j) )
-            {
-                if(n1 == n)
-                {
-                    suite = true;
-                    break;
-                }
-            }
-            if(suite)
-            {
-                Noeud n2 = co.getNoeudArr();
-                suite = false;
-                for(Noeud n : this.hsmJoueurNoeud.get(j) )
-                {
-                    if(n2 == n)
-                    {
-                        suite = true;
-                        break;
-                    }
-                }
-                if(suite)
-                    j.rajouterPoint(co.getNbPoints());
-                else
-                    j.rajouterPoint(co.getNbPoints() * -1);
-            }
-            else
-                j.rajouterPoint(co.getNbPoints() * -1);
         }
     }
 
@@ -585,7 +459,7 @@ public class Metier {
         this.lstCarteObjectif.add( co );
     }
 
-    public void  creerCarteWagon( String c, String s )
+    public void creerCarteWagon( String c, String s )
     {
         CarteWagon cw = new CarteWagon( c );
         if(!(s == null))
