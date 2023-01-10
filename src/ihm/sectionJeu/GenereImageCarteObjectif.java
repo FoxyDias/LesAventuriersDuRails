@@ -52,10 +52,17 @@ public class GenereImageCarteObjectif extends JPanel
 
 		g2d.setStroke(new BasicStroke(10));
 		g2d.drawRect(0, 0, this.getWidth(), this.getHeight());
+		g2d.setColor(Color.DARK_GRAY);
+		g2d.setStroke(new BasicStroke(3));
+		g2d.drawRect(0, 0, this.getWidth(), this.getHeight());
 		
+		g2d.setColor(Color.WHITE);
+		g2d.fillRect(this.getWidth() - 55, this.getHeight()-55, 50, 50);
+
 		g2d.setColor(Color.BLACK);
+		g2d.drawRect(this.getWidth() - 55, this.getHeight()-55, 50, 50);
 		g2d.setFont(new Font("Courier", Font.BOLD, 40));
-		g2d.drawString(this.carteObjectif.getNbPoints() +"", this.getWidth() - 50, 45);
+		g2d.drawString(this.carteObjectif.getNbPoints() +"", this.getWidth() - 50, this.getHeight()-15);
 	}
 
 	private void drawNoeud(Noeud noeud, Graphics g)

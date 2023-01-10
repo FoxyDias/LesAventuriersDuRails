@@ -2,6 +2,7 @@ package ihm.sectionJeu;
 
 import java.awt.*;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -9,6 +10,7 @@ import javax.swing.JScrollBar;
 
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
+import java.io.File;
 
 import main.Controleur;
 import metier.CarteObjectif;
@@ -23,6 +25,7 @@ public class PanelMainJoueur extends JPanel
 		this.ctrl = ctrl;
 		this.setSize(600,1000);
 		this.setLayout(new GridLayout(2,1,5,5));
+		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
 
 		this.add(new PanelDispoCarteWagon());
@@ -41,6 +44,7 @@ public class PanelMainJoueur extends JPanel
 		public PanelDispoCarteWagon()
 		{
 			this.setLayout(new BorderLayout());
+		
 			this.lblInfoNumeroCarte = new JLabel("", JLabel.CENTER);
 			this.panelCoulCarteWagon = new JPanel();
 			this.lblCoulCarteWagon = new JLabel();
@@ -49,6 +53,7 @@ public class PanelMainJoueur extends JPanel
 			this.scrollBar.setUnitIncrement(1);
 			this.scrollBar.setBlockIncrement(1);
 			this.scrollBar.setBackground(Color.WHITE);
+			this.scrollBar.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
 			this.initValeurCarteWagon();
 
@@ -102,6 +107,7 @@ public class PanelMainJoueur extends JPanel
 			this.scrollBar.setUnitIncrement(1);
 			this.scrollBar.setBlockIncrement(1);
 			this.scrollBar.setBackground(Color.WHITE);
+			this.scrollBar.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
 			this.initValeurCarteObjectif();
 			
@@ -142,7 +148,7 @@ public class PanelMainJoueur extends JPanel
 		public PanelInformationCarte()
 		{
 			this.setLayout(new GridLayout(8,2,0,5));
-
+			
 			JLabel lblNbCouleurRouge	= new JLabel("" + PanelMainJoueur.this.ctrl.getEstJoueurCourant().getNbCarteWagon(), JLabel.CENTER);
 			JLabel lblLibelleRouge		= new JLabel(" Cartes rouges : ", JLabel.LEFT);
 			JLabel lblNbCouleurBleu		= new JLabel("" + PanelMainJoueur.this.ctrl.getEstJoueurCourant().getNbCarteWagon(), JLabel.CENTER);
