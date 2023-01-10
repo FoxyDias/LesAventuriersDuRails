@@ -5,13 +5,13 @@
 			<coordonees x="256" y="252"/>
 			<coordoneesNom x="241" y="267"/>
 		</noeud>
-		<noeud nom="Titlted Tower">
+		<noeud nom="Tilted Tower">
 			<coordonees x="324" y="469"/>
-			<coordoneesNom x="324" y="469"/>
+			<coordoneesNom x="372" y="493"/>
 		</noeud>
 		<noeud nom="Retail Row">
 			<coordonees x="706" y="519"/>
-			<coordoneesNom x="691" y="534"/>
+			<coordoneesNom x="752" y="526"/>
 		</noeud>
 		<noeud nom="Salty Springs">
 			<coordonees x="528" y="603"/>
@@ -19,7 +19,7 @@
 		</noeud>
 		<noeud nom="Fatal Fields">
 			<coordonees x="571" y="761"/>
-			<coordoneesNom x="556" y="776"/>
+			<coordoneesNom x="618" y="787"/>
 		</noeud>
 		<noeud nom="Greasy Grove">
 			<coordonees x="184" y="616"/>
@@ -39,15 +39,15 @@
 		</noeud>
 		<noeud nom="Tomato Town">
 			<coordonees x="620" y="274"/>
-			<coordoneesNom x="605" y="289"/>
+			<coordoneesNom x="629" y="266"/>
 		</noeud>
 		<noeud nom="Dusty Depot">
 			<coordonees x="599" y="428"/>
 			<coordoneesNom x="584" y="443"/>
 		</noeud>
 		<noeud nom="Wailing Woods">
-			<coordonees x="789" y="254"/>
-			<coordoneesNom x="774" y="269"/>
+			<coordonees x="797" y="252"/>
+			<coordoneesNom x="799" y="251"/>
 		</noeud>
 		<noeud nom="Lonely Lodge">
 			<coordonees x="1099" y="412"/>
@@ -59,11 +59,11 @@
 		</noeud>
 		<noeud nom="Moisty Mire">
 			<coordonees x="808" y="779"/>
-			<coordoneesNom x="796" y="794"/>
+			<coordoneesNom x="841" y="779"/>
 		</noeud>
 		<noeud nom="Shifty Shaft">
 			<coordonees x="334" y="619"/>
-			<coordoneesNom x="325" y="621"/>
+			<coordoneesNom x="333" y="616"/>
 		</noeud>
 		<noeud nom="Haunted Hills">
 			<coordonees x="96" y="140"/>
@@ -71,7 +71,7 @@
 		</noeud>
 		<noeud nom="Loot Lake">
 			<coordonees x="395" y="339"/>
-			<coordoneesNom x="380" y="354"/>
+			<coordoneesNom x="388" y="335"/>
 		</noeud>
 		<noeud nom="Lucky Landing">
 			<coordonees x="525" y="934"/>
@@ -257,6 +257,30 @@
 			<couleur>Neutre</couleur>
 			<wagons>2</wagons>
 		</arete>
+		<arete>
+			<noeudArr>0</noeudArr>
+			<noeudDep>6</noeudDep>
+			<couleur>[r=255,g=0,b=255]</couleur>
+			<wagons>3</wagons>
+		</arete>
+		<arete>
+			<noeudArr>4</noeudArr>
+			<noeudDep>15</noeudDep>
+			<couleur>[r=0,g=0,b=255]</couleur>
+			<wagons>4</wagons>
+		</arete>
+		<arete>
+			<noeudArr>4</noeudArr>
+			<noeudDep>13</noeudDep>
+			<couleur>[r=255,g=102,b=0]</couleur>
+			<wagons>5</wagons>
+		</arete>
+		<arete>
+			<noeudArr>13</noeudArr>
+			<noeudDep>4</noeudDep>
+			<couleur>Neutre</couleur>
+			<wagons>5</wagons>
+		</arete>
 		<carteWagon>
 			<couleur>[r=255,g=0,b=255]</couleur>
 			<nombre>12</nombre>
@@ -293,48 +317,48 @@
 			<recto>imageCarte/Ferrari_F8_Tributo_2019_02dc2-615x410.jpg</recto>
 		</carteWagon>
 		<carteObjectif>
-			<noeudArr>0</noeudArr>
-			<noeudDep>1</noeudDep>
+			<noeudArr>1</noeudArr>
+			<noeudDep>0</noeudDep>
 			<points>6</points>
 		</carteObjectif>
 		<carteObjectif>
-			<noeudArr>0</noeudArr>
-			<noeudDep>17</noeudDep>
+			<noeudArr>17</noeudArr>
+			<noeudDep>0</noeudDep>
 			<points>2</points>
 		</carteObjectif>
 		<carteObjectif>
-			<noeudArr>0</noeudArr>
+			<noeudArr>16</noeudArr>
+			<noeudDep>0</noeudDep>
+			<points>2</points>
+		</carteObjectif>
+		<carteObjectif>
+			<noeudArr>7</noeudArr>
 			<noeudDep>16</noeudDep>
 			<points>2</points>
 		</carteObjectif>
 		<carteObjectif>
-			<noeudArr>16</noeudArr>
-			<noeudDep>7</noeudDep>
-			<points>2</points>
-		</carteObjectif>
-		<carteObjectif>
-			<noeudArr>16</noeudArr>
-			<noeudDep>6</noeudDep>
+			<noeudArr>6</noeudArr>
+			<noeudDep>16</noeudDep>
 			<points>6</points>
 		</carteObjectif>
 		<carteObjectif>
-			<noeudArr>7</noeudArr>
-			<noeudDep>8</noeudDep>
+			<noeudArr>8</noeudArr>
+			<noeudDep>7</noeudDep>
 			<points>10</points>
 		</carteObjectif>
 		<carteObjectif>
-			<noeudArr>8</noeudArr>
-			<noeudDep>17</noeudDep>
+			<noeudArr>17</noeudArr>
+			<noeudDep>8</noeudDep>
 			<points>4</points>
 		</carteObjectif>
 		<carteObjectif>
-			<noeudArr>9</noeudArr>
-			<noeudDep>11</noeudDep>
+			<noeudArr>11</noeudArr>
+			<noeudDep>9</noeudDep>
 			<points>4</points>
 		</carteObjectif>
 		<carteObjectif>
-			<noeudArr>9</noeudArr>
-			<noeudDep>11</noeudDep>
+			<noeudArr>11</noeudArr>
+			<noeudDep>9</noeudDep>
 			<points>4</points>
 		</carteObjectif>
 	<details>
@@ -345,9 +369,9 @@
 		<nbPointsPlusLongChemin>10</nbPointsPlusLongChemin>
 		<txtNomMoyenDeTransport>voitures</txtNomMoyenDeTransport>
 		<txtRoute>routes</txtRoute>
-		<versoCarteWagon>imageCarte/voiture.jpg</versoCarteWagon>
+		<versoCarteWagon>fortnite.png</versoCarteWagon>
 		<versoCarteObjectif>billet-cartonne-sncf.jpg</versoCarteObjectif>
-		<heightPanel>965.0</heightPanel>
+		<heightPanel>951.0</heightPanel>
 		<witdhPanel>942.0</witdhPanel>
 		<image>importe/FortniteMappe2.jpg</image>
 	</details>
