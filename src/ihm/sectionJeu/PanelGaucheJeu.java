@@ -28,7 +28,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 {
 	private Controleur ctrl;
 	private JButton btnPiocheCarteWagon;
-	private JButton btnFinDuTour;
 	private JButton btnPiocheCarteObjectif;
 	private JButton btnArreterPartie;
 
@@ -38,7 +37,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 	private JButton btnValider;
 	private JButton btnAnnuler;
 	protected int nbPopUp = 1;
-	private   int cpt 	  = 0;
 
 	public PanelGaucheJeu(Controleur ctrl)
 	{
@@ -70,19 +68,16 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		this.btnPiocheCarteWagon 		= new JButton(imageIconBtnPiocheCarteWagon);
 		this.btnPiocheCarteObjectif 	= new JButton(imageIconBtnPiocheCarteObjectif);
-		this.btnFinDuTour 				= new JButton("Fin du tour");
 		this.btnArreterPartie 			= new JButton("Arrêter la partie");
 
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
 		this.btnPiocheCarteWagon.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		this.btnPiocheCarteObjectif.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		this.btnFinDuTour.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		this.btnArreterPartie.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
 		this.btnPiocheCarteWagon.setBackground(Color.WHITE);
 		this.btnPiocheCarteObjectif.setBackground(Color.WHITE);
-		this.btnFinDuTour.setBackground(Color.WHITE);
 		this.btnArreterPartie.setBackground(Color.WHITE);
 
 
@@ -112,7 +107,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		this.btnPiocheCarteWagon.addActionListener(this);
 		this.btnPiocheCarteObjectif.addActionListener(this);
-		this.btnFinDuTour.addActionListener(this);
 		this.btnArreterPartie.addActionListener(this);
 	}
 
@@ -157,11 +151,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			
 		}
 
-		if(e.getSource() == this.btnFinDuTour)
-		{
-			this.ctrl.avancerJoueur();
-		}
-
 		if(e.getSource() == this.btnPiocheCarteObjectif)
 		{
 			this.creerPopUpCarteObjectif();
@@ -194,9 +183,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		}
 
 		if(e.getSource() == this.btnAnnuler)
-		{
 			this.dialog.dispose();
-		}
 	}
 
 	public void griserCarteObjectif(boolean b) {
@@ -210,7 +197,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 	{
 		private Controleur ctrl;
 		private JButton btnVisualisation;
-		private JButton btnFinTour;
 		private JButton btnFinPartie;
 		private JButton btnValiderRecap;
 		private JDialog dialogRecap;
@@ -229,9 +215,8 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			this.setLayout(new BorderLayout());
 			this.btnVisualisation = new JButton("Visualiser mes cartes");
 			this.btnFinPartie = new JButton("Arrêter la partie");
-			this.btnFinTour = new JButton("Fin du tour");
 
-			JPanel panelVisualiser  = new JPanel(new FlowLayout(FlowLayout.CENTER,0, 60));
+			JPanel panelVisualiser  = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
 			JPanel panelDispoBtnBas = new JPanel(new GridLayout(1,2));
 
 			/**
@@ -239,9 +224,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			 */
 			 
 			panelVisualiser.add(this.btnVisualisation);
-
 			panelDispoBtnBas.add(this.btnFinPartie);
-			panelDispoBtnBas.add(this.btnFinTour);
 
 			this.add(panelVisualiser, BorderLayout.CENTER);
 			this.add(panelDispoBtnBas,BorderLayout.SOUTH);
@@ -251,7 +234,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			 */
 			this.btnVisualisation.addActionListener(this);
 			this.btnFinPartie.addActionListener(this);
-			this.btnFinTour.addActionListener(this);
 		}
 
 		public void recapFinPartie()
@@ -329,9 +311,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 			if(e.getSource() == this.btnFinPartie)
 				this.recapFinPartie();
-
-			if(e.getSource() == this.btnFinTour)
-				this.ctrl.avancerJoueur();
 
 			if(e.getSource() == this.btnValiderRecap)
 			{	

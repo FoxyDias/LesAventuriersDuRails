@@ -27,7 +27,7 @@ public class PanelMainJoueur extends JPanel
 
 		this.add(new PanelDispoCarteWagon());
 		this.add(new PanelDispoCarteObjectif());	
-		//this.add(new PanelInformationCarte());
+		this.add(new PanelInformationCarte());
 		this.repaint();	
 	}
 
@@ -144,19 +144,19 @@ public class PanelMainJoueur extends JPanel
 			this.setLayout(new GridLayout(8,2,0,5));
 
 			JLabel lblNbCouleurRouge	= new JLabel("" + PanelMainJoueur.this.ctrl.getEstJoueurCourant().getNbCarteWagon(), JLabel.CENTER);
-			JLabel lblLibelleRouge		= new JLabel(" Cartes de couleur rouges : ", JLabel.LEFT);
+			JLabel lblLibelleRouge		= new JLabel(" Cartes rouges : ", JLabel.LEFT);
 			JLabel lblNbCouleurBleu		= new JLabel("" + PanelMainJoueur.this.ctrl.getEstJoueurCourant().getNbCarteWagon(), JLabel.CENTER);
-			JLabel lblLibelleBleu		= new JLabel(" Cartes de couleur bleues : ", JLabel.LEFT);
+			JLabel lblLibelleBleu		= new JLabel(" Cartes bleues : ", JLabel.LEFT);
 			JLabel lblNbCouleurVert		= new JLabel("" +PanelMainJoueur.this.ctrl.getEstJoueurCourant().getNbCarteWagon(), JLabel.CENTER);
-			JLabel lblLibelleVert		= new JLabel(" Cartes de couleur vertes : ", JLabel.LEFT);
+			JLabel lblLibelleVert		= new JLabel(" Cartes vertes : ", JLabel.LEFT);
 			JLabel lblNbCouleurJaune	= new JLabel("" + PanelMainJoueur.this.ctrl.getEstJoueurCourant().getNbCarteWagon(), JLabel.CENTER);
-			JLabel lblLibelleJaune		= new JLabel(" Cartes de couleur jaunes : ", JLabel.LEFT);
+			JLabel lblLibelleJaune		= new JLabel(" Cartes jaunes : ", JLabel.LEFT);
 			JLabel lblNbCouleurRose 	= new JLabel("" + PanelMainJoueur.this.ctrl.getEstJoueurCourant().getNbCarteWagon(), JLabel.CENTER);
-			JLabel lblLibelleRose		= new JLabel(" Cartes de couleur roses : ", JLabel.LEFT);
+			JLabel lblLibelleRose		= new JLabel(" Cartes roses : ", JLabel.LEFT);
 			JLabel lblNbCouleurOrange	= new JLabel("" + PanelMainJoueur.this.ctrl.getEstJoueurCourant().getNbCarteWagon(), JLabel.CENTER);
-			JLabel lblLibelleOrange		= new JLabel(" Cartes de couleur oranges : ", JLabel.LEFT);
+			JLabel lblLibelleOrange		= new JLabel(" Cartes oranges : ", JLabel.LEFT);
 			JLabel lblNbCouleurGris		= new JLabel("" + PanelMainJoueur.this.ctrl.getEstJoueurCourant().getNbCarteWagon(), JLabel.CENTER);
-			JLabel lblLibelleGris		= new JLabel(" Cartes de couleur grises : ", JLabel.LEFT);
+			JLabel lblLibelleGris		= new JLabel(" Cartes grises : ", JLabel.LEFT);
 			JLabel lblNbCouleurMulti 	= new JLabel("" + PanelMainJoueur.this.ctrl.getEstJoueurCourant().getNbCarteWagon(), JLabel.CENTER);
 			JLabel lblLibelleMulti		= new JLabel(" Cartes multicouleurs : ", JLabel.LEFT);
 

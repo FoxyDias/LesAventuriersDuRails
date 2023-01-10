@@ -216,6 +216,8 @@ public class Controleur {
 		}
     }
 
+    public Color RGBtoColor(String couleur) { return this.metier.RGBtoColor(couleur); }
+
     /**
      * Le main du projet
      * @param args

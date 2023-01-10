@@ -530,12 +530,12 @@ public class Metier {
         Collections.shuffle(this.lstCarteObjectif);
     }
 
-    private Color RGBtoColor(String couleur) 
+    public Color RGBtoColor(String couleur) 
     {
         return new Color(Integer.parseInt(couleur.split(",")[0]), Integer.parseInt(couleur.split(",")[1]) , Integer.parseInt(couleur.split(",")[2]));
     }
 
-    private String stringToRGB(String c) {
+    public String stringToRGB(String c) {
         int r = Integer.parseInt(c.split(",")[0].substring(3));
         int g = Integer.parseInt(c.split(",")[1].substring(2));
         int b = Integer.parseInt(c.split(",")[2].substring(2).replace("]", ""));

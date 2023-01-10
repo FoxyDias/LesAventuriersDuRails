@@ -3,8 +3,6 @@ package metier;
 import java.awt.*;
 import java.util.ArrayList;
 
-import ihm.sectionJeu.PanelHautJeu;
-
 public class Joueur {
 
     private static int nbJoueur;
@@ -44,20 +42,24 @@ public class Joueur {
      * Renvoi le nombre de points des chemins du joueur
      */
     public int getNbPointsChemin() {
-        //Les points d'une arête sont calculés par rapport aux nombres de wagons nécessaires pour la parcourire
+        //Les points d'une arête sont calculés par rapport aux nombres de wagons nécessaires pour la parcourir
         for (Arete a : this.lstArete){
-            if( this.alCheminsPtsCpts.size() != 0){
-                for(Arete b : this.alCheminsPtsCpts){
-                    /* Si l'arête a déjà étée comptabilisée on augmente pas le nbPoints */
+            if(this.alCheminsPtsCpts.size() != 0){
+                for(Arete b : this.alCheminsPtsCpts)
+                {
+                    /* Si l'arête a déjà été comptabilisée on augmente pas le nbPoints */
                     if(a.equals(b))
                         return nbPoints;   
-                    else{
+                    else
+                    {
                         /* Sinon on augmente le nbPoints et on l'ajoute dans l'arrayList des arêtes déjà comptabilisées */
                         this.nbPoints += metier.getPointsTailleAretes(a.getWagon());
                         this.alCheminsPtsCpts.add(a);
                     }
                 }
-            }else{
+            }
+            else
+            {
                 /* Pour le premier cas si aucun joueurs n'a d'arêtes */
                 this.nbPoints += this.metier.getPointsTailleAretes(a.getWagon());
                 this.alCheminsPtsCpts.add(a);
@@ -189,4 +191,6 @@ public class Joueur {
     public boolean isJoueurFinal(){return nbWagons <= 2;}
 
     public void retirerCarteObjectif(int indexcObjectif){this.mainObjectif.remove(indexcObjectif);}
+
+    public int getNbPointsTotal() { return this.getNbPointsChemin() + this.routeLaPlusLongue; }
 }
