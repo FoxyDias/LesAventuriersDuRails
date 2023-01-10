@@ -1,12 +1,19 @@
 package ihm.sectionJeu;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+import java.awt.GridLayout;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 import main.Controleur;
 import metier.CarteWagon;
 
-import javax.swing.*;
 
-import java.awt.*;
-import java.awt.event.*;
 
 public class PanelDroiteJeu extends JPanel implements ActionListener
 {

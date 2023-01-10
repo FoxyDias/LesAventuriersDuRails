@@ -1,8 +1,13 @@
 package ihm.sectionJeu;
 
 import main.Controleur;
-import metier.*;
-import java.awt.*;
+import metier.Arete;
+import metier.Joueur;
+import metier.Noeud;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;

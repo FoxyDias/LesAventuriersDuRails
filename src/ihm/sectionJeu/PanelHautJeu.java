@@ -10,7 +10,7 @@ import java.awt.GridLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
-import java.awt.*;
+import java.awt.Font;
 
 public class PanelHautJeu extends JPanel
 {

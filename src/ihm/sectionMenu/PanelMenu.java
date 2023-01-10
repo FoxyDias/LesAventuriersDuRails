@@ -1,7 +1,7 @@
 package ihm.sectionMenu;
 
 import main.Controleur;
-import javax.swing.*;
+import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
 

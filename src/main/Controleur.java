@@ -3,9 +3,16 @@ package main;
 import ihm.FrameJeu;
 import ihm.sectionJeu.PanelDispoParam;
 import ihm.sectionMenu.PanelCentreMenu;
-import metier.*;
 
-import java.awt.*;
+import metier.Metier;
+import metier.Arete;
+import metier.Joueur;
+import metier.CarteObjectif;
+import metier.CarteWagon;
+import metier.Noeud;
+
+import java.awt.Color;
+
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;

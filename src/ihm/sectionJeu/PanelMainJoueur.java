@@ -1,17 +1,19 @@
 package ihm.sectionJeu;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
-
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import main.Controleur;
 import metier.Arete;
@@ -60,9 +62,9 @@ public class PanelMainJoueur extends JPanel
 			this.scrollBar.setBackground(Color.white);
 			this.scrollBar.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-			this.initValeurCarteWagon();
-
 			this.panelCoulCarteWagon.add(this.lblCoulCarteWagon);
+
+			this.initValeurCarteWagon();
 
 			this.add(this.lblInfoNumeroCarte,BorderLayout.NORTH);
 			this.add(this.scrollBar,BorderLayout.SOUTH);
@@ -107,7 +109,7 @@ public class PanelMainJoueur extends JPanel
 
 	public class PanelDispoInfoPossesion extends JPanel
 	{
-		private ArrayList<JLabel> listLblPossesion;
+		
 
 		public PanelDispoInfoPossesion()
 		{

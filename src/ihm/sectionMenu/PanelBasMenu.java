@@ -1,8 +1,11 @@
 package ihm.sectionMenu;
 
 import main.Controleur;
-import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+
 import java.awt.Color;
 
 public class PanelBasMenu extends JPanel implements ActionListener

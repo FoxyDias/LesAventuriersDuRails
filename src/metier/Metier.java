@@ -2,12 +2,13 @@ package metier;
 
 import main.Controleur;
 
-import java.awt.*;
+import java.awt.Color;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
+
 
 import org.jdom2.*;
 import org.jdom2.input.*;

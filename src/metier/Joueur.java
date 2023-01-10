@@ -1,6 +1,7 @@
 package metier;
 
-import java.awt.*;
+import java.awt.Color;
+
 import java.util.ArrayList;
 
 public class Joueur {
