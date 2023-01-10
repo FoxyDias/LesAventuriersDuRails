@@ -88,22 +88,21 @@ public class Metier {
          * - Qu'aucun joueurs ne puissent plus rien faire
          */
         
-        /* Si les joueurs n'ont plus assez de cartes wagons pour prendre quelconque arêtes */
-        for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++){
-            for(Arete a : lstArete){
-                System.out.println("Nb Wagons pour les arêtes" + a.getWagon() + " Nb Wagons que le joueur actuel possède : " + this.getEstJoueurCourant().getNbCarteWagon());
-                if(a.getWagon() > this.getEstJoueurCourant().getNbCarteWagon() && this.lstCarteWagon.size() == 0){
-                    System.out.println("nbWagonFinPartie" + this.getNbWagonFinPartie());
-                    this.ctrl.recapFinPartie();
-                }
-            }
-        }
-
         /* Si un joueur a 2 || 1 || 0 cartes wagons dans sa main */
         for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++){
-            if(this.getEstJoueurCourant().getNbCarteWagon() == getNbWagonFinPartie())
-            {
-                this.ctrl.recapFinPartie();
+            
+            if(this.getEstJoueurCourant().getNbWagons() == getNbWagonFinPartie() || this.getEstJoueurCourant().getNbWagons() < getNbWagonFinPartie() )
+                //this.ctrl.recapFinPartie();
+                System.out.println("hehehe");
+        }
+
+        /* Si les joueurs n'ont plus assez de pions wagons pour prendre quelconque arêtes */
+        for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++){
+            for(Arete a : lstArete){
+                if(a.getWagon() > this.getEstJoueurCourant().getNbWagons())
+                    //this.ctrl.recapFinPartie();
+                    System.out.println("hehehe");
+                
             }
         }
 
@@ -111,6 +110,7 @@ public class Metier {
         Joueur joueur = getEstJoueurCourant();
         if(lstArete.size() == joueur.getAlCheminsPtsCpts().size()){
             this.ctrl.recapFinPartie();
+            System.out.println("FLAG3");
         }
     }
 
@@ -132,7 +132,7 @@ public class Metier {
         if(this.intJoueurActuel >= this.nbJoueurPartie)
             this.intJoueurActuel = 0;
         
-        System.out.println("Joueur" + this.intJoueurActuel + " : " + this.getEstJoueurCourant().getNbPoints());
+        this.finPartie();
     }
 
     private void initPioche()

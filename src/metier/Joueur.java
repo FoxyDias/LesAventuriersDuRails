@@ -42,8 +42,10 @@ public class Joueur {
      * Renvoi le nombre de points des chemins du joueur
      */
     public int getNbPointsChemin() {
+        /* nbPoints = 0 pour éviter la duplication de points */
         this.nbPoints = 0;
-        //Les points d'une arête sont calculés par rapport aux nombres de wagons nécessaires pour la parcourire
+
+        /* Calcul des points en fonction des paramètres de la mappe et de la taille de l'arête */
         for (Arete a : this.lstArete){
             this.nbPoints+= metier.getPointsTailleAretes(a.getWagon());
         }
