@@ -249,7 +249,8 @@ public class Joueur {
                     System.out.println("Objectif valide");
                     nbPoint += co.getNbPoints();
                     co.setAccomplie(true);
-                    this.rajouterPoint(co.getNbPoints());
+                    //this.rajouterPoint(co.getNbPoints());
+                    //nbPoint = co.getNbPoints();
                     System.out.println("Carte objectif de : " + co.getNoeudArr().getNom() + " a " + co.getNoeudDep().getNom() + " SHEEEEEEEESH ");
 
                     return co.getNbPoints();
@@ -272,7 +273,7 @@ public class Joueur {
        }
 
        System.out.println("---------------------------------");
-       return 0;
+       return nbPoint;
             
     }  
 
