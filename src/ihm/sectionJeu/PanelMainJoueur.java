@@ -22,12 +22,12 @@ public class PanelMainJoueur extends JPanel
 	{
 		this.ctrl = ctrl;
 		this.setSize(600,1000);
-		this.setLayout(new GridLayout(3,1,5,5));
+		this.setLayout(new GridLayout(2,1,5,5));
 
 
 		this.add(new PanelDispoCarteWagon());
 		this.add(new PanelDispoCarteObjectif());	
-		this.add(new PanelInformationCarte());
+		//this.add(new PanelInformationCarte());
 		this.repaint();	
 	}
 

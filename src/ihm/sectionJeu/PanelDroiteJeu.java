@@ -35,6 +35,14 @@ public class PanelDroiteJeu extends JPanel implements ActionListener
 		}
 	}
 
+	public void griserCarteWagon(boolean b) {
+		for(int j=0; j<this.tabPanelPioche.length; j++)
+		{
+			if(this.tabPanelPioche[j].getCarteWagon().getCouleur().equals("Joker"))
+				this.tabPanelPioche[j].getBtnPrendCarte().setEnabled(b);
+		}
+	}
+
 	public class PanelPiocheMarcher extends JPanel
 	{
 		private CarteWagon carteWagon;
@@ -89,11 +97,26 @@ public class PanelDroiteJeu extends JPanel implements ActionListener
 			if (e.getSource() == this.tabPanelPioche[i].getBtnPrendCarte()) {
 
 				this.ctrl.getEstJoueurCourant().ajouterCarteWagon(this.tabPanelPioche[i].getCarteWagon());
+
+				if(this.tabPanelPioche[i].getCarteWagon().getCouleur().equals("Joker") && this.ctrl.getNbPiocheWagon()!=1)
+					this.ctrl.avancerJoueur();
+				else {
+					this.ctrl.ajouterNbPiocheWagon();
+
+					this.ctrl.repiocherCarteWagon(i);
+
+					this.tabPanelPioche[i].majMarcher(this.ctrl.getLstPiocheWagon().get(i));
+
+					if(this.ctrl.getNbPiocheWagon()>=1) {
+						if (this.tabPanelPioche[i].getCarteWagon().getCouleur().equals("Joker")) {
+							this.tabPanelPioche[i].getBtnPrendCarte().setEnabled(false);
+						}
+
+					return;
+					}
+				}
 				this.ctrl.repiocherCarteWagon(i);
-
 				this.tabPanelPioche[i].majMarcher(this.ctrl.getLstPiocheWagon().get(i));
-
-				this.ctrl.ajouterNbPiocheWagon();
 			}
 		}
 	}

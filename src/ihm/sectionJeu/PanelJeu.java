@@ -49,4 +49,8 @@ public class PanelJeu extends JPanel
     public void griserCarteObjectif(boolean b) {
 		this.panelGaucheJeu.griserCarteObjectif(b);
     }
+
+	public void griserCarteWagon(boolean b) {
+		this.panelDroiteJeu.griserCarteWagon(b);
+	}
 }

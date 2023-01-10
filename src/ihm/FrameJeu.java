@@ -108,4 +108,8 @@ public class FrameJeu extends JFrame
     public void griserCarteObjectif(boolean b) {
 		this.panelJeu.griserCarteObjectif(b);
     }
+
+	public void griserCarteWagon(boolean b) {
+		this.panelJeu.griserCarteWagon(b);
+	}
 }

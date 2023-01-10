@@ -142,6 +142,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			this.ctrl.getEstJoueurCourant().getMainWagon().add(this.ctrl.getLstCarteWagon().get(0));
 			this.ctrl.getLstCarteWagon().remove(0);
 
+			this.ctrl.griserCarte(false);
 			this.ctrl.ajouterNbPiocheWagon();
 
 			jDialog.add(lblImage);
