@@ -32,6 +32,8 @@ public class FrameJeu extends JFrame
 		 */
 		this.ctrl = ctrl;
 
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage("donnee/image/iconApp.png"));
+
 		this.longueur = this.tailleEcran.width - (int) (this.tailleEcran.width * 0.01);
 		this.hauteur  = this.tailleEcran.height - (int) (this.tailleEcran.height * 0.06);
 
@@ -47,8 +49,10 @@ public class FrameJeu extends JFrame
 		 * Positionnement des composants
 		 */
 		this.add(this.panelMenu);
+		
 		this.setVisible(true);
 	}
+
 
 	public PanelCentreMenu getPanelCentreMenu() { return this.panelMenu.getPanelCentreMenu(); }
 

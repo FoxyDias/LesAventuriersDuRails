@@ -97,9 +97,9 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		panelTitreCreerPartieSolo.setBorder(BorderFactory.createLineBorder(Color.black));
 		panelTitreCreerPartieMult.setBorder(BorderFactory.createLineBorder(Color.black));
 
-		this.btnCreerPartieMulti	.setBackground(Color.WHITE);
-		this.btnCreerPartieSolo		.setBackground(Color.WHITE);
-		this.btnRejoindrePartie		.setBackground(Color.WHITE);
+		this.btnCreerPartieMulti	.setBackground(Color.LIGHT_GRAY);
+		this.btnCreerPartieSolo		.setBackground(Color.LIGHT_GRAY);
+		this.btnRejoindrePartie		.setBackground(Color.LIGHT_GRAY);
 		this.btnCopierIP			.setBackground(Color.WHITE);
 		this.btnLancerPartiePopUp	.setBackground(Color.WHITE);
 		this.btnRejoindreMultiPopUp	.setBackground(Color.WHITE);
@@ -122,6 +122,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		 */
 
 		panelTitreCreerPartieMult.add(lblPartieMulti);
+		panelTitreCreerPartieMult.setBackground(Color.ORANGE);
 		
 		for(int i = 1; i <= 3; i++)
 			panelGrillePartieMult.add(new JLabel());
@@ -139,6 +140,7 @@ public class PanelCentreMenu extends JPanel implements ActionListener
 		panelCreerPartieMult.add(panelGrillePartieMult, BorderLayout.CENTER);
 
 		panelTitreCreerPartieSolo.add(lblPartieSolo);
+		panelTitreCreerPartieSolo.setBackground(Color.ORANGE);
 
 
 		for(int i = 1; i <= 3; i++)
