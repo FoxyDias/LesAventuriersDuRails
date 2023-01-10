@@ -72,12 +72,21 @@ public class PanelMainJoueur extends JPanel
 
 		public void initValeurCarteWagon()
 		{
-			this.scrollBar.setMinimum(0);
-			this.scrollBar.setMaximum(1);
-			this.lblInfoNumeroCarte.setText("1 / " + PanelMainJoueur.this.ctrl.getEstJoueurCourant().getMainWagon().size());
-			ImageIcon icon = new ImageIcon(PanelMainJoueur.this.ctrl.getEstJoueurCourant().getMainWagon().get(this.scrollBar.getValue()).getRecto());
-			icon.setImage(icon.getImage().getScaledInstance(this.panelCoulCarteWagon.getWidth() -5,this.panelCoulCarteWagon.getHeight()-10,Image.SCALE_DEFAULT));
-			this.lblCoulCarteWagon.setIcon(icon);
+			if(PanelMainJoueur.this.ctrl.getEstJoueurCourant().getMainWagon().size() > 1)
+			{
+				this.scrollBar.setMinimum(0);
+				this.scrollBar.setMaximum(1);
+				this.lblInfoNumeroCarte.setText("1 / " + PanelMainJoueur.this.ctrl.getEstJoueurCourant().getMainWagon().size());
+				ImageIcon icon = new ImageIcon(PanelMainJoueur.this.ctrl.getEstJoueurCourant().getMainWagon().get(this.scrollBar.getValue()).getRecto());
+				icon.setImage(icon.getImage().getScaledInstance(this.panelCoulCarteWagon.getWidth() -5,this.panelCoulCarteWagon.getHeight()-10,Image.SCALE_DEFAULT));
+				this.lblCoulCarteWagon.setIcon(icon);
+			}
+			else
+			{
+				this.scrollBar.setEnabled(false);
+				this.lblInfoNumeroCarte.setText("0/0");
+				this.lblCoulCarteWagon.setText("Vous posez aucun carte wagon");
+			}
 		}
 
 		@Override
