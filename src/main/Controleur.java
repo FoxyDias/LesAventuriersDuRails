@@ -2,7 +2,6 @@ package main;
 
 import ihm.FrameJeu;
 import ihm.sectionJeu.PanelDispoParam;
-import ihm.sectionJeu.PanelGaucheJeu;
 import ihm.sectionMenu.PanelCentreMenu;
 import metier.*;
 
