@@ -186,6 +186,10 @@ public class Controleur {
     }
     public void repiocherCarteWagon(int i) { this.metier.repiocherCarteWagon(i); }
 
+    public void chercheCheminLeplusPlong() {
+        this.metier.chercheCheminLeplusPlong();
+    }
+
 
 	public void setEnabled(boolean b) { this.ihm.setEnabled(b); }
 

@@ -59,7 +59,12 @@ public class PanelDispoParam extends JPanel implements ActionListener
     {
         //JOPtionPane --> Etes vous sur d'arreter la partie ?
         JOptionPane.showConfirmDialog(null, "Etes vous sur de vouloir arrêter la partie ?", "Arrêt de la partie", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        
+
+        //JLabel lblRecap = new JLabel("Joueur " + this.ctrl.getEstJoueurCourant() + ", il vous reste " + this.ctrl.getEstJoueurCourant().getNbCarteWagon() + ". La partie s'arrête au prochain tour.");
+        //JOptionPane.showMessageDialog(null, lblRecap, "Fin de partie", JOptionPane.INFORMATION_MESSAGE);
+
+        this.ctrl.chercheCheminLeplusPlong();
+
         this.dialogRecap = new JDialog();
         this.dialogRecap.setLayout(new BorderLayout());
         this.dialogRecap.setTitle("Récapitulatif et score de la partie");

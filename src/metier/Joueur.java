@@ -53,7 +53,7 @@ public class Joueur {
     }
 
     /**
-     * Renvoie l'arrayList des arêtes occupées
+     * Renvoie l'arrayList des arêtes occupées dont les points sont déjà comptabiliser
      * @return
      */
     public ArrayList<Arete> getAlCheminsPtsCpts(){
@@ -64,21 +64,42 @@ public class Joueur {
      * Renvoi le chemin le plus long
      * @return int routeLaPlusLongue
      */
-    public int getCheminLePlusLong(){
-        for(Arete a : lstArete){
-            if(a.getWagon() > routeLaPlusLongue){
-                routeLaPlusLongue = a.getWagon();
-            }
-        }
-        return routeLaPlusLongue;
+    public int getRouteLaPlusLongue(){
+        return this.routeLaPlusLongue;
     }
 
-    /**
-     * Renvoi la route la plus longue entre 2 noeuds
-     * @return
-     */
-    public int getRouteLaPlusLongue(){
-        return 0;
+    public void chercheCheminLeplusPlong()
+    {
+        for( Arete a : this.lstArete ) {
+            this.chercheCheminLeplusPlongRec(0, a.getNoeudDep() , new ArrayList<Arete>());
+        }
+    }
+
+    private void chercheCheminLeplusPlongRec(int tailleChemin, Noeud noeud,  ArrayList<Arete> lstDejaParcouru )
+    {
+
+        for(Arete arete : noeud.getArrayArete())
+        {
+            if(this.lstArete.contains(arete))
+            {
+                if(!(lstDejaParcouru.contains(arete)))
+                {
+                    lstDejaParcouru.add(arete);
+                    tailleChemin += arete.getWagon();
+
+                    if(arete.getNoeudDep() == noeud)
+                        this.chercheCheminLeplusPlongRec(tailleChemin, arete.getNoeudArr(), lstDejaParcouru);
+                    else if(arete.getNoeudArr() == noeud)
+                        this.chercheCheminLeplusPlongRec(tailleChemin, arete.getNoeudDep(), lstDejaParcouru);
+                }
+            }
+        }
+
+        if(tailleChemin > this.routeLaPlusLongue)
+        {
+            this.routeLaPlusLongue = tailleChemin;
+        }
+
     }
 
     /**

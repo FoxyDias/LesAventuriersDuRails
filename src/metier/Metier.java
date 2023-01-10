@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import org.jdom2.*;
 import org.jdom2.input.*;
@@ -89,26 +90,26 @@ public class Metier {
          * - Qu'aucun joueurs ne puissent plus rien faire
          */
         
-        
+
         /* Si un joueur a le nb pions wagons dans sa main équivalent à ceux de fin de partie dans les param du xml*/
         for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++)
             if(this.getEstJoueurCourant().getNbWagons() <= getNbWagonFinPartie())
-                this.ctrl.recapFinPartie(); 
-        
+                this.ctrl.recapFinPartie();
+
 
         /* Si les joueurs n'ont plus assez de pions wagons pour prendre quelconque arêtes */
         for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++)
             for(Arete a : lstArete)
                 if(a.getWagon() > this.getEstJoueurCourant().getNbWagons())
-                    this.ctrl.recapFinPartie();  
-            
-        
+                    this.ctrl.recapFinPartie();
+
+
         /* Si toutes les arêtes sont occupées */
         joueurTotArt = 0;
         for(int cpt = 0; cpt < getNbJoueurPartie(); cpt++){
             joueurTotArt += getJoueur(cpt).getLstArete().size();
         }
-        
+
         if(joueurTotArt == this.lstArete.size()){
             this.ctrl.recapFinPartie();
         }
@@ -146,11 +147,137 @@ public class Metier {
             piocherObjectifRandom();
     }
 
+    private boolean tourPiocher(Joueur joueurActuel)
+    {
+        String  choixWagons;
+        Scanner sc = new Scanner(System.in);
+        boolean droitMulti = true;
+
+        for(int nbPioche = 0; nbPioche < 2; nbPioche++)
+        {
+            /* En cas de joker dès les 3 premières cartes */
+            for(CarteWagon cw : this.lstPiocheWagon)
+                if(cw.getCouleur().equals("Joker"))
+                    droitMulti = false; 
+
+            /* Choix entre les cartes */
+            System.out.println("Choisissez ce que vous voulez piocher parmis : ");
+            this.afficherPioche();
+
+            choixWagons = sc.nextLine().toLowerCase();
+            if(!droitMulti && choixWagons.equals("joker"))
+            {
+                System.out.println("Vous n'avez pas le droit de prendre un Joker");
+                choixWagons = sc.nextLine().toLowerCase();
+            }
+
+            while(!choixWagons(joueurActuel, choixWagons) && !(choixWagons.equals("quitter")))
+            {
+                if(!droitMulti && choixWagons.equals("joker"))
+                    System.out.println("Vous n'avez pas le droit de prendre un Joker");
+                else
+                    System.out.println("Erreur de choix");
+
+                choixWagons = sc.nextLine();
+            }
+            
+            if(choixWagons.equals("quitter"))
+                return false;
+
+            for(CarteWagon cw : this.lstPiocheWagon)
+                if(cw.getCouleur().equals("Joker"))
+                    droitMulti = false;
+        }
+        return true;
+    }
+
+    private void afficherPioche() 
+    {
+        for( CarteWagon cw : this.lstPiocheWagon )
+            System.out.println(cw.getCouleur());
+    }
+
+    private boolean tourChoixArete(Joueur joueurActuel)
+    {
+        System.out.println("Quelle arête voulez-vous ? ");
+        afficherArete();
+
+        Scanner sc = new Scanner(System.in);
+        String choixArete = sc.nextLine().toLowerCase();
+        Arete a = this.lstArete.get(Integer.parseInt(choixArete));
+
+        if(joueurActuel.placerWagon(a.getWagon()) != a.getEstOccupe()){
+            System.out.println("Ouais c ajté :)");
+            return true;
+        }
+        
+        if(joueurActuel.placerWagon(a.getWagon()) == a.getEstOccupe()){
+            System.out.println("Arête déjà occupée");
+            return true;
+        }
+        return false;
+    }
+
     public void afficherArete(){
         int cpt = 0;
         for(Arete a : lstArete){
             System.out.println(cpt + " : " + a.getNoeudDep().getNom() + " --- " + a.getNoeudArr().getNom());
             cpt++;
+        }
+    }
+
+    private boolean tourCarte(Joueur joueurActuel)
+    {
+        return true;
+    }
+
+    private boolean choixWagons(Joueur joueur, String choix){
+        if (choix == null) return false;
+
+        for(int i =0; i<this.lstPiocheWagon.size(); i++)
+            if (choix.equals(this.lstPiocheWagon.get(i).getCouleur().toLowerCase())){
+                joueur.ajouterCarteWagon(this.lstPiocheWagon.get(i));
+                this.lstDefausseWagon.add(this.lstPiocheWagon.get(i));
+                this.lstPiocheWagon.remove(i);
+                this.piocherWagonRandom();
+                return true;
+            }
+        return false;
+    }
+
+    private void calculPointObjectif(Joueur j)
+    {
+        boolean suite = false;
+        for( CarteObjectif co : j.getMainObjectif() )
+        {
+            Noeud n1 = co.getNoeudDep();
+            for(Noeud n : this.hsmJoueurNoeud.get(j) )
+            {
+                if(n1 == n)
+                {
+                    suite = true;
+                    break;
+                }
+            }
+            if(suite)
+            {
+                Noeud n2 = co.getNoeudArr();
+                suite = false;
+                for(Noeud n : this.hsmJoueurNoeud.get(j) )
+                {
+                    if(n2 == n)
+                    {
+                        suite = true;
+                        break;
+                    }
+                }
+                if(suite)
+                    j.rajouterPoint(co.getNbPoints());
+                else
+                    j.rajouterPoint(co.getNbPoints() * -1);
+            }
+            else
+                j.rajouterPoint(co.getNbPoints() * -1);
         }
     }
 
@@ -213,7 +340,6 @@ public class Metier {
 
         int nbCarteCoulJoueur = 0;
         int nbCarteJoker      = 0;
-
 
         CarteWagon carteCouleur= null;
         CarteWagon carteJoker = null;
@@ -467,6 +593,12 @@ public class Metier {
 
         this.lstCarteWagon.add( cw );
     }
+
+    public void chercheCheminLeplusPlong() {
+        for( Joueur j : this.lstJoueur )
+            j.chercheCheminLeplusPlong();
+    }
+
   
     /*-------------------------------------------------------------------------*/
     /*                                Getters                                  */
@@ -481,7 +613,6 @@ public class Metier {
     public int getNbWagonFinPartie      () { return nbWagonFinPartie;      } 
     public int getNbPointsPlusLongChemin() { return nbPointsPlusLongChemin;}
     public int[] getPointsTaille        () { return pointsTaille;          }
-    public int getIntJoueurActuel()                        {return intJoueurActuel;       }
 
     public String getMoyenDeTransport   () { return this.moyenDeTransport; } 
     public String getVersoCarteWagon    () { return this.versoCarteWagon;  }
@@ -500,6 +631,7 @@ public class Metier {
 
     public ArrayList<CarteObjectif> getLstPiocheObjectifs(){return lstPiocheObjectifs;    }
     public ArrayList<CarteWagon> getLstPiocheWagon()       {return lstPiocheWagon;        }
+    public int getIntJoueurActuel()                        {return intJoueurActuel;       }
 
     /*-------------------------------------------------------------------------*/
     /*                                Setters                                  */
