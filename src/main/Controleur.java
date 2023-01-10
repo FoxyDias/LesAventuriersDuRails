@@ -135,15 +135,20 @@ public class Controleur {
     public void avancerJoueur()
     {
         this.metier.avancerJoueur();
+        this.ihm.griserCarteObjectif(true);
         this.ihm.changerCouleurPanel();
         this.ihm.majIhm();
     }
 
     public void ajouterNbPiocheWagon() {
-        if(nbPiocheWagon >= 2)
+        if(nbPiocheWagon >= 1) {
             this.nbPiocheWagon = 0;
-        else
+            this.avancerJoueur();
+        }
+        else {
             this.nbPiocheWagon++;
+            this.ihm.griserCarteObjectif(false);
+        }
     }
 
     public void changerCouleurPanel()

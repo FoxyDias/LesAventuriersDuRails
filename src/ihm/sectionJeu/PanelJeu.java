@@ -45,4 +45,8 @@ public class PanelJeu extends JPanel
 	public void changerCouleurPanel() { this.panelHautJeu.changerCouleurPanel(); }
 
     public void majIhm() 			  { this.panelHautJeu.majIhm(); 			 }
+
+    public void griserCarteObjectif(boolean b) {
+		this.panelGaucheJeu.griserCarteObjectif(b);
+    }
 }

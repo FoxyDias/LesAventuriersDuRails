@@ -138,20 +138,16 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
             icon.setImage(icon.getImage().getScaledInstance(jDialog.getWidth() -5,jDialog.getHeight()-10,Image.SCALE_DEFAULT));
 
 			JLabel lblImage = new JLabel(icon);
-
-			cpt++;
 			
 			this.ctrl.getEstJoueurCourant().getMainWagon().add(this.ctrl.getLstCarteWagon().get(0));
 			this.ctrl.getLstCarteWagon().remove(0);
 
+			this.ctrl.ajouterNbPiocheWagon();
+
 			jDialog.add(lblImage);
 			jDialog.setVisible(true);
 		}
-		if(this.cpt == 2)
-		{
-			this.ctrl.avancerJoueur();
-			this.cpt = 0;
-		}
+
 	
 		if(e.getSource() == this.btnArreterPartie)
 		{
@@ -200,6 +196,10 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 		{
 			this.dialog.dispose();
 		}
+	}
+
+	public void griserCarteObjectif(boolean b) {
+		this.btnPiocheCarteObjectif.setEnabled(b);
 	}
 
 	/**

@@ -104,4 +104,8 @@ public class FrameJeu extends JFrame
     public void majIhm() {
 		this.panelJeu.majIhm();
     }
+
+    public void griserCarteObjectif(boolean b) {
+		this.panelJeu.griserCarteObjectif(b);
+    }
 }

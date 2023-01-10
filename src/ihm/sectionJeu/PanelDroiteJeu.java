@@ -94,11 +94,6 @@ public class PanelDroiteJeu extends JPanel implements ActionListener
 				this.tabPanelPioche[i].majMarcher(this.ctrl.getLstPiocheWagon().get(i));
 
 				this.ctrl.ajouterNbPiocheWagon();
-				if(this.ctrl.getNbPiocheWagon()==2)
-				{
-					this.ctrl.avancerJoueur();
-					this.ctrl.ajouterNbPiocheWagon();
-				}
 			}
 		}
 	}
