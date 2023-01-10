@@ -22,7 +22,7 @@ public class PanelDispoParam extends JPanel implements ActionListener
 
     private JTable tableRecap;
     private Object[][] donnees;
-    private String[] entetes = {"Nom","Couleur", "Nb points chemins", "Nb points objectifs", "Nb points plus long chemins", "Nb points total"};
+    private String[] entetes = {"Nom","Couleur", "Nb points chemins", "Nb points objectifs", "Plus long chemins", "Bonus","Malus de cartes non remplies", "Nb points total"};
 
     public PanelDispoParam(Controleur ctrl)
     {
@@ -82,12 +82,17 @@ public class PanelDispoParam extends JPanel implements ActionListener
 
         for(int i = 0; i < this.ctrl.getNbJoueurPartie(); i++)
         {
+            //"Nom","Couleur", "Nb points chemins", "Nb points objectifs", "Plus long chemins", "Bonus","Malus de cartes non remplies", "Nb points total"
             this.donnees[i][0] = this.ctrl.getJoueur(i);
             this.donnees[i][1] = this.ctrl.getJoueur(i).getCouleur().toString().replace("java.awt.Color", "");
             this.donnees[i][2] = this.ctrl.getJoueur(i).getNbPointsChemin();
             this.donnees[i][3] = this.ctrl.getJoueur(i).completeCarteObjectif();
             this.donnees[i][4] = this.ctrl.getJoueur(i).getRouteLaPlusLongue();
-            this.donnees[i][5] = this.ctrl.getJoueur(i).getNbPointsTotal();
+            this.donnees[i][5] = this.ctrl.getJoueur(i);
+            //this.donnees[i][5] = this.ctrl.getJoueur(i).estPlusLong();
+            this.donnees[i][6] = this.ctrl.getJoueur(i);
+            //this.donnees[i][6] = this.ctrl.getJoueur(i).getMalusCarteObjectif();
+            this.donnees[i][7] = this.ctrl.getJoueur(i).getNbPointsTotal();
         }
         
         DefaultTableCellRenderer custom = new DefaultTableCellRenderer();

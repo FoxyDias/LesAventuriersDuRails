@@ -216,7 +216,6 @@ public class Joueur {
                     lstAreteValide.add(a);
             }
 
-
             while(lstAreteValide.size()>0)
             {
 
