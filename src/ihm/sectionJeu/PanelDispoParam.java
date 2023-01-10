@@ -57,9 +57,12 @@ public class PanelDispoParam extends JPanel implements ActionListener
 
     public void recapFinPartie()
     {
-        //JLabel lblRecap = new JLabel("Joueur " + this.ctrl.getEstJoueurCourant() + ", il vous reste " + this.ctrl.getEstJoueurCourant().getNbCarteWagon() + ". La partie s'arrête au prochain tour.");
-        //JOptionPane.showMessageDialog(null, lblRecap, "Fin de partie", JOptionPane.INFORMATION_MESSAGE);
+        //JOPtionPane --> Etes vous sur d'arreter la partie ?
+        JOptionPane jop = new JOptionPane();
+        jop.showConfirmDialog(null, "Etes vous sur de vouloir arrêter la partie ?", "Arrêt de la partie", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
+        jop.setVisible(true);
+        
         this.dialogRecap = new JDialog();
         this.dialogRecap.setLayout(new BorderLayout());
         this.dialogRecap.setTitle("Récapitulatif et score de la partie");
@@ -70,6 +73,7 @@ public class PanelDispoParam extends JPanel implements ActionListener
         JPanel panelBtn 		= new JPanel(new FlowLayout(FlowLayout.CENTER, 0,50));
 
         this.btnValiderRecap 	= new JButton("Quitter");
+        this.btnValiderRecap.setBackground(Color.WHITE);
         this.donnees 			= new Object[this.ctrl.getNbJoueurPartie()][6];
         this.tableRecap 		= new JTable(this.donnees, this.entetes);
         this.tableRecap.setEnabled(false);
@@ -77,7 +81,7 @@ public class PanelDispoParam extends JPanel implements ActionListener
         for(int i = 0; i < this.ctrl.getNbJoueurPartie(); i++)
         {
             this.donnees[i][0] = this.ctrl.getJoueur(i);
-            this.donnees[i][1] = this.ctrl.getJoueur(i).getCouleur();
+            this.donnees[i][1] = this.ctrl.getJoueur(i).getCouleur().toString().replace("java.awt.Color", "");
             this.donnees[i][2] = this.ctrl.getJoueur(i).getNbPointsChemin();
             this.donnees[i][3] = this.ctrl.getJoueur(i);
             //this.donnees[i][2] = this.ctrl.getJoueur(i).getNbPointsObjectif();
