@@ -128,7 +128,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			jDialog.setTitle("Vous avez pioché une carte " + this.ctrl.getMoyenDeTransport() + " de couleur : " + this.ctrl.getLstCarteWagon().get(0).getColor());
 			jDialog.setModalityType(JDialog.ModalityType.APPLICATION_MODAL);
 
-			if(this.ctrl.getLstCarteWagon().get(0).getColor().equals(null))
+			if(this.ctrl.getLstCarteWagon().get(0).getColor() == null)
 			{
 				jDialog.setTitle("Vous avez pioché une carte " + this.ctrl.getMoyenDeTransport() + " multicolore");
 			}
