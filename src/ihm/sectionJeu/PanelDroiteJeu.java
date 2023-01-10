@@ -139,11 +139,10 @@ public class PanelDroiteJeu extends JPanel implements ActionListener
 			for (int i = 0; i < this.ctrl.getLstPiocheWagon().size(); i++)
 			{
 				// SI il y a 3 carte joker, on affiche de nouvelles cartes
-				if(this.tabPanelPioche[i].getCarteWagon().getCouleur().equals("Joker"))
-				{	
-					this.ctrl.repiocherCarteWagon(i);
-					this.tabPanelPioche[i].majMarcher(this.ctrl.getLstPiocheWagon().get(i));
-				}
+				
+				this.ctrl.repiocherCarteWagon(i);
+				this.tabPanelPioche[i].majMarcher(this.ctrl.getLstPiocheWagon().get(i));
+				
 			}
 		}
 	}
