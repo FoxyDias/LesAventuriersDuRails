@@ -18,6 +18,7 @@ public class Metier {
 
     private ArrayList<Noeud> lstNoeud;
     private ArrayList<Arete> lstArete;
+    private ArrayList<Arete> tmpArete;
     private ArrayList<CarteObjectif> lstCarteObjectif;
     private ArrayList<CarteObjectif> lstPiocheObjectifs;
     private ArrayList<CarteWagon> lstCarteWagon;
@@ -46,6 +47,7 @@ public class Metier {
 
         this.lstNoeud = new ArrayList<Noeud>();
         this.lstArete = new ArrayList<Arete>();
+        this.tmpArete = new ArrayList<Arete>();
 
         this.lstCarteObjectif = new ArrayList<CarteObjectif>();
         this.lstPiocheObjectifs = new ArrayList<CarteObjectif>(); 
@@ -87,27 +89,29 @@ public class Metier {
          * - Qu'aucun joueurs ne puissent plus rien faire
          */
         
-        /* Si un joueur a 2 || 1 || 0 cartes wagons dans sa main */
-        for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++){
-            
-            if(this.getEstJoueurCourant().getNbWagons() <= getNbWagonFinPartie() )
-                this.ctrl.recapFinPartie();
-        }
+        
+        /* Si un joueur a le nb pions wagons dans sa main équivalent à ceux de fin de partie dans les param du xml*/
+        for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++)
+            if(this.getEstJoueurCourant().getNbWagons() <= getNbWagonFinPartie())
+                this.ctrl.recapFinPartie(); 
+        
 
         /* Si les joueurs n'ont plus assez de pions wagons pour prendre quelconque arêtes */
-        for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++){
-            for(Arete a : lstArete){
+        for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++)
+            for(Arete a : lstArete)
                 if(a.getWagon() > this.getEstJoueurCourant().getNbWagons())
-                    this.ctrl.recapFinPartie();
-                
-            }
-        }
-
+                    this.ctrl.recapFinPartie();  
+            
+                    
+       
         /* Si toutes les arêtes sont prises */
-        Joueur joueur = getEstJoueurCourant();
-        if(lstArete.size() == joueur.getAlCheminsPtsCpts().size()){
-            this.ctrl.recapFinPartie();
-        }
+        
+        System.out.println("VERIFICATION TAILLE TMPARETE : " + this.tmpArete.size());
+        for(Arete a : this.lstArete)
+            /* si toutes les arêtes sont occupées par un joueur */
+            if(a.getEstOccupe() == true && this.tmpArete.size() == 0)  
+                this.ctrl.recapFinPartie();
+
     }
 
     /*
@@ -194,7 +198,9 @@ public class Metier {
     {
         if(a.getEstOccupe())
             return false;
-        
+
+        this.tmpArete.remove(a);
+
         int nbWagonArete = a.getWagon();
         String couleurTmp  =  a.getCouleur();
 
@@ -445,6 +451,7 @@ public class Metier {
                 a.setAreteDouble(b);
             }
         this.lstArete.add( a );
+        this.tmpArete.add( a );
     }
 
     public void creerCarteObjectif( Noeud noeudDep, Noeud noeudArr, int nbW )
@@ -461,7 +468,6 @@ public class Metier {
 
         this.lstCarteWagon.add( cw );
     }
-    
   
     /*-------------------------------------------------------------------------*/
     /*                                Getters                                  */
@@ -476,7 +482,8 @@ public class Metier {
     public int getNbWagonFinPartie      () { return nbWagonFinPartie;      } 
     public int getNbPointsPlusLongChemin() { return nbPointsPlusLongChemin;}
     public int[] getPointsTaille        () { return pointsTaille;          }
-    
+    public int getIntJoueurActuel()                        {return intJoueurActuel;       }
+
     public String getMoyenDeTransport   () { return this.moyenDeTransport; } 
     public String getVersoCarteWagon    () { return this.versoCarteWagon;  }
     public String getVersoCarteObjectif () { return versoCarteObjectif;    }
@@ -494,7 +501,6 @@ public class Metier {
 
     public ArrayList<CarteObjectif> getLstPiocheObjectifs(){return lstPiocheObjectifs;    }
     public ArrayList<CarteWagon> getLstPiocheWagon()       {return lstPiocheWagon;        }
-    public int getIntJoueurActuel()                        {return intJoueurActuel;       }
 
     /*-------------------------------------------------------------------------*/
     /*                                Setters                                  */
