@@ -178,30 +178,81 @@ public class Joueur {
        System.out.println("---------------------------------");
        for(CarteObjectif co : this.mainObjectif)
        {
-            
-            System.out.println("Joueur " + this.numJoueur + " : " + co.toString());
+            if(co.isAccomplie()){
+                continue;
+            }
+
+            System.out.println("JE REGARDE LA CARTE OBJECTIF DE : " + co.getNoeudArr().getNom() + " a " + co.getNoeudDep().getNom());
             
             Noeud n1 = co.getNoeudArr();
 
             ArrayList<Arete> lstAreteValide = new ArrayList<Arete>();
+
+
             ArrayList<Arete> lstAreteMorte  = new ArrayList<Arete>();
 
+            ArrayList<Noeud> lstNoeudUtilise = new ArrayList<Noeud>();
+
+            
             for(Arete a : this.lstArete)
             {
                 if(a.getNoeudArr() == n1 || a.getNoeudDep() == n1)
-                {
                     lstAreteValide.add(a);
-                }
-                else
-                {
-                    lstAreteMorte.add(a);
-                }
             }
 
-        //            while(lstAreteValide.);
+
+            while(lstAreteValide.size()>0)
+            {
+
+                //ArrayList<Arete> lstAreteTmp = new ArrayList<Arete>();
+                
+                Arete a = lstAreteValide.get(0);
+                System.out.println("Arete test : " + a.toString());
+                lstAreteMorte.add(a);
+                lstAreteValide.remove(0);
+
+                Noeud n2 = a.getNoeudArr();
+
+
+                if(n2 == n1)
+                {
+                    n2 = a.getNoeudDep();
+                    n1 = a.getNoeudArr();
+                }
+                else{
+                    n1 = a.getNoeudDep();
+                }
+
+                if(n2 == co.getNoeudDep())
+                {
+                    System.out.println("Objectif valide");
+                    nbPoint += co.getNbPoints();
+                    co.setAccomplie(true);
+                    this.rajouterPoint(co.getNbPoints());
+                    System.out.println("Carte objectif de : " + co.getNoeudArr().getNom() + " a " + co.getNoeudDep().getNom() + " SHEEEEEEEESH ");
+
+                    return co.getNbPoints();
+
+                }
+
+
+
+                
+                for(Arete areteAjoue : this.lstArete)
+                {
+                    if((areteAjoue.getNoeudArr() == n2 || areteAjoue.getNoeudDep() == n2 ||
+                    areteAjoue.getNoeudArr() == n1 || areteAjoue.getNoeudDep() == n1 ) && 
+                            !lstAreteMorte.contains(areteAjoue) && !lstAreteValide.contains(areteAjoue))
+                    {
+                        lstAreteValide.add(areteAjoue);
+                    }
+                }
+            }
        }
+
        System.out.println("---------------------------------");
        return 0;
+            
     }  
 
     public boolean isJoueurFinal(){return nbWagons <= 2;}
