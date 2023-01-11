@@ -8,13 +8,14 @@ import metier.Noeud;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import java.awt.GridLayout;
 
 import java.awt.Image;
 import java.io.File;
@@ -446,20 +447,105 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 				int cpt = 2;
 				dialog.setTitle("Choix de l'arête parmis les chemins doubles");
 				dialog.setBounds(800, 400, 350, 300);
-				dialog.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+				//dialog.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 				dialog.setResizable(false);
 				dialog.setModal(true);
 
+				JPanel panelBtn = new JPanel(new GridLayout(4,1,10,10));
+
 				for(Arete a : lstAretee)
 				{
-					JButton btn = new JButton("Chemin numéro " + cpt + " : " + a.getNoeudArr().getNom() + " - " + a.getNoeudDep().getNom());
+					JButton btn = new JButton();
+					if(!a.getCouleur().equals("Neutre"))
+					{
+						String[] tabCouleur = a.getCouleur().split(",");
+						int r = Integer.parseInt(tabCouleur[0].substring(3));
+						int g = Integer.parseInt(tabCouleur[1].substring(2));
+						int b = Integer.parseInt(tabCouleur[2].substring(2,tabCouleur[2].length()-1));
+						btn.setBackground(new Color(r,g,b));
+					}
+					else
+					{
+						btn.setBackground(Color.GRAY);
+					}
+
+					//btn.setBackground(getBackground(a.getCouleur()));
 					cpt--;
 					btn.addActionListener(new ActionListener() {
 						
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							Joueur joueur = ctrl.getEstJoueurCourant();
-							if(ctrl.priseVoie(joueur, a))
+
+							if(a.getCouleur().equals("Neutre"))
+							{
+								ArrayList<String> arrTmpCoulValable= new ArrayList<String>();
+								HashMap<String , Integer> hsmCoul = new HashMap<String, Integer>();
+								for(CarteWagon cw : ctrl.getEstJoueurCourant().getMainWagon())
+								{
+									if(hsmCoul.containsKey(cw.getCouleur()))
+									{
+										int nb = (int) hsmCoul.get(cw.getCouleur());
+										hsmCoul.put(cw.getCouleur(), nb+1);
+									}
+									else
+									{
+										hsmCoul.put(cw.getCouleur(), 1);
+									}
+								}
+
+								for(String nomKeyCouleur : hsmCoul.keySet() )
+								{
+									if(!nomKeyCouleur.equals("Joker") &&( hsmCoul.get(nomKeyCouleur)  +hsmCoul.get("Joker")  >= a.getWagon()) )
+									{
+										arrTmpCoulValable.add(nomKeyCouleur);
+									}
+
+									if(nomKeyCouleur.equals("Joker")&& ( hsmCoul.get("Joker")>= a.getWagon()))
+									{
+										arrTmpCoulValable.add(nomKeyCouleur); 
+									}
+								}
+
+								if(arrTmpCoulValable.size() == 0)
+								{
+									JOptionPane.showMessageDialog(null, "Vous n'avez pas assez de wagons de la bonne couleur");
+									return;
+								}
+								else if(arrTmpCoulValable.size() == 1)
+								{
+									a.setCouleur(arrTmpCoulValable.get(0));
+								}
+								else
+								{
+									String[] arrTmpCoulValable2 = new String[arrTmpCoulValable.size()];
+									for(int i = 0; i < arrTmpCoulValable.size(); i++)
+									{
+										arrTmpCoulValable2[i] = arrTmpCoulValable.get(i);
+									}
+									String couleur = (String) JOptionPane.showInputDialog(null, "Choisissez une couleur", "Choix de la couleur", JOptionPane.QUESTION_MESSAGE, null, arrTmpCoulValable2, arrTmpCoulValable2[0]);
+									Color coul;
+
+									if(!couleur.equals("Joker"))
+										coul = ctrl.RGBtoColor(couleur);
+									else
+										coul = null;
+									
+									if(ctrl.priseVoieNeutre(joueur, a, coul))
+									{
+										a.setEstOccupe(true);
+										a.setOccupateur(joueur);
+										joueur.ajouterArete(a);
+										joueur.removeNbWagons(a.getWagon());
+										repaint();
+										ctrl.getEstJoueurCourant().completeCarteObjectif();
+										ctrl.avancerJoueur();
+										dialog.dispose();
+										return;
+									}
+								}
+							}
+							else
 							{
 								a.setEstOccupe(true);
 								a.setOccupateur(joueur);
@@ -472,8 +558,9 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 							PanelCentreJeu.this.repaint();
 						}
 					});
-					dialog.add(btn);
+					panelBtn.add(btn);
 				}
+				dialog.add(panelBtn);
 				dialog.setVisible(true);
 			}
 		}
@@ -482,7 +569,7 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 	}	
 	@Override
 	public void mouseReleased(MouseEvent e) {}
-
+	
 	@Override
 	public void mouseEntered(MouseEvent e) {}
 
