@@ -13,8 +13,6 @@ import java.awt.event.ActionEvent;
 import main.Controleur;
 import metier.CarteWagon;
 
-
-
 public class PanelDroiteJeu extends JPanel implements ActionListener
 {
 	private Controleur ctrl;

@@ -387,10 +387,8 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 						arrTmpCoulValable2[i] = arrTmpCoulValable.get(i);
 					}
 					String couleur = (String) JOptionPane.showInputDialog(null, "Choisissez une couleur", "Choix de la couleur", JOptionPane.QUESTION_MESSAGE, null, arrTmpCoulValable2, arrTmpCoulValable2[0]);
-					//System.out.println(couleur);
-					//String 255,255,255 to Color object 
-
 					Color c = this.ctrl.RGBtoColor(couleur);
+					
 					if(this.ctrl.priseVoieNeutre(joueur, a, c))
 					{
 						a.setEstOccupe(true);

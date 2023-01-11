@@ -62,8 +62,8 @@ public class PanelDispoParam extends JPanel implements ActionListener
 
     public void recapFinPartie()
     {
-        if(JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog(null, "Etes vous sur de vouloir arrêter la partie ?", "Arrêt de la partie", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE))
-            return;
+        /*if(JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog(null, "Etes vous sur de vouloir arrêter la partie ?", "Arrêt de la partie", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE))
+            return;*/
 
         this.ctrl.chercheCheminLeplusPlong();
         this.ctrl.ajouterPoint();

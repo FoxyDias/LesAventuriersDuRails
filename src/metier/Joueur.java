@@ -279,8 +279,6 @@ public class Joueur implements Comparable<Joueur>
         return nbMalus;
     }
 
-    public boolean isJoueurFinal(){return this.nbWagons <= 2;}
-
     public void retirerCarteObjectif(int indexcObjectif){this.mainObjectif.remove(indexcObjectif);}
 
     public int getNbPointsTotal() { return this.nbPoints + this.getNbPointsChemin() + this.completeCarteObjectif() - this.getMalusCarteObjectif(); }

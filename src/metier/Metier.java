@@ -44,6 +44,10 @@ public class Metier {
 
     private HashMap<Joueur, ArrayList<Noeud>> hsmJoueurNoeud;
 
+    private boolean dernierTour;
+
+    private int intDernierJoueur;
+
     public Metier( Controleur ctrl )
     {
         this.ctrl = ctrl;
@@ -85,54 +89,23 @@ public class Metier {
     }
 
     public void finPartie(){
-        /** 
-         * 3 conditions de fin de partie 
-         * - Que le nombre de wagons d'1 joueurs atteint le nombre indiqué en paramètre ( 2 ou moins )
-         * - Qu'il n'y ait plus d'arêtes disponible
-         * - Qu'aucun joueurs ne puissent plus rien faire
-         */
         
-        // Si un joueur a le nb pions wagons dans sa main équivalent à ceux de fin de partie dans les param du xml 
-        for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++)
-            if(this.getEstJoueurCourant().getNbWagons() <= this.ctrl.getNbWagonFinPartie())
-            {
-                if(this.getNbJoueurPartie() == 1)
-                {
-                    JOptionPane.showMessageDialog(null, this.getEstJoueurCourant() + " a atteint le nombre de pions wagons indiqué dans les paramètres du jeu. Fin de partie au prochaine tour !");
-                    this.ctrl.recapFinPartie();
-                }
-                else 
-                {
-                    this.ctrl.avancerJoueur();
-                    //si les joueurs ont fini leur tour, recapFinPartie()
-                    if(cpt == this.getNbJoueurPartie())
-                        this.ctrl.recapFinPartie();
-                }
-            }
-            
-        // Si les joueurs n'ont plus assez de pions wagons pour prendre quelconque arêtes 
-        for(int cpt = 0; cpt < this.getNbJoueurPartie(); cpt++)
-            for(Arete a : lstArete)
-                if(a.getWagon() > this.getEstJoueurCourant().getNbWagons())
-                {
-                    JOptionPane.showMessageDialog(null, this.getEstJoueurCourant() + " n'a plus assez de pions pour jouer. Fin de partie au prochaine tour !");
-                    this.ctrl.avancerJoueur();
-                    //this.ctrl.recapFinPartie();
-                }
-                
-
-        // Si toutes les arêtes sont occupées 
-        joueurTotArt = 0;
-        for(int cpt = 0; cpt < getNbJoueurPartie(); cpt++)
+        
+        if(this.getNbJoueurPartie() == 1)
         {
-            joueurTotArt += getJoueur(cpt).getLstArete().size();
-        }
-
-        if(joueurTotArt == this.lstArete.size())
-        {
-            JOptionPane.showMessageDialog(null, "Toutes les arêtes sont prises, fin du jeu.");
+            JOptionPane.showMessageDialog(null, this.getEstJoueurCourant() + " a atteint le nombre de pions wagons indiqué dans les paramètres du jeu. Fin de partie au prochaine tour !");
             this.ctrl.recapFinPartie();
         }
+        else 
+        {
+            JOptionPane.showMessageDialog(null, this.getEstJoueurCourant() + " n'a plus assez de pions pour jouer. Fin de partie au prochaine tour !");
+        }
+            
+        // Si les joueurs n'ont plus assez de pions wagons pour prendre quelconque arêtes 
+        this.intDernierJoueur = this.intJoueurActuel;
+        this.dernierTour = true;     
+        this.avancerJoueur();       
+
     }
 
     public void ajouterPoint()
@@ -153,12 +126,54 @@ public class Metier {
      */
     public void avancerJoueur()
     {
-        this.melangerCarteObjectif();
-        this.intJoueurActuel++;
-        if(this.intJoueurActuel >= this.nbJoueurPartie)
-            this.intJoueurActuel = 0;
-        
-        this.finPartie();
+        if(this.dernierTour)
+        {
+            this.melangerCarteObjectif();
+            this.intJoueurActuel++;
+            if(this.intJoueurActuel >= this.nbJoueurPartie)
+                this.intJoueurActuel = 0;
+
+            if(this.intDernierJoueur == this.intJoueurActuel)
+            {
+                this.ctrl.recapFinPartie();
+            }
+        }
+        else
+        {
+            /** 
+             * 3 conditions de fin de partie 
+             * - Que le nombre de wagons d'1 joueurs atteint le nombre indiqué en paramètre ( 2 ou moins )
+             * - Qu'il n'y ait plus d'arêtes disponible
+             * - Qu'aucun joueurs ne puissent plus rien faire
+             */
+            boolean dernier = false;
+            if(this.getEstJoueurCourant().getNbWagons() <= this.nbWagonFinPartie)
+                dernier = true;
+
+            boolean touteAretePrise = true;
+            for(Arete a : this.lstArete)
+            {
+                if(!(a.getEstOccupe()))
+                {
+                    touteAretePrise = false;
+                    break;
+                }
+            }
+            if(touteAretePrise)
+                dernier = true;
+
+            if(dernier)
+            {
+                this.finPartie();
+            }
+            else
+            {
+                this.melangerCarteObjectif();
+                this.intJoueurActuel++;
+                if(this.intJoueurActuel >= this.nbJoueurPartie)
+                    this.intJoueurActuel = 0;
+            }
+        }
     }
 
     private void initPioche()
