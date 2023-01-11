@@ -137,16 +137,24 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		if(e.getSource() == this.btnPiocheCarteObjectif)
 		{
+			if(this.ctrl.getLstCarteObjectif().size() == 0)
+			{
+				JOptionPane.showMessageDialog(null, "Il n'y a plus de carte objectif", "Erreur", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
 			this.creerPopUpCarteObjectif();
 		}
 
 		if(e.getSource() == this.btnValider)
 		{
 			int nbSelectionner = 0;
-
-			if(this.carteObjectifInfo[0].isSelectionner()) nbSelectionner++;
-			if(this.carteObjectifInfo[1].isSelectionner()) nbSelectionner++;
-			if(this.carteObjectifInfo[2].isSelectionner()) nbSelectionner++;
+ 
+			// if(this.carteObjectifInfo[0].isSelectionner()) nbSelectionner++;
+			// if(this.carteObjectifInfo[1].isSelectionner()) nbSelectionner++;
+			// if(this.carteObjectifInfo[2].isSelectionner()) nbSelectionner++;//QUI CEST LE CONNARD QUI A FAIT SA ? 
+			int cptMax = this.ctrl.getLstCarteObjectif().size()>3 ? 3 : this.ctrl.getLstCarteObjectif().size();
+			for(int index = 0; index <cptMax ; index++)
+				if(this.carteObjectifInfo[index].isSelectionner()) nbSelectionner++;
 
 			if(nbSelectionner < 1)
 			{
@@ -157,7 +165,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 			{
 				this.dialog.dispose();
 
-				for(int index = 0; index < this.carteObjectifInfo.length; index++)
+				for(int index = 0; index < cptMax; index++)
 					if(this.carteObjectifInfo[index].isSelectionner()) {
 						this.ctrl.getEstJoueurCourant().ajouterCarteObjectif(this.carteObjectifInfo[index].getCarteObjectif());
 						this.ctrl.getListCarteObjectif().remove(this.carteObjectifInfo[index].getCarteObjectif());
@@ -237,14 +245,27 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		this.carteObjectifInfo = new AfficherCarteObjectif[3];
 		this.btnValider = new JButton("Valider");
-
-		JPanel panelDispoCarte = new JPanel(new GridLayout(1,3));
-		JPanel panelBtn		   = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,  50));
-
-		for(int index = 0; index < 3; index++)
+		JPanel panelDispoCarte;
+		JPanel panelBtn;
+		if(this.ctrl.getLstCarteObjectif().size() > 3)
 		{
-			this.carteObjectifInfo[index] = new AfficherCarteObjectif(this.ctrl.getLstPiocheObjectifs().get(index));
-			panelDispoCarte.add(this.carteObjectifInfo[index]);
+			panelDispoCarte = new JPanel(new GridLayout(1,3));
+			panelBtn		   = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,  50));
+
+			for(int index = 0; index < 3; index++)
+			{
+				this.carteObjectifInfo[index] = new AfficherCarteObjectif(this.ctrl.getLstPiocheObjectifs().get(index));
+				panelDispoCarte.add(this.carteObjectifInfo[index]);
+			}
+		}else{
+			panelDispoCarte = new JPanel(new GridLayout(1,this.ctrl.getLstCarteObjectif().size()));
+			panelBtn		   = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,  50));
+
+			for(int index = 0; index < this.ctrl.getLstCarteObjectif().size(); index++)
+			{
+				this.carteObjectifInfo[index] = new AfficherCarteObjectif(this.ctrl.getLstPiocheObjectifs().get(index));
+				panelDispoCarte.add(this.carteObjectifInfo[index]);
+			}
 		}
 
 		btnValider.setBackground(Color.WHITE);
