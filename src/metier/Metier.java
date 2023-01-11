@@ -279,7 +279,7 @@ public class Metier {
                 if( nbCarteJoker  > 0)
                 {
                     this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().get(i));
-                    this.getEstJoueurCourant().getMainWagon().remove(i);
+                    this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().remove(i));
                     i--;
                     nbCarteJoker--;
             
@@ -288,7 +288,7 @@ public class Metier {
             else if(this.getEstJoueurCourant().getMainWagon().get(i).getColor().equals(c) && nbCarteCoulJoueur >0)
             {
                 this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().get(i));
-                this.getEstJoueurCourant().getMainWagon().remove(i);
+                this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().remove(i));
                 i--;
                 nbCarteCoulJoueur--;
             }
@@ -359,7 +359,7 @@ public class Metier {
                 if( nbCarteJoker  > 0)
                 {
                     this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().get(i));
-                    this.getEstJoueurCourant().getMainWagon().remove(i);
+                    this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().remove(i));
                     i--;
                     nbCarteJoker--;
             
@@ -368,7 +368,7 @@ public class Metier {
             else if(this.getEstJoueurCourant().getMainWagon().get(i).getColor().equals(c) && nbCarteCoulJoueur >0)
             {
                 this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().get(i));
-                this.getEstJoueurCourant().getMainWagon().remove(i);
+                this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().remove(i));
                 i--;
                 nbCarteCoulJoueur--;
             }
