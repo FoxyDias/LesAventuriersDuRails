@@ -4,7 +4,8 @@ import java.awt.Color;
 
 import java.util.ArrayList;
 
-public class Joueur {
+public class Joueur implements Comparable<Joueur>
+{
 
     private static int nbJoueur;
     private int numJoueur;
@@ -257,6 +258,17 @@ public class Joueur {
        return nbPoint;            
     }  
 
+    public int getNbCarteObjectifComplete()
+    {
+        int nbPoint = 0;
+        for(CarteObjectif co : this.mainObjectif)
+        {
+            if(co.isAccomplie())
+                nbPoint++;
+        }
+        return nbPoint;
+    }
+
     public int getMalusCarteObjectif()
     {
         int nbMalus =0;
@@ -272,4 +284,19 @@ public class Joueur {
     public void retirerCarteObjectif(int indexcObjectif){this.mainObjectif.remove(indexcObjectif);}
 
     public int getNbPointsTotal() { return this.nbPoints + this.getNbPointsChemin() + this.completeCarteObjectif() - this.getMalusCarteObjectif(); }
+
+    @Override
+    public int compareTo(Joueur j)
+    {
+        if(this.getNbPointsTotal() > j.getNbPointsTotal())
+            return -1;
+        else if(this.getNbPointsTotal() < j.getNbPointsTotal())
+            return 1;
+        else if(this.getNbCarteObjectifComplete() > j.getNbCarteObjectifComplete())
+            return -1;
+        else if(this.getNbCarteObjectifComplete() < j.getNbCarteObjectifComplete())
+            return 1;
+
+        return 0;
+    }
 }

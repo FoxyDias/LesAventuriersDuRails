@@ -98,13 +98,15 @@ public class Metier {
             {
                 if(this.getNbJoueurPartie() == 1)
                 {
-                    JOptionPane.showMessageDialog(null, "Le joueur " + this.getEstJoueurCourant() + " a atteint le nombre de pions wagons indiqué dans les paramètres du jeu. Fin de partie au prochaine tour !");
+                    JOptionPane.showMessageDialog(null, this.getEstJoueurCourant() + " a atteint le nombre de pions wagons indiqué dans les paramètres du jeu. Fin de partie au prochaine tour !");
                     this.ctrl.recapFinPartie();
                 }
                 else 
                 {
                     this.ctrl.avancerJoueur();
-                    this.ctrl.recapFinPartie();
+                    //si les joueurs ont fini leur tour, recapFinPartie()
+                    if(cpt == this.getNbJoueurPartie())
+                        this.ctrl.recapFinPartie();
                 }
             }
             
@@ -113,9 +115,9 @@ public class Metier {
             for(Arete a : lstArete)
                 if(a.getWagon() > this.getEstJoueurCourant().getNbWagons())
                 {
-                    JOptionPane.showMessageDialog(null, "Le joueur " + this.getEstJoueurCourant() + " n'a plus assez de pions pour jouer. Fin de partie au prochaine tour !");
+                    JOptionPane.showMessageDialog(null, this.getEstJoueurCourant() + " n'a plus assez de pions pour jouer. Fin de partie au prochaine tour !");
                     this.ctrl.avancerJoueur();
-                    this.ctrl.recapFinPartie();
+                    //this.ctrl.recapFinPartie();
                 }
                 
 
