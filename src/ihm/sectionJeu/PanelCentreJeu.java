@@ -449,7 +449,6 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 				dialog.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 				dialog.setResizable(false);
 				dialog.setModal(true);
-				dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 
 				for(Arete a : lstAretee)
 				{
