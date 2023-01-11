@@ -199,7 +199,6 @@ public class Joueur implements Comparable<Joueur>
                 nbPoint += co.getNbPoints();
                 continue;
             }
-            System.out.println("CARTE : " + co.getNoeudArr() + " : " + co.getNoeudDep());
 
             Noeud n1 = co.getNoeudArr();
 
@@ -218,7 +217,6 @@ public class Joueur implements Comparable<Joueur>
                 //ArrayList<Arete> lstAreteTmp = new ArrayList<Arete>();
                 
                 Arete a = lstAreteValide.get(0);
-                System.out.println("JE REGARDE L'ARETE : " + a);
                 lstAreteMorte.add(a);
                 lstAreteValide.remove(0);
 
@@ -238,7 +236,6 @@ public class Joueur implements Comparable<Joueur>
 
                 if(n2 == co.getNoeudDep() || n1 == co.getNoeudDep())
                 {
-                    System.out.println("Objectif valide");
                     nbPoint += co.getNbPoints();
                     co.setAccomplie(true);
                     //this.rajouterPoint(co.getNbPoints());

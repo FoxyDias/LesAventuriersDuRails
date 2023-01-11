@@ -130,6 +130,7 @@ public class Metier {
         {
             this.melangerCarteObjectif();
             this.intJoueurActuel++;
+            System.out.println(this.intDernierJoueur);
             if(this.intJoueurActuel >= this.nbJoueurPartie)
                 this.intJoueurActuel = 0;
 

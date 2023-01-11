@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.awt.event.ActionEvent;
 
 import main.Controleur;
+import metier.Joueur;
 
 public class PanelDispoParam extends JPanel implements ActionListener
 {
