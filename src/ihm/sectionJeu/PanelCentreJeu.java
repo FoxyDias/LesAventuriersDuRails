@@ -396,7 +396,9 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 						joueur.ajouterArete(a);
 						joueur.removeNbWagons(a.getWagon());
 						this.repaint();
+						this.ctrl.getEstJoueurCourant().completeCarteObjectif();
 						this.ctrl.avancerJoueur();
+						
 						return;
 					}
 				}
@@ -425,6 +427,7 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 				joueur.ajouterArete(a);
 				joueur.removeNbWagons(a.getWagon());
 				this.repaint();
+				this.ctrl.getEstJoueurCourant().completeCarteObjectif();
 				this.ctrl.avancerJoueur();
 				
 			}
@@ -463,6 +466,7 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 								a.setOccupateur(joueur);
 								joueur.ajouterArete(a);
 								joueur.removeNbWagons(a.getWagon());
+								ctrl.getEstJoueurCourant().completeCarteObjectif();
 								ctrl.avancerJoueur();
 							}
 							dialog.dispose(); 
@@ -475,8 +479,8 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 			}
 		}
 
-		this.ctrl.getEstJoueurCourant().completeCarteObjectif();
-	}
+		
+	}	
 	@Override
 	public void mouseReleased(MouseEvent e) {}
 
