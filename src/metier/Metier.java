@@ -51,24 +51,6 @@ public class Metier {
     public Metier( Controleur ctrl )
     {
         this.ctrl = ctrl;
-
-        this.lstNoeud = new ArrayList<Noeud>();
-        this.lstArete = new ArrayList<Arete>();
-
-        this.lstCarteObjectif = new ArrayList<CarteObjectif>();
-        this.lstPiocheObjectifs = new ArrayList<CarteObjectif>(); 
-
-        this.lstCarteWagon = new ArrayList<CarteWagon>();
-        this.lstDefausseWagon = new ArrayList<CarteWagon>();
-        this.lstPiocheWagon = new ArrayList<CarteWagon>();
-
-        this.lstCouleurJoueur = new ArrayList<Color>();
-        this.lstJoueur = new ArrayList<Joueur>();
-
-        this.intJoueurActuel = 0;
-        this.joueurTotArt = 0;
-
-        this.hsmJoueurNoeud = new HashMap<Joueur,ArrayList<Noeud>>();
     }
 
     /**
@@ -98,7 +80,24 @@ public class Metier {
         }
         else 
         {
-            JOptionPane.showMessageDialog(null, this.getEstJoueurCourant() + " n'a plus assez de pions pour jouer. Fin de partie au prochaine tour !");
+            boolean touteAretePrise = true;
+            for(Arete a : this.lstArete)
+            {
+                if(!(a.getEstOccupe()))
+                {
+                    touteAretePrise = false;
+                    break;
+                }
+            }
+            if(touteAretePrise)
+            {
+                JOptionPane.showMessageDialog(null, "Toutes les arêtes ont été prises. Fin de partie au prochaine tour !");
+            }
+            else 
+            {
+                JOptionPane.showMessageDialog(null, this.getEstJoueurCourant() + " n'a plus assez de pions pour jouer. Fin de partie au prochaine tour !");
+            }
+            
         }
             
         // Si les joueurs n'ont plus assez de pions wagons pour prendre quelconque arêtes 
@@ -392,9 +391,23 @@ public class Metier {
 
         this.lstNoeud = new ArrayList<Noeud>();
         this.lstArete = new ArrayList<Arete>();
+
         this.lstCarteObjectif = new ArrayList<CarteObjectif>();
+        this.lstPiocheObjectifs = new ArrayList<CarteObjectif>(); 
+
         this.lstCarteWagon = new ArrayList<CarteWagon>();
+        this.lstDefausseWagon = new ArrayList<CarteWagon>();
+        this.lstPiocheWagon = new ArrayList<CarteWagon>();
+
+        this.lstCouleurJoueur = new ArrayList<Color>();
         this.lstJoueur = new ArrayList<Joueur>();
+
+        this.intJoueurActuel = 0;
+        this.joueurTotArt = 0;
+
+        this.hsmJoueurNoeud = new HashMap<Joueur,ArrayList<Noeud>>();
+
+        this.dernierTour = false;
 
         racine = document.getRootElement();
 
