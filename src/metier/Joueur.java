@@ -22,6 +22,7 @@ public class Joueur implements Comparable<Joueur>
     private ArrayList<Arete> lstArete;
     private ArrayList<Arete> alCheminsPtsCpts;
 
+    private int nbTour;
     public Joueur(int wagons, Color coul, Metier metier)
     {
         Joueur.nbJoueur++;
@@ -38,11 +39,25 @@ public class Joueur implements Comparable<Joueur>
 
         this.nbPoints          = 0;
         this.routeLaPlusLongue = 0;
+
+        this.nbTour = -1;
     }
 
     /**
      * Renvoi le nombre de points des chemins du joueur
      */
+
+    public void avanceTour()
+    {
+        this.nbTour++;
+    }
+
+    public int getNbTour()
+    {
+        return this.nbTour;
+    }
+
+    
     public int getNbPointsChemin() {
         /* nbPoints = 0 pour éviter la duplication de points */
         int num = 0;

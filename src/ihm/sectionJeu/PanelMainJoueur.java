@@ -244,7 +244,7 @@ public class PanelMainJoueur extends JPanel
 				colorList.add(new ColorName("Azure", 0xF0, 0xFF, 0xFF));
 				colorList.add(new ColorName("Beige", 0xF5, 0xF5, 0xDC));
 				colorList.add(new ColorName("Bisque", 0xFF, 0xE4, 0xC4));
-				colorList.add(new ColorName("Noir", 0x00, 0x00, 0x00));
+				colorList.add(new ColorName("noir", 0x00, 0x00, 0x00));
 				colorList.add(new ColorName("BlanchedAlmond", 0xFF, 0xEB, 0xCD));
 				colorList.add(new ColorName("bleu", 0x00, 0x00, 0xFF));
 				colorList.add(new ColorName("Bleu-Violé", 0x8A, 0x2B, 0xE2));

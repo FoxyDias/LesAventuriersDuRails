@@ -67,6 +67,7 @@ public class Metier {
 
     public void lancerPartie()
     {   
+        //this.lstJoueur.get(0).avanceTour();
         initPioche();
     }
 
@@ -125,9 +126,11 @@ public class Metier {
      */
     public void avancerJoueur()
     {
+        this.getEstJoueurCourant().avanceTour();
         if(this.dernierTour)
         {
             this.melangerCarteObjectif();
+            
             this.intJoueurActuel++;
             System.out.println(this.intDernierJoueur);
             if(this.intJoueurActuel >= this.nbJoueurPartie)
@@ -208,7 +211,9 @@ public class Metier {
 
     public void repiocherCarteObjectif(int index) 
     {
-        this.lstPiocheObjectifs.set(index, this.lstCarteObjectif.get((int)(Math.random() * this.lstCarteObjectif.size())));
+        int indexCarte = (int)(Math.random() * this.lstCarteObjectif.size());
+        this.lstPiocheObjectifs.set(index, this.lstCarteObjectif.get(indexCarte));
+        this.lstCarteObjectif.remove(indexCarte);
     }
 
     public void repiocherCarteWagon(int i) 
@@ -219,12 +224,15 @@ public class Metier {
 
     private void melangerCarteObjectif() {
 
-        for(CarteObjectif co : this.lstPiocheObjectifs)
-        {
-            this.lstCarteObjectif.add(co);
-        }
-        for(int i=0; i<3; i++)
-            piocherObjectifRandom();
+        return;
+
+
+        // for(CarteObjectif co : this.lstPiocheObjectifs)
+        // {
+        //     this.lstCarteObjectif.add(co);
+        // }
+        // for(int i=0; i<3; i++)
+        //     piocherObjectifRandom();
     }
 
     public boolean priseVoieNeutre(Joueur j, Arete a , Color c )

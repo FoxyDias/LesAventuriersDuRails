@@ -329,6 +329,11 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 
 			double distanceHC = Math.sqrt(Math.pow(vecteurHcX,2) + Math.pow(vecteurHcY,2));
 
+			if(this.ctrl.getEstJoueurCourant().getNbTour()==0)
+			{
+				JOptionPane.showMessageDialog(null, "Vous ne pouvez pas prendre d'arete le premier tour");
+				return;
+			}
 			if(0<= distance && distance <= 1 && distanceHC <= 8)
 			{
 				if(!a.getEstOccupe())
