@@ -86,6 +86,7 @@ public class PanelDispoParam extends JPanel implements ActionListener
         this.tableRecap.setEnabled(false);
 
         Collections.sort(this.ctrl.getLstJoueur());
+        
 
         for(int i = 0; i < this.ctrl.getNbJoueurPartie(); i++)
         {
@@ -107,6 +108,10 @@ public class PanelDispoParam extends JPanel implements ActionListener
         for(int i = 0; i < this.tableRecap.getColumnCount(); i++)
             this.tableRecap.getColumnModel().getColumn(i).setCellRenderer(custom);
 
+        for(Joueur j : this.ctrl.getLstJoueur())
+        {
+            System.out.println(j + " a " + j.getNbPointsTotal() + " points");
+        }
         panelBtn.add(new JLabel(this.ctrl.getLstJoueur().get(0) + " est le gagnant de la partie !", JLabel.CENTER));
         panelBtn.add(this.btnValiderRecap, BorderLayout.SOUTH);
 
@@ -157,6 +162,7 @@ public class PanelDispoParam extends JPanel implements ActionListener
 
         public TableResultat(Controleur ctrl, Object[][] donnee, String[] enTete)
         {
+            //System.out.println("");
             super(donnee, enTete);
             this.ctrl = ctrl;
 

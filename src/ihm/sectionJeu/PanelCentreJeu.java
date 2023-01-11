@@ -538,6 +538,12 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 									
 									if(ctrl.priseVoieNeutre(joueur, a, coul))
 									{
+										if((ctrl.getNbJoueurPartie() < ctrl.getNbJoueurMinDoubleArete()) && 
+										(a.getEstDouble() &&(a.getEstOccupe() || a.getAreteDouble().getEstOccupe())))
+										{
+											JOptionPane.showMessageDialog(null, "Impossible car il y a moins de " + ctrl.getNbJoueurMinDoubleArete() + " joueurs pour jouer avec les arêtes doubles.");
+											return;
+										}
 										a.setEstOccupe(true);
 										a.setOccupateur(joueur);
 										joueur.ajouterArete(a);
@@ -552,6 +558,12 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 							}
 							else
 							{
+								if((ctrl.getNbJoueurPartie() < ctrl.getNbJoueurMinDoubleArete()) && 
+								(a.getEstDouble() &&(a.getEstOccupe() || a.getAreteDouble().getEstOccupe())))
+								{
+									JOptionPane.showMessageDialog(null, "Impossible car il y a moins de " + ctrl.getNbJoueurMinDoubleArete() + " joueurs pour jouer avec les arêtes doubles.");
+									return;
+								}
 								a.setEstOccupe(true);
 								a.setOccupateur(joueur);
 								joueur.ajouterArete(a);
