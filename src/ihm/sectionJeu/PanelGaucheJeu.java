@@ -160,6 +160,7 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 				for(int index = 0; index < this.carteObjectifInfo.length; index++)
 					if(this.carteObjectifInfo[index].isSelectionner()) {
 						this.ctrl.getEstJoueurCourant().ajouterCarteObjectif(this.carteObjectifInfo[index].getCarteObjectif());
+						this.ctrl.getListCarteObjectif().remove(this.carteObjectifInfo[index].getCarteObjectif());
 						this.ctrl.repiocherCarteObjectif(index);
 					}
 				this.ctrl.avancerJoueur();

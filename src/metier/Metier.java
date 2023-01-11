@@ -201,6 +201,7 @@ public class Metier {
     private void piocherObjectifRandom()
     {
         int num = (int) (Math.random() * this.lstCarteObjectif.size());
+        
         this.lstPiocheObjectifs.add(this.lstCarteObjectif.get(num));
         this.lstCarteObjectif.remove(num);
     }
@@ -208,7 +209,6 @@ public class Metier {
     public void repiocherCarteObjectif(int index) 
     {
         this.lstPiocheObjectifs.set(index, this.lstCarteObjectif.get( (int) (Math.random() * this.lstCarteObjectif.size() )));
-        
     }
 
     public void repiocherCarteWagon(int i) 

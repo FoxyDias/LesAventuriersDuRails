@@ -286,7 +286,7 @@
 		<carteWagon>
 			<couleur>[r=255,g=255,b=255]</couleur>
 			<nombre>20</nombre>
-			<recto>voiture.jpg</recto>
+			<recto>imageCarte/image_noir.png</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=255,g=0,b=0]</couleur>
@@ -326,7 +326,7 @@
 		<carteWagon>
 			<couleur>[r=0,g=0,b=0]</couleur>
 			<nombre>20</nombre>
-			<recto>imageCarte/voiture.jpg</recto>
+			<recto>imageCarte/voiture_blanche.jpg</recto>
 		</carteWagon>
 		<carteObjectif>
 			<noeudArr>1</noeudArr>
@@ -366,7 +366,7 @@
 		<carteObjectif>
 			<noeudArr>1</noeudArr>
 			<noeudDep>14</noeudDep>
-			<points>0</points>
+			<points>20</points>
 		</carteObjectif>
 		<carteObjectif>
 			<noeudArr>1</noeudArr>
