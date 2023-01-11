@@ -31,6 +31,7 @@ Nous avons eu une semaine pour pouvoir mener à bien ce projet
 Les personne qui on contribuer à ce travail sont : 
 - Adrien Decharrois 
 - Bryan Lemagnan
+- Antoine Dardanne
 - Alexandre Michel
 - Esteban Brea-Hell
 - William Lefort
