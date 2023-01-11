@@ -2,6 +2,7 @@ package ihm.sectionJeu;
 
 import main.Controleur;
 import metier.Arete;
+import metier.CarteWagon;
 import metier.Joueur;
 import metier.Noeud;
 
@@ -20,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.BasicStroke;
@@ -343,6 +345,67 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 			Arete a = lstAretee.get(0);
 			Joueur joueur = this.ctrl.getEstJoueurCourant();
 
+			if(a.getCouleur().equals("Neutre"))
+			{
+				ArrayList<String> arrTmpCoulValable= new ArrayList<String>();
+				HashMap<String , Integer> hsmCoul = new HashMap<String, Integer>();
+				for(CarteWagon cw : this.ctrl.getEstJoueurCourant().getMainWagon())
+				{
+					if(hsmCoul.containsKey(cw.getCouleur()))
+					{
+						int nb = (int) hsmCoul.get(cw.getCouleur());
+						hsmCoul.put(cw.getCouleur(), nb+1);
+					}
+					else
+					{
+						hsmCoul.put(cw.getCouleur(), 1);
+					}
+				}
+
+				for(String nomKeyCouleur : hsmCoul.keySet() )
+				{
+					if(!nomKeyCouleur.equals("Joker") &&( hsmCoul.get(nomKeyCouleur)  +hsmCoul.get("Joker")  >= a.getWagon()) )
+					{
+						arrTmpCoulValable.add(nomKeyCouleur);
+					}
+				}
+
+				if(arrTmpCoulValable.size() == 0)
+				{
+					JOptionPane.showMessageDialog(null, "Vous n'avez pas assez de wagons de la bonne couleur");
+					return;
+				}
+				else if(arrTmpCoulValable.size() == 1)
+				{
+					a.setCouleur(arrTmpCoulValable.get(0));
+				}
+				else
+				{
+					String[] arrTmpCoulValable2 = new String[arrTmpCoulValable.size()];
+					for(int i = 0; i < arrTmpCoulValable.size(); i++)
+					{
+						arrTmpCoulValable2[i] = arrTmpCoulValable.get(i);
+					}
+					String couleur = (String) JOptionPane.showInputDialog(null, "Choisissez une couleur", "Choix de la couleur", JOptionPane.QUESTION_MESSAGE, null, arrTmpCoulValable2, arrTmpCoulValable2[0]);
+					//System.out.println(couleur);
+					//String 255,255,255 to Color object 
+
+					Color c = this.ctrl.RGBtoColor(couleur);
+					if(this.ctrl.priseVoieNeutre(joueur, a, c))
+					{
+						a.setEstOccupe(true);
+						a.setOccupateur(joueur);
+						joueur.ajouterArete(a);
+						joueur.removeNbWagons(a.getWagon());
+						this.repaint();
+						this.ctrl.avancerJoueur();
+						return;
+					}
+				}
+
+
+			}
+
 			if(this.ctrl.priseVoie(joueur, a))
 			{
 				if(a.getWagon() > joueur.getNbWagons())
@@ -365,6 +428,7 @@ public class PanelCentreJeu extends JPanel implements ActionListener, MouseListe
 				joueur.removeNbWagons(a.getWagon());
 				this.repaint();
 				this.ctrl.avancerJoueur();
+				
 			}
 		}
 		else {

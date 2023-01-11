@@ -177,6 +177,10 @@ public class Controleur {
         return this.metier.priseVoie(j,a);
     }
 
+    public boolean priseVoieNeutre(Joueur j, Arete a , Color c )
+    {
+        return this.metier.priseVoieNeutre(j,a,c);
+    }
     public double getHeightPanel()
     {
         return this.metier.getHeightPanel();

@@ -213,6 +213,72 @@ public class Metier {
             piocherObjectifRandom();
     }
 
+    public boolean priseVoieNeutre(Joueur j, Arete a , Color c )
+    {
+        int nbWagonArete = a.getWagon();
+        
+        int nbCarteCoulJoueur = 0;
+        int nbCarteJoker      = 0;
+
+
+        for(CarteWagon cw : this.getEstJoueurCourant().getMainWagon())
+        {
+            if(cw.getColor() == null)
+            {
+                nbCarteJoker++;
+            }
+            else if(cw.getColor().equals(c))
+            {
+                nbCarteCoulJoueur++;
+            }
+        }
+
+        if(nbCarteCoulJoueur+nbCarteJoker< nbWagonArete)
+            return false;
+
+
+        int nbCarteJokerAUtilise = nbWagonArete - nbCarteCoulJoueur;
+
+        if(nbCarteJokerAUtilise > 0)
+        {
+            nbCarteJoker = nbCarteJokerAUtilise;
+        }
+        else{
+            nbCarteJoker = 0;
+            nbCarteCoulJoueur = nbWagonArete;
+        }
+
+        
+        for(int i = 0 ; i< this.getEstJoueurCourant().getMainWagon().size();i++)
+        {
+       
+            if(nbCarteCoulJoueur <=0 && nbCarteJoker <= 0)
+                break;
+
+
+            if((this.getEstJoueurCourant().getMainWagon().get(i).getColor() == null)){
+                if( nbCarteJoker  > 0)
+                {
+                    this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().get(i));
+                    this.getEstJoueurCourant().getMainWagon().remove(i);
+                    i--;
+                    nbCarteJoker--;
+            
+                }
+            }
+            else if(this.getEstJoueurCourant().getMainWagon().get(i).getColor().equals(c) && nbCarteCoulJoueur >0)
+            {
+                this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().get(i));
+                this.getEstJoueurCourant().getMainWagon().remove(i);
+                i--;
+                nbCarteCoulJoueur--;
+            }
+        }
+        return true;
+
+
+    }
+
     public boolean priseVoie(Joueur j , Arete a )
     {
         if(a.getEstOccupe())
