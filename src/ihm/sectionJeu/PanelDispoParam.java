@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.table.TableCellRenderer;
 
 import java.awt.event.ActionListener;
+import java.util.Collection;
+import java.util.Collections;
 import java.awt.event.ActionEvent;
 
 import main.Controleur;
@@ -60,8 +62,6 @@ public class PanelDispoParam extends JPanel implements ActionListener
 
     public void recapFinPartie()
     {
-        //JOptionPane.showConfirmDialog(null, "Etes vous sur de vouloir arrêter la partie ?", "Arrêt de la partie", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
         if(JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog(null, "Etes vous sur de vouloir arrêter la partie ?", "Arrêt de la partie", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE))
             return;
 
@@ -76,7 +76,7 @@ public class PanelDispoParam extends JPanel implements ActionListener
         this.dialogRecap.setModalityType(JDialog.ModalityType.APPLICATION_MODAL);
         this.dialogRecap.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 
-        JPanel panelBtn 		= new JPanel(new FlowLayout(FlowLayout.CENTER, 0,50));
+        JPanel panelBtn 		= new JPanel(new GridLayout(2,1,0,10));
 
         this.btnValiderRecap 	= new JButton("Quitter");
         this.btnValiderRecap.setBackground(Color.WHITE);
@@ -84,9 +84,10 @@ public class PanelDispoParam extends JPanel implements ActionListener
         this.tableRecap 		= new TableResultat(this.ctrl, this.donnees, this.entetes);
         this.tableRecap.setEnabled(false);
 
+        Collections.sort(this.ctrl.getLstJoueur());
+
         for(int i = 0; i < this.ctrl.getNbJoueurPartie(); i++)
         {
-            //"Nom","Couleur", "Nb points chemins", "Nb points objectifs", "Plus long chemins", "Bonus","Malus de cartes non remplies", "Nb points total"
             this.donnees[i][0] = this.ctrl.getJoueur(i);
             this.donnees[i][1] = this.ctrl.getJoueur(i).getNbPointsChemin();
             this.donnees[i][2] = this.ctrl.getJoueur(i).completeCarteObjectif();
@@ -105,7 +106,8 @@ public class PanelDispoParam extends JPanel implements ActionListener
         for(int i = 0; i < this.tableRecap.getColumnCount(); i++)
             this.tableRecap.getColumnModel().getColumn(i).setCellRenderer(custom);
 
-        panelBtn.add(this.btnValiderRecap);
+        panelBtn.add(new JLabel(this.ctrl.getLstJoueur().get(0) + " est le gagnant de la partie !", JLabel.CENTER));
+        panelBtn.add(this.btnValiderRecap, BorderLayout.SOUTH);
 
         this.dialogRecap.add(this.tableRecap.getTableHeader(), BorderLayout.NORTH);
         this.dialogRecap.add(this.tableRecap, BorderLayout.CENTER);
@@ -114,7 +116,6 @@ public class PanelDispoParam extends JPanel implements ActionListener
         this.btnValiderRecap.addActionListener(this);
 
         this.dialogRecap.setVisible(true);
-        
     }
 
     public void actionPerformed(ActionEvent e)
@@ -162,7 +163,12 @@ public class PanelDispoParam extends JPanel implements ActionListener
 
         public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
             Component result = super.prepareRenderer(renderer, row, column);
-            result.setBackground(this.ctrl.getJoueur(row).getCouleur());
+            Color gold = new Color(255,215,0);
+            Color silver = new Color(192,192,192);
+            Color bronze = new Color(205,127,50);
+            result.setBackground(this.ctrl.getJoueur(0).getNbPointsTotal() == (int)this.getValueAt(row, 6) ? gold : 
+                                (this.ctrl.getJoueur(1).getNbPointsTotal() == (int)this.getValueAt(row, 6) ? silver : 
+                                (this.ctrl.getJoueur(2).getNbPointsTotal() == (int)this.getValueAt(row, 6) ? bronze : Color.WHITE)));
             return result;
         }
     }
