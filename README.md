@@ -36,3 +36,4 @@ Les personnes ayant contribué à ce travail sont :
 - Adrien Decharrois 
 - Bryan Lemagnan
 - Alexandre Michel
+- Antoine Dardanne (Participation côté jeu)
