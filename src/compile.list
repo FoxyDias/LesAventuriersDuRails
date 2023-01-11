@@ -1,24 +1,24 @@
-src\metier\Arete.java
-src\metier\CarteObjectif.java
-src\metier\CarteWagon.java
-src\metier\Joueur.java
-src\metier\Metier.java
-src\metier\Noeud.java
+./src/metier/Arete.java
+./src/metier/CarteObjectif.java
+./src/metier/CarteWagon.java
+./src/metier/Joueur.java
+./src/metier/Metier.java
+./src/metier/Noeud.java
 
-src\ihm\FrameJeu.java
+./src/ihm/FrameJeu.java
 
-src\ihm\sectionMenu\PanelMenu.java
-src\ihm\sectionMenu\PanelBasMenu.java
-src\ihm\sectionMenu\PanelCentreMenu.java
-src\ihm\sectionMenu\PanelHautMenu.java
+./src/ihm/sectionMenu/PanelMenu.java
+./src/ihm/sectionMenu/PanelBasMenu.java
+./src/ihm/sectionMenu/PanelCentreMenu.java
+./src/ihm/sectionMenu/PanelHautMenu.java
 
-src\ihm\sectionJeu\PanelJeu.java
-src\ihm\sectionJeu\PanelMainJoueur.java
-src\ihm\sectionJeu\PanelHautJeu.java
-src\ihm\sectionJeu\GenereImageCarteObjectif.java
-src\ihm\sectionJeu\PanelCentreJeu.java
-src\ihm\sectionJeu\PanelDispoParam.java
-src\ihm\sectionJeu\PanelDroiteJeu.java
-src\ihm\sectionJeu\PanelGaucheJeu.java
+./src/ihm/sectionJeu/PanelJeu.java
+./src/ihm/sectionJeu/PanelMainJoueur.java
+./src/ihm/sectionJeu/PanelHautJeu.java
+./src/ihm/sectionJeu/GenereImageCarteObjectif.java
+./src/ihm/sectionJeu/PanelCentreJeu.java
+./src/ihm/sectionJeu/PanelDispoParam.java
+./src/ihm/sectionJeu/PanelDroiteJeu.java
+./src/ihm/sectionJeu/PanelGaucheJeu.java
 
-src\main\Controleur.java
+./src/main/Controleur.java
