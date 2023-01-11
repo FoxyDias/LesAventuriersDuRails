@@ -67,6 +67,7 @@ public class Metier {
 
     public void lancerPartie()
     {   
+        //this.lstJoueur.get(0).avanceTour();
         initPioche();
     }
 
@@ -125,9 +126,11 @@ public class Metier {
      */
     public void avancerJoueur()
     {
+        this.getEstJoueurCourant().avanceTour();
         if(this.dernierTour)
         {
             this.melangerCarteObjectif();
+            
             this.intJoueurActuel++;
             System.out.println(this.intDernierJoueur);
             if(this.intJoueurActuel >= this.nbJoueurPartie)
