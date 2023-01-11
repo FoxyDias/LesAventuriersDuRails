@@ -107,6 +107,16 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 	{
 		if(e.getSource() == this.btnPiocheCarteWagon)
 		{
+
+			if(this.ctrl.getLstCarteWagon().size() == 0)
+			{
+				if(!this.ctrl.melangeWagon());
+				{
+					JOptionPane.showMessageDialog(null, "Il n'y a plus de carte wagon dans le jeu et la défausse", "Erreur", JOptionPane.ERROR_MESSAGE);
+					this.ctrl.avancerJoueur();
+					return;
+				}
+			}
 			JDialog jDialog = new JDialog();
 			jDialog.setBounds(650, 350, 600, 300);
 			jDialog.setResizable(false);

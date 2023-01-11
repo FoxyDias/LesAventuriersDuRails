@@ -175,6 +175,10 @@ public class Controleur {
         return this.metier.getWidthPanel();
     }
 
+    public boolean melangeWagon()
+    {
+        return this.metier.melangeWagon();
+    }
     public boolean priseVoie(Joueur j , Arete a )
     {
         return this.metier.priseVoie(j,a);

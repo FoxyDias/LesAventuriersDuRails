@@ -132,7 +132,7 @@ public class Metier {
             this.melangerCarteObjectif();
             
             this.intJoueurActuel++;
-            System.out.println(this.intDernierJoueur);
+
             if(this.intJoueurActuel >= this.nbJoueurPartie)
                 this.intJoueurActuel = 0;
 
@@ -191,10 +191,16 @@ public class Metier {
     private void piocherWagonRandom()
     {
         if(this.lstCarteWagon.size() == 0)
+        {  
+
+            Collections.shuffle(this.lstDefausseWagon);
             for(int i =0; i<this.lstCarteWagon.size(); i++){
                 this.lstCarteWagon.add(this.lstDefausseWagon.get(i));
-                this.lstDefausseWagon.remove(i);
+                //this.lstDefausseWagon.remove(i);
             }
+            this.lstDefausseWagon.clear();
+
+        }
 
         int num = (int) (Math.random() * this.lstCarteWagon.size());
         this.lstPiocheWagon.add(this.lstCarteWagon.get(num));
@@ -216,9 +222,37 @@ public class Metier {
         this.lstCarteObjectif.remove(indexCarte);
     }
 
+    public boolean melangeWagon()
+    {
+        if(this.lstDefausseWagon.size() == 0)
+            return false;
+
+        Collections.shuffle(this.lstDefausseWagon);
+        for(int i =0; i<this.lstDefausseWagon.size(); i++){
+            this.lstCarteWagon.add(this.lstDefausseWagon.get(i));
+            //this.lstDefausseWagon.remove(i);
+        } 
+        this.lstDefausseWagon.clear();
+        return true;
+    }
+
     public void repiocherCarteWagon(int i) 
     {
-        this.lstPiocheWagon.set(i, this.lstCarteWagon.get( (int) (Math.random() * this.lstCarteWagon.size() )));
+
+        if(this.lstCarteWagon.size() == 0)
+        {  
+
+            Collections.shuffle(this.lstDefausseWagon);
+            for(int j =0; j<this.lstDefausseWagon.size(); j++){
+                this.lstCarteWagon.add(this.lstDefausseWagon.get(j));
+                //this.lstDefausseWagon.remove(i);
+            }
+            this.lstDefausseWagon.clear();
+
+        }
+        int num = (int) (Math.random() * this.lstCarteWagon.size());
+        this.lstPiocheWagon.set(i,this.lstCarteWagon.get(num));
+        this.lstCarteWagon.remove(num);
 
     }
 
@@ -287,7 +321,7 @@ public class Metier {
                 if( nbCarteJoker  > 0)
                 {
                     this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().get(i));
-                    this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().remove(i));
+                    this.getEstJoueurCourant().getMainWagon().remove(i);
                     i--;
                     nbCarteJoker--;
             
@@ -296,7 +330,7 @@ public class Metier {
             else if(this.getEstJoueurCourant().getMainWagon().get(i).getColor().equals(c) && nbCarteCoulJoueur >0)
             {
                 this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().get(i));
-                this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().remove(i));
+                this.getEstJoueurCourant().getMainWagon().remove(i);
                 i--;
                 nbCarteCoulJoueur--;
             }
@@ -367,7 +401,7 @@ public class Metier {
                 if( nbCarteJoker  > 0)
                 {
                     this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().get(i));
-                    this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().remove(i));
+                    this.getEstJoueurCourant().getMainWagon().remove(i);
                     i--;
                     nbCarteJoker--;
             
@@ -376,7 +410,7 @@ public class Metier {
             else if(this.getEstJoueurCourant().getMainWagon().get(i).getColor().equals(c) && nbCarteCoulJoueur >0)
             {
                 this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().get(i));
-                this.lstDefausseWagon.add(this.getEstJoueurCourant().getMainWagon().remove(i));
+                this.getEstJoueurCourant().getMainWagon().remove(i);
                 i--;
                 nbCarteCoulJoueur--;
             }

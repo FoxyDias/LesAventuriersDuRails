@@ -2,6 +2,7 @@ package ihm.sectionJeu;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.awt.GridLayout;
@@ -101,6 +102,16 @@ public class PanelDroiteJeu extends JPanel implements ActionListener
 		{
 			if (e.getSource() == this.tabPanelPioche[i].getBtnPrendCarte()) {
 
+				if(this.ctrl.getLstCarteWagon().size() == 0)
+				{
+					if(!this.ctrl.melangeWagon());
+					{
+						JOptionPane.showMessageDialog(null, "Il n'y a plus de cartes dans la pioche n'y dans la défausse");
+						return;
+					}
+				
+				
+				}
 				this.ctrl.getEstJoueurCourant().ajouterCarteWagon(this.tabPanelPioche[i].getCarteWagon());
 
 				if(this.tabPanelPioche[i].getCarteWagon().getCouleur().equals("Joker") && this.ctrl.getNbPiocheWagon()!=1)
