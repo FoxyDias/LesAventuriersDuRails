@@ -86,12 +86,11 @@ public class Joueur {
                 if(!(lstDejaParcouru.contains(arete)))
                 {
                     lstDejaParcouru.add(arete);
-                    tailleChemin += arete.getWagon();
 
                     if(arete.getNoeudDep() == noeud)
-                        this.chercheCheminLeplusPlongRec(tailleChemin, arete.getNoeudArr(), lstDejaParcouru);
+                        this.chercheCheminLeplusPlongRec(tailleChemin + arete.getWagon(), arete.getNoeudArr(), lstDejaParcouru);
                     else if(arete.getNoeudArr() == noeud)
-                        this.chercheCheminLeplusPlongRec(tailleChemin, arete.getNoeudDep(), lstDejaParcouru);
+                        this.chercheCheminLeplusPlongRec(tailleChemin + arete.getWagon(), arete.getNoeudDep(), lstDejaParcouru);
                 }
             }
         }
