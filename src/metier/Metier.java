@@ -235,16 +235,21 @@ public class Metier {
         int nbCarteJoker      = 0;
 
 
-        for(CarteWagon cw : this.getEstJoueurCourant().getMainWagon())
+         if(c!=null)
+            for(CarteWagon cw : this.getEstJoueurCourant().getMainWagon())
+            {
+                if(cw.getColor() == null)
+                {
+                    nbCarteJoker++;
+                }
+                else if(cw.getColor().equals(c))
+                {
+                    nbCarteCoulJoueur++;
+                }
+            }
+        else
         {
-            if(cw.getColor() == null)
-            {
-                nbCarteJoker++;
-            }
-            else if(cw.getColor().equals(c))
-            {
-                nbCarteCoulJoueur++;
-            }
+            nbCarteJoker =a.getWagon();
         }
 
         if(nbCarteCoulJoueur+nbCarteJoker< nbWagonArete)
