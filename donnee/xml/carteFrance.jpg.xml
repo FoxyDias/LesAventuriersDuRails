@@ -286,42 +286,42 @@
 		<carteWagon>
 			<couleur>[r=255,g=255,b=255]</couleur>
 			<nombre>20</nombre>
-			<recto>null</recto>
+			<recto>voiture.jpg</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=255,g=0,b=0]</couleur>
 			<nombre>20</nombre>
-			<recto>null</recto>
+			<recto>imageCarte/Ferrari_F8_Tributo_2019_02dc2-615x410.jpg</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>Joker</couleur>
-			<nombre>0</nombre>
-			<recto>null</recto>
+			<nombre>20</nombre>
+			<recto>imageCarte/bb4b6a7797d7654958ea22320a84722a.jpg</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=0,g=0,b=255]</couleur>
 			<nombre>20</nombre>
-			<recto>null</recto>
+			<recto>imageCarte/bugatti-chiron-bleu-royal.jpg</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=0,g=255,b=0]</couleur>
 			<nombre>20</nombre>
-			<recto>null</recto>
+			<recto>imageCarte/2gg958d.jpg</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=255,g=0,b=255]</couleur>
 			<nombre>20</nombre>
-			<recto>null</recto>
+			<recto>imageCarte/8770-fiat-500-so-pink-edition-limitee-2010.jpg</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=255,g=102,b=0]</couleur>
 			<nombre>20</nombre>
-			<recto>null</recto>
+			<recto>imageCarte/bugatti_supercar.jpg</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=255,g=255,b=0]</couleur>
 			<nombre>20</nombre>
-			<recto>null</recto>
+			<recto>imageCarte/1200-L-chevrolet-camaro-transformers-3-joue-la-comme-bumblebee.jpg</recto>
 		</carteWagon>
 		<carteWagon>
 			<couleur>[r=0,g=0,b=0]</couleur>
@@ -401,7 +401,7 @@
 		<nbPointsPlusLongChemin>15</nbPointsPlusLongChemin>
 		<txtNomMoyenDeTransport>wagons</txtNomMoyenDeTransport>
 		<txtRoute>rails</txtRoute>
-		<versoCarteWagon>imageCarte/voiture.jpg</versoCarteWagon>
+		<versoCarteWagon>billet-cartonne-sncf.jpg</versoCarteWagon>
 		<versoCarteObjectif>billet-cartonne-sncf.jpg</versoCarteObjectif>
 		<heightPanel>965.0</heightPanel>
 		<witdhPanel>772.0</witdhPanel>
