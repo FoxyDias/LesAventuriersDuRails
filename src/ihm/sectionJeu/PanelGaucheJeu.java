@@ -27,7 +27,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 	private Controleur ctrl;
 	private JButton btnPiocheCarteWagon;
 	private JButton btnPiocheCarteObjectif;
-	private JButton btnArreterPartie;
 
 	/* ----- JDialog ---  */
 	private JDialog dialog;
@@ -65,17 +64,14 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		this.btnPiocheCarteWagon 		= new JButton(imageIconBtnPiocheCarteWagon);
 		this.btnPiocheCarteObjectif 	= new JButton(imageIconBtnPiocheCarteObjectif);
-		this.btnArreterPartie 			= new JButton("Arrêter la partie");
 
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
 		this.btnPiocheCarteWagon.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		this.btnPiocheCarteObjectif.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		this.btnArreterPartie.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
 		this.btnPiocheCarteWagon.setBackground(Color.WHITE);
 		this.btnPiocheCarteObjectif.setBackground(Color.WHITE);
-		this.btnArreterPartie.setBackground(Color.WHITE);
 
 
 		/**
@@ -104,7 +100,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 
 		this.btnPiocheCarteWagon.addActionListener(this);
 		this.btnPiocheCarteObjectif.addActionListener(this);
-		this.btnArreterPartie.addActionListener(this);
 	}
 
 	@Override
@@ -169,13 +164,6 @@ public class PanelGaucheJeu extends JPanel implements ActionListener
 					}
 				this.ctrl.avancerJoueur();
 			}
-		}
-	
-		if(e.getSource() == this.btnArreterPartie)
-		{
-			if(JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment arrêter la partie ?", "Fin de partie", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-				this.ctrl.changerPanel("Menu");
-			
 		}
 	}
 

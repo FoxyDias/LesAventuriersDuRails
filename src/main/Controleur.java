@@ -42,6 +42,7 @@ public class Controleur {
     public void recapFinPartie(){
         panelDispoParam.recapFinPartie();
     }
+    public void ajouterPoint() { this.metier.ajouterPoint(); }
 
     public String getNomImage() {
         return this.metier.getNomImage();
@@ -136,6 +137,8 @@ public class Controleur {
     {
         return this.metier.getEstJoueurCourant();
     }
+
+    public Joueur getJoueurPlusLong() { return this.metier.getJoueurLePlusLong(); }
 
     public void avancerJoueur()
     {
@@ -241,7 +244,5 @@ public class Controleur {
 		FlatLightLaf.setup();
         new Controleur();
     }
-
-
 
 }

@@ -66,6 +66,7 @@ public class PanelDispoParam extends JPanel implements ActionListener
             return;
 
         this.ctrl.chercheCheminLeplusPlong();
+        this.ctrl.ajouterPoint();
 
         this.dialogRecap = new JDialog();
         this.dialogRecap.setLayout(new BorderLayout());
@@ -90,8 +91,10 @@ public class PanelDispoParam extends JPanel implements ActionListener
             this.donnees[i][1] = this.ctrl.getJoueur(i).getNbPointsChemin();
             this.donnees[i][2] = this.ctrl.getJoueur(i).completeCarteObjectif();
             this.donnees[i][3] = this.ctrl.getJoueur(i).getRouteLaPlusLongue();
-            this.donnees[i][4] = this.ctrl.getJoueur(i);
-            //this.donnees[i][5] = this.ctrl.getJoueur(i).estPlusLong();
+            if(this.ctrl.getJoueur(i) == this.ctrl.getJoueurPlusLong())
+                this.donnees[i][4] = this.ctrl.getNbPointsPlusLongChemin();
+            else
+                this.donnees[i][4] = 0;
             this.donnees[i][5] = this.ctrl.getJoueur(i).getMalusCarteObjectif();
             this.donnees[i][6] = this.ctrl.getJoueur(i).getNbPointsTotal();
         }

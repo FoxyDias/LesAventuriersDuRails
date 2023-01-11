@@ -133,6 +133,11 @@ public class Metier {
         }
     }
 
+    public void ajouterPoint()
+    {
+        this.getJoueurLePlusLong().rajouterPoint(this.getNbPointsPlusLongChemin());
+    }
+
     /*
      * Joueur actuellement entrain de jouer
      */
@@ -161,14 +166,6 @@ public class Metier {
 
         for(int i=0; i<3; i++)
             piocherObjectifRandom();
-    }
-
-    public void afficherArete(){
-        int cpt = 0;
-        for(Arete a : lstArete){
-            System.out.println(cpt + " : " + a.getNoeudDep().getNom() + " --- " + a.getNoeudArr().getNom());
-            cpt++;
-        }
     }
 
     private void piocherWagonRandom()
@@ -565,6 +562,15 @@ public class Metier {
     public int getNbJoueurPartie        () { return nbJoueurPartie;        }
     public int getNbJoueurMax           () { return nbJoueurMax;           }
     public int getNbJoueurMinDoubleArete() { return nbJoueurMinDoubleArete;}
+    public Joueur getJoueurLePlusLong() {
+        Joueur joueur = this.lstJoueur.get(0);
+        for(Joueur j : this.lstJoueur)
+        {
+            if(j.getRouteLaPlusLongue()>joueur.getRouteLaPlusLongue())
+                joueur = j;
+        }
+        return joueur;
+    }
     public int getNbWagonDebutPartie    () { return nbWagonDebutPartie;    }
     public int getNbWagonFinPartie      () { return nbWagonFinPartie;      } 
     public int getNbPointsPlusLongChemin() { return nbPointsPlusLongChemin;}

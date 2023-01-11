@@ -44,13 +44,13 @@ public class Joueur {
      */
     public int getNbPointsChemin() {
         /* nbPoints = 0 pour éviter la duplication de points */
-        this.nbPoints = 0;
+        int num = 0;
 
         /* Calcul des points en fonction des paramètres de la mappe et de la taille de l'arête */
         for (Arete a : this.lstArete){
-            this.nbPoints+= metier.getPointsTailleAretes(a.getWagon());
+            num += metier.getPointsTailleAretes(a.getWagon());
         }
-        return this.nbPoints;
+        return num;
     }
 
     /**
@@ -161,25 +161,12 @@ public class Joueur {
         return this.couleur;
     }
 
-    public String estPlusLong()
-    {
-        //if()
-        return "Oui";
-        //else()
-        //return "Non";
-
-    }
-
     public void ajouterCarteWagon(CarteWagon cWagon){this.mainWagon.add(cWagon);}
     public void retirerCarteWagon(int indexcWagon){this.mainWagon.remove(indexcWagon);}
     public ArrayList<CarteWagon> getMainWagon() {return this.mainWagon;}
     
     public void ajouterCarteObjectif(CarteObjectif cObjectif){this.mainObjectif.add(cObjectif);}
     public ArrayList<CarteObjectif> getMainObjectif() {return this.mainObjectif;}
-
-    public int getNbPoints() {
-        return this.nbPoints;
-    }
 
     public void ajouterArete(Arete a){
         //this.rajouterPoint(a.getWagon());
@@ -284,5 +271,5 @@ public class Joueur {
 
     public void retirerCarteObjectif(int indexcObjectif){this.mainObjectif.remove(indexcObjectif);}
 
-    public int getNbPointsTotal() { return this.getNbPointsChemin() + this.completeCarteObjectif() - this.getMalusCarteObjectif(); }
+    public int getNbPointsTotal() { return this.nbPoints + this.getNbPointsChemin() + this.completeCarteObjectif() - this.getMalusCarteObjectif(); }
 }
