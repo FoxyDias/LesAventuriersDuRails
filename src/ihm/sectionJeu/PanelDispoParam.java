@@ -6,11 +6,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Color;
+import java.awt.*;
 import javax.swing.JLabel;
+import javax.swing.table.TableCellRenderer;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -27,7 +25,7 @@ public class PanelDispoParam extends JPanel implements ActionListener
 
     private JTable tableRecap;
     private Object[][] donnees;
-    private String[] entetes = {"Nom","Couleur", "Nb points chemins", "Nb points objectifs", "Plus long chemins", "Bonus","Malus de cartes non remplies", "Nb points total"};
+    private String[] entetes = {"Nom", "Nb points chemins", "Nb points objectifs", "Plus long chemins", "Bonus","Malus de cartes non remplies", "Nb points total"};
 
     public PanelDispoParam(Controleur ctrl)
     {
@@ -62,7 +60,7 @@ public class PanelDispoParam extends JPanel implements ActionListener
 
     public void recapFinPartie()
     {
-        JOptionPane.showConfirmDialog(null, "Etes vous sur de vouloir arrêter la partie ?", "Arrêt de la partie", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        //JOptionPane.showConfirmDialog(null, "Etes vous sur de vouloir arrêter la partie ?", "Arrêt de la partie", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if(JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog(null, "Etes vous sur de vouloir arrêter la partie ?", "Arrêt de la partie", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE))
             return;
@@ -81,22 +79,21 @@ public class PanelDispoParam extends JPanel implements ActionListener
 
         this.btnValiderRecap 	= new JButton("Quitter");
         this.btnValiderRecap.setBackground(Color.WHITE);
-        this.donnees 			= new Object[this.ctrl.getNbJoueurPartie()][8];
-        this.tableRecap 		= new JTable(this.donnees, this.entetes);
+        this.donnees 			= new Object[this.ctrl.getNbJoueurPartie()][7];
+        this.tableRecap 		= new TableResultat(this.ctrl, this.donnees, this.entetes);
         this.tableRecap.setEnabled(false);
 
         for(int i = 0; i < this.ctrl.getNbJoueurPartie(); i++)
         {
             //"Nom","Couleur", "Nb points chemins", "Nb points objectifs", "Plus long chemins", "Bonus","Malus de cartes non remplies", "Nb points total"
             this.donnees[i][0] = this.ctrl.getJoueur(i);
-            this.donnees[i][1] = this.ctrl.getJoueur(i).getCouleur().toString().replace("java.awt.Color", "");
-            this.donnees[i][2] = this.ctrl.getJoueur(i).getNbPointsChemin();
-            this.donnees[i][3] = this.ctrl.getJoueur(i).completeCarteObjectif();
-            this.donnees[i][4] = this.ctrl.getJoueur(i).getRouteLaPlusLongue();
-            this.donnees[i][5] = this.ctrl.getJoueur(i);
+            this.donnees[i][1] = this.ctrl.getJoueur(i).getNbPointsChemin();
+            this.donnees[i][2] = this.ctrl.getJoueur(i).completeCarteObjectif();
+            this.donnees[i][3] = this.ctrl.getJoueur(i).getRouteLaPlusLongue();
+            this.donnees[i][4] = this.ctrl.getJoueur(i);
             //this.donnees[i][5] = this.ctrl.getJoueur(i).estPlusLong();
-            this.donnees[i][6] = this.ctrl.getJoueur(i).getMalusCarteObjectif();
-            this.donnees[i][7] = this.ctrl.getJoueur(i).getNbPointsTotal();
+            this.donnees[i][5] = this.ctrl.getJoueur(i).getMalusCarteObjectif();
+            this.donnees[i][6] = this.ctrl.getJoueur(i).getNbPointsTotal();
         }
         
         DefaultTableCellRenderer custom = new DefaultTableCellRenderer();
@@ -146,6 +143,24 @@ public class PanelDispoParam extends JPanel implements ActionListener
         {	
             this.dialogRecap.dispose();
             this.ctrl.changerPanel("Menu");
+        }
+    }
+
+    public class TableResultat extends JTable
+    {
+        private Controleur ctrl;
+
+        public TableResultat(Controleur ctrl, Object[][] donnee, String[] enTete)
+        {
+            super(donnee, enTete);
+            this.ctrl = ctrl;
+
+        }
+
+        public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+            Component result = super.prepareRenderer(renderer, row, column);
+            result.setBackground(this.ctrl.getJoueur(row).getCouleur());
+            return result;
         }
     }
 }
