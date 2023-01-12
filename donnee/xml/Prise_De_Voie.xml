@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<infos>
+	<mappe>
+		<noeud nom="Fécamp">
+			<coordonees x="362" y="433"/>
+			<coordoneesNom x="359" y="434"/>
+		</noeud>
+		<noeud nom="Yport">
+			<coordonees x="597" y="434"/>
+			<coordoneesNom x="597" y="437"/>
+		</noeud>
+		<noeud nom="Concarneau">
+			<coordonees x="344" y="548"/>
+			<coordoneesNom x="348" y="546"/>
+		</noeud>
+		<noeud nom="Marseille">
+			<coordonees x="615" y="546"/>
+			<coordoneesNom x="618" y="549"/>
+		</noeud>
+		<noeud nom="Maison-Laffite">
+			<coordonees x="340" y="667"/>
+			<coordoneesNom x="340" y="670"/>
+		</noeud>
+		<noeud nom="Drancy">
+			<coordonees x="613" y="666"/>
+			<coordoneesNom x="615" y="666"/>
+		</noeud>
+		<arete>
+			<noeudArr>0</noeudArr>
+			<noeudDep>1</noeudDep>
+			<couleur>[r=255,g=0,b=0]</couleur>
+			<wagons>3</wagons>
+		</arete>
+		<arete>
+			<noeudArr>2</noeudArr>
+			<noeudDep>3</noeudDep>
+			<couleur>[r=0,g=0,b=255]</couleur>
+			<wagons>5</wagons>
+		</arete>
+		<arete>
+			<noeudArr>2</noeudArr>
+			<noeudDep>3</noeudDep>
+			<couleur>Neutre</couleur>
+			<wagons>5</wagons>
+		</arete>
+		<arete>
+			<noeudArr>4</noeudArr>
+			<noeudDep>5</noeudDep>
+			<couleur>[r=0,g=255,b=0]</couleur>
+			<wagons>1</wagons>
+		</arete>
+		<carteWagon>
+			<couleur>Joker</couleur>
+			<nombre>0</nombre>
+			<recto>null</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=0,g=0,b=255]</couleur>
+			<nombre>10</nombre>
+			<recto>imageCarte/bugatti-chiron-bleu-royal.jpg</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=0,g=255,b=0]</couleur>
+			<nombre>10</nombre>
+			<recto>imageCarte/2gg958d.jpg</recto>
+		</carteWagon>
+		<carteWagon>
+			<couleur>[r=255,g=0,b=0]</couleur>
+			<nombre>10</nombre>
+			<recto>imageCarte/Ferrari_F8_Tributo_2019_02dc2-615x410.jpg</recto>
+		</carteWagon>
+		<carteObjectif>
+			<noeudArr>2</noeudArr>
+			<noeudDep>1</noeudDep>
+			<points>4</points>
+		</carteObjectif>
+		<carteObjectif>
+			<noeudArr>5</noeudArr>
+			<noeudDep>4</noeudDep>
+			<points>2</points>
+		</carteObjectif>
+	<details>
+		<nbJoueurMinDoubleArete>2</nbJoueurMinDoubleArete>
+		<nbJoueurMax>5</nbJoueurMax>
+		<nbWagonDebutPartie>45</nbWagonDebutPartie>
+		<nbWagonFinPartie>2</nbWagonFinPartie>
+		<nbPointsPlusLongChemin>10</nbPointsPlusLongChemin>
+		<txtNomMoyenDeTransport>voitures</txtNomMoyenDeTransport>
+		<txtRoute>routes</txtRoute>
+		<versoCarteWagon>imageCarte/voiture.jpg</versoCarteWagon>
+		<versoCarteObjectif>billet-cartonne-sncf.jpg</versoCarteObjectif>
+		<heightPanel>951.0</heightPanel>
+		<witdhPanel>906.0</witdhPanel>
+		<image>importe/France.jpg</image>
+	</details>
+	<CouleurJoueurList>
+		<couleurJoueur>[r=0,g=204,b=204]</couleurJoueur>
+		<couleurJoueur>[r=255,g=51,b=0]</couleurJoueur>
+		<couleurJoueur>[r=255,g=0,b=255]</couleurJoueur>
+		<couleurJoueur>[r=51,g=255,b=51]</couleurJoueur>
+		<couleurJoueur>[r=255,g=255,b=0]</couleurJoueur>
+	</CouleurJoueurList>
+	<points>
+		<pointTaille>
+			<taille>1</taille>
+			<points>1</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>2</taille>
+			<points>2</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>3</taille>
+			<points>4</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>4</taille>
+			<points>7</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>5</taille>
+			<points>10</points>
+		</pointTaille>
+		<pointTaille>
+			<taille>6</taille>
+			<points>15</points>
+		</pointTaille>
+	</points>
+	</mappe>
+</infos>
